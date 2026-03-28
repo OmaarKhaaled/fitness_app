@@ -1,0 +1,100 @@
+{
+  "onboarding": {
+    "slide1": {
+      "title": "ثمن التميز هو الانضباط",
+      "description": "نص تجريبي لوصف الشريحة الأولى"
+    },
+    "slide2": {
+      "title": "اللياقة لم تكن بهذا المتعة من قبل",
+      "description": "نص تجريبي لوصف الشريحة الثانية"
+    },
+    "slide3": {
+      "title": "لا مزيد من الأعذار\nافعلها الآن",
+      "description": "نص تجريبي لوصف الشريحة الثالثة"
+    },
+    "buttons": {
+      "next": "التالي",
+      "back": "رجوع",
+      "skip": "تخطي",
+      "do_it": "افعلها"
+    }
+  },
+  "splash": {
+    "app_name": "سوبر فيتنس"
+  },
+  "login": {
+    "greeting": "مرحباً",
+    "welcome_back": "أهلاً بعودتك",
+    "heading": "تسجيل الدخول",
+    "email_placeholder": "البريد الإلكتروني",
+    "password_placeholder": "كلمة المرور",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "or": "أو",
+    "button": "تسجيل الدخول",
+    "no_account": "ليس لديك حساب بعد؟",
+    "register_link": "إنشاء حساب"
+  },
+  "register": {
+    "greeting": "مرحباً",
+    "create_account": "إنشاء حساب جديد",
+    "heading": "إنشاء حساب",
+    "first_name_placeholder": "الاسم الأول",
+    "last_name_placeholder": "اسم العائلة",
+    "email_placeholder": "البريد الإلكتروني",
+    "password_placeholder": "كلمة المرور",
+    "or": "أو",
+    "button": "إنشاء حساب",
+    "already_have_account": "لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول"
+  },
+  "profile_setup": {
+    "tell_us": "أخبرنا عن نفسك!",
+    "step_indicator": "{current}/{total}",
+    "gender": {
+      "select_instruction": "نحتاج أن نعرف جنسك",
+      "male": "ذكر",
+      "female": "أنثى",
+      "button": "التالي"
+    },
+    "age": {
+      "question": "كم عمرك؟",
+      "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
+      "button": "التالي"
+    },
+    "weight": {
+      "question": "ما هو وزنك؟",
+      "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
+      "unit": "كجم",
+      "button": "تم"
+    },
+    "height": {
+      "question": "ما هو طولك؟",
+      "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
+      "unit": "سم",
+      "button": "التالي"
+    },
+    "goal": {
+      "question": "ما هو هدفك؟",
+      "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
+      "options": {
+        "gain_weight": "زيادة الوزن",
+        "lose_weight": "إنقاص الوزن",
+        "get_fitter": "الحصول على لياقة أفضل",
+        "gain_more_flexible": "زيادة المرونة",
+        "learn_the_basic": "تعلم الأساسيات"
+      },
+      "button": "التالي"
+    },
+    "activity": {
+      "question": "ما هو مستوى نشاطك البدني المعتاد؟",
+      "options": {
+        "rookie": "مبتدئ جداً",
+        "beginner": "مبتدئ",
+        "intermediate": "متوسط",
+        "advance": "متقدم",
+        "true_beast": "محترف"
+      },
+      "button": "التالي"
+    }
+  }
+}
