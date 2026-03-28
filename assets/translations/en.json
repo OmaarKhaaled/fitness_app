@@ -1,0 +1,100 @@
+{
+  "onboarding": {
+    "slide1": {
+      "title": "The Price Of Excellence Is Discipline",
+      "description": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa"
+    },
+    "slide2": {
+      "title": "Fitness Has Never Been So Much Fun",
+      "description": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa"
+    },
+    "slide3": {
+      "title": "NO MORE EXCUSES\nDo It Now",
+      "description": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa"
+    },
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "skip": "Skip",
+      "do_it": "Do It"
+    }
+  },
+  "splash": {
+    "app_name": "Super Fitness"
+  },
+  "login": {
+    "greeting": "Hey There",
+    "welcome_back": "WELCOME BACK",
+    "heading": "Login",
+    "email_placeholder": "Email",
+    "password_placeholder": "Password",
+    "forgot_password": "Forgot Password?",
+    "or": "Or",
+    "button": "Login",
+    "no_account": "Don't Have An Account Yet?",
+    "register_link": "Register"
+  },
+  "register": {
+    "greeting": "Hey There",
+    "create_account": "CREATE AN ACCOUNT",
+    "heading": "Register",
+    "first_name_placeholder": "First Name",
+    "last_name_placeholder": "Last Name",
+    "email_placeholder": "Email",
+    "password_placeholder": "Password",
+    "or": "Or",
+    "button": "Register",
+    "already_have_account": "Already Have An Account?",
+    "login": "Login"
+  },
+  "profile_setup": {
+    "tell_us": "TELL US ABOUT YOURSELF!",
+    "step_indicator": "{current}/{total}",
+    "gender": {
+      "select_instruction": "We Need To Know Your Gender",
+      "male": "Male",
+      "female": "Female",
+      "button": "Next"
+    },
+    "age": {
+      "question": "HOW OLD ARE YOU ?",
+      "selection_info": "This Helps Us Create Your Personalized Plan",
+      "button": "Next"
+    },
+    "weight": {
+      "question": "WHAT IS YOUR WEIGHT ?",
+      "selection_info": "This Helps Us Create Your Personalized Plan",
+      "unit": "kg",
+      "button": "Done"
+    },
+    "height": {
+      "question": "WHAT IS YOUR HIGHT ?",
+      "selection_info": "This Helps Us Create Your Personalized Plan",
+      "unit": "CM",
+      "button": "Next"
+    },
+    "goal": {
+      "question": "WHAT IS YOUR GOAL ?",
+      "selection_info": "This Helps Us Create Your Personalized Plan",
+      "options": {
+        "gain_weight": "Gain Weight",
+        "lose_weight": "Lose Weight",
+        "get_fitter": "Get Fitter",
+        "gain_more_flexible": "Gain More Flexible",
+        "learn_the_basic": "Learn The Basic"
+      },
+      "button": "Next"
+    },
+    "activity": {
+      "question": "YOUR REGULAR PHYSICAL ACTIVITY LEVEL ?",
+      "options": {
+        "rookie": "Rookie",
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advance": "Advance",
+        "true_beast": "True Beast"
+      },
+      "button": "Next"
+    }
+  }
+}
