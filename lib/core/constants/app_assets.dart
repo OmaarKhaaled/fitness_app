@@ -15,7 +15,3 @@ class AppIcons {
   static const String profile = 'assets/icons/profile.svg';
   static const String superFitness = 'assets/icons/super_fitness.svg';
 }
-
-class AnimationAssets {
-  static const String loadingAnimation = 'assets/lottie/loading.json';
-}
