@@ -14,7 +14,7 @@ class UiUtils {
       builder: (_) => PopScope(
         canPop: false,
         child: Material(
-          color: Colors.transparent,
+          color: AppColors.transparent,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -50,7 +50,7 @@ class UiUtils {
       context,
       message: error,
       icon: Icons.error_outline_rounded,
-      color: Colors.redAccent.shade700,
+      color: AppColors.redAccent.shade700,
     );
   }
 
@@ -59,7 +59,7 @@ class UiUtils {
       context,
       message: msg,
       icon: Icons.check_circle_outline_rounded,
-      color: Colors.green.shade600,
+      color: AppColors.green.shade600,
     );
   }
 
@@ -121,7 +121,7 @@ class UiUtils {
   }) async {
     final result = await showDialog<bool>(
       context: context,
-      barrierColor: Colors.transparent,
+      barrierColor: AppColors.transparent,
       builder: (_) => Stack(
         children: [
           BackdropFilter(
