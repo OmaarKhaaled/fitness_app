@@ -60,7 +60,7 @@ dependencies:
   shimmer: ^3.0.0
   latlong2: ^0.9.1
   skeletonizer: ^2.1.2
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.4
   wheel_picker: ^0.2.2
 
 dev_dependencies:
@@ -83,3 +83,8 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/translations/
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
