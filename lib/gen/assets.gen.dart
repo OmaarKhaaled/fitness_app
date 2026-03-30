@@ -54,7 +54,7 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/onboarding_background.jpg
   AssetGenImage get onboardingBackground =>
-      const AssetGenImage('assets/images/onboarding_background.jpg');
+      const AssetGenImage('assets/images/onboarding_bg.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
