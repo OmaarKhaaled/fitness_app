@@ -3,5 +3,7 @@ import 'package:fitness_app/features/auth/register/domain/models/register_reques
 import 'package:fitness_app/features/auth/register/domain/models/register_response_model.dart';
 
 abstract class RegisterRepoContract {
-  Future<BaseResponse<RegisterResponseModel>> register(RegisterRequestModel request);
+  Future<BaseResponse<RegisterResponseModel>> register(
+    RegisterRequestModel request,
+  );
 }

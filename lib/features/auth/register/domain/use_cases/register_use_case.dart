@@ -8,7 +8,9 @@ import 'package:injectable/injectable.dart';
 class RegisterUseCase {
   final RegisterRepoContract _registerRepoContract;
   RegisterUseCase(this._registerRepoContract);
-  Future<BaseResponse<RegisterResponseModel>> call(RegisterRequestModel request){
+  Future<BaseResponse<RegisterResponseModel>> call(
+    RegisterRequestModel request,
+  ) {
     return _registerRepoContract.register(request);
   }
 }

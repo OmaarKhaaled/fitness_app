@@ -23,9 +23,9 @@ class RegisterRequestModel {
     this.weight,
     this.age,
     this.goal,
-    this.activityLevel
+    this.activityLevel,
   });
-  RegisterRequestDto toDTO(){
+  RegisterRequestDto toDTO() {
     return RegisterRequestDto(
       firstName: firstName,
       lastName: lastName,
@@ -37,7 +37,7 @@ class RegisterRequestModel {
       weight: weight,
       age: age,
       goal: goal,
-      activityLevel: activityLevel
+      activityLevel: activityLevel,
     );
   }
 }

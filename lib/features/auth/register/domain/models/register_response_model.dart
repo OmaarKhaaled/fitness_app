@@ -4,5 +4,5 @@ class RegisterResponseModel {
   String? message;
   UserModel? user;
   String? token;
-  RegisterResponseModel({this.message,this.user,this.token});
+  RegisterResponseModel({this.message, this.user, this.token});
 }

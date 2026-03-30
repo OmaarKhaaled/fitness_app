@@ -5,17 +5,22 @@ import 'package:fitness_app/features/auth/register/data/data_sources/remote/regi
 import 'package:fitness_app/features/auth/register/data/models/register_request_dto.dart';
 import 'package:fitness_app/features/auth/register/data/models/register_response.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: RegisterRemoteDataSourceContract)
-class RegisterRemoteDataSourceImpl implements RegisterRemoteDataSourceContract{
+class RegisterRemoteDataSourceImpl implements RegisterRemoteDataSourceContract {
   final RegisterApiClient _registerApiClient;
   RegisterRemoteDataSourceImpl(this._registerApiClient);
   @override
-  Future<BaseResponse<RegisterResponse>> register(RegisterRequestDto request) async{
-    try{
-      final response=await _registerApiClient.register(request);
+  Future<BaseResponse<RegisterResponse>> register(
+    RegisterRequestDto request,
+  ) async {
+    try {
+      final response = await _registerApiClient.register(request);
       return Success<RegisterResponse>(response);
-    }catch(e){
-      return Failure<RegisterResponse>(ExceptionsHandler.handle(e as Exception));
+    } catch (e) {
+      return Failure<RegisterResponse>(
+        ExceptionsHandler.handle(e as Exception),
+      );
     }
   }
 }

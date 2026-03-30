@@ -5,27 +5,24 @@ part 'register_response.g.dart';
 
 @JsonSerializable()
 class RegisterResponse {
-    @JsonKey(name: 'message')
-    String? message;
-    @JsonKey(name: 'user')
-    UserDTO? user;
-    @JsonKey(name: 'token')
-    String? token;
+  @JsonKey(name: 'message')
+  String? message;
+  @JsonKey(name: 'user')
+  UserDTO? user;
+  @JsonKey(name: 'token')
+  String? token;
 
-    RegisterResponse({
-        this.message,
-        this.user,
-        this.token,
-    });
+  RegisterResponse({this.message, this.user, this.token});
 
-    factory RegisterResponse.fromJson(Map<String, dynamic> json) => _$RegisterResponseFromJson(json);
+  factory RegisterResponse.fromJson(Map<String, dynamic> json) =>
+      _$RegisterResponseFromJson(json);
 
-    Map<String, dynamic> toJson() => _$RegisterResponseToJson(this);
-    RegisterResponseModel toDomain(){
-      return RegisterResponseModel(
-        message: message,
-        user: user?.toDomain(),
-        token: token
-      );
-    }
+  Map<String, dynamic> toJson() => _$RegisterResponseToJson(this);
+  RegisterResponseModel toDomain() {
+    return RegisterResponseModel(
+      message: message,
+      user: user?.toDomain(),
+      token: token,
+    );
+  }
 }
