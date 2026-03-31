@@ -12,7 +12,7 @@ class SlideTitle extends StatelessWidget {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 400),
       child: Text(
-        key: ValueKey(currentPage),
+        key: UniqueKey(),
         AppTextConstants.onBoardingSlideTitles[currentPage],
         textAlign: TextAlign.center,
         style: GoogleFonts.balooThambi2(

@@ -11,7 +11,7 @@ class OnBoardingPicsSection extends StatelessWidget {
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
         child: Image.asset(
-          key: ValueKey(currentPage),
+          key: UniqueKey(),
           AppAssets.onBoardingSlides[currentPage],
           width: double.infinity,
           fit: BoxFit.cover,
