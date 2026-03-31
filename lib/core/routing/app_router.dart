@@ -1,5 +1,5 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
-import 'package:fitness_app/onboarding_screen.dart';
+import 'package:fitness_app/features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -8,8 +8,8 @@ class AppRouter {
     routes: [
       GoRoute(
         path: AppRoutesConstants.onboardingRoute,
-        builder: (context, state) => const OnboardingScreen(),
-      ),
+        builder: (context, state) => const OnBoardingPage(),
+      )    
     ],
   );
 }
