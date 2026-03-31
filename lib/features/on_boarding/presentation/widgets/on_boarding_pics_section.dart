@@ -1,4 +1,4 @@
-import 'package:fitness_app/core/constants/app_assets.dart';
+import '../../../../core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingPicsSection extends StatelessWidget {

@@ -1,12 +1,9 @@
-import 'package:fitness_app/core/constants/app_assets.dart';
-import 'package:fitness_app/core/constants/app_text_constants.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_bottom_sheet.dart';
-import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_navigation.dart';
-import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_pics_section.dart';
+import '../../../../core/constants/app_assets.dart';
+import '../../../../core/constants/app_text_constants.dart';
+import '../widgets/on_boarding_bottom_sheet.dart';
+import '../widgets/on_boarding_pics_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});

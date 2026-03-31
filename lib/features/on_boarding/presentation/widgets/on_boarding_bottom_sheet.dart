@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:fitness_app/core/constants/app_text_constants.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_navigation.dart';
+import '../../../../core/constants/app_text_constants.dart';
+import '../../../../core/theme/app_colors.dart';
+import 'on_boarding_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

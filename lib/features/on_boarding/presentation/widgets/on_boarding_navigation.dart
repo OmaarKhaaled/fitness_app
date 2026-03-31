@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:fitness_app/core/constants/app_text_constants.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
+import '../../../../core/constants/app_text_constants.dart';
+import '../../../../core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
