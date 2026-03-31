@@ -20,37 +20,25 @@ class OnBoardingBottomSheet extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
       child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 34.6,
-          sigmaY: 34.6,
-          tileMode: TileMode.mirror,
-        ),
+        filter: ImageFilter.blur(sigmaX: 34.6, sigmaY: 34.6),
         child: BottomSheet(
-          enableDrag: false,
-          constraints: BoxConstraints(
-            maxHeight: 275,
-            minHeight: 275,
-            minWidth: MediaQuery.of(context).size.width,
-          ),
+          constraints: const BoxConstraints(maxHeight: 275, minHeight: 275),
           backgroundColor: Colors.transparent,
           onClosing: () {},
           builder: (context) {
             return Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
-                vertical: 31.5,
+                vertical: 31,
               ),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-                child: Column(
-                  children: [
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: 300,
-                        maxHeight: 68,
-                      ),
+              child: Column(
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 275),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
                       child: Text(
+                        key: ValueKey(currentPage),
                         AppTextConstants.onBoardingSlideTitles[currentPage],
                         textAlign: TextAlign.center,
                         style: GoogleFonts.balooThambi2(
@@ -61,11 +49,12 @@ class OnBoardingBottomSheet extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      AppTextConstants.onBoardingSlideDescriptions[controller
-                              .page
-                              ?.toInt() ??
-                          0],
+                  ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 400),
+                    child: Text(
+                      key: ValueKey(currentPage),
+                      AppTextConstants.onBoardingSlideDescriptions[currentPage],
                       textAlign: TextAlign.center,
                       style: GoogleFonts.balooThambi2(
                         fontSize: 16,
@@ -74,27 +63,26 @@ class OnBoardingBottomSheet extends StatelessWidget {
                         letterSpacing: 0,
                       ),
                     ),
+                  ),
 
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: SmoothPageIndicator(
-                        onDotClicked: null,
-                        effect: const ExpandingDotsEffect(
-                          dotHeight: 8,
-                          dotWidth: 8,
-                          spacing: 8,
-                          dotColor: AppColors.hint,
-                        ),
-                        controller: controller,
-                        count: 3,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: SmoothPageIndicator(
+                      effect: const ExpandingDotsEffect(
+                        dotHeight: 8,
+                        dotWidth: 8,
+                        spacing: 8,
+                        dotColor: AppColors.hint,
                       ),
-                    ),
-                    OnBoardingNavigation(
                       controller: controller,
-                      currentPage: currentPage,
+                      count: 3,
                     ),
-                  ],
-                ),
+                  ),
+                  OnBoardingNavigation(
+                    controller: controller,
+                    currentPage: currentPage,
+                  ),
+                ],
               ),
             );
           },

@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OnBoardingNavigation extends StatefulWidget {
   const OnBoardingNavigation({
@@ -21,8 +23,6 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
   Widget build(BuildContext context) {
     log(widget.currentPage.toString());
     return AnimatedSwitcher(
-      reverseDuration: const Duration(milliseconds: 400),
-
       duration: const Duration(milliseconds: 400),
 
       child: (widget.currentPage) == 0
@@ -33,19 +33,38 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
                   curve: Curves.easeInOut,
                 );
               },
-              child: Text(AppTextConstants.onboardingNextButton),
+              child: Text(
+                AppTextConstants.onboardingNextButton,
+                style: GoogleFonts.balooThambi2(
+                  fontSize: 14,
+                  color: AppColors.hint,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    side: const BorderSide(width: 1, color: AppColors.primary),
+                  ),
                   onPressed: () {
                     widget.controller.previousPage(
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.easeInOut,
                     );
                   },
-                  child: Text(AppTextConstants.onboardingBackButton),
+                  child: Text(
+                    AppTextConstants.onboardingBackButton,
+                    style: GoogleFonts.balooThambi2(
+                      fontSize: 14,
+                      color: AppColors.hint,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                 ),
                 (widget.currentPage) != 2
                     ? ElevatedButton(
@@ -55,11 +74,25 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
                             curve: Curves.easeInOut,
                           );
                         },
-                        child: Text(AppTextConstants.onboardingNextButton),
+                        child: Text(
+                          AppTextConstants.onboardingNextButton,
+                          style: GoogleFonts.balooThambi2(
+                            fontSize: 14,
+                            color: AppColors.hint,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
                       )
                     : ElevatedButton(
                         onPressed: () {},
-                        child: Text(AppTextConstants.onboardingDoItButton),
+                        child: Text(
+                          AppTextConstants.onboardingDoItButton,
+                          style: GoogleFonts.balooThambi2(
+                            fontSize: 14,
+                            color: AppColors.hint,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
                       ),
               ],
             ),

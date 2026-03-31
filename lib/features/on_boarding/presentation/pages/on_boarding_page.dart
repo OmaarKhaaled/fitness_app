@@ -1,10 +1,12 @@
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_bottom_sheet.dart';
 import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_navigation.dart';
 import 'package:fitness_app/features/on_boarding/presentation/widgets/on_boarding_pics_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -49,15 +51,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           backgroundColor: Colors.transparent,
           body: Padding(
             padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text(AppTextConstants.onboardingSkipButton),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(AppTextConstants.onboardingSkipButton),
+                    ),
+                    OnBoardingPicsSection(pageController: _pageController),
+                  ],
                 ),
-                OnBoardingPicsSection(pageController: _pageController),
                 OnBoardingBottomSheet(
                   controller: _pageController,
                   currentPage: _currentPage,

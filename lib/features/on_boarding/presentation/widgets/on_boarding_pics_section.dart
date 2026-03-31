@@ -6,17 +6,17 @@ class OnBoardingPicsSection extends StatelessWidget {
   final PageController pageController;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 600,
       child: PageView.builder(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
-        itemCount: 3, // Replace with actual number of slides
+        itemCount: 3,
         itemBuilder: (context, index) {
-          return FadeInImage(
-            placeholder: const AssetImage(
-              AppAssets.onboarding1,
-            ), // A transparent image as a placeholder
-            image: AssetImage(AppAssets.onBoardingSlides[index]),
+          return Image.asset(
+            key: ValueKey(index),
+            AppAssets.onBoardingSlides[index],
+            width: double.infinity,
             fit: BoxFit.cover,
           );
         },
