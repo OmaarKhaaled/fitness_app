@@ -21,10 +21,8 @@ class OnBoardingNavigation extends StatefulWidget {
 class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
   @override
   Widget build(BuildContext context) {
-    log(widget.currentPage.toString());
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 400),
-
       child: (widget.currentPage) == 0
           ? ElevatedButton(
               onPressed: () {
