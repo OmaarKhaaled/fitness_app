@@ -1,9 +1,13 @@
+import 'package:fitness_app/config/cache_modules/secure_storege_module.dart';
+import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/core/constants/cache_constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_text_constants.dart';
 import '../widgets/on_boarding_bottom_sheet.dart';
 import '../widgets/on_boarding_pics_section.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
@@ -13,20 +17,8 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-  late PageController _pageController;
+  SecureStorageService secureStorageService = getIt<SecureStorageService>();
   int _currentPage = 0;
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: _currentPage);
-    _pageController.addListener(() {
-      if (_pageController.page?.round() != _currentPage) {
-        setState(() {
-          _currentPage = _pageController.page?.round() ?? 0;
-        });
-      }
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,27 +38,42 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(AppTextConstants.onboardingSkipButton),
-                    ),
-                    OnBoardingPicsSection(pageController: _pageController),
-                  ],
-                ),
-                OnBoardingBottomSheet(
-                  controller: _pageController,
-                  currentPage: _currentPage,
-                ),
-              ],
-            ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SizedBox(height: MediaQuery.of(context).padding.top),
+              TextButton(
+                onPressed: () {
+                  secureStorageService.writeBool(
+                    CacheConstants.onBoardingViewed,
+                    true,
+                  );
+                  //TODO: navigate to home page
+                },
+                child: Text(AppTextConstants.onboardingSkipButton),
+              ),
+              OnBoardingPicsSection(currentPage: _currentPage),
+              OnBoardingBottomSheet(
+                currentPage: _currentPage,
+                onNextPressed: () {
+                  setState(() {
+                    _currentPage++;
+                  });
+                },
+                onBackPressed: () {
+                  setState(() {
+                    _currentPage--;
+                  });
+                },
+                onDoItPressed: () {
+                  secureStorageService.writeBool(
+                    CacheConstants.onBoardingViewed,
+                    true,
+                  );
+                  //TODO: navigate to home page
+                },
+              ),
+            ],
           ),
         ),
       ),

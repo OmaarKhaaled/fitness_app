@@ -1,17 +1,21 @@
-import '../../../../core/constants/app_text_constants.dart';
-import '../../../../core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../core/constants/app_text_constants.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class OnBoardingNavigation extends StatefulWidget {
   const OnBoardingNavigation({
     super.key,
-    required this.controller,
     required this.currentPage,
+    required this.onNextPressed,
+    required this.onBackPressed,
+    required this.onDoItPressed,
   });
-  final PageController controller;
   final int currentPage;
-
+  final VoidCallback onNextPressed;
+  final VoidCallback onBackPressed;
+  final VoidCallback onDoItPressed;
   @override
   State<OnBoardingNavigation> createState() => _OnBoardingNavigationState();
 }
@@ -22,19 +26,18 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 400),
       child: (widget.currentPage) == 0
-          ? ElevatedButton(
-              onPressed: () {
-                widget.controller.nextPage(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeInOut,
-                );
-              },
-              child: Text(
-                AppTextConstants.onboardingNextButton,
-                style: GoogleFonts.balooThambi2(
-                  fontSize: 14,
-                  color: AppColors.hint,
-                  fontWeight: FontWeight.w800,
+          ? SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(),
+                onPressed: widget.onNextPressed,
+                child: Text(
+                  AppTextConstants.onboardingNextButton,
+                  style: GoogleFonts.balooThambi2(
+                    fontSize: 14,
+                    color: AppColors.hint,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
             )
@@ -47,12 +50,7 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
                     shadowColor: Colors.transparent,
                     side: const BorderSide(width: 1, color: AppColors.primary),
                   ),
-                  onPressed: () {
-                    widget.controller.previousPage(
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeInOut,
-                    );
-                  },
+                  onPressed: widget.onBackPressed,
                   child: Text(
                     AppTextConstants.onboardingBackButton,
                     style: GoogleFonts.balooThambi2(
@@ -64,12 +62,7 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
                 ),
                 (widget.currentPage) != 2
                     ? ElevatedButton(
-                        onPressed: () {
-                          widget.controller.nextPage(
-                            duration: const Duration(milliseconds: 400),
-                            curve: Curves.easeInOut,
-                          );
-                        },
+                        onPressed: widget.onNextPressed,
                         child: Text(
                           AppTextConstants.onboardingNextButton,
                           style: GoogleFonts.balooThambi2(
@@ -80,7 +73,7 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
                         ),
                       )
                     : ElevatedButton(
-                        onPressed: () {},
+                        onPressed: widget.onDoItPressed,
                         child: Text(
                           AppTextConstants.onboardingDoItButton,
                           style: GoogleFonts.balooThambi2(
