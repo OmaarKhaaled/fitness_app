@@ -14,6 +14,8 @@ class AuthRepoImpl implements AuthRepo {
   Future<BaseResponse<LoginModel>> login(LoginRequest request) async {
     final response = await _authRemoteDataSource.login(request);
     return response.when(
+      initial: () => BaseResponse.initial(),
+      loading: () => BaseResponse.loading(),
       success: (data) => BaseResponse.success(data.toModel()),
       failure: (exception) => BaseResponse.failure(exception),
     );

@@ -1,4 +1,8 @@
 {
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "enterYourPassword": "أدخل كلمة المرور",
   "onboarding": {
     "slide1": {
       "title": "ثمن التميز هو الانضباط",
@@ -96,5 +100,19 @@
       },
       "button": "التالي"
     }
+  },
+  "home": {
+    "greeting": "مرحباً",
+    "welcome_back": "أهلاً بعودتك",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "or": "أو",
+    "button": "تسجيل الدخول",
+    "enter_your_email": "أدخل بريدك الإلكتروني",
+    "enter_your_password": "أدخل كلمة المرور",
+    "remember_me": "تذكرني",
+    "no_account": "ليس لديك حساب بعد؟",
+    "register_link": "إنشاء حساب"
   }
 }
