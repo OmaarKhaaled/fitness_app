@@ -1,3 +1,4 @@
+import 'package:fitness_app/features/auth/domain/models/login_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'login_response.g.dart';
 
@@ -14,4 +15,9 @@ class LoginResponse {
       _$LoginResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+
+  LoginModel toModel() => LoginModel(
+        message: message ?? '',
+        token: token ?? '',
+      );
 }

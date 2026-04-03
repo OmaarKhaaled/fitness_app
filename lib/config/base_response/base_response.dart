@@ -8,4 +8,5 @@ abstract class BaseResponse<T> with _$BaseResponse<T> {
   const factory BaseResponse.success(T data) = Success<T>;
 
   const factory BaseResponse.failure(AppException exception) = Failure<T>;
+
 }
