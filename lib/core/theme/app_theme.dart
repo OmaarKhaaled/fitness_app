@@ -1,5 +1,6 @@
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -9,87 +10,87 @@ class AppTheme {
       centerTitle: true,
       foregroundColor: AppColors.white,
     ),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       // Display styles
-      displayLarge: TextStyle(
+      displayLarge: GoogleFonts.balooThambi2(
         fontSize: 57,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
-      displayMedium: TextStyle(
+      displayMedium: GoogleFonts.balooThambi2(
         fontSize: 45,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
-      displaySmall: TextStyle(
+      displaySmall: GoogleFonts.balooThambi2(
         fontSize: 36,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
 
       // Headline styles
-      headlineLarge: TextStyle(
+      headlineLarge: GoogleFonts.balooThambi2(
         fontSize: 32,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
-      headlineMedium: TextStyle(
+      headlineMedium: GoogleFonts.balooThambi2(
         fontSize: 28,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
-      headlineSmall: TextStyle(
+      headlineSmall: GoogleFonts.balooThambi2(
         fontSize: 24,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
 
       // Title styles
-      titleLarge: TextStyle(
+      titleLarge: GoogleFonts.balooThambi2(
         fontSize: 22,
         fontWeight: FontWeight.w500,
         color: AppColors.white,
       ),
-      titleMedium: TextStyle(
+      titleMedium: GoogleFonts.balooThambi2(
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: AppColors.white,
       ),
-      titleSmall: TextStyle(
+      titleSmall: GoogleFonts.balooThambi2(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: AppColors.white,
       ),
 
       // Label styles
-      labelLarge: TextStyle(
+      labelLarge: GoogleFonts.balooThambi2(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: AppColors.white,
       ),
-      labelMedium: TextStyle(
+      labelMedium: GoogleFonts.balooThambi2(
         fontSize: 12,
         fontWeight: FontWeight.w500,
         color: AppColors.white,
       ),
-      labelSmall: TextStyle(
+      labelSmall: GoogleFonts.balooThambi2(
         fontSize: 11,
         fontWeight: FontWeight.w500,
         color: AppColors.white,
       ),
 
       // Body styles
-      bodyLarge: TextStyle(
+      bodyLarge: GoogleFonts.balooThambi2(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
-      bodyMedium: TextStyle(
+      bodyMedium: GoogleFonts.balooThambi2(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
-      bodySmall: TextStyle(
+      bodySmall: GoogleFonts.balooThambi2(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
@@ -99,7 +100,10 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.white,
-        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        textStyle: GoogleFonts.balooThambi2(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     ),
@@ -109,8 +113,8 @@ class AppTheme {
       fillColor: AppColors.white.withValues(alpha: .08),
       prefixIconColor: AppColors.white,
       suffixIconColor: AppColors.white,
-      labelStyle: const TextStyle(color: AppColors.white),
-      hintStyle: const TextStyle(color: AppColors.white),
+      labelStyle: GoogleFonts.balooThambi2(color: AppColors.white),
+      hintStyle: GoogleFonts.balooThambi2(color: AppColors.white),
 
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),

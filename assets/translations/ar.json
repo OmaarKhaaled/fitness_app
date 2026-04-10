@@ -42,6 +42,7 @@
     "last_name_placeholder": "اسم العائلة",
     "email_placeholder": "البريد الإلكتروني",
     "password_placeholder": "كلمة المرور",
+    "repassword_placeholder":"تأكيد كلمة المرور",
     "or": "أو",
     "button": "إنشاء حساب",
     "already_have_account": "لديك حساب بالفعل؟",
@@ -59,6 +60,7 @@
     "age": {
       "question": "كم عمرك؟",
       "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
+      "year":"سنة",
       "button": "التالي"
     },
     "weight": {

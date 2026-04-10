@@ -14,11 +14,22 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Vector.png
+  AssetGenImage get vector => const AssetGenImage('assets/icons/Vector.png');
+
   /// File path: assets/icons/chat_ai.svg
   String get chatAi => 'assets/icons/chat_ai.svg';
 
+  /// File path: assets/icons/female-symbol.png
+  AssetGenImage get femaleSymbol =>
+      const AssetGenImage('assets/icons/female-symbol.png');
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
+
+  /// File path: assets/icons/male-symbol.png
+  AssetGenImage get maleSymbol =>
+      const AssetGenImage('assets/icons/male-symbol.png');
 
   /// File path: assets/icons/profile.svg
   String get profile => 'assets/icons/profile.svg';
@@ -30,7 +41,16 @@ class $AssetsIconsGen {
   String get wourkout => 'assets/icons/wourkout.svg';
 
   /// List of all assets
-  List<String> get values => [chatAi, home, profile, superFitness, wourkout];
+  List<dynamic> get values => [
+    vector,
+    chatAi,
+    femaleSymbol,
+    home,
+    maleSymbol,
+    profile,
+    superFitness,
+    wourkout,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -56,6 +76,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingBackground =>
       const AssetGenImage('assets/images/onboarding_background.jpg');
 
+  /// File path: assets/images/super-fitness.png
+  AssetGenImage get superFitness =>
+      const AssetGenImage('assets/images/super-fitness.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     authBackground,
@@ -63,6 +87,7 @@ class $AssetsImagesGen {
     onboarding2,
     onboarding3,
     onboardingBackground,
+    superFitness,
   ];
 }
 
