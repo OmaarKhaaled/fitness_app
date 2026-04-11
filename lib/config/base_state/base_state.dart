@@ -9,12 +9,12 @@ class BaseState<T> extends Equatable {
 
   BaseState<T> copyWith({String? errorMessage, bool? isLoading, T? data}) {
     return BaseState<T>(
-      isError: isError ?? this.isError,
+      errorMessage: errorMessage ?? this.errorMessage,
       isLoading: isLoading ?? this.isLoading,
       data: data ?? this.data,
     );
   }
 
   @override
-  List<Object?> get props => [isError, isLoading, data];
+  List<Object?> get props => [errorMessage, isLoading, data];
 }
