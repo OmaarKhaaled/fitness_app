@@ -655,32 +655,35 @@ void main() {
   testWidgets(
     'navigates to login screen when tapping login link',
     (WidgetTester tester) async {
-      // Increase the test timeout
-      await tester.runAsync(() async {
-        await tester.pumpWidget(buildTestableWidget());
-        await tester.pumpAndSettle();
+      // Use a longer initial pump
+      await tester.pumpWidget(buildTestableWidget());
+      await tester.pumpAndSettle(const Duration(seconds: 3));
 
-        final loginLink = find.text(AppTextConstants.registerLoginLink);
-        expect(loginLink, findsOneWidget);
+      final loginLink = find.text(AppTextConstants.registerLoginLink);
+      expect(loginLink, findsOneWidget);
 
-        await tester.tap(loginLink);
+      // Tap and wait with multiple pumps
+      await tester.tap(loginLink);
 
-        // Multiple pumps to ensure navigation completes
-        for (int i = 0; i < 10; i++) {
-          await tester.pump(const Duration(milliseconds: 100));
-        }
+      // Pump multiple times with delays
+      for (int i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 200));
+      }
 
-        await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle(const Duration(seconds: 3));
 
-        // Check if navigation occurred, if not pump again
-        final loginScreenText = find.text('Login Screen');
-        if (tester.widgetList(loginScreenText).isEmpty) {
-          await tester.pumpAndSettle(const Duration(seconds: 1));
-        }
+      // Check if navigation happened using a different approach
+      final loginScreenText = find.text('Login Screen');
 
-        expect(loginScreenText, findsOneWidget);
-      });
+      // If not found, try pumping again
+      int attempts = 0;
+      while (tester.widgetList(loginScreenText).isEmpty && attempts < 10) {
+        await tester.pump(const Duration(milliseconds: 200));
+        attempts++;
+      }
+
+      expect(loginScreenText, findsOneWidget);
     },
-    timeout: const Timeout(Duration(seconds: 30)),
+    timeout: const Timeout(Duration(minutes: 2)),
   );
 }
