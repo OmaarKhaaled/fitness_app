@@ -10,7 +10,7 @@ class RegisterUseCase {
   RegisterUseCase(this._registerRepoContract);
   Future<BaseResponse<RegisterResponseModel>> call(
     RegisterRequestModel request,
-  ) {
+  ) async {
     return _registerRepoContract.register(request);
   }
 }

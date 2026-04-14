@@ -164,9 +164,9 @@ class _RegisterAdditionalInfoScreenState
             UiUtils.showSuccessMsg(context, registerState!.data!.message!);
             context.go(AppRoutesConstants.loginRoute);
           } else if (registerState?.isLoading == false &&
-              registerState?.isError == true) {
+              registerState?.errorMessage != null) {
             UiUtils.hideLoading(context);
-            UiUtils.showErrorMsg(context, 'Error');
+            UiUtils.showErrorMsg(context, registerState!.errorMessage!);
           }
         },
       ),

@@ -1,5 +1,6 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/base_state/base_state.dart';
+import 'package:fitness_app/config/errors/exception_handler.dart';
 import 'package:fitness_app/features/auth/register/domain/models/register_request_model.dart';
 import 'package:fitness_app/features/auth/register/domain/models/register_response_model.dart';
 import 'package:fitness_app/features/auth/register/domain/models/registeration_data_model.dart';
@@ -75,9 +76,9 @@ class RegisterViewModel extends Cubit<RegisterStates> {
       failure: (exception) {
         emit(
           state.copyWith(
-            registerState: const BaseState<RegisterResponseModel>(
+            registerState: BaseState<RegisterResponseModel>(
               isLoading: false,
-              isError: true,
+              errorMessage: ExceptionsHandler.handle(exception).message,
             ),
           ),
         );
