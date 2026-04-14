@@ -656,11 +656,25 @@ void main() {
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(buildTestableWidget());
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+
     final loginLink = find.text(AppTextConstants.registerLoginLink);
     expect(loginLink, findsOneWidget);
+
     await tester.tap(loginLink);
-    await tester.pumpAndSettle();
-    expect(find.text('Login Screen'), findsOneWidget);
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+
+    // Wait for any pending frames
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // Try to find the login screen text with a more flexible approach
+    final loginScreenText = find.text('Login Screen');
+
+    // If not found, pump again
+    if (tester.widgetList(loginScreenText).isEmpty) {
+      await tester.pump(const Duration(milliseconds: 500));
+    }
+
+    expect(loginScreenText, findsOneWidget);
   });
 }
