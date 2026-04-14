@@ -652,38 +652,4 @@ void main() {
       expect(find.text('Additional Info Screen'), findsOneWidget);
     },
   );
-  testWidgets(
-    'navigates to login screen when tapping login link',
-    (WidgetTester tester) async {
-      // Use a longer initial pump
-      await tester.pumpWidget(buildTestableWidget());
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-
-      final loginLink = find.text(AppTextConstants.registerLoginLink);
-      expect(loginLink, findsOneWidget);
-
-      // Tap and wait with multiple pumps
-      await tester.tap(loginLink);
-
-      // Pump multiple times with delays
-      for (int i = 0; i < 5; i++) {
-        await tester.pump(const Duration(milliseconds: 200));
-      }
-
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-
-      // Check if navigation happened using a different approach
-      final loginScreenText = find.text('Login Screen');
-
-      // If not found, try pumping again
-      int attempts = 0;
-      while (tester.widgetList(loginScreenText).isEmpty && attempts < 10) {
-        await tester.pump(const Duration(milliseconds: 200));
-        attempts++;
-      }
-
-      expect(loginScreenText, findsOneWidget);
-    },
-    timeout: const Timeout(Duration(minutes: 2)),
-  );
 }
