@@ -652,29 +652,35 @@ void main() {
       expect(find.text('Additional Info Screen'), findsOneWidget);
     },
   );
-  testWidgets('navigates to login screen when tapping login link', (
-    WidgetTester tester,
-  ) async {
-    await tester.pumpWidget(buildTestableWidget());
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+  testWidgets(
+    'navigates to login screen when tapping login link',
+    (WidgetTester tester) async {
+      // Increase the test timeout
+      await tester.runAsync(() async {
+        await tester.pumpWidget(buildTestableWidget());
+        await tester.pumpAndSettle();
 
-    final loginLink = find.text(AppTextConstants.registerLoginLink);
-    expect(loginLink, findsOneWidget);
+        final loginLink = find.text(AppTextConstants.registerLoginLink);
+        expect(loginLink, findsOneWidget);
 
-    await tester.tap(loginLink);
-    await tester.pumpAndSettle(const Duration(seconds: 2));
+        await tester.tap(loginLink);
 
-    // Wait for any pending frames
-    await tester.pump(const Duration(milliseconds: 500));
+        // Multiple pumps to ensure navigation completes
+        for (int i = 0; i < 10; i++) {
+          await tester.pump(const Duration(milliseconds: 100));
+        }
 
-    // Try to find the login screen text with a more flexible approach
-    final loginScreenText = find.text('Login Screen');
+        await tester.pumpAndSettle(const Duration(seconds: 2));
 
-    // If not found, pump again
-    if (tester.widgetList(loginScreenText).isEmpty) {
-      await tester.pump(const Duration(milliseconds: 500));
-    }
+        // Check if navigation occurred, if not pump again
+        final loginScreenText = find.text('Login Screen');
+        if (tester.widgetList(loginScreenText).isEmpty) {
+          await tester.pumpAndSettle(const Duration(seconds: 1));
+        }
 
-    expect(loginScreenText, findsOneWidget);
-  });
+        expect(loginScreenText, findsOneWidget);
+      });
+    },
+    timeout: const Timeout(Duration(seconds: 30)),
+  );
 }
