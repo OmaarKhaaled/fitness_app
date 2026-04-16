@@ -96,5 +96,32 @@
       },
       "button": "Next"
     }
+  },
+  "forget_password": {
+    "forget_password": "Forget Password",
+    "please_enter_valid_email": "Please enter a valid email",
+    "enter_your_email": "Enter Your Email",
+    "send_otp": "Send OTP",
+    "otp_code": "OTP Code",
+    "otp_code_description": "We have sent a verification code to your email",
+    "verify": "Verify",
+    "reset_password": "Reset Password",
+    "reset_password_description": "Enter your new password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "reset": "Reset",
+    "didnt_recieve_verification_code": "Didn't Receive Verification Code?",
+    "resend_code": "Resend Code",
+    "make_sure_its_8_characters_or_more": "Make sure its 8 characters or more",
+    "create_new_password": "Create New Password",
+    "done": "Done",
+    "please_enter_valid_otp": "Please enter a valid OTP",
+    "otpSentSuccessfully": "OTP sent successfully",
+    "please_enter_valid_password": "Please enter a valid password",
+    "passwordResetSuccessfully": "Password reset successfully",
+    "email": "Email",
+    "confirm": "Confirm",
+    "confirmPasswordDoesNotMatch": "Confirm Password Does Not Match",
+    "thePasswordMustBeAtLeast8CharactersLong": "The password must be at least 8 characters long"
   }
 }

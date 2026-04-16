@@ -96,5 +96,32 @@
       },
       "button": "التالي"
     }
+  },
+  "forget_password": {
+    "forget_password": "نسيت كلمة المرور",
+    "please_enter_valid_email": "الرجاء إدخال بريد إلكتروني صالح",
+    "enter_your_email": "أدخل بريدك الإلكتروني",
+    "send_otp": "إرسال رمز التحقق",
+    "otp_code": "رمز التحقق",
+    "otp_code_description": "لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني",
+    "verify": "تحقق",
+    "reset_password": "إعادة تعيين كلمة المرور",
+    "reset_password_description": "أدخل كلمة المرور الجديدة",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "reset": "إعادة تعيين",
+    "didnt_recieve_verification_code": "لم تستلم رمز التحقق؟",
+    "resend_code": "إعادة إرسال الرمز",
+    "make_sure_its_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
+    "create_new_password": "إنشاء كلمة مرور جديدة",
+    "done": "تم",
+    "please_enter_valid_otp": "الرجاء إدخال رمز تحقق صالح",
+    "otpSentSuccessfully": "تم إرسال رمز التحقق بنجاح",
+    "please_enter_valid_password": "الرجاء إدخال كلمة مرور صالحة",
+    "passwordResetSuccessfully": "تم إعادة تعيين كلمة المرور بنجاح",
+    "email": "البريد الإلكتروني",
+    "confirm": "تأكيد",
+    "confirmPasswordDoesNotMatch": "كلمة المرور غير متطابقة",
+    "thePasswordMustBeAtLeast8CharactersLong": "كلمة المرور يجب أن تكون 8 أحرف على الأقل"
   }
 }
