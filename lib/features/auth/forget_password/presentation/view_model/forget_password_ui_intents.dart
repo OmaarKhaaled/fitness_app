@@ -3,11 +3,6 @@ class ForgetPasswordUiIntents {
 }
 
 // Provide Email Intents
-
-class ShowLoadingProvideEmailIntent extends ForgetPasswordUiIntents {}
-
-class HideLoadingProvideEmailIntent extends ForgetPasswordUiIntents {}
-
 class ShowErrorProvideEmailIntent extends ForgetPasswordUiIntents {
   final String error;
   ShowErrorProvideEmailIntent({required this.error});
@@ -16,11 +11,6 @@ class ShowErrorProvideEmailIntent extends ForgetPasswordUiIntents {
 class NavigateToVerifyCodeIntent extends ForgetPasswordUiIntents {}
 
 // Verify Code Intents
-
-class ShowLoadingVerifyCodeIntent extends ForgetPasswordUiIntents {}
-
-class HideLoadingVerifyCodeIntent extends ForgetPasswordUiIntents {}
-
 class ShowErrorVerifyCodeIntent extends ForgetPasswordUiIntents {
   final String error;
   ShowErrorVerifyCodeIntent({required this.error});

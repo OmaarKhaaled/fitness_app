@@ -8,7 +8,8 @@ class VerifyCodeResponseModel {
 
   VerifyCodeResponseModel({required this.status});
 
-  factory VerifyCodeResponseModel.fromJson(Map<String, dynamic> json) {
-    return VerifyCodeResponseModel(status: json['status']);
-  }
+  factory VerifyCodeResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$VerifyCodeResponseModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VerifyCodeResponseModelToJson(this);
 }

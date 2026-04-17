@@ -13,5 +13,5 @@ class ResetPasswordRequestModel {
     required this.newPassword,
   });
 
-  Map<String, dynamic> toJson() => {'email': email, 'newPassword': newPassword};
+  Map<String, dynamic> toJson() => _$ResetPasswordRequestModelToJson(this);
 }

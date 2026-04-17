@@ -8,5 +8,5 @@ class VerifyCodeRequestModel {
 
   VerifyCodeRequestModel({required this.resetCode});
 
-  Map<String, dynamic> toJson() => {'resetCode': resetCode};
+  Map<String, dynamic> toJson() => _$VerifyCodeRequestModelToJson(this);
 }

@@ -13,10 +13,8 @@ class ResetPasswordResponseModel {
     required this.token,
   });
 
-  factory ResetPasswordResponseModel.fromJson(Map<String, dynamic> json) {
-    return ResetPasswordResponseModel(
-      message: json['message'],
-      token: json['token'],
-    );
-  }
+  factory ResetPasswordResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordResponseModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResetPasswordResponseModelToJson(this);
 }
