@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/config/base_response/base_response.dart';
-import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_intent.dart';

@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
-import 'package:fitness_app/core/routing/app_router.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +22,7 @@ class RegisterLink extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-context.go(AppRoutesConstants.registerRoute);
-
+            context.go(AppRoutesConstants.registerRoute);
           },
           child: Text(
             LocaleKeys.login_RegisterLink.tr(),
