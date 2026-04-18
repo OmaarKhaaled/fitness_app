@@ -71,7 +71,10 @@ class _LoginFormState extends State<LoginForm> {
           },
           failure: (exception) {
             ScaffoldMessenger.of(context).showSnackBar(
-              defaultSnackBar(message: exception.message, color: AppColors.redAccent),
+              defaultSnackBar(
+                message: exception.message,
+                color: AppColors.redAccent,
+              ),
             );
           },
         );

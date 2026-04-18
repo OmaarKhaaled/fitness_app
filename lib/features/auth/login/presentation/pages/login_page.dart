@@ -23,10 +23,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const SizedBox(height: 60),
               // App Logo
-              SvgPicture.asset(
-                AppIcons.superFitness,
-                height: 100,
-              ),
+              SvgPicture.asset(AppIcons.superFitness, height: 100),
               const SizedBox(height: 40),
               // Welcome Text
               Align(
@@ -37,14 +34,15 @@ class LoginPage extends StatelessWidget {
                     Text(
                       'login greeting',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: AppColors.textSecondary,
-                            fontWeight: FontWeight.w500,
-                          ),
+                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Welcome Back',
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(
                             color: AppColors.white,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.2,

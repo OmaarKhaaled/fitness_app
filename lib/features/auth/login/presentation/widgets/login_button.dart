@@ -15,10 +15,10 @@ class LoginButton extends StatelessWidget {
     required TextEditingController emailController,
     required TextEditingController passwordController,
     required bool rememberMe,
-  })  : _formKey = formKey,
-        _emailController = emailController,
-        _passwordController = passwordController,
-        _rememberMe = rememberMe;
+  }) : _formKey = formKey,
+       _emailController = emailController,
+       _passwordController = passwordController,
+       _rememberMe = rememberMe;
 
   final GlobalKey<FormState> _formKey;
   final LoginCubit cubit;
@@ -38,31 +38,40 @@ class LoginButton extends StatelessWidget {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28),
+              ),
               elevation: 0,
             ),
             onPressed: state.loginResource.maybeWhen(
-                loading: () => null,
-                orElse: () => () {
-                      if (_formKey.currentState!.validate()) {
-                        cubit.doIntent(
-                          PerformLogin(
-                            email: _emailController.text.trim(),
-                            password: _passwordController.text.trim(),
-                            rememberMe: _rememberMe,
-                          ),
-                        );
-                      }
-                    }),
+              loading: () => null,
+              orElse: () => () {
+                if (_formKey.currentState!.validate()) {
+                  cubit.doIntent(
+                    PerformLogin(
+                      email: _emailController.text.trim(),
+                      password: _passwordController.text.trim(),
+                      rememberMe: _rememberMe,
+                    ),
+                  );
+                }
+              },
+            ),
             child: state.loginResource.maybeWhen(
               loading: () => const SizedBox(
                 height: 24,
                 width: 24,
-                child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ),
               ),
               orElse: () => Text(
                 AppTextConstants.loginButton,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

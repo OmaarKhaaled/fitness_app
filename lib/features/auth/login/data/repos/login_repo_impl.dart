@@ -7,8 +7,7 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: LoginRepo)
 class LoginRepoImpl implements LoginRepo {
-  final 
-  LoginRemoteDataSource _authRemoteDataSource;
+  final LoginRemoteDataSource _authRemoteDataSource;
   LoginRepoImpl(this._authRemoteDataSource);
 
   @override

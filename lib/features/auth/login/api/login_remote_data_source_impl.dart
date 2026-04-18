@@ -24,7 +24,9 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
           : null;
 
       return BaseResponse.failure(
-        AppException(errorMessage ?? e.message ?? 'An unexpected error occurred'),
+        AppException(
+          errorMessage ?? e.message ?? 'An unexpected error occurred',
+        ),
       );
     } catch (e) {
       return BaseResponse.failure(AppException(e.toString()));

@@ -12,7 +12,8 @@ class LoginCubit extends Cubit<LoginStates> {
   final LoginUseCase _loginUseCase;
   final TokenService _tokenService;
 
-  LoginCubit(this._loginUseCase, this._tokenService) : super(LoginStates.initial());
+  LoginCubit(this._loginUseCase, this._tokenService)
+    : super(LoginStates.initial());
 
   void doIntent(LoginIntent intent) {
     if (intent is PerformLogin) {
@@ -32,13 +33,15 @@ class LoginCubit extends Cubit<LoginStates> {
     required bool rememberMe,
   }) async {
     emit(state.copyWith(loginResource: const BaseResponse.loading()));
-    
+
     final request = LoginRequest(email: email, password: password);
     final result = await _loginUseCase.call(request);
 
     result.when(
-      initial: () => emit(state.copyWith(loginResource: const BaseResponse.initial())),
-      loading: () => emit(state.copyWith(loginResource: const BaseResponse.loading())),
+      initial: () =>
+          emit(state.copyWith(loginResource: const BaseResponse.initial())),
+      loading: () =>
+          emit(state.copyWith(loginResource: const BaseResponse.loading())),
       success: (data) async {
         await _tokenService.saveToken(data.token);
         emit(state.copyWith(loginResource: BaseResponse.success(data)));

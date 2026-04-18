@@ -20,15 +20,17 @@ void main() {
   });
   final loginRequest = LoginRequest(email: "test@test.com", password: "123456");
 
-group("LoginRemoteDataSourceImpl.login()", (){
-  test("should return BaseResponse.success when login is successful", ()async{
-    final loginResponse = LoginResponse(
-      message:"success",
-      token: "token",
+  group("LoginRemoteDataSourceImpl.login()", () {
+    test(
+      "should return BaseResponse.success when login is successful",
+      () async {
+        final loginResponse = LoginResponse(message: "success", token: "token");
+        when(
+          mockApiClient.login(loginRequest),
+        ).thenAnswer((_) async => loginResponse);
+        final result = await dataSource.login(loginRequest);
+        expect(result, BaseResponse.success(loginResponse));
+      },
     );
-    when(mockApiClient.login(loginRequest)).thenAnswer((_) async => loginResponse);
-    final result = await dataSource.login(loginRequest);
-    expect(result, BaseResponse.success(loginResponse));
   });
-});
 }

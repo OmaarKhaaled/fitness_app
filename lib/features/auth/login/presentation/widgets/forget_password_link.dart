@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
 class forget_paaword_link extends StatelessWidget {
-  const forget_paaword_link({
-    super.key,
-  });
+  const forget_paaword_link({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,4 +24,3 @@ class forget_paaword_link extends StatelessWidget {
     );
   }
 }
-
