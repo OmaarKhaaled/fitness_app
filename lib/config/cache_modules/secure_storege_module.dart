@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:fitness_app/config/base_response/base_response.dart';
-import 'package:fitness_app/config/errors/app_exception.dart';
-import 'package:fitness_app/config/errors/exception_handler.dart';
-import 'package:fitness_app/config/errors/local_exception.dart';
+import '../base_response/base_response.dart';
+import '../errors/app_exception.dart';
+import '../errors/exception_handler.dart';
+import '../errors/local_exception.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 

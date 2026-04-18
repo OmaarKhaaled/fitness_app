@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
-import '../base_response/base_response.dart';
 import '../../core/constants/cache_constants.dart';
+import '../base_response/base_response.dart';
 import '../cache_modules/secure_storege_module.dart';
 
 /// SRP violations [TokenService] Multiple responsibilities
