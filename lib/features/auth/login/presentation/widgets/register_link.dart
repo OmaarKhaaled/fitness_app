@@ -21,7 +21,7 @@ class RegisterLink extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: Text(
-            LocaleKeys.login_register_link.tr(),
+            LocaleKeys.login_RegisterLink.tr(),
             style: const TextStyle(
               color: AppColors.primary,
               fontSize: 13,
