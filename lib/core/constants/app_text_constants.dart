@@ -11,15 +11,17 @@ class AppTextConstants {
   static String get appName => 'splash.app_name'.tr();
 
   // Onboarding
-  static String get onboardingSlide1Title => 'onboarding.slide1.title'.tr();
-  static String get onboardingSlide1Description =>
-      'onboarding.slide1.description'.tr();
-  static String get onboardingSlide2Title => 'onboarding.slide2.title'.tr();
-  static String get onboardingSlide2Description =>
-      'onboarding.slide2.description'.tr();
-  static String get onboardingSlide3Title => 'onboarding.slide3.title'.tr();
-  static String get onboardingSlide3Description =>
-      'onboarding.slide3.description'.tr();
+  static List<String> get onBoardingSlideTitles => [
+    'onboarding.slide1.title'.tr(),
+    'onboarding.slide2.title'.tr(),
+    'onboarding.slide3.title'.tr(),
+  ];
+
+  static List<String> get onBoardingSlideDescriptions => [
+    'onboarding.slide1.description'.tr(),
+    'onboarding.slide2.description'.tr(),
+    'onboarding.slide3.description'.tr(),
+  ];
   static String get onboardingNextButton => 'onboarding.buttons.next'.tr();
   static String get onboardingBackButton => 'onboarding.buttons.back'.tr();
   static String get onboardingSkipButton => 'onboarding.buttons.skip'.tr();
@@ -50,6 +52,8 @@ class AppTextConstants {
       'register.email_placeholder'.tr();
   static String get registerPasswordPlaceholder =>
       'register.password_placeholder'.tr();
+  static String get registerRePasswordPlaceholder =>
+      'register.repassword_placeholder'.tr();
   static String get registerOr => 'register.or'.tr();
   static String get registerButton => 'register.button'.tr();
   static String get registerAlreadyAccount =>
@@ -75,6 +79,7 @@ class AppTextConstants {
       'profile_setup.age.question'.tr();
   static String get profileSetupAgeSelectionInfo =>
       'profile_setup.age.selection_info'.tr();
+  static String get profileSetupAgeYear => 'profile_setup.age.year'.tr();
   static String get profileSetupAgeButton => 'profile_setup.age.button'.tr();
 
   // Weight

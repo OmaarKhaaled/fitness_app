@@ -1,4 +1,8 @@
 {
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "enterYourPassword": "أدخل كلمة المرور",
   "onboarding": {
     "slide1": {
       "title": "ثمن التميز هو الانضباط",
@@ -42,6 +46,7 @@
     "last_name_placeholder": "اسم العائلة",
     "email_placeholder": "البريد الإلكتروني",
     "password_placeholder": "كلمة المرور",
+    "repassword_placeholder":"تأكيد كلمة المرور",
     "or": "أو",
     "button": "إنشاء حساب",
     "already_have_account": "لديك حساب بالفعل؟",
@@ -59,6 +64,7 @@
     "age": {
       "question": "كم عمرك؟",
       "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
+      "year":"سنة",
       "button": "التالي"
     },
     "weight": {
@@ -123,5 +129,18 @@
     "confirm": "تأكيد",
     "confirmPasswordDoesNotMatch": "كلمة المرور غير متطابقة",
     "thePasswordMustBeAtLeast8CharactersLong": "كلمة المرور يجب أن تكون 8 أحرف على الأقل"
+  "home": {
+    "greeting": "مرحباً",
+    "welcome_back": "أهلاً بعودتك",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "or": "أو",
+    "button": "تسجيل الدخول",
+    "enter_your_email": "أدخل بريدك الإلكتروني",
+    "enter_your_password": "أدخل كلمة المرور",
+    "remember_me": "تذكرني",
+    "no_account": "ليس لديك حساب بعد؟",
+    "register_link": "إنشاء حساب"
   }
 }

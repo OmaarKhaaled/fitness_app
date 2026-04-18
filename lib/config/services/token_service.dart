@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
-import '../base_response/base_response.dart';
 import '../../core/constants/cache_constants.dart';
+import '../base_response/base_response.dart';
 import '../cache_modules/secure_storege_module.dart';
 
 /// SRP violations [TokenService] Multiple responsibilities
@@ -40,8 +40,12 @@ class TokenService {
     );
 
     return tokenResponse.when(
+      initial: () => const BaseResponse.initial(),
+      loading: () => const BaseResponse.loading(),
       success: (token) {
         return isLoggedInResponse.when(
+          initial: () => const BaseResponse.initial(),
+          loading: () => const BaseResponse.loading(),
           success: (isLoggedIn) {
             final hasValidToken = token != null && token.isNotEmpty;
             final isUserLoggedIn = isLoggedIn == true;
@@ -76,7 +80,12 @@ class TokenService {
     ]);
 
     for (final result in results) {
-      final failure = result.when(success: (_) => null, failure: (f) => f);
+      final failure = result.when(
+        initial: () => null,
+        loading: () => null,
+        success: (_) => null,
+        failure: (f) => f,
+      );
       if (failure != null) {
         return BaseResponse.failure(failure);
       }
@@ -99,7 +108,12 @@ class TokenService {
     ]);
 
     for (final result in results) {
-      final failure = result.when(success: (_) => null, failure: (f) => f);
+      final failure = result.when(
+        initial: () => null,
+        loading: () => null,
+        success: (_) => null,
+        failure: (f) => f,
+      );
       if (failure != null) {
         return BaseResponse.failure(failure);
       }
@@ -113,6 +127,8 @@ class TokenService {
     final tokenResponse = await getToken(); // Uses extension method internally
 
     return tokenResponse.when(
+      initial: () => const BaseResponse.success(false),
+      loading: () => const BaseResponse.success(false),
       success: (token) {
         if (token == null || token.isEmpty) {
           return const BaseResponse.success(false);
@@ -134,18 +150,26 @@ class TokenService {
 
     return {
       'hasToken': tokenResponse.when(
+        initial: () => false,
+        loading: () => false,
         success: (token) => token != null && token.isNotEmpty,
         failure: (_) => false,
       ),
       'isLoggedIn': isLoggedInResponse.when(
+        initial: () => false,
+        loading: () => false,
         success: (loggedIn) => loggedIn,
         failure: (_) => false,
       ),
       'isValid': isValidResponse.when(
+        initial: () => false,
+        loading: () => false,
         success: (valid) => valid,
         failure: (_) => false,
       ),
       'token': tokenResponse.when(
+        initial: () => null,
+        loading: () => null,
         success: (token) => token,
         failure: (_) => null,
       ),
