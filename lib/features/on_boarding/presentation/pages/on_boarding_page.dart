@@ -1,8 +1,10 @@
 import 'package:fitness_app/config/cache_modules/secure_storege_module.dart';
 import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/cache_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_text_constants.dart';
@@ -48,7 +50,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     CacheConstants.onBoardingViewed,
                     true,
                   );
-                  //TODO: navigate to home page
+                  context.go(AppRoutesConstants.registerRoute);
                 },
                 child: Text(AppTextConstants.onboardingSkipButton),
               ),
