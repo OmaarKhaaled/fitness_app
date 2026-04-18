@@ -60,7 +60,6 @@ dependencies:
   shimmer: ^3.0.0
   latlong2: ^0.9.1
   skeletonizer: ^2.1.2
-  flutter_launcher_icons: ^0.13.1
   wheel_picker: ^0.2.2
 
 dev_dependencies:
