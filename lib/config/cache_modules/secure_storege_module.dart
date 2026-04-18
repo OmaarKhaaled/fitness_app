@@ -110,6 +110,8 @@ class SecureStorageService {
       final response = await read(key);
 
       return response.when(
+        initial: () => const BaseResponse<Map<String, dynamic>?>.initial(),
+        loading: () => const BaseResponse<Map<String, dynamic>?>.loading(),
         success: (s) {
           if (s == null) {
             return const BaseResponse<Map<String, dynamic>?>.success(null);
@@ -147,6 +149,8 @@ class SecureStorageService {
       final response = await read(key);
 
       return response.when(
+        initial: () => const BaseResponse<List<String>?>.initial(),
+        loading: () => const BaseResponse<List<String>?>.loading(),
         success: (s) {
           if (s == null) {
             return const BaseResponse<List<String>?>.success(null);
@@ -184,6 +188,8 @@ class SecureStorageService {
       final response = await read(key);
 
       return response.when(
+        initial: () => const BaseResponse<bool?>.initial(),
+        loading: () => const BaseResponse<bool?>.loading(),
         success: (s) {
           if (s == null) {
             return const BaseResponse<bool?>.success(null);
@@ -218,6 +224,8 @@ class SecureStorageService {
       final response = await read(key);
 
       return response.when(
+        initial: () => const BaseResponse<int?>.initial(),
+        loading: () => const BaseResponse<int?>.loading(),
         success: (s) {
           if (s == null) {
             return const BaseResponse<int?>.success(null);
@@ -251,6 +259,8 @@ class SecureStorageService {
     try {
       final resultResponse = await read(key);
       return resultResponse.when(
+        initial: () => const BaseResponse<double?>.initial(),
+        loading: () => const BaseResponse<double?>.loading(),
         success: (s) {
           if (s == null) {
             return const BaseResponse<double?>.success(null);
@@ -281,6 +291,8 @@ extension SecureStorageExtension on SecureStorageService {
   }) async {
     final result = await write(StorageKeys.accessToken, accessToken);
     return result.when(
+      initial: () => const BaseResponse<bool>.initial(),
+      loading: () => const BaseResponse<bool>.loading(),
       success: (s) => const BaseResponse<bool>.success(true),
       failure: (f) => BaseResponse<bool>.failure(f),
     );
@@ -289,6 +301,8 @@ extension SecureStorageExtension on SecureStorageService {
   Future<BaseResponse<String?>> getAuthTokens() async {
     final result = await read(StorageKeys.accessToken);
     return result.when(
+      initial: () => const BaseResponse<String?>.initial(),
+      loading: () => const BaseResponse<String?>.loading(),
       success: (s) => BaseResponse.success(s),
       failure: (f) => BaseResponse.failure(f),
     );
@@ -297,6 +311,8 @@ extension SecureStorageExtension on SecureStorageService {
   Future<BaseResponse<bool>> clearAuthTokens() async {
     final results = await delete(StorageKeys.accessToken);
     return results.when(
+      initial: () => const BaseResponse<bool>.initial(),
+      loading: () => const BaseResponse<bool>.loading(),
       success: (s) => BaseResponse.success(s),
       failure: (f) => BaseResponse.failure(f),
     );
