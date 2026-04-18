@@ -3,9 +3,9 @@ part 'login_request.g.dart';
 
 @JsonSerializable()
 class LoginRequest {
-  @JsonKey(name: "email")
+  @JsonKey(name: 'email')
   String? email;
-  @JsonKey(name: "password")
+  @JsonKey(name: 'password')
   String? password;
 
   LoginRequest({this.email, this.password});

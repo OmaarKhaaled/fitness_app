@@ -14,8 +14,8 @@ class LoginRepoImpl implements LoginRepo {
   Future<BaseResponse<LoginModel>> login(LoginRequest request) async {
     final response = await _authRemoteDataSource.login(request);
     return response.when(
-      initial: () => BaseResponse.initial(),
-      loading: () => BaseResponse.loading(),
+      initial: () => const BaseResponse.initial(),
+      loading: () => const BaseResponse.loading(),
       success: (data) => BaseResponse.success(data.toModel()),
       failure: (exception) => BaseResponse.failure(exception),
     );

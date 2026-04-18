@@ -95,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'login header',
+                'Login ',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class _LoginFormState extends State<LoginForm> {
               PasswordTextField(controller: _passwordController),
 
               // Forgot Password Link
-              const forget_paaword_link(),
+              const ForgetPasswordLink(),
 
               const SizedBox(height: 10),
 
@@ -159,7 +159,7 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 24),
 
               // Register Link
-              register_link(),
+              const RegisterLink(),
             ],
           ),
         ),
