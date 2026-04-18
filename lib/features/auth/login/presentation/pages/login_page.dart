@@ -1,11 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/login_form.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,7 +35,7 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      LocaleKeys.login_greeting.tr(),
+                      'login greeting',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: AppColors.textSecondary,
                             fontWeight: FontWeight.w500,
@@ -45,7 +43,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      LocaleKeys.login_welcome_back.tr(),
+                      'Welcome Back',
                       style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                             color: AppColors.white,
                             fontWeight: FontWeight.bold,

@@ -63,6 +63,8 @@ class RegisterViewModel extends Cubit<RegisterStates> {
     emit(state.copyWith(registerState: const BaseState(isLoading: true)));
     final res = await _registerUseCase.call(request);
     res.when(
+      initial: () => null,
+      loading: () => null,
       success: (data) {
         emit(
           state.copyWith(

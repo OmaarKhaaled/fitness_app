@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/default_snackbar.dart';
@@ -8,7 +7,6 @@ import 'package:fitness_app/features/auth/login/presentation/widgets/login_butto
 import 'package:fitness_app/features/auth/login/presentation/widgets/password_textfield.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/register_link.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/social_login_buttons.dart';
-import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:fitness_app/core/routing/route_names.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
@@ -94,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                LocaleKeys.login_heading.tr(),
+                'login header',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.bold,
@@ -110,7 +108,7 @@ class _LoginFormState extends State<LoginForm> {
               PasswordTextField(controller: _passwordController),
 
               // Forgot Password Link
-              forget_paaword_link(),
+              const forget_paaword_link(),
 
               const SizedBox(height: 10),
 
@@ -124,7 +122,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ),
                   Text(
-                    LocaleKeys.login_or.tr(),
+                    'login or',
                     style: TextStyle(
                       color: AppColors.white.withValues(alpha: .5),
                       fontSize: 12,

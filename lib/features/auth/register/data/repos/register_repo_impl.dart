@@ -17,6 +17,8 @@ class RegisterRepoImpl implements RegisterRepoContract {
       request.toDTO(),
     );
     return response.when(
+      initial: () => const BaseInitial(),
+      loading: () => const BaseLoading(),
       success: (data) =>
           BaseResponse<RegisterResponseModel>.success(data.toDomain()),
       failure: (exception) =>
