@@ -72,7 +72,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     CacheConstants.onBoardingViewed,
                     true,
                   );
-                  //TODO: navigate to home page
+                  context.go(AppRoutesConstants.registerRoute);
                 },
               ),
             ],
