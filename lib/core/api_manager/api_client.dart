@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/constants/api_constants.dart';
-import 'package:fitness_app/features/auth/data/models/request/login_request.dart';
-import 'package:fitness_app/features/auth/data/models/response/login_response.dart';
+import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
+import 'package:fitness_app/features/auth/login/data/models/response/login_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

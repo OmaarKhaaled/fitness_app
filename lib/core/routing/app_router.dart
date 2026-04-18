@@ -1,5 +1,5 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
-import 'package:fitness_app/features/auth/presentation/pages/login_page.dart';
+import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:fitness_app/onboarding_screen.dart';
 import 'package:go_router/go_router.dart';
 
