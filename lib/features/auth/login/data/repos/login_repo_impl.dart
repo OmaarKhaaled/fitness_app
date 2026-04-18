@@ -1,8 +1,8 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
-import 'package:fitness_app/features/auth/login/data/data_source/aurh_remote_data_source.dart';
+import 'package:fitness_app/features/auth/login/data/data_source/login_remote_data_source.dart';
 import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
 import 'package:fitness_app/features/auth/login/domain/models/login_model.dart';
-import 'package:fitness_app/features/auth/login/domain/repos/auth_repo.dart';
+import 'package:fitness_app/features/auth/login/domain/repos/login_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: LoginRepo)

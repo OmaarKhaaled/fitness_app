@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/core/api_manager/api_client.dart';
-import 'package:fitness_app/features/auth/login/data/data_source/aurh_remote_data_source.dart';
+import 'package:fitness_app/features/auth/login/data/data_source/login_remote_data_source.dart';
 import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
 import 'package:fitness_app/features/auth/login/data/models/response/login_response.dart';
 import 'package:injectable/injectable.dart';
