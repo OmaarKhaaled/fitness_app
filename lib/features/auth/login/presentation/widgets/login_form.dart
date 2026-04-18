@@ -73,7 +73,10 @@ class _LoginFormState extends State<LoginForm> {
           },
           failure: (exception) {
             ScaffoldMessenger.of(context).showSnackBar(
-              defaultSnackBar(message: exception.message, color: AppColors.redAccent),
+              defaultSnackBar(
+                message: exception.message,
+                color: AppColors.redAccent,
+              ),
             );
           },
         );
@@ -110,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
               PasswordTextField(controller: _passwordController),
 
               // Forgot Password Link
-              forget_paaword_link(),
+              const ForgetPasswordLink(),
 
               const SizedBox(height: 10),
 
@@ -158,7 +161,7 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 24),
 
               // Register Link
-              register_link(),
+              const RegisterLink(),
             ],
           ),
         ),

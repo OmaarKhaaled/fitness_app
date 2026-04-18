@@ -36,7 +36,7 @@
     "or": "Or",
     "button": "Login",
     "no_account": "Don't Have An Account Yet?",
-    "register_link": "Register"
+    "RegisterLink": "Register"
   },
   "register": {
     "greeting": "Hey There",
@@ -113,7 +113,7 @@
     "enter_your_password": "Enter Your Password",
     "remember_me": "Remember Me",
     "no_account": "Don't Have An Account Yet?",
-    "register_link": "Register"
+    "RegisterLink": "Register"
   }
 
 }

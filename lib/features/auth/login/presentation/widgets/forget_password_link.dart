@@ -1,15 +1,10 @@
-
-import 'dart:ui';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
-class forget_paaword_link extends StatelessWidget {
-  const forget_paaword_link({
-    super.key,
-  });
+class ForgetPasswordLink extends StatelessWidget {
+  const ForgetPasswordLink({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,4 +24,3 @@ class forget_paaword_link extends StatelessWidget {
     );
   }
 }
-
