@@ -1,6 +1,6 @@
-import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -132,6 +132,23 @@ class AppTheme {
         borderSide: const BorderSide(color: AppColors.white, width: 2),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.hint,
+        overlayColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        enableFeedback: false,
+        animationDuration: const Duration(microseconds: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shadowColor: Colors.transparent,
+        textStyle: GoogleFonts.balooThambi2(
+          color: AppColors.hint,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
     ),
   );
 }

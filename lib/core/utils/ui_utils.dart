@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
+import '../theme/app_colors.dart';
 
 class UiUtils {
   static void showLoading(

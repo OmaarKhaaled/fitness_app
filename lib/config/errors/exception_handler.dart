@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:fitness_app/config/errors/app_exception.dart';
-import 'package:fitness_app/config/errors/local_exception.dart';
-import 'package:fitness_app/core/constants/error_constants.dart';
+
+import '../../core/constants/error_constants.dart';
 import 'api_exception.dart';
+import 'app_exception.dart';
+import 'local_exception.dart';
 
 class ExceptionsHandler {
   static AppException handle(Object error) {
