@@ -129,4 +129,9 @@ class AppTextConstants {
       'profile_setup.activity.options.true_beast'.tr();
   static String get profileSetupActivityButton =>
       'profile_setup.activity.button'.tr();
+  //bottom nav bar
+  static String get exploreIcon => 'bottom_nav_bar.explore'.tr();
+  static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
+  static String get workoutsIcon => 'bottom_nav_bar.workouts'.tr();
+  static String get profileIcon => 'bottom_nav_bar.profile'.tr();
 }

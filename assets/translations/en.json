@@ -96,5 +96,11 @@
       },
       "button": "Next"
     }
+  },
+  "bottom_nav_bar":{
+    "explore":"Explore",
+    "smart_coach":"Smart Coach",
+    "workouts":"Workouts",
+    "profile":"Profile"
   }
 }

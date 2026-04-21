@@ -96,5 +96,11 @@
       },
       "button": "التالي"
     }
+  },
+  "bottom_nav_bar": {
+    "explore": "استكشف",
+    "smart_coach": "المدرب الذكي",
+    "workouts": "التمارين",
+    "profile": "الملف الشخصي"
   }
 }
