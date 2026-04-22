@@ -1,6 +1,6 @@
-import 'package:fitness_app/config/errors/app_exception.dart';
-import 'package:fitness_app/core/constants/error_constants.dart';
-import 'package:fitness_app/core/extensions/extentions.dart';
+import 'app_exception.dart';
+import '../../core/constants/error_constants.dart';
+import '../../core/extensions/extentions.dart';
 
 class ApiException extends AppException {
   ApiException(super.message, {super.code});

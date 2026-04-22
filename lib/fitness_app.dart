@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:fitness_app/core/routing/app_router.dart';
-import 'package:fitness_app/core/theme/app_theme.dart';
+import 'core/routing/app_router.dart';
+import 'core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class FitnessApp extends StatelessWidget {
