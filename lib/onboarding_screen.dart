@@ -1,7 +1,7 @@
-import 'package:fitness_app/core/constants/app_assets.dart';
-import 'package:fitness_app/core/shared/app_scaffold.dart';
-import 'package:fitness_app/core/shared/blur_card.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
+import 'core/constants/app_assets.dart';
+import 'core/shared/app_scaffold.dart';
+import 'core/shared/blur_card.dart';
+import 'core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {

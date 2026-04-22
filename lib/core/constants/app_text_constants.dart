@@ -11,15 +11,17 @@ class AppTextConstants {
   static String get appName => 'splash.app_name'.tr();
 
   // Onboarding
-  static String get onboardingSlide1Title => 'onboarding.slide1.title'.tr();
-  static String get onboardingSlide1Description =>
-      'onboarding.slide1.description'.tr();
-  static String get onboardingSlide2Title => 'onboarding.slide2.title'.tr();
-  static String get onboardingSlide2Description =>
-      'onboarding.slide2.description'.tr();
-  static String get onboardingSlide3Title => 'onboarding.slide3.title'.tr();
-  static String get onboardingSlide3Description =>
-      'onboarding.slide3.description'.tr();
+  static List<String> get onBoardingSlideTitles => [
+    'onboarding.slide1.title'.tr(),
+    'onboarding.slide2.title'.tr(),
+    'onboarding.slide3.title'.tr(),
+  ];
+
+  static List<String> get onBoardingSlideDescriptions => [
+    'onboarding.slide1.description'.tr(),
+    'onboarding.slide2.description'.tr(),
+    'onboarding.slide3.description'.tr(),
+  ];
   static String get onboardingNextButton => 'onboarding.buttons.next'.tr();
   static String get onboardingBackButton => 'onboarding.buttons.back'.tr();
   static String get onboardingSkipButton => 'onboarding.buttons.skip'.tr();
