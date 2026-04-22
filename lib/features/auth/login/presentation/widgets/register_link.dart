@@ -1,6 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class RegisterLink extends StatelessWidget {
@@ -12,7 +11,7 @@ class RegisterLink extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          LocaleKeys.login_no_account.tr(),
+          AppTextConstants.loginNoAccount,
           style: TextStyle(
             color: AppColors.white.withValues(alpha: .7),
             fontSize: 13,
@@ -21,7 +20,7 @@ class RegisterLink extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: Text(
-            LocaleKeys.login_RegisterLink.tr(),
+            AppTextConstants.loginRegisterLink,
             style: const TextStyle(
               color: AppColors.primary,
               fontSize: 13,

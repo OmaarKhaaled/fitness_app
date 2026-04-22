@@ -1,6 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
@@ -24,7 +23,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       style: const TextStyle(color: AppColors.white),
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.lock_outline),
-        hintText: LocaleKeys.password.tr(),
+        hintText: AppTextConstants.loginPasswordPlaceholder,
         suffixIcon: IconButton(
           icon: Icon(
             _obscurePassword

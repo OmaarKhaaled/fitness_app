@@ -1,10 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_intent.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
-import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,7 +67,7 @@ class LoginButton extends StatelessWidget {
                 ),
               ),
               orElse: () => Text(
-                LocaleKeys.login_button.tr(),
+                AppTextConstants.loginButton,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

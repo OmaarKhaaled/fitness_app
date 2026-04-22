@@ -1,6 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/generated/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPasswordLink extends StatelessWidget {
@@ -13,7 +12,7 @@ class ForgetPasswordLink extends StatelessWidget {
       child: TextButton(
         onPressed: () {},
         child: Text(
-          LocaleKeys.login_forgot_password.tr(),
+          AppTextConstants.loginForgotPassword,
           style: TextStyle(
             color: AppColors.primary.withValues(alpha: .9),
             fontSize: 13,
