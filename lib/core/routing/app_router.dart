@@ -1,3 +1,4 @@
+
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
@@ -31,7 +32,7 @@ class AppRouter {
         name: AppRoutesConstants.forgetPasswordRoute,
         path: AppRoutesConstants.forgetPasswordRoute,
         builder: (context, state) => const ForgetPasswordScreen(),
-      ),
+      ),    
     ],
   );
 }
