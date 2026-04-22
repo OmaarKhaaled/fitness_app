@@ -14,12 +14,6 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/chat_ai.svg
-  String get chatAi => 'assets/icons/chat_ai.svg';
-
-  /// File path: assets/icons/home.svg
-  String get home => 'assets/icons/home.svg';
-
   /// File path: assets/icons/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/icons/Vector.png');
 
@@ -85,9 +79,6 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding3 =>
       const AssetGenImage('assets/images/onboarding_3.png');
 
-  /// File path: assets/images/onboarding_background.jpg
-  AssetGenImage get onboardingBackground =>
-      const AssetGenImage('assets/images/onboarding_background.jpg');
   /// File path: assets/images/onboarding_bg.png
   AssetGenImage get onboardingBg =>
       const AssetGenImage('assets/images/onboarding_bg.png');
@@ -107,7 +98,6 @@ class $AssetsImagesGen {
     onboarding1,
     onboarding2,
     onboarding3,
-    onboardingBackground,
     onboardingBg,
     splash,
     superFitness,

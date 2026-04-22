@@ -18,6 +18,8 @@ class ForgetPasswordRepositoryImpl implements ForgetPasswordRepository {
   ) async {
     final result = await _dataSource.forgetPassword(request);
     return result.when(
+      initial: () => const BaseResponse.initial(),
+      loading: () => const BaseResponse.loading(),
       success: (_) => const BaseResponse.success(null),
       failure: (exception) => BaseResponse.failure(exception),
     );
@@ -27,6 +29,8 @@ class ForgetPasswordRepositoryImpl implements ForgetPasswordRepository {
   Future<BaseResponse<void>> verifyCode(VerifyCodeRequestModel request) async {
     final result = await _dataSource.verifyCode(request);
     return result.when(
+      initial: () => const BaseResponse.initial(),
+      loading: () => const BaseResponse.loading(),
       success: (_) => const BaseResponse.success(null),
       failure: (exception) => BaseResponse.failure(exception),
     );
@@ -38,6 +42,8 @@ class ForgetPasswordRepositoryImpl implements ForgetPasswordRepository {
   ) async {
     final result = await _dataSource.resetPassword(request);
     return result.when(
+      initial: () => const BaseResponse.initial(),
+      loading: () => const BaseResponse.loading(),
       success: (_) => const BaseResponse.success(null),
       failure: (exception) => BaseResponse.failure(exception),
     );

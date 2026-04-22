@@ -1,5 +1,6 @@
 import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/login_form.dart';
@@ -32,7 +33,7 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'login greeting',
+                      AppTextConstants.loginGreeting,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: AppColors.textSecondary,
                         fontWeight: FontWeight.w500,
@@ -40,7 +41,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Welcome Back',
+                      AppTextConstants.loginWelcomeBack,
                       style: Theme.of(context).textTheme.headlineMedium
                           ?.copyWith(
                             color: AppColors.white,

@@ -31,8 +31,8 @@ class CustomCheckBox extends StatelessWidget {
           ),
         ),
         child: isChecked
-            ? Padding(
-                padding: const EdgeInsets.all(2),
+            ? const Padding(
+                padding: EdgeInsets.all(2),
                 child: Icon(Icons.check, color: Colors.white),
               )
             : const SizedBox(),

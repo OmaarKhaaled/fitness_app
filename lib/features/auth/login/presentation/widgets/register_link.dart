@@ -1,9 +1,10 @@
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class register_link extends StatelessWidget {
-  const register_link({super.key});
+class RegisterLink extends StatelessWidget {
+  const RegisterLink({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class register_link extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Login',
+          AppTextConstants.loginNoAccount,
           style: TextStyle(
             color: AppColors.white.withValues(alpha: .7),
             fontSize: 13,
@@ -19,9 +20,9 @@ class register_link extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {},
-          child: const Text(
-            'register',
-            style: TextStyle(
+          child:  Text(
+            AppTextConstants.loginRegisterLink,
+            style: const TextStyle(
               color: AppColors.primary,
               fontSize: 13,
               fontWeight: FontWeight.bold,

@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
+import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';

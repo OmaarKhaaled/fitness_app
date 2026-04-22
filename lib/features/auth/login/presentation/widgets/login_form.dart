@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/default_snackbar.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/email_textfield.dart';
@@ -95,7 +96,7 @@ class _LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'login header',
+                AppTextConstants.loginHeading,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.bold,
@@ -111,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
               PasswordTextField(controller: _passwordController),
 
               // Forgot Password Link
-              const forget_paaword_link(),
+              const ForgetPasswordLink(),
 
               const SizedBox(height: 10),
 
@@ -125,7 +126,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ),
                   Text(
-                    'login or',
+                    AppTextConstants.loginOr,
                     style: TextStyle(
                       color: AppColors.white.withValues(alpha: .5),
                       fontSize: 12,
@@ -159,7 +160,7 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 24),
 
               // Register Link
-              register_link(),
+              const RegisterLink(),
             ],
           ),
         ),

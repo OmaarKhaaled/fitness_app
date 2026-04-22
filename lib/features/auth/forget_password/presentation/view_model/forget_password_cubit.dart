@@ -81,6 +81,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     final request = ForgetPasswordRequestModel(email: state.email);
     final response = await forgetPasswordUseCase(request);
     response.when(
+      initial: () => null,
+      loading: () => null,
       success: (_) {
         emit(state.copyWith(isSendOtpLoading: false));
         _streamController.add(NavigateToVerifyCodeIntent());
@@ -116,6 +118,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     final request = VerifyCodeRequestModel(resetCode: state.otpCode);
     final response = await verifyCodeUseCase(request);
     response.when(
+      initial: () => null,
+      loading: () => null,
       success: (_) {
         emit(state.copyWith(isVerifyOtpLoading: false));
         _streamController.add(NavigateToResetPasswordIntent());
@@ -132,6 +136,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     final request = ForgetPasswordRequestModel(email: email);
     final response = await forgetPasswordUseCase(request);
     response.when(
+      initial: () => null,
+      loading: () => null,
       success: (_) {
         emit(state.copyWith(isVerifyOtpLoading: false));
         _streamController.add(
@@ -213,6 +219,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     );
     final response = await resetPasswordUseCase(request);
     response.when(
+      initial: () => null,
+      loading: () => null,
       success: (_) {
         _streamController.add(HideLoadingResetPasswordIntent());
         _streamController.add(
