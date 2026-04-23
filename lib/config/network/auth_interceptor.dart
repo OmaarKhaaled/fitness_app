@@ -23,6 +23,8 @@ class AuthInterceptor extends Interceptor {
     final tokenResponse = await _secureStorageService.getAuthTokens();
 
     tokenResponse.when(
+      initial: () {},
+      loading: () {},
       success: (token) {
         if (token != null && token.isNotEmpty) {
           // Add the token to the Authorization header
