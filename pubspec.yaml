@@ -37,6 +37,7 @@ dependencies:
   shimmer: ^3.0.0
   skeletonizer: ^2.1.2
   wheel_picker: ^0.2.2
+  percent_indicator: ^4.2.5
 
 dev_dependencies:
   bloc_test: ^10.0.0

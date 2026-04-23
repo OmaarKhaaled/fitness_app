@@ -10,6 +10,7 @@ class AppAssets {
   static const String onboardingBackGround = 'assets/images/onboarding_bg.png';
   static const String authBackground = 'assets/images/auth_background.png';
   static const String translationsPath = 'assets/translations';
+  static const String superFitness = 'assets/images/super-fitness.png';
 }
 
 class AppIcons {
@@ -18,4 +19,7 @@ class AppIcons {
   static const String chatAi = 'assets/icons/chat_ai.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String superFitness = 'assets/icons/super_fitness.svg';
+  static const String backArrow = 'assets/icons/Vector.png';
+  static const String maleSymbol = 'assets/icons/male-symbol.png';
+  static const String femaleSymbol = 'assets/icons/female-symbol.png';
 }

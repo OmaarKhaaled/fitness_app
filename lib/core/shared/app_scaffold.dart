@@ -5,7 +5,6 @@ class AppScaffold extends StatelessWidget {
   final Widget child;
   final String backgroundImage;
   final Alignment alignment;
-
   const AppScaffold({
     super.key,
     required this.child,

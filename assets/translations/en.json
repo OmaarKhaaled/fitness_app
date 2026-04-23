@@ -42,6 +42,7 @@
     "last_name_placeholder": "Last Name",
     "email_placeholder": "Email",
     "password_placeholder": "Password",
+    "repassword_placeholder":"Re password",
     "or": "Or",
     "button": "Register",
     "already_have_account": "Already Have An Account?",
@@ -59,6 +60,7 @@
     "age": {
       "question": "HOW OLD ARE YOU ?",
       "selection_info": "This Helps Us Create Your Personalized Plan",
+      "year":"Year",
       "button": "Next"
     },
     "weight": {

@@ -52,6 +52,8 @@ class AppTextConstants {
       'register.email_placeholder'.tr();
   static String get registerPasswordPlaceholder =>
       'register.password_placeholder'.tr();
+  static String get registerRePasswordPlaceholder =>
+      'register.repassword_placeholder'.tr();
   static String get registerOr => 'register.or'.tr();
   static String get registerButton => 'register.button'.tr();
   static String get registerAlreadyAccount =>
@@ -77,6 +79,7 @@ class AppTextConstants {
       'profile_setup.age.question'.tr();
   static String get profileSetupAgeSelectionInfo =>
       'profile_setup.age.selection_info'.tr();
+  static String get profileSetupAgeYear => 'profile_setup.age.year'.tr();
   static String get profileSetupAgeButton => 'profile_setup.age.button'.tr();
 
   // Weight
