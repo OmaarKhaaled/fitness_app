@@ -6,12 +6,7 @@ void main() {
   const message = 'Login successful';
   const token = 'abc123';
   final User user = User(id: '1', firstName: 'John', email: 'john@example.com');
-  final loginResponse = LoginResponse(message: message, token: token),
-      loginResponseWithUser = LoginResponse(
-        message: message,
-        token: token,
-        user: user,
-      );
+  final loginResponse = LoginResponse(message: message, token: token);
   group('LoginResponse', () {
     test('should be a subclass of LoginResponse Entity', () {
       expect(loginResponse, isA<LoginResponse>());
