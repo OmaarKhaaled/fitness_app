@@ -14,7 +14,6 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-
   /// File path: assets/icons/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/icons/Vector.png');
 
@@ -83,13 +82,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/onboarding_bg.png
   AssetGenImage get onboardingBg =>
       const AssetGenImage('assets/images/onboarding_bg.png');
-  /// File path: assets/images/onboarding_background.jpg
-  AssetGenImage get onboardingBackground =>
-      const AssetGenImage('assets/images/onboarding_background.jpg');
-
-  /// File path: assets/images/super-fitness.png
-  AssetGenImage get superFitness =>
-      const AssetGenImage('assets/images/super-fitness.png');
 
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
@@ -108,7 +100,6 @@ class $AssetsImagesGen {
     onboarding3,
     onboardingBg,
     splash,
-    onboardingBackground,
     superFitness,
   ];
 }
