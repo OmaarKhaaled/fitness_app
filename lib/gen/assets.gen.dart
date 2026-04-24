@@ -14,11 +14,23 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+
+  /// File path: assets/icons/Vector.png
+  AssetGenImage get vector => const AssetGenImage('assets/icons/Vector.png');
+
   /// File path: assets/icons/chat_ai.svg
   String get chatAi => 'assets/icons/chat_ai.svg';
 
+  /// File path: assets/icons/female-symbol.png
+  AssetGenImage get femaleSymbol =>
+      const AssetGenImage('assets/icons/female-symbol.png');
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
+
+  /// File path: assets/icons/male-symbol.png
+  AssetGenImage get maleSymbol =>
+      const AssetGenImage('assets/icons/male-symbol.png');
 
   /// File path: assets/icons/profile.svg
   String get profile => 'assets/icons/profile.svg';
@@ -30,7 +42,16 @@ class $AssetsIconsGen {
   String get wourkout => 'assets/icons/wourkout.svg';
 
   /// List of all assets
-  List<String> get values => [chatAi, home, profile, superFitness, wourkout];
+  List<dynamic> get values => [
+    vector,
+    chatAi,
+    femaleSymbol,
+    home,
+    maleSymbol,
+    profile,
+    superFitness,
+    wourkout,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -39,6 +60,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/auth_background.png
   AssetGenImage get authBackground =>
       const AssetGenImage('assets/images/auth_background.png');
+
+  /// File path: assets/images/fitness.png
+  AssetGenImage get fitness => const AssetGenImage('assets/images/fitness.png');
+
+  /// File path: assets/images/forget_password_background.png
+  AssetGenImage get forgetPasswordBackground =>
+      const AssetGenImage('assets/images/forget_password_background.png');
 
   /// File path: assets/images/onboarding_1.png
   AssetGenImage get onboarding1 =>
@@ -52,17 +80,36 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding3 =>
       const AssetGenImage('assets/images/onboarding_3.png');
 
+  /// File path: assets/images/onboarding_bg.png
+  AssetGenImage get onboardingBg =>
+      const AssetGenImage('assets/images/onboarding_bg.png');
   /// File path: assets/images/onboarding_background.jpg
   AssetGenImage get onboardingBackground =>
-      const AssetGenImage('assets/images/onboarding_bg.png');
+      const AssetGenImage('assets/images/onboarding_background.jpg');
+
+  /// File path: assets/images/super-fitness.png
+  AssetGenImage get superFitness =>
+      const AssetGenImage('assets/images/super-fitness.png');
+
+  /// File path: assets/images/splash.png
+  AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
+
+  /// File path: assets/images/super-fitness.png
+  AssetGenImage get superFitness =>
+      const AssetGenImage('assets/images/super-fitness.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
     authBackground,
+    fitness,
+    forgetPasswordBackground,
     onboarding1,
     onboarding2,
     onboarding3,
+    onboardingBg,
+    splash,
     onboardingBackground,
+    superFitness,
   ];
 }
 
