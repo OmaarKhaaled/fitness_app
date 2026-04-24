@@ -170,4 +170,9 @@ class AppTextConstants {
       'forget_password.confirmPasswordDoesNotMatch'.tr();
   static String get thePasswordMustBeAtLeast8CharactersLong =>
       'forget_password.thePasswordMustBeAtLeast8CharactersLong'.tr();
+  //bottom nav bar
+  static String get exploreIcon => 'bottom_nav_bar.explore'.tr();
+  static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
+  static String get workoutsIcon => 'bottom_nav_bar.workouts'.tr();
+  static String get profileIcon => 'bottom_nav_bar.profile'.tr();
 }

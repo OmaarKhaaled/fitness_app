@@ -142,5 +142,10 @@
     "remember_me": "تذكرني",
     "no_account": "ليس لديك حساب بعد؟",
     "register_link": "إنشاء حساب"
+  "bottom_nav_bar": {
+    "explore": "استكشف",
+    "smart_coach": "المدرب الذكي",
+    "workouts": "التمارين",
+    "profile": "الملف الشخصي"
   }
 }

@@ -1,6 +1,6 @@
-
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
+import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
@@ -9,12 +9,16 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static GoRouter get router => GoRouter(
-    initialLocation: AppRoutesConstants.loginRoute,
+    initialLocation: AppRoutesConstants.registerRoute,
     routes: [
       GoRoute(
         name: AppRoutesConstants.onboardingRoute,
         path: AppRoutesConstants.onboardingRoute,
         builder: (context, state) => const OnBoardingPage(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.homeRoute,
+        builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.registerRoute,

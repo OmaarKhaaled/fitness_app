@@ -142,6 +142,11 @@
     "remember_me": "Remember Me",
     "no_account": "Don't Have An Account Yet?",
     "register_link": "Register"
+  "bottom_nav_bar":{
+    "explore":"Explore",
+    "smart_coach":"Smart Coach",
+    "workouts":"Workouts",
+    "profile":"Profile"
   }
 
 }
