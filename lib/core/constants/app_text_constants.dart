@@ -132,6 +132,44 @@ class AppTextConstants {
       'profile_setup.activity.options.true_beast'.tr();
   static String get profileSetupActivityButton =>
       'profile_setup.activity.button'.tr();
+
+  // forget password
+  static String get pleaseEnterValidEmail =>
+      'forget_password.please_enter_valid_email'.tr();
+  static String get forgetPassword => 'forget_password.forget_password'.tr();
+  static String get enterYourEmail => 'forget_password.enter_your_email'.tr();
+  static String get sendOtp => 'forget_password.send_otp'.tr();
+  static String get otpCode => 'forget_password.otp_code'.tr();
+  static String get otpCodeDescription =>
+      'forget_password.otp_code_description'.tr();
+  static String get confirm => 'forget_password.confirm'.tr();
+  static String get resetPassword => 'forget_password.reset_password'.tr();
+  static String get resetPasswordDescription =>
+      'forget_password.reset_password_description'.tr();
+  static String get newPassword => 'forget_password.new_password'.tr();
+  static String get confirmPassword => 'forget_password.confirm_password'.tr();
+  static String get reset => 'forget_password.reset'.tr();
+  static String get didntRecieveVerificationCode =>
+      'forget_password.didnt_recieve_verification_code'.tr();
+  static String get resendCode => 'forget_password.resend_code'.tr();
+  static String get makeSureIts8CharactersOrMore =>
+      'forget_password.make_sure_its_8_characters_or_more'.tr();
+  static String get createNewPassword =>
+      'forget_password.create_new_password'.tr();
+  static String get done => 'forget_password.done'.tr();
+  static String get pleaseEnterValidOtp =>
+      'forget_password.please_enter_valid_otp'.tr();
+  static String get otpSentSuccessfully =>
+      'forget_password.otpSentSuccessfully'.tr();
+  static String get pleaseEnterValidPassword =>
+      'forget_password.please_enter_valid_password'.tr();
+  static String get passwordResetSuccessfully =>
+      'forget_password.passwordResetSuccessfully'.tr();
+  static String get email => 'forget_password.email'.tr();
+  static String get confirmPasswordDoesNotMatch =>
+      'forget_password.confirmPasswordDoesNotMatch'.tr();
+  static String get thePasswordMustBeAtLeast8CharactersLong =>
+      'forget_password.thePasswordMustBeAtLeast8CharactersLong'.tr();
   //bottom nav bar
   static String get exploreIcon => 'bottom_nav_bar.explore'.tr();
   static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
