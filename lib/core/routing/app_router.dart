@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static GoRouter get router => GoRouter(
-    initialLocation: AppRoutesConstants.registerRoute,
+    initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(
         name: AppRoutesConstants.onboardingRoute,

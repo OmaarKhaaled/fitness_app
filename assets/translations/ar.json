@@ -36,7 +36,7 @@
     "or": "أو",
     "button": "تسجيل الدخول",
     "no_account": "ليس لديك حساب بعد؟",
-    "register_link": "إنشاء حساب"
+    "RegisterLink": "إنشاء حساب"
   },
   "register": {
     "greeting": "مرحباً",
@@ -141,6 +141,7 @@
     "enter_your_password": "أدخل كلمة المرور",
     "remember_me": "تذكرني",
     "no_account": "ليس لديك حساب بعد؟",
+    "RegisterLink": "إنشاء حساب"
     "register_link": "إنشاء حساب"
   "bottom_nav_bar": {
     "explore": "استكشف",

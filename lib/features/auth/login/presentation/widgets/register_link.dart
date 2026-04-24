@@ -1,8 +1,6 @@
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-
-// ignore: camel_case_types
 class RegisterLink extends StatelessWidget {
   const RegisterLink({super.key});
 

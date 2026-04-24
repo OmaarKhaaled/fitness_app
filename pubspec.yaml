@@ -55,7 +55,7 @@ dev_dependencies:
   mockito: ^5.4.6
   retrofit_generator: ^10.2.1
 flutter:
-
+  generate: true
   uses-material-design: true
   assets:
     - assets/images/

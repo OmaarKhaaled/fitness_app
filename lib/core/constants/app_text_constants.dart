@@ -38,7 +38,7 @@ class AppTextConstants {
   static String get loginOr => 'login.or'.tr();
   static String get loginButton => 'login.button'.tr();
   static String get loginNoAccount => 'login.no_account'.tr();
-  static String get loginRegisterLink => 'login.register_link'.tr();
+  static String get loginRegisterLink => 'login.RegisterLink'.tr();
 
   // Register
   static String get registerGreeting => 'register.greeting'.tr();
