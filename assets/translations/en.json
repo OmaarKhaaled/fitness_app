@@ -129,6 +129,7 @@
     "confirm": "Confirm",
     "confirmPasswordDoesNotMatch": "Confirm Password Does Not Match",
     "thePasswordMustBeAtLeast8CharactersLong": "The password must be at least 8 characters long"
+  },
   "home": {
     "greeting": "Hey There",
     "welcome_back": "WELCOME BACK",
@@ -141,9 +142,10 @@
     "enter_your_password": "Enter Your Password",
     "remember_me": "Remember Me",
     "no_account": "Don't Have An Account Yet?",
-    "RegisterLink": "Register"
+    "RegisterLink": "Register",
     "register_link": "Register"
-  "bottom_nav_bar":{
+  },
+  "bottom_nav_bar": {
     "explore":"Explore",
     "smart_coach":"Smart Coach",
     "workouts":"Workouts",

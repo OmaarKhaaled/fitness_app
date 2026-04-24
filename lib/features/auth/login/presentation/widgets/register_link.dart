@@ -1,6 +1,7 @@
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+
 class RegisterLink extends StatelessWidget {
   const RegisterLink({super.key});
 
@@ -18,7 +19,7 @@ class RegisterLink extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {},
-          child:  Text(
+          child: Text(
             AppTextConstants.loginRegisterLink,
             style: const TextStyle(
               color: AppColors.primary,
