@@ -25,9 +25,17 @@ class LoginResponse {
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+  Map<String, dynamic> toJson() => {
+    'message': message,
+    'user': user?.toJson(),
+    'token': token,
+  };
 
   LoginModel toModel() {
-    return LoginModel(message: message ?? '', token: token ?? '');
+    return LoginModel(
+      message: message ?? '',
+      token: token ?? '',
+      user: user ?? User(id: '', firstName: '', lastName: '', email: ''),
+    );
   }
 }
