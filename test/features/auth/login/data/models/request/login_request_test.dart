@@ -1,5 +1,5 @@
 import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   const email = 'test@example.com';
@@ -9,11 +9,38 @@ void main() {
     test('Should be a subclass of LoginRequest', () {
       expect(loginRequest, isA<LoginRequest>());
     });
-    test('has correct email', () {
-      expect(loginRequest.email, equals(email));
+    test('toJson should return a valid JSON map', () async {
+      final json = loginRequest.toJson();
+      expect(json['email'], 'test@example.com');
+      expect(json['password'], 'password123');
     });
-    test('has correct password', () {
-      expect(loginRequest.password, equals(password));
+
+    test('fromJson should return a valid LoginRequest object', () async {
+      expect(loginRequest.email, 'test@example.com');
+      expect(loginRequest.password, 'password123');
+    });
+
+    test('fromJson should return a valid model', () async {
+      // arrange
+      final Map<String, dynamic> jsonMap = {
+        'email': email,
+        'password': password,
+      };
+
+      // act
+      final result = LoginRequest.fromJson(jsonMap);
+      // assert
+      expect(result.email, email);
+      expect(result.password, password);
+    });
+    
+    test('toJson should return a JSON map containing proper data', () async {
+      // act
+      final result = loginRequest.toJson();
+
+      // assert
+      final expectedMap = {'email': email, 'password': password};
+      expect(result, expectedMap);
     });
   });
 }
