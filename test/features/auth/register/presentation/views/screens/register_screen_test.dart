@@ -82,6 +82,7 @@ void main() {
     await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
   }
+
   testWidgets('register screen in initial state...', (
     WidgetTester tester,
   ) async {
@@ -596,49 +597,51 @@ void main() {
     expect(find.text(ValidationConstants.passwordsDoNotMatch), findsOneWidget);
   });
   testWidgets(
-  'success validation case - navigates to additional info screen when all fields are valid',
-  (WidgetTester tester) async {
-    await tester.binding.setSurfaceSize(const Size(1080, 2400));
-    
-    await tester.pumpWidget(buildTestableWidget());
-    await tester.pumpAndSettle();
+    'success validation case - navigates to additional info screen when all fields are valid',
+    (WidgetTester tester) async {
+      await tester.binding.setSurfaceSize(const Size(1080, 2400));
 
-    await tester.enterText(
-      find.bySemanticsLabel(AppTextConstants.registerFirstNamePlaceholder),
-      'Islam',
-    );
-    await tester.enterText(
-      find.bySemanticsLabel(AppTextConstants.registerLastNamePlaceholder),
-      'Ramzy',
-    );
-    await tester.enterText(
-      find.bySemanticsLabel(AppTextConstants.registerEmailPlaceholder),
-      'islam@gmail.com',
-    );
-    await tester.enterText(
-      find.bySemanticsLabel(AppTextConstants.registerPasswordPlaceholder),
-      'Solm@2020',
-    );
-    await tester.enterText(
-      find.bySemanticsLabel(AppTextConstants.registerRePasswordPlaceholder),
-      'Solm@2020',
-    );
+      await tester.pumpWidget(buildTestableWidget());
+      await tester.pumpAndSettle();
 
-    await tester.pumpAndSettle();
-    
-    // Manually trigger the button's onPressed
-    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
-    button.onPressed?.call();
-    await tester.pumpAndSettle();
-    
-    // Verify the intent was called with the correct data
-    final captured = verify(mockRegisterViewModel.doIntent(captureAny)).captured;
-    expect(captured.length, 1);
-    expect(captured.first, isA<CacheRegistrationDataEvent>());
-    
-    final event = captured.first as CacheRegistrationDataEvent;
-    expect(event.data.firstName, 'Islam');
-    expect(event.data.email, 'islam@gmail.com');
-  },
-);
+      await tester.enterText(
+        find.bySemanticsLabel(AppTextConstants.registerFirstNamePlaceholder),
+        'Islam',
+      );
+      await tester.enterText(
+        find.bySemanticsLabel(AppTextConstants.registerLastNamePlaceholder),
+        'Ramzy',
+      );
+      await tester.enterText(
+        find.bySemanticsLabel(AppTextConstants.registerEmailPlaceholder),
+        'islam@gmail.com',
+      );
+      await tester.enterText(
+        find.bySemanticsLabel(AppTextConstants.registerPasswordPlaceholder),
+        'Solm@2020',
+      );
+      await tester.enterText(
+        find.bySemanticsLabel(AppTextConstants.registerRePasswordPlaceholder),
+        'Solm@2020',
+      );
+
+      await tester.pumpAndSettle();
+
+      // Manually trigger the button's onPressed
+      final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+      button.onPressed?.call();
+      await tester.pumpAndSettle();
+
+      // Verify the intent was called with the correct data
+      final captured = verify(
+        mockRegisterViewModel.doIntent(captureAny),
+      ).captured;
+      expect(captured.length, 1);
+      expect(captured.first, isA<CacheRegistrationDataEvent>());
+
+      final event = captured.first as CacheRegistrationDataEvent;
+      expect(event.data.firstName, 'Islam');
+      expect(event.data.email, 'islam@gmail.com');
+    },
+  );
 }

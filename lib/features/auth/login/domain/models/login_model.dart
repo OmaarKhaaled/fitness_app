@@ -5,5 +5,9 @@ class LoginModel {
   final String token;
   final User user;
 
-  const LoginModel({required this.message, required this.token, required this.user});
+  const LoginModel({
+    required this.message,
+    required this.token,
+    required this.user,
+  });
 }

@@ -33,7 +33,7 @@ void main() {
       expect(result.email, email);
       expect(result.password, password);
     });
-    
+
     test('toJson should return a JSON map containing proper data', () async {
       // act
       final result = loginRequest.toJson();
