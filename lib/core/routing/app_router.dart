@@ -1,4 +1,4 @@
-
+import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/login/presentation/views/screens/login_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
@@ -13,6 +13,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutesConstants.onboardingRoute,
         builder: (context, state) => const OnBoardingPage(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.homeRoute,
+        builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.registerRoute,

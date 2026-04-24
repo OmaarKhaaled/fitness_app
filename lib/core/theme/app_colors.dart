@@ -13,4 +13,5 @@ class AppColors {
   static final onboardingCardBackground = const Color(
     0xFF242424,
   ).withValues(alpha: 0.1);
+  static const navBarBg = Color(0xCC242424);
 }
