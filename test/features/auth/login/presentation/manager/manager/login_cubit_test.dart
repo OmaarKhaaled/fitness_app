@@ -1,6 +1,5 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/services/token_service.dart';
-import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
 import 'package:fitness_app/features/auth/login/data/models/response/user_model.dart';
 import 'package:fitness_app/features/auth/login/domain/models/login_model.dart';
 import 'package:fitness_app/features/auth/login/domain/usecases/login_usecase.dart';

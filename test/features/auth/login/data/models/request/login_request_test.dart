@@ -24,8 +24,8 @@ void main() {
     test('fromJson should return a valid model', () async {
       // arrange
       final Map<String, dynamic> jsonMap = {
-        "email": email,
-        "password": password,
+        'email': email,
+        'password': password,
       };
 
       // act
@@ -40,7 +40,7 @@ void main() {
       final result = loginRequest.toJson();
 
       // assert
-      final expectedMap = {"email": email, "password": password};
+      final expectedMap = {'email': email, 'password': password};
       expect(result, expectedMap);
     });
   });

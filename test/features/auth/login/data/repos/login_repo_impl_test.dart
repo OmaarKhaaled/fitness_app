@@ -69,11 +69,11 @@ void main() {
       // Arrange
       final request = LoginRequest(email: email, password: password);
 
-      final exception = AppException('Login failed');
+      const exception = AppException('Login failed');
 
       when(
         mockLoginRemoteDataSource.login(request),
-      ).thenAnswer((_) async => BaseResponse.failure(exception));
+      ).thenAnswer((_) async => const BaseResponse.failure(exception));
 
       // Act
       final result = await loginRepoImpl.login(request);

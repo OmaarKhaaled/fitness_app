@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   const message = 'Login successful';
   const token = 'abc123';
-  User user = User(id: '1', firstName: 'John', email: 'john@example.com');
+  final User user = User(id: '1', firstName: 'John', email: 'john@example.com');
   final loginResponse = LoginResponse(message: message, token: token),
       loginResponseWithUser = LoginResponse(
         message: message,

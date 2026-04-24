@@ -40,7 +40,7 @@ void main() {
         // Arrange
         const email = 'john.doe@example.com';
         const password = 'password123';
-        LoginRequest loginRequest = LoginRequest(
+        final LoginRequest loginRequest = LoginRequest(
           email: email,
           password: password,
         );
