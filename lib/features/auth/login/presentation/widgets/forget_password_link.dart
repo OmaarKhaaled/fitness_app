@@ -1,6 +1,9 @@
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 class ForgetPasswordLink extends StatelessWidget {
   const ForgetPasswordLink({super.key});
 
@@ -9,7 +12,9 @@ class ForgetPasswordLink extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          context.pushNamed(AppRoutesConstants.forgetPasswordRoute);
+        },
         child: Text(
           AppTextConstants.loginForgotPassword,
           style: TextStyle(

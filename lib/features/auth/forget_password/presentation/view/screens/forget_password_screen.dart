@@ -42,54 +42,57 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       create: (context) => getIt<ForgetPasswordCubit>(),
       child: AppScaffold(
         backgroundImage: AppAssets.forgetPasswordBackground,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              AppBar(
-                backgroundColor: AppColors.transparent,
-                leading: InkWell(
-                  onTap: () {
-                    if (_currentPage > 0) {
-                      _pageController.previousPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    } else {
-                      context.pop();
-                    }
-                  },
-                  child: const Icon(
-                    Icons.arrow_back,
-                    color: AppColors.primary,
-                    size: 35,
+        child: SizedBox(
+          height: size.height,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                AppBar(
+                  backgroundColor: AppColors.transparent,
+                  leading: InkWell(
+                    onTap: () {
+                      if (_currentPage > 0) {
+                        _pageController.previousPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      } else {
+                        context.pop();
+                      }
+                    },
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: AppColors.primary,
+                      size: 35,
+                    ),
+                  ),
+                  title: Image.asset(AppAssets.fitness, height: 75, width: 90),
+                ),
+                SizedBox(height: size.height * .1),
+                Expanded(
+                  child: PageView(
+                    controller: _pageController,
+                    onPageChanged: (page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      ProvideEmailView(
+                        onNext: (email) {
+                          setState(() => _email = email);
+                          _nextPage();
+                        },
+                      ),
+                      VerifyCodeView(email: _email, onNext: () => _nextPage()),
+                      const ResetPasswordView(),
+                    ],
                   ),
                 ),
-                title: Image.asset(AppAssets.fitness, height: 75, width: 90),
-              ),
-              SizedBox(height: size.height * .1),
-              Expanded(
-                child: PageView(
-                  controller: _pageController,
-                  onPageChanged: (page) {
-                    setState(() {
-                      _currentPage = page;
-                    });
-                  },
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    ProvideEmailView(
-                      onNext: (email) {
-                        setState(() => _email = email);
-                        _nextPage();
-                      },
-                    ),
-                    VerifyCodeView(email: _email, onNext: () => _nextPage()),
-                    const ResetPasswordView(),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

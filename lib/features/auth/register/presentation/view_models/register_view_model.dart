@@ -10,7 +10,7 @@ import 'package:fitness_app/features/auth/register/presentation/view_models/regi
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class RegisterViewModel extends Cubit<RegisterStates> {
   final RegisterUseCase _registerUseCase;
   RegisterViewModel(this._registerUseCase)

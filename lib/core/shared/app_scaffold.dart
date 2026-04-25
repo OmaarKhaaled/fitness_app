@@ -19,6 +19,7 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.transparent,
       body: Stack(
         fit: StackFit.expand,
@@ -27,12 +28,16 @@ class AppScaffold extends StatelessWidget {
           Align(alignment: alignment, child: child),
         ],
       ),
-      bottomNavigationBar: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.easeInOut,
-        height: isBottomNavVisible ? null : 0,
-        child: isBottomNavVisible ? bottomWidget : const SizedBox.shrink(),
-      ),
+      bottomNavigationBar: bottomWidget == null
+          ? null
+          : AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut,
+              height: isBottomNavVisible ? null : 0,
+              child: isBottomNavVisible
+                  ? bottomWidget
+                  : const SizedBox.shrink(),
+            ),
     );
   }
 }

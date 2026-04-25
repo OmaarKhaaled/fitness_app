@@ -8,7 +8,7 @@ import 'package:fitness_app/features/auth/login/presentation/pages/login_page.da
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
-  static final GoRouter  router = GoRouter(
+  static final GoRouter router = GoRouter(
     initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(
@@ -36,7 +36,7 @@ class AppRouter {
         name: AppRoutesConstants.forgetPasswordRoute,
         path: AppRoutesConstants.forgetPasswordRoute,
         builder: (context, state) => const ForgetPasswordScreen(),
-      ),    
+      ),
     ],
   );
 }
