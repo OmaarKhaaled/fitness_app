@@ -129,6 +129,7 @@
     "confirm": "تأكيد",
     "confirmPasswordDoesNotMatch": "كلمة المرور غير متطابقة",
     "thePasswordMustBeAtLeast8CharactersLong": "كلمة المرور يجب أن تكون 8 أحرف على الأقل"
+  },
   "home": {
     "greeting": "مرحباً",
     "welcome_back": "أهلاً بعودتك",
@@ -141,8 +142,9 @@
     "enter_your_password": "أدخل كلمة المرور",
     "remember_me": "تذكرني",
     "no_account": "ليس لديك حساب بعد؟",
-    "RegisterLink": "إنشاء حساب"
+    "RegisterLink": "إنشاء حساب",
     "register_link": "إنشاء حساب"
+  },
   "bottom_nav_bar": {
     "explore": "استكشف",
     "smart_coach": "المدرب الذكي",

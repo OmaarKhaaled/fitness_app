@@ -16,7 +16,6 @@ void main() {
     });
 
     test('fromJson should return a valid LoginRequest object', () async {
-      final json = {'email': 'test@example.com', 'password': 'password123'};
       expect(loginRequest.email, 'test@example.com');
       expect(loginRequest.password, 'password123');
     });
