@@ -127,14 +127,14 @@ class ExerciseScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '$muscleId Exercise',
-            style: GoogleFonts.outfit(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: AppColors.white,
-            ),
-          ),
+          // Text(
+          //   '$muscleId Exercise',
+          //   style: GoogleFonts.outfit(
+          //     fontSize: 24,
+          //     fontWeight: FontWeight.w700,
+          //     color: AppColors.white,
+          //   ),
+          // ),
           const SizedBox(height: 6),
           Text(
             'Select a difficulty level and start training '

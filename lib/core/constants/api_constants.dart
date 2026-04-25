@@ -28,6 +28,6 @@ class ApiConstants {
 
   //------------------------------- exercises Endpoints -----------------------//
   static const String exercisesByPrimeMoverMuscleAndDifficultyLevel =
-      'exercises/by-muscle-difficulty/{primeMoverMuscleId}/{difficultyLevelId}';
+      'exercises/by-muscle-difficulty';
 
 }

@@ -42,10 +42,9 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutesConstants.exercisesRoute,
-        builder: (context, state) => const ExercisePage(muscleId: '69d982ef85f6bfa972bf2248'),
-
+        builder: (context, state) =>
+            const ExercisePage(muscleId: '69d982ef85f6bfa972bf2248'),
       ),
     ],
   );
-
 }
