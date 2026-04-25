@@ -22,4 +22,7 @@ class ApiConstants {
   static const String getAllMuscleGroupsEndpoint = 'muscles';
   static const String getAllMuscleGroupByMuscleIdEndpoint =
       'musclesGroup/{MuscleGroupId}';
+  static const String getRandomMuscleEndpoint = 'muscles/random';
+  static const String getMuscleGroupByMuscleIdEndpoint =
+      'musclesGroup/by-muscle-group?muscleGroupId={MuscleGroupId}';
 }
