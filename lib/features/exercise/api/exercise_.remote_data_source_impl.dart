@@ -12,8 +12,9 @@ class ExerciseRemoteDataSourceImpl implements ExerciseRemoteDataSource {
 
   @override
   Future<List<LevelsByPrimemuscleResponse>>
-  getAllDifficultyLevelsByPrimeMoverMuscle(String primeMoverMuscleId) {
+  getAllDifficultyLevelsByPrimeMoverMuscle(String token ,String primeMoverMuscleId) {
     final levelsRequest = apiClient.getDifficultyLevelsByPrimeMoverMuscle(
+      token,
       primeMoverMuscleId,
     );
     return levelsRequest;

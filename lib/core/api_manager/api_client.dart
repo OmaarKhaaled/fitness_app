@@ -26,7 +26,9 @@ abstract class ApiClient {
 
   @GET(ApiConstants.getDifficultyLevelsByPrimeMoverEndpoint)
   Future<List<LevelsByPrimemuscleResponse>> getDifficultyLevelsByPrimeMoverMuscle(
+    @Header("Authorization")  String token,
     @Query('primeMoverMuscleId') String primeMoverMuscleId,
+
   );
 
   @GET(ApiConstants.exercisesByPrimeMoverMuscleAndDifficultyLevel)

@@ -5,6 +5,7 @@ import 'package:fitness_app/features/exercise/domain/models/level_model.dart';
 
 abstract class ExerciseRepo {
   Future<ApiResult<List<LevelModel>>> getDifficultyLevelsByPrimeMoverMuscle(
+    String token,
     String primeMoverMuscleId,
   );
   Future<ApiResult<List<ExerciseModel>>> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(

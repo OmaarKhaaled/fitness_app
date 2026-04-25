@@ -12,15 +12,17 @@ class ExerciseRepoImpl implements ExerciseRepo {
 
   @override
   Future<ApiResult<List<LevelModel>>> getDifficultyLevelsByPrimeMoverMuscle(
+    String token,
     String primeMoverMuscleId,
   ) async {
     final result = await exerciseRemoteDataSource
-        .getAllDifficultyLevelsByPrimeMoverMuscle(primeMoverMuscleId);
-    return SuccessApiResult(data:   result.map((e) => LevelModel()).toList());
+        .getAllDifficultyLevelsByPrimeMoverMuscle(token, primeMoverMuscleId);
+    return SuccessApiResult(data: result.map((e) => LevelModel()).toList());
   }
 
   @override
-  Future<ApiResult<List<ExerciseModel>>> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
+  Future<ApiResult<List<ExerciseModel>>>
+  getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
     String primeMoverMuscleId,
     String difficultyLevelId,
   ) async {
