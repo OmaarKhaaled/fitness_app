@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/enums/nav_bar_enum.dart';
+import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.dart';
 import 'package:fitness_app/features/home/view_model/home_events.dart';
 import 'package:fitness_app/features/home/view_model/home_states.dart';
 import 'package:fitness_app/features/home/views/screens/tabs/home_tab/presentation/views/screens/home_tab.dart';

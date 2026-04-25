@@ -11,9 +11,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ExerciseScreen extends StatelessWidget {
-  final String muscleName;
-
-  const ExerciseScreen({super.key, required this.muscleName});
+  final String muscleId;
+  const ExerciseScreen({super.key, required this.muscleId});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +48,7 @@ class ExerciseScreen extends StatelessWidget {
   // ── Hero SliverAppBar ─────────────────────────────────────────────────────
 
   SliverAppBar _buildHeroAppBar(BuildContext context) {
+
     return SliverAppBar(
       expandedHeight: 240,
       pinned: true,
@@ -61,8 +61,11 @@ class ExerciseScreen extends StatelessWidget {
             color: AppColors.primary,
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: AppColors.white, size: 16),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: AppColors.white,
+            size: 16,
+          ),
         ),
       ),
       title: Text(
@@ -125,7 +128,7 @@ class ExerciseScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '$muscleName Exercise',
+            '$muscleId Exercise',
             style: GoogleFonts.outfit(
               fontSize: 24,
               fontWeight: FontWeight.w700,
@@ -267,9 +270,7 @@ class ExerciseScreen extends StatelessWidget {
         delegate: SliverChildBuilderDelegate(
           (_, __) => Skeletonizer(
             enabled: true,
-            child: ExerciseItemCard(
-              exercise: _skeletonExercise,
-            ),
+            child: ExerciseItemCard(exercise: _skeletonExercise),
           ),
           childCount: 5,
         ),
@@ -282,12 +283,18 @@ class ExerciseScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.error_outline, color: Colors.redAccent, size: 48),
+              const Icon(
+                Icons.error_outline,
+                color: Colors.redAccent,
+                size: 48,
+              ),
               const SizedBox(height: 12),
               Text(
                 state.exercisesError!,
-                style:
-                    GoogleFonts.outfit(color: AppColors.textSecondary, fontSize: 13),
+                style: GoogleFonts.outfit(
+                  color: AppColors.textSecondary,
+                  fontSize: 13,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -302,13 +309,18 @@ class ExerciseScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.inbox_outlined,
-                  color: AppColors.textSecondary, size: 56),
+              const Icon(
+                Icons.inbox_outlined,
+                color: AppColors.textSecondary,
+                size: 56,
+              ),
               const SizedBox(height: 12),
               Text(
                 'No exercises found for this level.',
                 style: GoogleFonts.outfit(
-                    color: AppColors.textSecondary, fontSize: 14),
+                  color: AppColors.textSecondary,
+                  fontSize: 14,
+                ),
               ),
             ],
           ),

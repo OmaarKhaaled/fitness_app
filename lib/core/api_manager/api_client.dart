@@ -25,15 +25,13 @@ abstract class ApiClient {
   Future<List<String>> getRandomPrimeMoverMuscles();
 
   @GET(ApiConstants.getDifficultyLevelsByPrimeMoverEndpoint)
-  Future<List<LevelsByPrimemuscleResponse>> getDifficultyLevelsByPrimeMoverMuscle(
-    @Header("Authorization")  String token,
+  Future<LevelsByPrimemuscleResponse> getDifficultyLevelsByPrimeMoverMuscle(
+    @Header("Authorization") String token,
     @Query('primeMoverMuscleId') String primeMoverMuscleId,
-
   );
 
   @GET(ApiConstants.exercisesByPrimeMoverMuscleAndDifficultyLevel)
-  Future<List<ExerciseResponse>>
-  getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
+  Future<ExerciseResponse> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
     @Query('primeMoverMuscleId') String primeMoverMuscleId,
     @Query('difficultyLevelId') String difficultyLevelId,
   );

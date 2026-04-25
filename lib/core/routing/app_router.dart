@@ -1,15 +1,17 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
+import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.dart';
 import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
+import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.loginRoute,
+    initialLocation: AppRoutesConstants.exercisesRoute,
     routes: [
       GoRoute(
         name: AppRoutesConstants.onboardingRoute,
@@ -37,6 +39,13 @@ class AppRouter {
         path: AppRoutesConstants.forgetPasswordRoute,
         builder: (context, state) => const ForgetPasswordScreen(),
       ),
+
+      GoRoute(
+        path: AppRoutesConstants.exercisesRoute,
+        builder: (context, state) => const ExercisePage(muscleId: '69d982ef85f6bfa972bf2248'),
+
+      ),
     ],
   );
+
 }

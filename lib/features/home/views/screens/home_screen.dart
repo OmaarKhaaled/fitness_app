@@ -97,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: AppColors.navBarBg,
                   selectedItemColor: AppColors.primary,
                   unselectedItemColor: AppColors.white,
+                  unselectedLabelStyle: const TextStyle(fontSize: 0),
                   showSelectedLabels: true,
                   showUnselectedLabels: false,
                   currentIndex: state.currAppTab.index,

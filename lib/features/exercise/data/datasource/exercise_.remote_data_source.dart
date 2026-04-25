@@ -2,14 +2,12 @@ import 'package:fitness_app/features/exercise/data/models/response/exercise_resp
 import 'package:fitness_app/features/exercise/data/models/response/levels_by_primemuscle_response.dart';
 
 abstract class ExerciseRemoteDataSource {
-  Future<List<LevelsByPrimemuscleResponse>>
-  getAllDifficultyLevelsByPrimeMoverMuscle(
+  Future<LevelsByPrimemuscleResponse> getAllDifficultyLevelsByPrimeMoverMuscle(
     String token,
     String primeMoverMuscleId,
   );
 
-  Future<List<ExerciseResponse>>
-  getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
+  Future<ExerciseResponse> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
     String primeMoverMuscleId,
     String difficultyLevelId,
   );

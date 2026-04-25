@@ -1,7 +1,9 @@
 import 'package:fitness_app/config/network/api_result.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/domain/repo/exercise_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton()
 class GetExercisesByPrimaryMuscleAndLevelUseCase {
   final ExerciseRepo repo;
 

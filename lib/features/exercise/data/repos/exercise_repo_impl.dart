@@ -5,7 +5,7 @@ import 'package:fitness_app/features/exercise/domain/models/level_model.dart';
 import 'package:fitness_app/features/exercise/domain/repo/exercise_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: ExerciseRepo)
+@LazySingleton(as: ExerciseRepo)
 class ExerciseRepoImpl implements ExerciseRepo {
   final ExerciseRemoteDataSource exerciseRemoteDataSource;
   ExerciseRepoImpl(this.exerciseRemoteDataSource);
@@ -19,15 +19,15 @@ class ExerciseRepoImpl implements ExerciseRepo {
       final result = await exerciseRemoteDataSource
           .getAllDifficultyLevelsByPrimeMoverMuscle(token, primeMoverMuscleId);
 
-      final levels = result
-          .expand((response) => response.difficultyLevels ?? [])
-          .map(
+      final levels = result.difficultyLevels
+          ?.map(
             (d) => LevelModel(
               id: d.id ?? '',
               name: d.name ?? '',
             ),
           )
-          .toList();
+          .toList() ??
+          [];
 
       return SuccessApiResult(data: levels);
     } catch (e) {
@@ -48,9 +48,8 @@ class ExerciseRepoImpl implements ExerciseRepo {
             difficultyLevelId,
           );
 
-      final exercises = result
-          .expand((response) => response.exercises ?? [])
-          .map(
+      final exercises = result.exercises
+          ?.map(
             (e) => ExerciseModel(
               id: e.id ?? '',
               name: e.exercise ?? '',
@@ -67,7 +66,8 @@ class ExerciseRepoImpl implements ExerciseRepo {
               inDepthYoutubeExplanationLink: e.inDepthYoutubeExplanationLink,
             ),
           )
-          .toList();
+          .toList() ??
+          [];
 
       return SuccessApiResult(data: exercises);
     } catch (e) {

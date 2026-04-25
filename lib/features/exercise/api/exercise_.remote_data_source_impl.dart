@@ -4,33 +4,31 @@ import 'package:fitness_app/features/exercise/data/models/response/exercise_resp
 import 'package:fitness_app/features/exercise/data/models/response/levels_by_primemuscle_response.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: ExerciseRemoteDataSource)
+@LazySingleton(as: ExerciseRemoteDataSource)
 class ExerciseRemoteDataSourceImpl implements ExerciseRemoteDataSource {
   final ApiClient apiClient;
 
   ExerciseRemoteDataSourceImpl(this.apiClient);
 
   @override
-  Future<List<LevelsByPrimemuscleResponse>>
-  getAllDifficultyLevelsByPrimeMoverMuscle(String token ,String primeMoverMuscleId) {
-    final levelsRequest = apiClient.getDifficultyLevelsByPrimeMoverMuscle(
+  Future<LevelsByPrimemuscleResponse> getAllDifficultyLevelsByPrimeMoverMuscle(
+    String token,
+    String primeMoverMuscleId,
+  ) {
+    return apiClient.getDifficultyLevelsByPrimeMoverMuscle(
       token,
       primeMoverMuscleId,
     );
-    return levelsRequest;
   }
 
   @override
-  Future<List<ExerciseResponse>>
-  getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
+  Future<ExerciseResponse> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
     String primeMoverMuscleId,
     String difficultyLevelId,
   ) {
-    final exerciseRequest = apiClient
-        .getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
-          primeMoverMuscleId,
-          difficultyLevelId,
-        );
-    return exerciseRequest;
+    return apiClient.getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
+      primeMoverMuscleId,
+      difficultyLevelId,
+    );
   }
 }
