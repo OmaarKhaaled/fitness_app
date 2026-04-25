@@ -16,105 +16,82 @@ class ExerciseItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle = [
-      exercise.mechanics,
-      exercise.primaryEquipment,
-    ].where((e) => e != null && e.isNotEmpty).join(' · ');
-
-    final detail = [
-      exercise.movementPattern1,
-      exercise.bodyRegion,
-    ].where((e) => e != null && e.isNotEmpty).join(' · ');
-
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: const Color(0xFF1E1E1E),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white10),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
       child: Row(
         children: [
           // Thumbnail
           ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(14),
-              bottomLeft: Radius.circular(14),
-            ),
+            borderRadius: BorderRadius.circular(15),
             child: exercise.shortYoutubeDemonstrationLink != null
                 ? CachedNetworkImage(
                     imageUrl: exercise.shortYoutubeDemonstrationLink!,
-                    width: 90,
-                    height: 90,
+                    width: 80,
+                    height: 80,
                     fit: BoxFit.cover,
                     placeholder: (_, __) => _buildPlaceholder(),
                     errorWidget: (_, __, ___) => _buildPlaceholder(),
                   )
                 : _buildPlaceholder(),
           ),
+          const SizedBox(width: 16),
           // Info
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    exercise.name,
-                    style: GoogleFonts.outfit(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.white,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  exercise.name,
+                  style: GoogleFonts.outfit(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.white,
                   ),
-                  if (detail.isNotEmpty) ...[
-                    const SizedBox(height: 3),
-                    Text(
-                      detail,
-                      style: GoogleFonts.outfit(
-                        fontSize: 12,
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                  if (subtitle.isNotEmpty) ...[
-                    const SizedBox(height: 3),
-                    Text(
-                      subtitle,
-                      style: GoogleFonts.outfit(
-                        fontSize: 11,
-                        color: AppColors.textSecondary,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ],
-              ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '3 Groups * 15 Times',
+                  style: GoogleFonts.outfit(
+                    fontSize: 12,
+                    color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Lorem Ipsum Dolor Sit Amet Consectetur. Tempus',
+                  style: GoogleFonts.outfit(
+                    fontSize: 11,
+                    color: AppColors.textSecondary.withValues(alpha: 0.7),
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           // Play button
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: GestureDetector(
-              onTap: onPlayTap,
-              child: Container(
-                width: 38,
-                height: 38,
-                decoration: const BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.play_arrow_rounded,
-                  color: AppColors.white,
-                  size: 22,
-                ),
+          GestureDetector(
+            onTap: onPlayTap,
+            child: Container(
+              width: 36,
+              height: 36,
+              decoration: const BoxDecoration(
+                color: AppColors.primary,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.play_arrow_rounded,
+                color: AppColors.white,
+                size: 20,
               ),
             ),
           ),

@@ -16,42 +16,99 @@ class ExerciseLevelTabBar extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: 100, // Increased height to accommodate the bubble
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: levels.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final isSelected = index == selectedIndex;
           return GestureDetector(
             onTap: () => onTap(index),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeInOut,
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-              decoration: BoxDecoration(
-                color: isSelected ? AppColors.primary : const Color(0xFF2A2A2A),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: isSelected ? AppColors.primary : Colors.white24,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                // Tab Pill
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                  decoration: BoxDecoration(
+                    color:
+                        isSelected ? AppColors.primary : Colors.transparent,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Text(
+                    levels[index].name,
+                    style: GoogleFonts.outfit(
+                      fontSize: 14,
+                      fontWeight:
+                          isSelected ? FontWeight.w600 : FontWeight.w500,
+                      color: isSelected
+                          ? AppColors.white
+                          : AppColors.textSecondary.withValues(alpha: 0.6),
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                levels[index].name,
-                style: GoogleFonts.outfit(
-                  fontSize: 13,
-                  fontWeight:
-                      isSelected ? FontWeight.w600 : FontWeight.w400,
-                  color: isSelected ? AppColors.white : AppColors.textSecondary,
-                ),
-              ),
+                // Avatar Bubble indicator
+                if (isSelected)
+                  Positioned(
+                    top: -10,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.2),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: const Icon(Icons.person, color: Colors.grey, size: 28),
+                        ),
+                        // Small triangle/beak of the bubble
+                        CustomPaint(
+                          painter: TrianglePainter(color: Colors.white),
+                          size: const Size(12, 8),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
             ),
           );
         },
       ),
     );
   }
+}
+
+class TrianglePainter extends CustomPainter {
+  final Color color;
+  TrianglePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = color;
+    final path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width / 2, size.height);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

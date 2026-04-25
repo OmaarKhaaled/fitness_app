@@ -24,16 +24,9 @@ class ExerciseScreen extends StatelessWidget {
             slivers: [
               _buildHeroAppBar(context),
               SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildTitleSection(),
-                    const SizedBox(height: 12),
-                    _buildStatsRow(),
-                    const SizedBox(height: 20),
-                    _buildLevelTabs(context, state),
-                    const SizedBox(height: 16),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: _buildLevelTabs(context, state),
                 ),
               ),
               _buildExerciseList(state),
@@ -48,69 +41,82 @@ class ExerciseScreen extends StatelessWidget {
   // ── Hero SliverAppBar ─────────────────────────────────────────────────────
 
   SliverAppBar _buildHeroAppBar(BuildContext context) {
-
     return SliverAppBar(
-      expandedHeight: 240,
+      expandedHeight: 340,
       pinned: true,
       backgroundColor: const Color(0xFF121212),
-      leading: GestureDetector(
-        onTap: () => Navigator.of(context).maybePop(),
-        child: Container(
-          margin: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            color: AppColors.primary,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.white,
-            size: 16,
+      leadingWidth: 64,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 16),
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).maybePop(),
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            decoration: const BoxDecoration(
+              color: AppColors.primary,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: AppColors.white,
+              size: 14,
+            ),
           ),
         ),
       ),
-      title: Text(
-        'Exercise',
-        style: GoogleFonts.outfit(
-          color: AppColors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-        ),
-      ),
-      centerTitle: true,
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           fit: StackFit.expand,
           children: [
-            // Gradient placeholder matching the design's dark hero
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF2A2A2A),
-                    Color(0xFF1A1A1A),
-                    Color(0xFF121212),
-                  ],
-                ),
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/images/exercise.png',
-                  fit: BoxFit.cover,
-                  width: double.minPositive,
-                ),
-              ),
+            // Background Image
+            Image.asset(
+              'assets/images/exercise.jpg',
+              fit: BoxFit.cover,
             ),
-            // Bottom fade
+            // Gradient Overlay
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Color(0xFF121212)],
-                  stops: [0.5, 1.0],
+                  colors: [
+                    Colors.transparent,
+                    Color(0x80121212),
+                    Color(0xFF121212),
+                  ],
+                  stops: [0.3, 0.7, 1.0],
                 ),
+              ),
+            ),
+            // Overlay Content
+            Positioned(
+              bottom: 20,
+              left: 16,
+              right: 16,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Chest Exercise',
+                    style: GoogleFonts.outfit(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi.',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.outfit(
+                      fontSize: 13,
+                      color: AppColors.textSecondary,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _buildStatsRow(),
+                ],
               ),
             ),
           ],
@@ -119,100 +125,63 @@ class ExerciseScreen extends StatelessWidget {
     );
   }
 
-  // ── Title ─────────────────────────────────────────────────────────────────
-
-  Widget _buildTitleSection() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Text(
-          //   '$muscleId Exercise',
-          //   style: GoogleFonts.outfit(
-          //     fontSize: 24,
-          //     fontWeight: FontWeight.w700,
-          //     color: AppColors.white,
-          //   ),
-          // ),
-          const SizedBox(height: 6),
-          Text(
-            'Select a difficulty level and start training '
-            'with exercises tailored to your prime mover muscle.',
-            style: GoogleFonts.outfit(
-              fontSize: 13,
-              color: AppColors.textSecondary,
-              height: 1.5,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   // ── Stats Row ─────────────────────────────────────────────────────────────
 
   Widget _buildStatsRow() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          _statPill(icon: Icons.timer_outlined, label: '30 MIN'),
-          const SizedBox(width: 12),
-          // Avatar
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xFF2A2A2A),
-              border: Border.all(color: AppColors.primary, width: 2),
-            ),
-            child: const Icon(Icons.person, color: AppColors.white, size: 20),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _statPill(label: '30 MIN'),
+        const SizedBox(width: 12),
+        // Avatar with bubble-like feel
+        Container(
+          width: 44,
+          height: 44,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: AppColors.white, width: 2),
+            color: const Color(0xFF2A2A2A),
           ),
-          const Spacer(),
-          _caloriePill(label: '130 Cal'),
-        ],
-      ),
+          child: const Icon(Icons.person, color: AppColors.white, size: 24),
+        ),
+        const SizedBox(width: 12),
+        _caloriePill(label: '130 Cal'),
+      ],
     );
   }
 
-  Widget _statPill({required IconData icon, required String label}) {
+  Widget _statPill({required String label}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFF2A2A2A),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white12),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: AppColors.textSecondary, size: 14),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: GoogleFonts.outfit(
-              fontSize: 12,
-              color: AppColors.textSecondary,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _caloriePill({required String label}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(20),
+        color: const Color(0xFF2A2A2A).withValues(alpha: 0.6),
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: Colors.white24),
       ),
       child: Text(
         label,
         style: GoogleFonts.outfit(
           fontSize: 12,
           color: AppColors.white,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  Widget _caloriePill({required String label}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFF2A2A2A).withValues(alpha: 0.6),
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Text(
+        label,
+        style: GoogleFonts.outfit(
+          fontSize: 12,
+          color: AppColors.primary,
           fontWeight: FontWeight.w600,
         ),
       ),
