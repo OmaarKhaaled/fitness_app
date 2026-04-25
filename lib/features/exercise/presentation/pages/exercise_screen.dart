@@ -7,12 +7,13 @@ import 'package:fitness_app/features/exercise/presentation/widgets/exercise_item
 import 'package:fitness_app/features/exercise/presentation/widgets/exercise_level_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fitness_app/features/exercise/domain/models/muscle_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ExerciseScreen extends StatelessWidget {
-  final String muscleId;
-  const ExerciseScreen({super.key, required this.muscleId});
+  final MuscleModel muscle;
+  const ExerciseScreen({super.key, required this.muscle});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,8 @@ class ExerciseScreen extends StatelessWidget {
         },
       ),
     );
-  }
+  }       
 
-  // ── Hero SliverAppBar ─────────────────────────────────────────────────────
 
   SliverAppBar _buildHeroAppBar(BuildContext context) {
     return SliverAppBar(
@@ -97,7 +97,7 @@ class ExerciseScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Chest Exercise',
+                    '${muscle.name} Exercise',
                     style: GoogleFonts.outfit(
                       fontSize: 28,
                       fontWeight: FontWeight.w700,
