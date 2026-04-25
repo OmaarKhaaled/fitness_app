@@ -1,22 +1,16 @@
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_cubit.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_intent.dart';
-import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_state.dart';
 import 'package:fitness_app/features/exercise/presentation/widgets/exercise_level_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class _LevelTabs extends StatelessWidget {
-  const _LevelTabs({
-    required this.context,
-    required this.state,
-  });
-
-  final BuildContext context;
-  final ExerciseState state;
+class LevelTabs extends StatelessWidget {
+  const LevelTabs({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final state = context.select((ExerciseCubit cubit) => cubit.state);
     if (state.isLevelsLoading) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),

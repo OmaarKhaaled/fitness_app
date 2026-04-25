@@ -1,10 +1,9 @@
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_cubit.dart';
-import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_intent.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_state.dart';
 import 'package:fitness_app/features/exercise/presentation/widgets/exercise_item_card.dart';
-import 'package:fitness_app/features/exercise/presentation/widgets/exercise_level_tab_bar.dart';
+import 'package:fitness_app/features/exercise/presentation/widgets/level_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fitness_app/features/exercise/domain/models/muscle_model.dart';
@@ -24,10 +23,10 @@ class ExerciseScreen extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               _buildHeroAppBar(context),
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: _buildLevelTabs(context, state),
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: LevelTabs(),
                 ),
               ),
               _buildExerciseList(state),
