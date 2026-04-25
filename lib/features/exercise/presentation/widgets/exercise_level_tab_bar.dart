@@ -16,7 +16,7 @@ class ExerciseLevelTabBar extends StatelessWidget {
   });
 
   @override
-    Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return SizedBox(
       height: 100, // Increased height to accommodate the bubble
       child: ListView.separated(
@@ -35,19 +35,21 @@ class ExerciseLevelTabBar extends StatelessWidget {
                 // Tab Pill
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 10,
+                  ),
                   decoration: BoxDecoration(
-                    color:
-                        isSelected ? AppColors.primary : Colors.transparent,
+                    color: isSelected ? AppColors.primary : Colors.transparent,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Text(
                     levels[index].name,
                     style: GoogleFonts.outfit(
                       fontSize: 14,
-                      fontWeight:
-                          isSelected ? FontWeight.w600 : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w500,
                       color: isSelected
                           ? AppColors.white
                           : AppColors.textSecondary.withValues(alpha: 0.6),
@@ -75,7 +77,11 @@ class ExerciseLevelTabBar extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.person, color: Colors.grey, size: 28),
+                          child: const Icon(
+                            Icons.person,
+                            color: Colors.grey,
+                            size: 28,
+                          ),
                         ),
                         // Small triangle/beak of the bubble
                         CustomPaint(

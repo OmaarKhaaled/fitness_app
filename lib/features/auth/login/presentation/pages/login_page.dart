@@ -17,7 +17,6 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<LoginCubit>(),
       child: AppScaffold(
-        
         backgroundImage: AppAssets.authBackground,
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),

@@ -1,7 +1,5 @@
 class LevelsByPrimemuscleRequest {
   final String primeMoverMuscleId;
 
-  LevelsByPrimemuscleRequest({
-    required this.primeMoverMuscleId,
-  });
+  LevelsByPrimemuscleRequest({required this.primeMoverMuscleId});
 }

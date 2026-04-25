@@ -10,7 +10,8 @@ class GetLevelsByPrimemusclesUsecase {
   GetLevelsByPrimemusclesUsecase(this.exerciseRepo);
 
   Future<ApiResult<List<LevelModel>>> call(
-    String token, String muscleId,
+    String token,
+    String muscleId,
   ) async {
     final result = await exerciseRepo.getDifficultyLevelsByPrimeMoverMuscle(
       token,

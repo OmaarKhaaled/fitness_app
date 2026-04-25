@@ -19,14 +19,10 @@ class ExerciseRepoImpl implements ExerciseRepo {
       final result = await exerciseRemoteDataSource
           .getAllDifficultyLevelsByPrimeMoverMuscle(token, primeMoverMuscleId);
 
-      final levels = result.difficultyLevels
-          ?.map(
-            (d) => LevelModel(
-              id: d.id ?? '',
-              name: d.name ?? '',
-            ),
-          )
-          .toList() ??
+      final levels =
+          result.difficultyLevels
+              ?.map((d) => LevelModel(id: d.id ?? '', name: d.name ?? ''))
+              .toList() ??
           [];
 
       return SuccessApiResult(data: levels);
@@ -48,25 +44,28 @@ class ExerciseRepoImpl implements ExerciseRepo {
             difficultyLevelId,
           );
 
-      final exercises = result.exercises
-          ?.map(
-            (e) => ExerciseModel(
-              id: e.id ?? '',
-              name: e.exercise ?? '',
-              difficultyLevel: e.difficultyLevel,
-              targetMuscleGroup: e.targetMuscleGroup,
-              primeMoverMuscle: e.primeMoverMuscle,
-              primaryEquipment: e.primaryEquipment,
-              mechanics: e.mechanics,
-              posture: e.posture,
-              movementPattern1: e.movementPattern1,
-              bodyRegion: e.bodyRegion,
-              forceType: e.forceType,
-              shortYoutubeDemonstrationLink: e.shortYoutubeDemonstrationLink,
-              inDepthYoutubeExplanationLink: e.inDepthYoutubeExplanationLink,
-            ),
-          )
-          .toList() ??
+      final exercises =
+          result.exercises
+              ?.map(
+                (e) => ExerciseModel(
+                  id: e.id ?? '',
+                  name: e.exercise ?? '',
+                  difficultyLevel: e.difficultyLevel,
+                  targetMuscleGroup: e.targetMuscleGroup,
+                  primeMoverMuscle: e.primeMoverMuscle,
+                  primaryEquipment: e.primaryEquipment,
+                  mechanics: e.mechanics,
+                  posture: e.posture,
+                  movementPattern1: e.movementPattern1,
+                  bodyRegion: e.bodyRegion,
+                  forceType: e.forceType,
+                  shortYoutubeDemonstrationLink:
+                      e.shortYoutubeDemonstrationLink,
+                  inDepthYoutubeExplanationLink:
+                      e.inDepthYoutubeExplanationLink,
+                ),
+              )
+              .toList() ??
           [];
 
       return SuccessApiResult(data: exercises);

@@ -29,8 +29,11 @@ class ApiConstants {
   //------------------------------- exercises Endpoints -----------------------//
   static const String exercisesByPrimeMoverMuscleAndDifficultyLevel =
       'exercises/by-muscle-difficulty';
+<<<<<<< HEAD
 
   static const String getRandomMuscleEndpoint = 'muscles/random';
   static const String getMuscleGroupByMuscleIdEndpoint =
       'musclesGroup/by-muscle-group?muscleGroupId={MuscleGroupId}';
+=======
+>>>>>>> a812930 (feat: implement exercise feature with screen, navigation, cubit state management, and repository integration)
 }

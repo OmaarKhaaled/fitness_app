@@ -8,19 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExercisePage extends StatelessWidget {
   final MuscleModel muscle;
-  const ExercisePage({
-    super.key, 
-  required this.muscle
-  });
+  const ExercisePage({super.key, required this.muscle});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ExerciseCubit>()
-        ..doIntent(LoadLevels(muscle: muscle)),
-      child: ExerciseScreen(
-        muscle: muscle
-        ),
+      create: (context) =>
+          getIt<ExerciseCubit>()..doIntent(LoadLevels(muscle: muscle)),
+      child: ExerciseScreen(muscle: muscle),
     );
   }
 }

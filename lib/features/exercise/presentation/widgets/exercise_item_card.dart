@@ -8,11 +8,7 @@ class ExerciseItemCard extends StatelessWidget {
   final ExerciseModel exercise;
   final VoidCallback? onPlayTap;
 
-  const ExerciseItemCard({
-    super.key,
-    required this.exercise,
-    this.onPlayTap,
-  });
+  const ExerciseItemCard({super.key, required this.exercise, this.onPlayTap});
 
   @override
   Widget build(BuildContext context) {

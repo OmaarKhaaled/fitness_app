@@ -31,9 +31,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     }
   }
 
-  Future<void> _loadLevels({
-    required MuscleModel muscle,
-  }) async {
+  Future<void> _loadLevels({required MuscleModel muscle}) async {
     this.muscle = muscle;
     emit(state.copyWith(isLevelsLoading: true));
 
@@ -44,10 +42,12 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     );
 
     if (actualToken == null || actualToken.isEmpty) {
-      emit(state.copyWith(
-        isLevelsLoading: false,
-        levelsError: 'Authentication token not found',
-      ));
+      emit(
+        state.copyWith(
+          isLevelsLoading: false,
+          levelsError: 'Authentication token not found',
+        ),
+      );
       return;
     }
 
@@ -66,9 +66,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
         );
       }
     } else if (result is ErrorApiResult<List<LevelModel>>) {
-      emit(
-        state.copyWith(isLevelsLoading: false, levelsError: result.error),
-      );
+      emit(state.copyWith(isLevelsLoading: false, levelsError: result.error));
     }
   }
 
@@ -103,10 +101,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
       );
     } else if (result is ErrorApiResult<List<ExerciseModel>>) {
       emit(
-        state.copyWith(
-          isExercisesLoading: false,
-          exercisesError: result.error,
-        ),
+        state.copyWith(isExercisesLoading: false, exercisesError: result.error),
       );
     }
   }

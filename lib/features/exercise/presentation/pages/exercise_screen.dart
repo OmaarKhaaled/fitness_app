@@ -36,8 +36,7 @@ class ExerciseScreen extends StatelessWidget {
         },
       ),
     );
-  }       
-
+  }
 
   SliverAppBar _buildHeroAppBar(BuildContext context) {
     return SliverAppBar(
@@ -68,10 +67,7 @@ class ExerciseScreen extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             // Background Image
-            Image.asset(
-              'assets/images/exercise.jpg',
-              fit: BoxFit.cover,
-            ),
+            Image.asset('assets/images/exercise.jpg', fit: BoxFit.cover),
             // Gradient Overlay
             const DecoratedBox(
               decoration: BoxDecoration(
@@ -187,7 +183,6 @@ class ExerciseScreen extends StatelessWidget {
     );
   }
 
-
   Widget _buildExerciseList(ExerciseState state) {
     if (state.isExercisesLoading) {
       return SliverList(
@@ -260,8 +255,6 @@ class ExerciseScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 // Skeleton placeholder exercise for loading state
 const _skeletonExercise = ExerciseModel(

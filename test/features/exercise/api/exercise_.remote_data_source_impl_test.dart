@@ -18,22 +18,24 @@ void main() {
     const token = 'test_token';
     const primeMoverMuscleId = 'test_prime_mover_muscle_id';
 
-    when(mockApiClient.getDifficultyLevelsByPrimeMoverMuscle(token, primeMoverMuscleId))
-        .thenAnswer((_) async => LevelsByPrimemuscleResponse(
-      message: 'Levels fetched successfully',
-      difficultyLevels: [],
-    ));
-
-    final response = await exerciseRemoteDataSourceImpl.getAllDifficultyLevelsByPrimeMoverMuscle(
-      token,
-      primeMoverMuscleId,
+    when(
+      mockApiClient.getDifficultyLevelsByPrimeMoverMuscle(
+        token,
+        primeMoverMuscleId,
+      ),
+    ).thenAnswer(
+      (_) async => LevelsByPrimemuscleResponse(
+        message: 'Levels fetched successfully',
+        difficultyLevels: [],
+      ),
     );
+
+    final response = await exerciseRemoteDataSourceImpl
+        .getAllDifficultyLevelsByPrimeMoverMuscle(token, primeMoverMuscleId);
 
     expect(response.message, 'Levels fetched successfully');
     expect(response.difficultyLevels, isA<List<DifficultyLevel>>());
   });
 
-  test('Get exercises by prime mover muscle and difficulty level', () async {
-
-  });
+  test('Get exercises by prime mover muscle and difficulty level', () async {});
 }
