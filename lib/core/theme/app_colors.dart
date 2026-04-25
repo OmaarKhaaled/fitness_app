@@ -14,4 +14,7 @@ class AppColors {
     0xFF242424,
   ).withValues(alpha: 0.1);
   static const navBarBg = Color(0xCC242424);
+  static const grey = Colors.grey;
+  static const shimmerBaseColor = Color(0xFF2C2C2C);
+  static const shimmerHighlightColor = Color(0xFF404040);
 }

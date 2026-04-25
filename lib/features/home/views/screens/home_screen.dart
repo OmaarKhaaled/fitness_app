@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: currentTab,
               );
           return AppScaffold(
-            backgroundImage: AppAssets.authBackground,
+            backgroundImage: AppAssets.homeBackGround,
             alignment: Alignment.topCenter,
             isBottomNavVisible: state.isBottomNavVisible,
             bottomWidget: Container(

@@ -30,4 +30,7 @@ class ApiConstants {
   static const String exercisesByPrimeMoverMuscleAndDifficultyLevel =
       'exercises/by-muscle-difficulty';
 
+  static const String getRandomMuscleEndpoint = 'muscles/random';
+  static const String getMuscleGroupByMuscleIdEndpoint =
+      'musclesGroup/by-muscle-group?muscleGroupId={MuscleGroupId}';
 }
