@@ -14,6 +14,7 @@ class AppAssets {
       'assets/images/forget_password_background.png';
   static const String fitness = 'assets/images/fitness.png';
   static const String superFitness = 'assets/images/super-fitness.png';
+  static const String homeBackGround = 'assets/images/home_back_ground.png';
 }
 
 class AppIcons {
