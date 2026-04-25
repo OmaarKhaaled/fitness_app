@@ -25,7 +25,7 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
   void initState() {
     super.initState();
     _cubit = getIt<WorkoutCubit>();
-    _cubit.doIntent(LoadInitialDataIntent());
+    _cubit.doIntent(const LoadInitialDataIntent());
   }
 
   @override
