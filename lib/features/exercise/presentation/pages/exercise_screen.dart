@@ -57,7 +57,7 @@ class ExerciseScreen extends StatelessWidget {
         onTap: () => Navigator.of(context).maybePop(),
         child: Container(
           margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.primary,
             shape: BoxShape.circle,
           ),
@@ -94,11 +94,11 @@ class ExerciseScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              child: const Center(
-                child: Icon(
-                  Icons.fitness_center,
-                  size: 72,
-                  color: AppColors.primary,
+              child: Center(
+                child: Image.asset(
+                  'assets/images/exercise.png',
+                  fit: BoxFit.cover,
+                  width: double.minPositive,
                 ),
               ),
             ),
@@ -268,7 +268,7 @@ class ExerciseScreen extends StatelessWidget {
     if (state.isExercisesLoading) {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
-          (_, __) => Skeletonizer(
+          (_, __) => const Skeletonizer(
             enabled: true,
             child: ExerciseItemCard(exercise: _skeletonExercise),
           ),

@@ -4,14 +4,13 @@ import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.d
 import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
-import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.exercisesRoute,
+    initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(
         name: AppRoutesConstants.onboardingRoute,
