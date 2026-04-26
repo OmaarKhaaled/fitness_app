@@ -19,18 +19,22 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutesConstants.homeRoute,
+        name: AppRoutesConstants.homeRoute,
         builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.registerRoute,
+        name: AppRoutesConstants.registerRoute,
         builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.additionalRegisterInfoRoute,
+        name: AppRoutesConstants.additionalRegisterInfoRoute,
         builder: (context, state) => const RegisterAdditionalInfoScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.loginRoute,
+        name: AppRoutesConstants.loginRoute,
         builder: (context, state) => const LoginPage(),
       ),
       GoRoute(
@@ -40,6 +44,7 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutesConstants.mealsRecommendationRoute,
+        name: AppRoutesConstants.mealsRecommendationRoute,
         builder: (context, state) => const MealsRecommendationPage(),
       ),
     ],
