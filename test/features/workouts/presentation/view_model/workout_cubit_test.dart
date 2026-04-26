@@ -39,7 +39,7 @@ void main() {
     const tException = AppException('Error');
 
     test('initial state should be empty', () {
-      expect(cubit.state, const WorkoutStates());
+      expect(cubit.state, WorkoutStates());
     });
 
     group('LoadInitialDataIntent', () {

@@ -1,28 +1,24 @@
-import 'dart:ui'; // Required for ImageFilter
+import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/workouts/data/models/wourkout_group_response/muscle.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class WorkoutCard extends StatelessWidget {
+class MealCard extends StatelessWidget {
   final String? imageUrl;
   final String? name;
   final VoidCallback? onTap;
 
-  const WorkoutCard({
+  const MealCard({
     super.key,
     required this.imageUrl,
     required this.name,
     this.onTap,
   });
 
-  factory WorkoutCard.fromMuscle(Muscle muscle, {VoidCallback? onTap}) {
-    return WorkoutCard(imageUrl: muscle.image, name: muscle.name, onTap: onTap);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -50,13 +46,12 @@ class WorkoutCard extends StatelessWidget {
                 errorWidget: (context, url, error) => Container(
                   color: AppColors.transparent,
                   child: Icon(
-                    Icons.fitness_center,
+                    Icons.restaurant,
                     color: AppColors.white.withValues(alpha: 0.2),
                     size: 32,
                   ),
                 ),
               ),
-
               Positioned(
                 bottom: 0,
                 left: 0,
@@ -68,19 +63,20 @@ class WorkoutCard extends StatelessWidget {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                     child: Container(
-                      height: 30,
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 6,
+                      ),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: AppColors.black.withValues(alpha: 0.4),
                       ),
                       child: Text(
                         name ?? '',
-                        style: const TextStyle(
+                        style: textTheme.titleSmall?.copyWith(
                           color: AppColors.white,
-                          fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          letterSpacing: 0.2,
+                          fontSize: 14,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.visible,

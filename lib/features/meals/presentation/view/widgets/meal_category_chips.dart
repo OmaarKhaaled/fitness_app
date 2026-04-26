@@ -1,16 +1,16 @@
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/workouts/data/models/workout_response/muscles_group.dart';
+import 'package:fitness_app/features/meals/data/models/meals_categories_response/category.dart';
 import 'package:flutter/material.dart';
 
-class MuscleGroupChips extends StatelessWidget {
-  final List<MusclesGroup> muscleGroups;
-  final String? selectedMuscleGroupId;
-  final ValueChanged<MusclesGroup> onSelected;
+class MealCategoryChips extends StatelessWidget {
+  final List<Category> categories;
+  final String? selectedCategory;
+  final ValueChanged<Category> onSelected;
 
-  const MuscleGroupChips({
+  const MealCategoryChips({
     super.key,
-    required this.muscleGroups,
-    required this.selectedMuscleGroupId,
+    required this.categories,
+    required this.selectedCategory,
     required this.onSelected,
   });
 
@@ -18,21 +18,19 @@ class MuscleGroupChips extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 38,
-      child: ListView.separated(
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: muscleGroups.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 2),
+        itemCount: categories.length,
         itemBuilder: (context, index) {
-          final group = muscleGroups[index];
-          final isSelected = group.id == selectedMuscleGroupId;
-
+          final cat = categories[index];
+          final isSelected = cat.strCategory == selectedCategory;
           return GestureDetector(
-            onTap: () => onSelected(group),
+            onTap: () => onSelected(cat),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeInOut,
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+              duration: const Duration(milliseconds: 200),
+              margin: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.primary : AppColors.transparent,
                 borderRadius: BorderRadius.circular(20),
@@ -43,7 +41,7 @@ class MuscleGroupChips extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  group.name ?? '',
+                  cat.strCategory ?? '',
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: AppColors.white,
                     fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,

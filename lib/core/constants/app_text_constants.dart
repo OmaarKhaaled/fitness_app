@@ -175,4 +175,16 @@ class AppTextConstants {
   static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
   static String get workoutsIcon => 'bottom_nav_bar.workouts'.tr();
   static String get profileIcon => 'bottom_nav_bar.profile'.tr();
+  // Workouts
+  static String get upcomingWorkouts => 'workouts.upcoming_workouts'.tr();
+  static String get workoutsSeeAll => 'workouts.see_all'.tr();
+  static String get noWorkoutsFound => 'workouts.no_workouts_found'.tr();
+  static String get workoutsAll => 'workouts.all'.tr();
+
+  // Meals
+  static String get mealsRecommendationForYou =>
+      'meals.recommendation_for_you'.tr();
+  static String get mealsSeeAll => 'meals.see_all'.tr();
+  static String get noMealsFound => 'meals.no_meals_found'.tr();
+  static String get foodRecommendation => 'meals.food_recommendation'.tr();
 }
