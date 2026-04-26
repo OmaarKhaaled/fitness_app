@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/muscle_group_chips.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/workout_card.dart';
@@ -42,13 +43,13 @@ class _WorkoutsTabState extends State<WorkoutsTab> {
           return CustomScrollView(
             controller: widget.scrollController,
             slivers: [
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(16, 60, 16, 20),
+                  padding: const EdgeInsets.fromLTRB(16, 60, 16, 20),
                   child: Center(
                     child: Text(
-                      'Workouts',
-                      style: TextStyle(
+                      AppTextConstants.workoutsIcon,
+                      style: const TextStyle(
                         color: AppColors.white,
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
@@ -105,7 +106,7 @@ class _WorkoutsTabState extends State<WorkoutsTab> {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'No workouts found',
+                            AppTextConstants.noWorkoutsFound,
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.5),
                               fontSize: 16,
@@ -123,9 +124,9 @@ class _WorkoutsTabState extends State<WorkoutsTab> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 14,
-                          mainAxisSpacing: 14,
-                          childAspectRatio: 0.75,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.80,
                         ),
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final muscle = state.muscles[index];
