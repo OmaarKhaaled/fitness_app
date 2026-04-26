@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/muscle_group_chips.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/workout_card.dart';
@@ -48,13 +49,13 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Upcoming Workouts',
+                  AppTextConstants.upcomingWorkouts,
                   style: textTheme.titleLarge!.copyWith(fontSize: 20),
                 ),
                 GestureDetector(
                   onTap: widget.onSeeAllTapped,
                   child: Text(
-                    'See All',
+                    AppTextConstants.workoutsSeeAll,
                     style: textTheme.titleMedium?.copyWith(
                       color: AppColors.primary,
                     ),
@@ -106,16 +107,15 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
                       ),
                     )
                   else if (state.muscles.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Center(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 24),
+                          padding: const EdgeInsets.symmetric(vertical: 24),
                           child: Text(
-                            'No workouts found',
-                            style: TextStyle(
-                              color: AppColors.textSecondary,
-                              fontSize: 14,
+                            AppTextConstants.noWorkoutsFound,
+                            style: textTheme.titleLarge?.copyWith(
+                              color: AppColors.white,
                             ),
                           ),
                         ),
