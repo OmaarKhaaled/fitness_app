@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/base_state/base_state.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/features/workouts/data/models/wourkout_group_response/muscle.dart';
 import 'package:fitness_app/features/workouts/data/models/workout_response/muscles_group.dart';
 
@@ -12,16 +13,17 @@ class WorkoutStates extends BaseState<void> {
   final List<Muscle> muscles;
   final bool isMusclesLoading;
 
-  const WorkoutStates({
+  WorkoutStates({
     super.isLoading = false,
     super.errorMessage,
     this.muscleGroups = const [],
     this.isMuscleGroupsLoading = false,
     this.selectedMuscleGroupId,
-    this.selectedMuscleGroupName = 'All',
+    String? selectedMuscleGroupName,
     this.muscles = const [],
     this.isMusclesLoading = false,
-  });
+  }) : selectedMuscleGroupName =
+           selectedMuscleGroupName ?? AppTextConstants.workoutsAll;
 
   @override
   WorkoutStates copyWith({

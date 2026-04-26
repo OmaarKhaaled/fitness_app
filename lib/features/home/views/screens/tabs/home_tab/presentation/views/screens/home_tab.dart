@@ -1,10 +1,13 @@
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/enums/nav_bar_enum.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/home/view_model/home_events.dart';
 import 'package:fitness_app/features/home/view_model/home_view_model.dart';
+import 'package:fitness_app/features/meals/presentation/view/widgets/meals_section.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/workouts_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeTab extends StatefulWidget {
   final ScrollController scrollController;
@@ -76,6 +79,14 @@ class _HomeTabState extends State<HomeTab> {
           onSeeAllTapped: () {
             final homeViewModel = context.read<HomeViewModel>();
             homeViewModel.doIntent(ChangeCurrTabEvent(NavBarEnum.workout));
+          },
+        ),
+
+        const SizedBox(height: 32),
+
+        MealsSection(
+          onSeeAllTapped: () {
+            context.push(AppRoutesConstants.mealsRecommendationRoute);
           },
         ),
 

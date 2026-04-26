@@ -17,12 +17,11 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<LoginCubit>(),
       child: AppScaffold(
-        backgroundImage: AppAssets.authBackground,
+        backgroundImage: AppAssets.forgetPasswordBackground,
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
-              const SizedBox(height: 60),
               // App Logo
               SvgPicture.asset(AppIcons.superFitness, height: 100),
               const SizedBox(height: 40),

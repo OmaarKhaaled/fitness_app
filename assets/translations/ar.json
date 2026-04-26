@@ -150,5 +150,17 @@
     "smart_coach": "المدرب الذكي",
     "workouts": "التمارين",
     "profile": "الملف الشخصي"
+  },
+  "workouts": {
+    "upcoming_workouts": "التمارين القادمة",
+    "see_all": "عرض الكل",
+    "no_workouts_found": "لم يتم العثور على تمارين",
+    "all": "الكل"
+  },
+  "meals": {
+    "recommendation_for_you": "توصيات لك",
+    "see_all": "عرض الكل",
+    "no_meals_found": "لم يتم العثور على وجبات",
+    "food_recommendation": "توصيات الطعام"
   }
 }

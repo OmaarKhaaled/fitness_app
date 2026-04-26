@@ -1,32 +1,32 @@
 import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/workouts/presentation/view/widgets/muscle_group_chips.dart';
-import 'package:fitness_app/features/workouts/presentation/view/widgets/workout_card.dart';
-import 'package:fitness_app/features/workouts/presentation/view/widgets/workout_skeletons.dart';
-import 'package:fitness_app/features/workouts/presentation/view_model/workout_states.dart';
-import 'package:fitness_app/features/workouts/presentation/view_model/wourkout_cubit.dart';
-import 'package:fitness_app/features/workouts/presentation/view_model/wourkout_intents.dart';
+import 'package:fitness_app/features/meals/presentation/view/widgets/meal_card.dart';
+import 'package:fitness_app/features/meals/presentation/view/widgets/meal_category_chips.dart';
+import 'package:fitness_app/features/meals/presentation/view/widgets/meal_skeletons.dart';
+import 'package:fitness_app/features/meals/presentation/view_model/meals_cubit.dart';
+import 'package:fitness_app/features/meals/presentation/view_model/meals_intents.dart';
+import 'package:fitness_app/features/meals/presentation/view_model/meals_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class WorkoutsSection extends StatefulWidget {
+class MealsSection extends StatefulWidget {
   final VoidCallback onSeeAllTapped;
 
-  const WorkoutsSection({super.key, required this.onSeeAllTapped});
+  const MealsSection({super.key, required this.onSeeAllTapped});
 
   @override
-  State<WorkoutsSection> createState() => _WorkoutsSectionState();
+  State<MealsSection> createState() => _MealsSectionState();
 }
 
-class _WorkoutsSectionState extends State<WorkoutsSection> {
-  late WorkoutCubit _cubit;
+class _MealsSectionState extends State<MealsSection> {
+  late MealsCubit _cubit;
 
   @override
   void initState() {
     super.initState();
-    _cubit = getIt<WorkoutCubit>();
-    _cubit.doIntent(const LoadInitialDataIntent());
+    _cubit = getIt<MealsCubit>();
+    _cubit.doIntent(const LoadInitialMealsDataIntent());
   }
 
   @override
@@ -38,7 +38,7 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return BlocProvider<WorkoutCubit>.value(
+    return BlocProvider<MealsCubit>.value(
       value: _cubit,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,14 +48,17 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  AppTextConstants.upcomingWorkouts,
-                  style: textTheme.titleLarge!.copyWith(fontSize: 20),
+                Expanded(
+                  child: Text(
+                    AppTextConstants.mealsRecommendationForYou,
+                    style: textTheme.titleLarge!.copyWith(fontSize: 20),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 GestureDetector(
                   onTap: widget.onSeeAllTapped,
                   child: Text(
-                    AppTextConstants.workoutsSeeAll,
+                    AppTextConstants.mealsSeeAll,
                     style: textTheme.titleMedium?.copyWith(
                       color: AppColors.primary,
                     ),
@@ -66,31 +69,28 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
           ),
           const SizedBox(height: 12),
 
-          BlocBuilder<WorkoutCubit, WorkoutStates>(
+          BlocBuilder<MealsCubit, MealsStates>(
             builder: (context, state) {
-              if (state.isMuscleGroupsLoading) {
-                return const UpcomingWorkoutSkeleton();
+              if (state.isCategoriesLoading) {
+                return const UpcomingMealSkeleton();
               }
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (state.muscleGroups.isNotEmpty)
-                    MuscleGroupChips(
-                      muscleGroups: state.muscleGroups,
-                      selectedMuscleGroupId: state.selectedMuscleGroupId,
-                      onSelected: (group) {
+                  if (state.categories.isNotEmpty)
+                    MealCategoryChips(
+                      categories: state.categories,
+                      selectedCategory: state.selectedCategory,
+                      onSelected: (cat) {
                         _cubit.doIntent(
-                          SelectMuscleGroupIntent(
-                            muscleGroupId: group.id,
-                            muscleGroupName: group.name!,
-                          ),
+                          SelectMealCategoryIntent(category: cat.strCategory!),
                         );
                       },
                     ),
                   const SizedBox(height: 16),
 
-                  if (state.isMusclesLoading)
+                  if (state.isMealsLoading)
                     SizedBox(
                       height: 150,
                       child: ListView.builder(
@@ -101,22 +101,20 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
                           padding: EdgeInsets.only(right: 12),
                           child: SizedBox(
                             width: 130,
-                            child: WorkoutCardSkeleton(),
+                            child: MealCardSkeleton(),
                           ),
                         ),
                       ),
                     )
-                  else if (state.muscles.isEmpty)
+                  else if (state.meals.isEmpty)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 24),
                           child: Text(
-                            AppTextConstants.noWorkoutsFound,
-                            style: textTheme.titleLarge?.copyWith(
-                              color: AppColors.white,
-                            ),
+                            AppTextConstants.noMealsFound,
+                            style: textTheme.titleLarge,
                           ),
                         ),
                       ),
@@ -127,16 +125,16 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        itemCount: state.muscles.length,
+                        itemCount: state.meals.length,
                         itemBuilder: (context, index) {
-                          final muscle = state.muscles[index];
+                          final meal = state.meals[index];
                           return Padding(
                             padding: const EdgeInsets.only(right: 12),
                             child: SizedBox(
                               width: 130,
-                              child: WorkoutCard(
-                                imageUrl: muscle.image,
-                                name: muscle.name,
+                              child: MealCard(
+                                imageUrl: meal.strMealThumb,
+                                name: meal.strMeal,
                               ),
                             ),
                           );

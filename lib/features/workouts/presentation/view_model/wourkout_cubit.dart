@@ -24,7 +24,7 @@ class WorkoutCubit extends Cubit<WorkoutStates> {
     getWorkoutsByMuscleGroupIdUseCase,
   }) : _getWorkoutsUseCase = getWorkoutsUseCase,
        _getWorkoutsByMuscleGroupIdUseCase = getWorkoutsByMuscleGroupIdUseCase,
-       super(const WorkoutStates());
+       super(WorkoutStates());
 
   void doIntent(WorkoutIntents intent) {
     switch (intent) {
