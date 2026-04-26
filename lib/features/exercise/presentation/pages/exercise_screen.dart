@@ -1,35 +1,36 @@
+import 'package:fitness_app/core/routing/route_names.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_cubit.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_state.dart';
-import 'package:fitness_app/features/exercise/presentation/widgets/exercise_item_card.dart';
+import 'package:fitness_app/features/exercise/presentation/widgets/exercise_list.dart';
 import 'package:fitness_app/features/exercise/presentation/widgets/level_tabs.dart';
+import 'package:fitness_app/features/exercise/presentation/widgets/stat_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fitness_app/features/exercise/domain/models/muscle_model.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class ExerciseScreen extends StatelessWidget {
-  final MuscleModel muscle;
-  const ExerciseScreen({super.key, required this.muscle});
+  final ExerciseModel exercise;
+  const ExerciseScreen({super.key, required this.exercise});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: AppColors.black,
       body: BlocBuilder<ExerciseCubit, ExerciseState>(
         builder: (context, state) {
           return CustomScrollView(
             slivers: [
-              _buildHeroAppBar(context),
+              buildHeroAppBar(context),
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: LevelTabs(),
                 ),
               ),
-              _buildExerciseList(state),
+              buildExerciseList(state),
               const SliverToBoxAdapter(child: SizedBox(height: 32)),
             ],
           );
@@ -38,7 +39,7 @@ class ExerciseScreen extends StatelessWidget {
     );
   }
 
-  SliverAppBar _buildHeroAppBar(BuildContext context) {
+  SliverAppBar buildHeroAppBar(BuildContext context) {
     return SliverAppBar(
       expandedHeight: 340,
       pinned: true,
@@ -54,10 +55,13 @@ class ExerciseScreen extends StatelessWidget {
               color: AppColors.primary,
               shape: BoxShape.circle,
             ),
-            child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: AppColors.white,
-              size: 14,
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: AppColors.white,
+                size: 14,
+              ),
+              onPressed: () => context.go(RouteNames.home),
             ),
           ),
         ),
@@ -76,8 +80,8 @@ class ExerciseScreen extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    Color(0x80121212),
-                    Color(0xFF121212),
+                    AppColors.black,
+                    AppColors.black,
                   ],
                   stops: [0.3, 0.7, 1.0],
                 ),
@@ -92,7 +96,7 @@ class ExerciseScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '${muscle.name} Exercise',
+                    '${exercise.name} Exercise',
                     style: GoogleFonts.outfit(
                       fontSize: 28,
                       fontWeight: FontWeight.w700,
@@ -110,7 +114,7 @@ class ExerciseScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  _buildStatsRow(),
+                  StatRow(exercise: exercise),
                 ],
               ),
             ),
@@ -119,151 +123,4 @@ class ExerciseScreen extends StatelessWidget {
       ),
     );
   }
-
-  // ── Stats Row ─────────────────────────────────────────────────────────────
-
-  Widget _buildStatsRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _statPill(label: '30 MIN'),
-        const SizedBox(width: 12),
-        // Avatar with bubble-like feel
-        Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: AppColors.white, width: 2),
-            color: const Color(0xFF2A2A2A),
-          ),
-          child: const Icon(Icons.person, color: AppColors.white, size: 24),
-        ),
-        const SizedBox(width: 12),
-        _caloriePill(label: '130 Cal'),
-      ],
-    );
-  }
-
-  Widget _statPill({required String label}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFF2A2A2A).withValues(alpha: 0.6),
-        borderRadius: BorderRadius.circular(25),
-        border: Border.all(color: Colors.white24),
-      ),
-      child: Text(
-        label,
-        style: GoogleFonts.outfit(
-          fontSize: 12,
-          color: AppColors.white,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
-
-  Widget _caloriePill({required String label}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFF2A2A2A).withValues(alpha: 0.6),
-        borderRadius: BorderRadius.circular(25),
-        border: Border.all(color: Colors.white24),
-      ),
-      child: Text(
-        label,
-        style: GoogleFonts.outfit(
-          fontSize: 12,
-          color: AppColors.primary,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildExerciseList(ExerciseState state) {
-    if (state.isExercisesLoading) {
-      return SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (_, __) => const Skeletonizer(
-            enabled: true,
-            child: ExerciseItemCard(exercise: _skeletonExercise),
-          ),
-          childCount: 5,
-        ),
-      );
-    }
-
-    if (state.exercisesError != null) {
-      return SliverFillRemaining(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.error_outline,
-                color: Colors.redAccent,
-                size: 48,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                state.exercisesError!,
-                style: GoogleFonts.outfit(
-                  color: AppColors.textSecondary,
-                  fontSize: 13,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (state.exercises.isEmpty && !state.isLevelsLoading) {
-      return SliverFillRemaining(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.inbox_outlined,
-                color: AppColors.textSecondary,
-                size: 56,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'No exercises found for this level.',
-                style: GoogleFonts.outfit(
-                  color: AppColors.textSecondary,
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => ExerciseItemCard(exercise: state.exercises[index]),
-        childCount: state.exercises.length,
-      ),
-    );
-  }
 }
-
-// Skeleton placeholder exercise for loading state
-const _skeletonExercise = ExerciseModel(
-  id: 'skeleton',
-  name: 'Bench Press Exercise Name',
-  difficultyLevel: 'Intermediate',
-  targetMuscleGroup: 'Chest',
-  primaryEquipment: 'Barbell',
-  mechanics: 'Compound',
-  movementPattern1: 'Push',
-  bodyRegion: 'Upper Body',
-);

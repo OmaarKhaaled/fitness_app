@@ -60,12 +60,20 @@ class $AssetsImagesGen {
   AssetGenImage get authBackground =>
       const AssetGenImage('assets/images/auth_background.png');
 
+  /// File path: assets/images/exercise.jpg
+  AssetGenImage get exercise =>
+      const AssetGenImage('assets/images/exercise.jpg');
+
   /// File path: assets/images/fitness.png
   AssetGenImage get fitness => const AssetGenImage('assets/images/fitness.png');
 
   /// File path: assets/images/forget_password_background.png
   AssetGenImage get forgetPasswordBackground =>
       const AssetGenImage('assets/images/forget_password_background.png');
+
+  /// File path: assets/images/home_back_ground.png
+  AssetGenImage get homeBackGround =>
+      const AssetGenImage('assets/images/home_back_ground.png');
 
   /// File path: assets/images/onboarding_1.png
   AssetGenImage get onboarding1 =>
@@ -93,8 +101,10 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     authBackground,
+    exercise,
     fitness,
     forgetPasswordBackground,
+    homeBackGround,
     onboarding1,
     onboarding2,
     onboarding3,

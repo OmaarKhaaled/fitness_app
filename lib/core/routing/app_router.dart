@@ -1,6 +1,6 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
-import 'package:fitness_app/features/exercise/domain/models/muscle_model.dart';
+import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.dart';
 import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
@@ -42,11 +42,10 @@ class AppRouter {
 
       GoRoute(
         path: AppRoutesConstants.exercisesRoute,
-        builder: (context, state) => ExercisePage(
-          muscle: MuscleModel(
+        builder: (context, state) => const ExercisePage(
+          exercise: ExerciseModel(
             id: '69d982ef85f6bfa972bf2248',
-            name: '',
-            image: '',
+            name: 'Advanced',
           ),
         ),
       ),

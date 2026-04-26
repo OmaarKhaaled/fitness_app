@@ -68,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
             ScaffoldMessenger.of(context).showSnackBar(
               defaultSnackBar(message: data.message, color: AppColors.green),
             );
-            context.go(RouteNames.home);
+            context.go(RouteNames.exercisesRoute);
           },
           failure: (exception) {
             ScaffoldMessenger.of(context).showSnackBar(

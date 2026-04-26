@@ -3,7 +3,6 @@ import 'package:fitness_app/config/network/api_result.dart';
 import 'package:fitness_app/config/services/token_service.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/domain/models/level_model.dart';
-import 'package:fitness_app/features/exercise/domain/models/muscle_model.dart';
 import 'package:fitness_app/features/exercise/domain/usecases/get_exercises_by_primemuscleandlevel_usecase.dart';
 import 'package:fitness_app/features/exercise/domain/usecases/get_levels_by_primemuscles_usecase.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_intent.dart';
@@ -16,23 +15,24 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   final GetLevelsByPrimemusclesUsecase getLevels;
   final GetExercisesByPrimaryMuscleAndLevelUseCase getExercises;
   final TokenService tokenService;
-  late MuscleModel muscle;
+  ExerciseModel exercise;
   ExerciseCubit({
     required this.getLevels,
     required this.getExercises,
     required this.tokenService,
+    required this.exercise,
   }) : super(const ExerciseState());
 
   void doIntent(ExerciseIntent intent) {
     if (intent is LoadLevels) {
-      _loadLevels(muscle: intent.muscle);
+      _loadLevels(viewModel: intent.exercise);
     } else if (intent is SelectLevel) {
       _selectLevel(intent.index);
     }
   }
 
-  Future<void> _loadLevels({required MuscleModel muscle}) async {
-    this.muscle = muscle;
+  Future<void> _loadLevels({required  viewModel}) async {
+    this.exercise = viewModel;
     emit(state.copyWith(isLevelsLoading: true));
 
     final tokenResponse = await tokenService.getToken();
@@ -51,7 +51,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
       return;
     }
 
-    final result = await getLevels(actualToken, muscle.id!);
+    final result = await getLevels(actualToken, viewModel.levelId);
 
     if (result is SuccessApiResult<List<LevelModel>>) {
       final levels = result.data;
@@ -60,7 +60,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
       // Auto-load exercises for the first level
       if (levels.isNotEmpty) {
         await _loadExercises(
-          muscleId: muscle.id!,
+          muscleId: viewModel.levelId,
           levelId: levels[0].id,
           levelIndex: 0,
         );
@@ -71,12 +71,12 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   }
 
   Future<void> _selectLevel(int index) async {
-    if (muscle.id == null || index >= state.levels.length) return;
+    if (index >= state.levels.length) return;
 
     emit(state.copyWith(selectedLevelIndex: index, exercises: []));
 
     await _loadExercises(
-      muscleId: muscle.id!,
+      muscleId: exercise.id,
       levelId: state.levels[index].id,
       levelIndex: index,
     );

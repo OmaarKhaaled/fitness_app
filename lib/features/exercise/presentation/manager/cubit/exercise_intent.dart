@@ -1,12 +1,12 @@
-import 'package:fitness_app/features/exercise/domain/models/muscle_model.dart';
+import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 
 sealed class ExerciseIntent {
   const ExerciseIntent();
 }
 
 class LoadLevels extends ExerciseIntent {
-  final MuscleModel muscle;
-  const LoadLevels({required this.muscle});
+  final ExerciseModel exercise;
+  const LoadLevels({required this.exercise});
 }
 
 class SelectLevel extends ExerciseIntent {
