@@ -6,6 +6,7 @@ import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/cubit/samrt_coach_intents.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/cubit/smart_coach_cubit.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/cubit/smart_coach_state.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/type_writer_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,8 +62,8 @@ class _SmartCoachTabState extends State<SmartCoachTab> {
                     );
                   },
                 ),
-                Text(
-                  AppTextConstants.smartCoachGreetingDescription,
+                TypewriterText(
+                  text: AppTextConstants.smartCoachGreetingDescription,
                   style: textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
