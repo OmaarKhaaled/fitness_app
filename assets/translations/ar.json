@@ -162,5 +162,11 @@
     "see_all": "عرض الكل",
     "no_meals_found": "لم يتم العثور على وجبات",
     "food_recommendation": "توصيات الطعام"
+  },
+  "smart_coach": {
+    "greeting": "مرحباً",
+    "greeting_description": "أنا مدربك الذكي",
+    "welcome_message":"كيف يمكنني مساعدتك \n اليوم ؟",
+    "get_started":"ابدأ"
   }
 }

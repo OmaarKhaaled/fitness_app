@@ -15,6 +15,9 @@ class AppAssets {
   static const String fitness = 'assets/images/fitness.png';
   static const String superFitness = 'assets/images/super-fitness.png';
   static const String homeBackGround = 'assets/images/home_back_ground.png';
+  static const String smartCoachBackGround =
+      'assets/images/smart_chat_background.png';
+  static const String robotImage = 'assets/images/Robot.png';
 }
 
 class AppIcons {

@@ -187,4 +187,12 @@ class AppTextConstants {
   static String get mealsSeeAll => 'meals.see_all'.tr();
   static String get noMealsFound => 'meals.no_meals_found'.tr();
   static String get foodRecommendation => 'meals.food_recommendation'.tr();
+
+  // Smart Coach
+  static String get smartCoachGreeting => 'smart_coach.greeting'.tr();
+  static String get smartCoachGreetingDescription =>
+      'smart_coach.greeting_description'.tr();
+  static String get smartCoachWelcomeMessage =>
+      'smart_coach.welcome_message'.tr();
+  static String get smartCoachGetStarted => 'smart_coach.get_started'.tr();
 }
