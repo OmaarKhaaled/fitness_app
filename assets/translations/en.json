@@ -162,5 +162,11 @@
     "see_all": "See All",
     "no_meals_found": "No meals found",
     "food_recommendation": "Food Recommendation"
+  },
+  "smart_coach": {
+    "greeting": "Hey ",
+    "greeting_description":"I Am Your Smart Coach",
+    "welcome_message":"How Can I Assist You \nToday ?",
+    "get_started":"Get Started"
   }
 }
