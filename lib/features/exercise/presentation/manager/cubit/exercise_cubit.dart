@@ -20,7 +20,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     required this.getLevels,
     required this.getExercises,
     required this.tokenService,
-    required this.exercise,
+    @factoryParam required this.exercise,
   }) : super(const ExerciseState());
 
   void doIntent(ExerciseIntent intent) {
@@ -31,7 +31,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     }
   }
 
-  Future<void> _loadLevels({required  viewModel}) async {
+  Future<void> _loadLevels({required ExerciseModel viewModel}) async {
     this.exercise = viewModel;
     emit(state.copyWith(isLevelsLoading: true));
 
@@ -51,7 +51,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
       return;
     }
 
-    final result = await getLevels(actualToken, viewModel.levelId);
+    final result = await getLevels(actualToken, viewModel.id);
 
     if (result is SuccessApiResult<List<LevelModel>>) {
       final levels = result.data;
@@ -60,7 +60,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
       // Auto-load exercises for the first level
       if (levels.isNotEmpty) {
         await _loadExercises(
-          muscleId: viewModel.levelId,
+          muscleId: viewModel.id,
           levelId: levels[0].id,
           levelIndex: 0,
         );
