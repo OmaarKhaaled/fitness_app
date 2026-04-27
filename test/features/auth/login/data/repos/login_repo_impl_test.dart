@@ -50,6 +50,10 @@ void main() {
           mockLoginRemoteDataSource.login(request),
         ).thenAnswer((_) async => BaseResponse.success(loginResponse));
 
+        when(
+          mockLoginLocalDataSource.saveFirstName(any),
+        ).thenAnswer((_) async => const BaseResponse.success(null));
+
         // Act
         final result = await loginRepoImpl.login(request);
 
