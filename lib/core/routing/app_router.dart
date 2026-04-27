@@ -54,9 +54,24 @@ class AppRouter {
       GoRoute(
         path: AppRoutesConstants.exercisesRoute,
         builder: (context, state) {
-          final muscle = state.extra as Muscle;
-          return ExercisePage(
-            exercise: ExerciseModel(id: muscle.id!, name: muscle.name!),
+          final extra = state.extra;
+          if (extra is Muscle) {
+            return ExercisePage(
+              exercise: ExerciseModel(
+                id: extra.id ?? '',
+                name: extra.name ?? '',
+              ),
+            );
+          } else if (extra is ExerciseModel) {
+            return ExercisePage(exercise: extra);
+          }
+
+          // Fallback for null extra (e.g. on hot restart)
+          return const ExercisePage(
+            exercise: ExerciseModel(
+              id: '69d982ef85f6bfa972bf2248',
+              name: 'Advanced',
+            ),
           );
         },
       ),
