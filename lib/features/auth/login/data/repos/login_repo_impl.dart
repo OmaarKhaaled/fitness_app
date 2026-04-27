@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/features/auth/login/data/data_source/login_local_data_source.dart';
 import 'package:fitness_app/features/auth/login/data/data_source/login_remote_data_source.dart';
 import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
 import 'package:fitness_app/features/auth/login/domain/models/login_model.dart';
@@ -8,7 +9,8 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: LoginRepo)
 class LoginRepoImpl implements LoginRepo {
   final LoginRemoteDataSource _authRemoteDataSource;
-  LoginRepoImpl(this._authRemoteDataSource);
+  final LoginLocalDataSource _authLocalDataSource;
+  LoginRepoImpl(this._authRemoteDataSource, this._authLocalDataSource);
 
   @override
   Future<BaseResponse<LoginModel>> login(LoginRequest request) async {
@@ -16,7 +18,10 @@ class LoginRepoImpl implements LoginRepo {
     return response.when(
       initial: () => const BaseResponse.initial(),
       loading: () => const BaseResponse.loading(),
-      success: (data) => BaseResponse.success(data.toModel()),
+      success: (data) {
+        _authLocalDataSource.saveFirstName(data.user?.firstName ?? '');
+        return BaseResponse.success(data.toModel());
+      },
       failure: (exception) => BaseResponse.failure(exception),
     );
   }

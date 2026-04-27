@@ -1,5 +1,6 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/errors/app_exception.dart';
+import 'package:fitness_app/features/auth/login/data/data_source/login_local_data_source.dart';
 import 'package:fitness_app/features/auth/login/data/data_source/login_remote_data_source.dart';
 import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
 import 'package:fitness_app/features/auth/login/data/models/response/login_response.dart';
@@ -12,9 +13,10 @@ import 'package:mockito/annotations.dart';
 
 import 'login_repo_impl_test.mocks.dart';
 
-@GenerateMocks([LoginRemoteDataSource])
+@GenerateMocks([LoginRemoteDataSource, LoginLocalDataSource])
 void main() {
   late MockLoginRemoteDataSource mockLoginRemoteDataSource;
+  late MockLoginLocalDataSource mockLoginLocalDataSource;
   late LoginRepoImpl loginRepoImpl;
 
   const email = 'john@example.com';
@@ -24,7 +26,11 @@ void main() {
 
   setUp(() {
     mockLoginRemoteDataSource = MockLoginRemoteDataSource();
-    loginRepoImpl = LoginRepoImpl(mockLoginRemoteDataSource);
+    mockLoginLocalDataSource = MockLoginLocalDataSource();
+    loginRepoImpl = LoginRepoImpl(
+      mockLoginRemoteDataSource,
+      mockLoginLocalDataSource,
+    );
 
     loginResponse = LoginResponse(
       message: 'Login successful',

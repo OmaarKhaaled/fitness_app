@@ -1,10 +1,14 @@
-part of 'smart_coach_cubit.dart';
+import 'package:equatable/equatable.dart';
+import 'package:fitness_app/config/base_state/base_state.dart';
 
-abstract class SmartCoachState extends Equatable {
-  const SmartCoachState();
+class SmartCoachState extends Equatable {
+  final BaseState<String?>? firstName;
+  const SmartCoachState({this.firstName});
+
+  SmartCoachState copyWith({BaseState<String?>? firstName}) {
+    return SmartCoachState(firstName: firstName ?? this.firstName);
+  }
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [firstName];
 }
-
-class SmartCoachInitial extends SmartCoachState {}
