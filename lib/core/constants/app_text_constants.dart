@@ -189,6 +189,7 @@ class AppTextConstants {
   static String get foodRecommendation => 'meals.food_recommendation'.tr();
 
   // Smart Coach
+  static String get smartCoach => 'smart_coach.smart_coach'.tr();
   static String get smartCoachGreeting => 'smart_coach.greeting'.tr();
   static String get smartCoachGreetingDescription =>
       'smart_coach.greeting_description'.tr();

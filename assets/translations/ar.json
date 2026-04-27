@@ -164,6 +164,7 @@
     "food_recommendation": "توصيات الطعام"
   },
   "smart_coach": {
+    "smart_coach": "المدرب الذكي",
     "greeting": "مرحباً",
     "greeting_description": "أنا مدربك الذكي",
     "welcome_message":"كيف يمكنني مساعدتك \n اليوم ؟",

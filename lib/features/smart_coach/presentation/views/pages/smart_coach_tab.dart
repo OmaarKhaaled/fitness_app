@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/cubit/samrt_coach_intents.dart';
@@ -9,6 +10,7 @@ import 'package:fitness_app/features/smart_coach/presentation/view_model/cubit/s
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/type_writer_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SmartCoachTab extends StatefulWidget {
   final ScrollController scrollController;
@@ -54,6 +56,8 @@ class _SmartCoachTabState extends State<SmartCoachTab> {
             child: Column(
               children: [
                 BlocBuilder<SmartCoachCubit, SmartCoachState>(
+                  buildWhen: (previous, current) =>
+                      previous.firstName?.data != current.firstName?.data,
                   builder: (context, state) {
                     log(state.toString());
                     return Text(
@@ -90,7 +94,9 @@ class _SmartCoachTabState extends State<SmartCoachTab> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.pushNamed(AppRoutesConstants.chatPage);
+                          },
                           child: Text(
                             AppTextConstants.smartCoachGetStarted,
                             style: textTheme.bodyLarge?.copyWith(

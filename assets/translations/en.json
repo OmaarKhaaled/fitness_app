@@ -164,6 +164,7 @@
     "food_recommendation": "Food Recommendation"
   },
   "smart_coach": {
+    "smart_coach": "Smart Coach",
     "greeting": "Hey ",
     "greeting_description":"I Am Your Smart Coach",
     "welcome_message":"How Can I Assist You \nToday ?",

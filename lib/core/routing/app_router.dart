@@ -1,9 +1,13 @@
+import 'dart:ui';
+
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
 import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
 import 'package:fitness_app/features/meals/presentation/view/pages/meals_recommendation_page.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/pages/chat_page.dart';
+import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +50,25 @@ class AppRouter {
         path: AppRoutesConstants.mealsRecommendationRoute,
         name: AppRoutesConstants.mealsRecommendationRoute,
         builder: (context, state) => const MealsRecommendationPage(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.chatPage,
+        name: AppRoutesConstants.chatPage,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const ChatPage(),
+          transitionDuration: const Duration(milliseconds: 300),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            final tween = Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).chain(CurveTween(curve: Curves.easeInOut));
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        ),
       ),
     ],
   );
