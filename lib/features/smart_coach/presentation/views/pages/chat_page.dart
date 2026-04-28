@@ -1,10 +1,12 @@
 import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/core/constants/ai_model_constants.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_cubit.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';
+import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_states.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/message_bubble.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/smart_coach_text_field.dart';
 import 'package:flutter/material.dart';
@@ -82,21 +84,44 @@ class _ChatPageState extends State<ChatPage> {
                 child: Column(
                   children: [
                     Expanded(
-                      child: ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: 2,
-                        itemBuilder: (context, index) {
-                          final msg = {
-                            'role': 'coach',
-                            'text': 'Hello, how are you? I am fine',
-                          };
-                          return MessageBubble(
-                            message: msg['text']!,
-                            isUser: msg['role'] == 'user',
+                      child: BlocBuilder<ChatPageCubit, ChatPageStates>(
+                        buildWhen: (previous, current) =>
+                            previous.messages != current.messages,
+                        builder: (context, state) {
+                          final messages = state.messages?.data ?? [];
+                          final isLoading = state.messages?.isLoading ?? false;
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: ListView.separated(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: messages.length,
+                                  itemBuilder: (context, index) {
+                                    return MessageBubble(
+                                      message:
+                                          messages[index][AiModelConstants
+                                              .messageKey]!,
+                                      isUser:
+                                          messages[index][AiModelConstants
+                                              .roleKey] ==
+                                          AiModelConstants.userRole,
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return const SizedBox(height: 24);
+                                  },
+                                ),
+                              ),
+                              if (isLoading)
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                            ],
                           );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(height: 24);
                         },
                       ),
                     ),

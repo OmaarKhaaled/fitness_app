@@ -1,13 +1,29 @@
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_cubit.dart';
+import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SmartCoachTextField extends StatelessWidget {
+class SmartCoachTextField extends StatefulWidget {
   const SmartCoachTextField({super.key});
 
   @override
+  State<SmartCoachTextField> createState() => _SmartCoachTextFieldState();
+}
+
+class _SmartCoachTextFieldState extends State<SmartCoachTextField> {
+  final TextEditingController controller = TextEditingController();
+  late TextTheme textTheme;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    textTheme = Theme.of(context).textTheme;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return Row(
       children: [
         Expanded(
@@ -28,7 +44,12 @@ class SmartCoachTextField extends StatelessWidget {
         const SizedBox(width: 8),
         IconButton(
           icon: const Icon(Icons.send, color: AppColors.white),
-          onPressed: () {},
+          onPressed: () {
+            context.read<ChatPageCubit>().doIntent(
+              SendMessageIntent(controller.text.trim()),
+            );
+            controller.clear();
+          },
         ),
       ],
     );

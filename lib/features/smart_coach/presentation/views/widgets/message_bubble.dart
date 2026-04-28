@@ -16,16 +16,17 @@ class MessageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: isUser
           ? MainAxisAlignment.end
           : MainAxisAlignment.start,
       children: [
         if (!isUser) ...[
           const CircleAvatar(
-            radius: 24,
+            radius: 20,
             backgroundImage: AssetImage(AppAssets.modelImage),
           ),
-          const SizedBox(width: 14),
+          const SizedBox(width: 10),
         ],
 
         Container(
@@ -58,13 +59,13 @@ class MessageBubble extends StatelessWidget {
         ),
 
         if (isUser) ...[
-          const SizedBox(width: 14),
+          const SizedBox(width: 10),
           BlocBuilder<ChatPageCubit, ChatPageStates>(
             buildWhen: (previous, current) =>
                 previous.profilePicUrl != current.profilePicUrl,
             builder: (context, state) {
               return CircleAvatar(
-                radius: 24,
+                radius: 20,
                 backgroundImage: CachedNetworkImageProvider(
                   state.profilePicUrl?.data?.isNotEmpty == true
                       ? state.profilePicUrl!.data!
