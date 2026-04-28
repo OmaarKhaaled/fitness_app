@@ -12,4 +12,9 @@ class SmartCoachLocalDataSourceImpl implements SmartCoachLocalDataSource {
   Future<BaseResponse<String?>> getFirstName() async {
     return await _secureStorageService.read(CacheConstants.firstName);
   }
+
+  @override
+  Future<BaseResponse<String?>> getImageUrl() async {
+    return await _secureStorageService.read(CacheConstants.imageUrl);
+  }
 }

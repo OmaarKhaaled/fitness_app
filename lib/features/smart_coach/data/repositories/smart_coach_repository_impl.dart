@@ -11,4 +11,9 @@ class SmartCoachRepositoryImpl implements SmartCoachRepository {
   Future<BaseResponse<String?>> getFirstName() async {
     return await _smartCoachLocalDataSource.getFirstName();
   }
+
+  @override
+  Future<BaseResponse<String?>> getImageUrl() async {
+    return await _smartCoachLocalDataSource.getImageUrl();
+  }
 }

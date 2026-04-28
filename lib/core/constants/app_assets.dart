@@ -18,7 +18,9 @@ class AppAssets {
   static const String smartCoachBackGround =
       'assets/images/smart_chat_background.png';
   static const String robotImage = 'assets/images/Robot.png';
-  static const String modelImage = 'assets/images/model_background';
+  static const String modelImage = 'assets/images/model_background.jpg';
+  static const String defaultProfileImage =
+      'https://fitness.elevateegy.com/uploads/default-profile.png';
 }
 
 class AppIcons {
