@@ -2,6 +2,8 @@ import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/message_bubble.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/smart_coach_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -59,6 +61,31 @@ class _ChatPageState extends State<ChatPage> {
                 ),
               ),
             ],
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.separated(
+                      itemCount: 2,
+                      itemBuilder: (context, index) {
+                        final msg = {
+                          'role': 'coach',
+                          'text': 'Hello, how are you?',
+                        };
+                        return MessageBubble(message: msg['text']!);
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: 24);
+                      },
+                    ),
+                  ),
+                  const SmartCoachTextField(),
+                ],
+              ),
+            ),
           ),
         ],
       ),

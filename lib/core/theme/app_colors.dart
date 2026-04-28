@@ -17,4 +17,6 @@ class AppColors {
   static const grey = Colors.grey;
   static const shimmerBaseColor = Color(0xFF2C2C2C);
   static const shimmerHighlightColor = Color(0xFF404040);
+  static const smartCoachBubbleGradientColor = Color(0xFFC66A24);
+  static const smartCoachBubbleGradientColor2 = Color(0xFF8F3A00);
 }

@@ -196,4 +196,6 @@ class AppTextConstants {
   static String get smartCoachWelcomeMessage =>
       'smart_coach.welcome_message'.tr();
   static String get smartCoachGetStarted => 'smart_coach.get_started'.tr();
+  static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
+  static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
 }

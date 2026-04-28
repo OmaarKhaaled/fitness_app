@@ -18,6 +18,7 @@ class AppAssets {
   static const String smartCoachBackGround =
       'assets/images/smart_chat_background.png';
   static const String robotImage = 'assets/images/Robot.png';
+  static const String modelImage = 'assets/images/model_background';
 }
 
 class AppIcons {

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'config/bloc_observer/bloc_observer.dart';
 import 'config/di/di.dart';
 import 'core/constants/app_assets.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   Bloc.observer = AppBlocObserver();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
+  await dotenv.load(fileName: '.env');
 
   runApp(
     EasyLocalization(

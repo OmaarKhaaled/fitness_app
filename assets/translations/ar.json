@@ -168,6 +168,8 @@
     "greeting": "مرحباً",
     "greeting_description": "أنا مدربك الذكي",
     "welcome_message":"كيف يمكنني مساعدتك \n اليوم ؟",
-    "get_started":"ابدأ"
+    "get_started":"ابدأ",
+    "no_response":"لا يوجد رد",
+    "ask_smart_coach":"اسأل مدربك الذكي..."
   }
 }
