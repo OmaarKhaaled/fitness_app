@@ -21,7 +21,7 @@ class StatRow extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.white, width: 2),
-            color: const Color(0xFF2A2A2A),
+            color: AppColors.white.withValues(alpha: .2),
           ),
           child: const Icon(Icons.person, color: AppColors.white, size: 24),
         ),

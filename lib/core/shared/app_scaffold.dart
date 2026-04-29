@@ -7,6 +7,7 @@ class AppScaffold extends StatelessWidget {
   final Alignment alignment;
   final Widget? bottomWidget;
   final bool isBottomNavVisible;
+  final bool hasGradient;
   const AppScaffold({
     super.key,
     required this.child,
@@ -14,6 +15,7 @@ class AppScaffold extends StatelessWidget {
     this.alignment = Alignment.center,
     this.bottomWidget,
     this.isBottomNavVisible = true,
+    this.hasGradient = false,
   });
 
   @override
@@ -25,6 +27,23 @@ class AppScaffold extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(backgroundImage, fit: BoxFit.cover),
+          if (hasGradient)
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      AppColors.black,
+                      AppColors.navBarBg,
+                    ],
+                    // stops: [0.3, 0.7, 1.0],
+                  ),
+                ),
+              ),
+            ),
           Align(alignment: alignment, child: child),
         ],
       ),

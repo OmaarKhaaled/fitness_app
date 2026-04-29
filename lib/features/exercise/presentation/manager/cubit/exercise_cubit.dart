@@ -1,5 +1,4 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
-import 'package:fitness_app/config/network/api_result.dart';
 import 'package:fitness_app/config/services/token_service.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/domain/models/level_model.dart';
@@ -53,7 +52,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
 
     final result = await getLevels(actualToken, viewModel.id);
 
-    if (result is SuccessApiResult<List<LevelModel>>) {
+    if (result is BaseSuccess<List<LevelModel>>) {
       final levels = result.data;
       emit(state.copyWith(isLevelsLoading: false, levels: levels));
 
@@ -65,8 +64,13 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           levelIndex: 0,
         );
       }
-    } else if (result is ErrorApiResult<List<LevelModel>>) {
-      emit(state.copyWith(isLevelsLoading: false, levelsError: result.error));
+    } else if (result is BaseFailure<List<LevelModel>>) {
+      emit(
+        state.copyWith(
+          isLevelsLoading: false,
+          levelsError: result.exception.message,
+        ),
+      );
     }
   }
 
@@ -91,7 +95,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
 
     final result = await getExercises(muscleId, levelId);
 
-    if (result is SuccessApiResult<List<ExerciseModel>>) {
+    if (result is BaseSuccess<List<ExerciseModel>>) {
       emit(
         state.copyWith(
           isExercisesLoading: false,
@@ -99,10 +103,24 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           selectedLevelIndex: levelIndex,
         ),
       );
-    } else if (result is ErrorApiResult<List<ExerciseModel>>) {
+      _loadThumbnails();
+    } else if (result is BaseFailure<List<ExerciseModel>>) {
       emit(
-        state.copyWith(isExercisesLoading: false, exercisesError: result.error),
+        state.copyWith(
+          isExercisesLoading: false,
+          exercisesError: result.exception.message,
+        ),
       );
     }
+  }
+
+  Future<void> _loadThumbnails() async {
+    final List<ExerciseModel> updatedExercises = [];
+    for (ExerciseModel exercise in state.exercises) {
+      if (exercise.thumbnailUrl != null) {
+        updatedExercises.add(exercise);
+      }
+    }
+    emit(state.copyWith(exercises: updatedExercises));
   }
 }

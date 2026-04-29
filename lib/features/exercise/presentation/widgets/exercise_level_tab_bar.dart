@@ -59,12 +59,11 @@ class ExerciseLevelTabBar extends StatelessWidget {
                 // Avatar Bubble indicator
                 if (isSelected)
                   Positioned(
-                    top: -10,
                     child: Column(
                       children: [
                         Container(
                           width: 48,
-                          height: 48,
+                          height: 50,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,

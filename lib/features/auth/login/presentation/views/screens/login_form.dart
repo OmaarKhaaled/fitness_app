@@ -14,6 +14,7 @@ import 'package:fitness_app/features/auth/login/presentation/manager/manager/log
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rename_app/utils.dart';
 
 class LoginForm extends StatefulWidget {
   final GlobalKey<FormState>? formKey;
@@ -65,9 +66,7 @@ class _LoginFormState extends State<LoginForm> {
       listener: (context, state) {
         state.loginResource.whenOrNull(
           success: (data) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              defaultSnackBar(message: data.message, color: AppColors.green),
-            );
+            Utils.logMessage('Login success: ${data.message}');
             context.go(RouteNames.home);
           },
           failure: (exception) {

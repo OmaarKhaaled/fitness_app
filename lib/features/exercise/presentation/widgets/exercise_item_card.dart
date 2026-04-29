@@ -3,12 +3,21 @@ import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExerciseItemCard extends StatelessWidget {
   final ExerciseModel exercise;
   final VoidCallback? onPlayTap;
 
   const ExerciseItemCard({super.key, required this.exercise, this.onPlayTap});
+
+  Future<void> _launchURL(String? urlString) async {
+    if (urlString == null) return;
+
+    final Uri url = Uri.parse(urlString);
+
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,79 +27,92 @@ class ExerciseItemCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF1E1E1E),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.05),
+          width: 1,
+        ),
       ),
       child: Row(
         children: [
-          // Thumbnail
+          /// Thumbnail
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: exercise.shortYoutubeDemonstrationLink != null
-                ? CachedNetworkImage(
-                    imageUrl: exercise.shortYoutubeDemonstrationLink!,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                    placeholder: (_, __) => _buildPlaceholder(),
-                    errorWidget: (_, __, ___) => _buildPlaceholder(),
-                  )
-                : _buildPlaceholder(),
+            child: SizedBox(
+              width: 80,
+              height: 80,
+              child: exercise.thumbnailUrl != null
+                  ? CachedNetworkImage(
+                      imageUrl: exercise.thumbnailUrl!,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => _buildPlaceholder(),
+                      errorWidget: (context, url, error) => _buildPlaceholder(),
+                    )
+                  : _buildPlaceholder(),
+            ),
           ),
+
           const SizedBox(width: 16),
-          // Info
+
+          /// Info
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   exercise.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.outfit(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.white,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '3 Groups * 15 Times',
-                  style: GoogleFonts.outfit(
-                    fontSize: 12,
-                    color: AppColors.textSecondary,
-                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
                   ),
                 ),
+
                 const SizedBox(height: 4),
+
                 Text(
-                  'Lorem Ipsum Dolor Sit Amet Consectetur. Tempus',
+                  exercise.targetMuscleGroup ?? 'General Exercise',
                   style: GoogleFonts.outfit(
-                    fontSize: 11,
+                    fontSize: 13,
                     color: AppColors.textSecondary.withValues(alpha: 0.7),
                   ),
+                ),
+
+                const SizedBox(height: 4),
+
+                Text(
+                  '${exercise.difficultyLevel ?? 'Any'} • '
+                  '${exercise.primaryEquipment ?? 'No Equipment'}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.outfit(
+                    fontSize: 11,
+                    color: AppColors.textSecondary.withValues(alpha: 0.5),
+                  ),
                 ),
               ],
             ),
           ),
-          // Play button
-          GestureDetector(
-            onTap: onPlayTap,
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.play_arrow_rounded,
-                color: AppColors.white,
-                size: 20,
+
+          /// Play Button
+          if (exercise.shortYoutubeDemonstrationLink != null)
+            IconButton(
+              onPressed: () =>
+                  _launchURL(exercise.shortYoutubeDemonstrationLink),
+              icon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.play_arrow_rounded,
+                  color: AppColors.primary,
+                  size: 24,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );
@@ -98,8 +120,6 @@ class ExerciseItemCard extends StatelessWidget {
 
   Widget _buildPlaceholder() {
     return Container(
-      width: 90,
-      height: 90,
       color: const Color(0xFF2A2A2A),
       child: const Icon(
         Icons.fitness_center,

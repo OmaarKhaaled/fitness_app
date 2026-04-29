@@ -29,13 +29,14 @@ class ExerciseResponse {
     int? totalPages,
     int? currentPage,
     List<Exercise>? exercises,
-  }) => ExerciseResponse(
-    message: message ?? this.message,
-    totalExercises: totalExercises ?? this.totalExercises,
-    totalPages: totalPages ?? this.totalPages,
-    currentPage: currentPage ?? this.currentPage,
-    exercises: exercises ?? this.exercises,
-  );
+  }) =>
+      ExerciseResponse(
+        message: message ?? this.message,
+        totalExercises: totalExercises ?? this.totalExercises,
+        totalPages: totalPages ?? this.totalPages,
+        currentPage: currentPage ?? this.currentPage,
+        exercises: exercises ?? this.exercises,
+      );
 
   factory ExerciseResponse.fromJson(Map<String, dynamic> json) =>
       _$ExerciseResponseFromJson(json);
@@ -186,52 +187,83 @@ class Exercise {
     String? primaryExerciseClassification,
     String? shortYoutubeDemonstrationLink,
     String? inDepthYoutubeExplanationLink,
-  }) => Exercise(
-    id: id ?? this.id,
-    exercise: exercise ?? this.exercise,
-    shortYoutubeDemonstration:
-        shortYoutubeDemonstration ?? this.shortYoutubeDemonstration,
-    inDepthYoutubeExplanation:
-        inDepthYoutubeExplanation ?? this.inDepthYoutubeExplanation,
-    difficultyLevel: difficultyLevel ?? this.difficultyLevel,
-    targetMuscleGroup: targetMuscleGroup ?? this.targetMuscleGroup,
-    primeMoverMuscle: primeMoverMuscle ?? this.primeMoverMuscle,
-    secondaryMuscle: secondaryMuscle ?? this.secondaryMuscle,
-    tertiaryMuscle: tertiaryMuscle ?? this.tertiaryMuscle,
-    primaryEquipment: primaryEquipment ?? this.primaryEquipment,
-    primaryItems: primaryItems ?? this.primaryItems,
-    secondaryEquipment: secondaryEquipment ?? this.secondaryEquipment,
-    secondaryItems: secondaryItems ?? this.secondaryItems,
-    posture: posture ?? this.posture,
-    singleOrDoubleArm: singleOrDoubleArm ?? this.singleOrDoubleArm,
-    continuousOrAlternatingArms:
-        continuousOrAlternatingArms ?? this.continuousOrAlternatingArms,
-    grip: grip ?? this.grip,
-    loadPositionEnding: loadPositionEnding ?? this.loadPositionEnding,
-    continuousOrAlternatingLegs:
-        continuousOrAlternatingLegs ?? this.continuousOrAlternatingLegs,
-    footElevation: footElevation ?? this.footElevation,
-    combinationExercises: combinationExercises ?? this.combinationExercises,
-    movementPattern1: movementPattern1 ?? this.movementPattern1,
-    movementPattern2: movementPattern2 ?? this.movementPattern2,
-    movementPattern3: movementPattern3 ?? this.movementPattern3,
-    planeOfMotion1: planeOfMotion1 ?? this.planeOfMotion1,
-    planeOfMotion2: planeOfMotion2 ?? this.planeOfMotion2,
-    planeOfMotion3: planeOfMotion3 ?? this.planeOfMotion3,
-    bodyRegion: bodyRegion ?? this.bodyRegion,
-    forceType: forceType ?? this.forceType,
-    mechanics: mechanics ?? this.mechanics,
-    laterality: laterality ?? this.laterality,
-    primaryExerciseClassification:
-        primaryExerciseClassification ?? this.primaryExerciseClassification,
-    shortYoutubeDemonstrationLink:
-        shortYoutubeDemonstrationLink ?? this.shortYoutubeDemonstrationLink,
-    inDepthYoutubeExplanationLink:
-        inDepthYoutubeExplanationLink ?? this.inDepthYoutubeExplanationLink,
-  );
+  }) =>
+      Exercise(
+        id: id ?? this.id,
+        exercise: exercise ?? this.exercise,
+        shortYoutubeDemonstration:
+            shortYoutubeDemonstration ?? this.shortYoutubeDemonstration,
+        inDepthYoutubeExplanation:
+            inDepthYoutubeExplanation ?? this.inDepthYoutubeExplanation,
+        difficultyLevel: difficultyLevel ?? this.difficultyLevel,
+        targetMuscleGroup: targetMuscleGroup ?? this.targetMuscleGroup,
+        primeMoverMuscle: primeMoverMuscle ?? this.primeMoverMuscle,
+        secondaryMuscle: secondaryMuscle ?? this.secondaryMuscle,
+        tertiaryMuscle: tertiaryMuscle ?? this.tertiaryMuscle,
+        primaryEquipment: primaryEquipment ?? this.primaryEquipment,
+        primaryItems: primaryItems ?? this.primaryItems,
+        secondaryEquipment: secondaryEquipment ?? this.secondaryEquipment,
+        secondaryItems: secondaryItems ?? this.secondaryItems,
+        posture: posture ?? this.posture,
+        singleOrDoubleArm: singleOrDoubleArm ?? this.singleOrDoubleArm,
+        continuousOrAlternatingArms:
+            continuousOrAlternatingArms ?? this.continuousOrAlternatingArms,
+        grip: grip ?? this.grip,
+        loadPositionEnding: loadPositionEnding ?? this.loadPositionEnding,
+        continuousOrAlternatingLegs:
+            continuousOrAlternatingLegs ?? this.continuousOrAlternatingLegs,
+        footElevation: footElevation ?? this.footElevation,
+        combinationExercises: combinationExercises ?? this.combinationExercises,
+        movementPattern1: movementPattern1 ?? this.movementPattern1,
+        movementPattern2: movementPattern2 ?? this.movementPattern2,
+        movementPattern3: movementPattern3 ?? this.movementPattern3,
+        planeOfMotion1: planeOfMotion1 ?? this.planeOfMotion1,
+        planeOfMotion2: planeOfMotion2 ?? this.planeOfMotion2,
+        planeOfMotion3: planeOfMotion3 ?? this.planeOfMotion3,
+        bodyRegion: bodyRegion ?? this.bodyRegion,
+        forceType: forceType ?? this.forceType,
+        mechanics: mechanics ?? this.mechanics,
+        laterality: laterality ?? this.laterality,
+        primaryExerciseClassification:
+            primaryExerciseClassification ?? this.primaryExerciseClassification,
+        shortYoutubeDemonstrationLink:
+            shortYoutubeDemonstrationLink ?? this.shortYoutubeDemonstrationLink,
+        inDepthYoutubeExplanationLink:
+            inDepthYoutubeExplanationLink ?? this.inDepthYoutubeExplanationLink,
+      );
 
   factory Exercise.fromJson(Map<String, dynamic> json) =>
       _$ExerciseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseToJson(this);
+
+  /// Prefer short demo link first
+  String? get videoUrl =>
+      shortYoutubeDemonstrationLink ?? inDepthYoutubeExplanationLink;
+
+  /// Thumbnail getter
+  String? get thumbnailUrl {
+    final url = videoUrl;
+    if (url == null || url.isEmpty) return null;
+
+    final id = _extractYoutubeId(url);
+    if (id == null) return null;
+
+    return 'https://img.youtube.com/vi/$id/hqdefault.jpg';
+  }
+
+  String? _extractYoutubeId(String url) {
+    final uri = Uri.tryParse(url);
+    if (uri == null) return null;
+
+    if (uri.host.contains('youtu.be')) {
+      return uri.pathSegments.isNotEmpty ? uri.pathSegments.first : null;
+    }
+
+    if (uri.host.contains('youtube.com')) {
+      return uri.queryParameters['v'];
+    }
+
+    return null;
+  }
 }

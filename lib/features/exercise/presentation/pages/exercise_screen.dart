@@ -1,4 +1,6 @@
+import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/routing/route_names.dart';
+import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/presentation/manager/cubit/exercise_cubit.dart';
@@ -17,9 +19,10 @@ class ExerciseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.black,
-      body: BlocBuilder<ExerciseCubit, ExerciseState>(
+    return AppScaffold(
+      backgroundImage: AppAssets.homeBackGround,
+      hasGradient: true,
+      child: BlocBuilder<ExerciseCubit, ExerciseState>(
         builder: (context, state) {
           return CustomScrollView(
             slivers: [
@@ -41,10 +44,13 @@ class ExerciseScreen extends StatelessWidget {
 
   SliverAppBar buildHeroAppBar(BuildContext context) {
     return SliverAppBar(
+      floating: true,
+      
       expandedHeight: 340,
       pinned: true,
       backgroundColor: const Color(0xFF121212),
       leadingWidth: 64,
+
       leading: Padding(
         padding: const EdgeInsets.only(left: 16),
         child: GestureDetector(
@@ -71,7 +77,11 @@ class ExerciseScreen extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             // Background Image
-            Image.asset('assets/images/exercise.jpg', fit: BoxFit.cover),
+            Image.asset(
+              'assets/images/exercise.jpg',
+              fit: BoxFit.cover,
+              opacity: const AlwaysStoppedAnimation(0.8),
+            ),
             // Gradient Overlay
             const DecoratedBox(
               decoration: BoxDecoration(

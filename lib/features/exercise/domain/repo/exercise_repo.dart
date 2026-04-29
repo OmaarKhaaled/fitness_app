@@ -1,13 +1,13 @@
-import 'package:fitness_app/config/network/api_result.dart';
+import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/exercise/domain/models/level_model.dart';
 
 abstract class ExerciseRepo {
-  Future<ApiResult<List<LevelModel>>> getDifficultyLevelsByPrimeMoverMuscle(
+  Future<BaseResponse<List<LevelModel>>> getDifficultyLevelsByPrimeMoverMuscle(
     String token,
     String primeMoverMuscleId,
   );
-  Future<ApiResult<List<ExerciseModel>>>
+  Future<BaseResponse<List<ExerciseModel>>>
   getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
     String primeMoverMuscleId,
     String difficultyLevelId,
