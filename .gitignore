@@ -60,3 +60,4 @@ android/app/release/
 app.*.symbols
 app.*.map.json
 app.*.symbols.json
+.env

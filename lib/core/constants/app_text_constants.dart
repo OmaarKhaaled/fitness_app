@@ -189,10 +189,13 @@ class AppTextConstants {
   static String get foodRecommendation => 'meals.food_recommendation'.tr();
 
   // Smart Coach
+  static String get smartCoach => 'smart_coach.smart_coach'.tr();
   static String get smartCoachGreeting => 'smart_coach.greeting'.tr();
   static String get smartCoachGreetingDescription =>
       'smart_coach.greeting_description'.tr();
   static String get smartCoachWelcomeMessage =>
       'smart_coach.welcome_message'.tr();
   static String get smartCoachGetStarted => 'smart_coach.get_started'.tr();
+  static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
+  static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
 }

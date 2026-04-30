@@ -18,10 +18,15 @@ class AppAssets {
   static const String smartCoachBackGround =
       'assets/images/smart_chat_background.png';
   static const String robotImage = 'assets/images/Robot.png';
+  static const String modelImage = 'assets/images/model_background.jpg';
+  static const String defaultProfileImage =
+      'https://fitness.elevateegy.com/uploads/default-profile.png';
+  static const String welcomeLottie = 'assets/lotties/robot_hello.json';
 }
 
 class AppIcons {
   static const String home = 'assets/icons/home.svg';
+  static const String menu = 'assets/icons/menu.svg';
   static const String workout = 'assets/icons/wourkout.svg';
   static const String chatAi = 'assets/icons/chat_ai.svg';
   static const String profile = 'assets/icons/profile.svg';
@@ -29,4 +34,5 @@ class AppIcons {
   static const String backArrow = 'assets/icons/Vector.png';
   static const String maleSymbol = 'assets/icons/male-symbol.png';
   static const String femaleSymbol = 'assets/icons/female-symbol.png';
+  static const String back = 'assets/icons/Back.svg';
 }

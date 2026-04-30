@@ -51,7 +51,10 @@ void main() {
         ).thenAnswer((_) async => BaseResponse.success(loginResponse));
 
         when(
-          mockLoginLocalDataSource.saveFirstName(any),
+          mockLoginLocalDataSource.saveUserData(
+            firstName: anyNamed('firstName'),
+            imageUrl: anyNamed('imageUrl'),
+          ),
         ).thenAnswer((_) async => const BaseResponse.success(null));
 
         // Act
