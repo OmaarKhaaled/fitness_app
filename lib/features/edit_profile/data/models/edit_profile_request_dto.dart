@@ -10,8 +10,6 @@ class EditProfileRequestDto {
     String? lastName;
     @JsonKey(name: 'email')
     String? email;
-    @JsonKey(name: 'photo')
-    String? photo;
     @JsonKey(name: 'weight')
     int? weight;
     @JsonKey(name: 'goal')
@@ -23,7 +21,6 @@ class EditProfileRequestDto {
         this.firstName,
         this.lastName,
         this.email,
-        this.photo,
         this.weight,
         this.goal,
         this.activityLevel,

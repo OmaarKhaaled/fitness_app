@@ -4,7 +4,6 @@ class EditProfileRequestModel {
   String? firstName;
   String? lastName;
   String? email;
-  String? photo;
   int? weight;
   String? goal;
   String? activityLevel;
@@ -12,7 +11,6 @@ class EditProfileRequestModel {
     this.firstName,
     this.lastName,
     this.email,
-    this.photo,
     this.weight,
     this.goal,
     this.activityLevel
@@ -22,7 +20,6 @@ class EditProfileRequestModel {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      photo: photo,
       weight: weight,
       goal: goal,
       activityLevel: activityLevel

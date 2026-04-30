@@ -31,6 +31,9 @@ class $AssetsIconsGen {
   AssetGenImage get maleSymbol =>
       const AssetGenImage('assets/icons/male-symbol.png');
 
+  /// File path: assets/icons/pencil.png
+  AssetGenImage get pencil => const AssetGenImage('assets/icons/pencil.png');
+
   /// File path: assets/icons/profile.svg
   String get profile => 'assets/icons/profile.svg';
 
@@ -47,6 +50,7 @@ class $AssetsIconsGen {
     femaleSymbol,
     home,
     maleSymbol,
+    pencil,
     profile,
     superFitness,
     wourkout,
@@ -83,6 +87,9 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingBg =>
       const AssetGenImage('assets/images/onboarding_bg.png');
 
+  /// File path: assets/images/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
@@ -99,6 +106,7 @@ class $AssetsImagesGen {
     onboarding2,
     onboarding3,
     onboardingBg,
+    profile,
     splash,
     superFitness,
   ];

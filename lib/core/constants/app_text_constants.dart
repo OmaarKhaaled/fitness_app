@@ -175,4 +175,11 @@ class AppTextConstants {
   static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
   static String get workoutsIcon => 'bottom_nav_bar.workouts'.tr();
   static String get profileIcon => 'bottom_nav_bar.profile'.tr();
+  //edit profile section
+  static String get editProfileHeader=>'edit_profile_sec.edit_profile'.tr();
+  static String get yourWeight=>'edit_profile_sec.your_weight'.tr();
+  static String get yourGoal=>'edit_profile_sec.your_goal'.tr();
+  static String get yourActivityLevel=>'edit_profile_sec.your_activity_level'.tr();
+  static String get tapToEdit=>'edit_profile_sec.tap_to_edit'.tr();
+  static String get editButton=>'edit_profile_sec.edit'.tr();
 }

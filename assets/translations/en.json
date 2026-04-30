@@ -150,6 +150,13 @@
     "smart_coach":"Smart Coach",
     "workouts":"Workouts",
     "profile":"Profile"
+  },
+  "edit_profile_sec":{
+    "edit_profile":"Edit Profile",
+    "your_weight":"Your Weight",
+    "your_goal":"Your Goal",
+    "your_activity_level":"Your activity level",
+    "tap_to_edit":"tap To Edit",
+    "edit":"Edit"
   }
-
 }
