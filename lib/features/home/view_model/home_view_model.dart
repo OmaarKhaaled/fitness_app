@@ -16,7 +16,7 @@ class HomeViewModel extends Cubit<HomeStates> {
     HomeTab(scrollController: scrollController),
     SmartCoachTab(scrollController: scrollController),
     WorkoutsTab(scrollController: scrollController),
-    ProfileTab(scrollController: scrollController),
+    ProfileTab(),
   ];
   void doIntent(HomeEvents event) {
     switch (event) {
