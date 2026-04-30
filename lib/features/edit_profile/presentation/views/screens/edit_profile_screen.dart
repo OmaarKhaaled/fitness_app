@@ -4,6 +4,7 @@ import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/constants/cache_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
@@ -97,6 +98,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           final editProfileState = state.editProfileState;
           if (profileState?.data?.userModel != null) {
             _updateControllersFromUser(profileState!.data!.userModel!);
+            final photo = profileState.data!.userModel!.photo;
+            if (photo != null && photo.isNotEmpty) {
+              viewModel.doIntent(SavePhotoEvent(CacheConstants.imageUrl, photo));
+            }
           }
           if (editProfileState?.isLoading == true) {
             UiUtils.showLoading(context);
@@ -105,6 +110,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               state.isEditSuccess) {
             UiUtils.hideLoading(context);
             UiUtils.showSuccessMsg(context, profileState!.data!.message!);
+            viewModel.doIntent(SaveFirstNameEvent(CacheConstants.firstName,firstNameController.text,));
             viewModel.doIntent(ResetEditSuccessEvent());
             context.go(AppRoutesConstants.homeRoute);
             return;

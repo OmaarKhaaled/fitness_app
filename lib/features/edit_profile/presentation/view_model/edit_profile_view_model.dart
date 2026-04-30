@@ -8,6 +8,8 @@ import 'package:fitness_app/features/edit_profile/domain/models/edit_profile_res
 import 'package:fitness_app/features/edit_profile/domain/models/upload_photo_response_model.dart';
 import 'package:fitness_app/features/edit_profile/domain/use_cases/edit_profile_use_case.dart';
 import 'package:fitness_app/features/edit_profile/domain/use_cases/get_profile_use_case.dart';
+import 'package:fitness_app/features/edit_profile/domain/use_cases/save_first_name_use_case.dart';
+import 'package:fitness_app/features/edit_profile/domain/use_cases/save_photo_use_case.dart';
 import 'package:fitness_app/features/edit_profile/domain/use_cases/upload_photo_use_case.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_events.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_states.dart';
@@ -19,10 +21,14 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
   final EditProfileUseCase _editProfileUseCase;
   final GetProfileUseCase _getProfileUseCase;
   final UploadPhotoUseCase _uploadPhotoUseCase;
+  final SaveFirstNameUseCase _saveFirstNameUseCase;
+  final SavePhotoUseCase _savePhotoUseCase;
   EditProfileViewModel(
     this._editProfileUseCase,
     this._getProfileUseCase,
     this._uploadPhotoUseCase,
+    this._saveFirstNameUseCase,
+    this._savePhotoUseCase
   ) : super(EditProfileStates());
   void doIntent(EditProfileEvents event) {
     switch (event) {
@@ -46,6 +52,10 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
         _selectActivityLevel(event.activityLevel);
       case UpdateActivityLevelEvent():
         _updateActivityLevel(event.activityLevel);
+      case SaveFirstNameEvent():
+        _saveFirstName(event.key, event.value);
+      case SavePhotoEvent():
+        _savePhoto(event.key, event.value);
     }
   }
 
@@ -202,5 +212,11 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
       activityLevel: activityLevel,
     );
     await _editProfile(request);
+  }
+  void _saveFirstName(String key,String value) async{
+    await _saveFirstNameUseCase.call(key, value);
+  }
+  void _savePhoto(String key,String value) async{
+    await _savePhotoUseCase.call(key, value);
   }
 }

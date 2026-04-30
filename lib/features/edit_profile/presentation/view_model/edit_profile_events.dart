@@ -38,3 +38,13 @@ class UpdateActivityLevelEvent extends EditProfileEvents {
   final String activityLevel;
   UpdateActivityLevelEvent(this.activityLevel);
 }
+class SaveFirstNameEvent extends EditProfileEvents{
+  final String key;
+  final String value;
+  SaveFirstNameEvent(this.key,this.value);
+}
+class SavePhotoEvent extends EditProfileEvents{
+  final String key;
+  final String value;
+  SavePhotoEvent(this.key,this.value);
+}

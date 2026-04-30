@@ -19,7 +19,7 @@ class AppAssets {
 
 class AppIcons {
   static const String home = 'assets/icons/home.svg';
-  static const String workout = 'assets/icons/workout.svg';
+  static const String workout = 'assets/icons/wourkout.svg';
   static const String chatAi = 'assets/icons/chat_ai.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String superFitness = 'assets/icons/super_fitness.svg';
