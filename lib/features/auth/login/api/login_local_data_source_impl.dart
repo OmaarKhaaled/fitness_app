@@ -9,15 +9,29 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
   final SecureStorageService _secureStorageService;
   LoginLocalDataSourceImpl(this._secureStorageService);
   @override
-  Future<BaseResponse<void>> saveFirstName(String firstName) async {
+  Future<BaseResponse<void>> saveUserData({
+    required String firstName,
+    required String imageUrl,
+  }) async {
     final response = await _secureStorageService.write(
       CacheConstants.firstName,
       firstName,
     );
+    final response2 = await _secureStorageService.write(
+      CacheConstants.imageUrl,
+      imageUrl,
+    );
     return response.when(
       initial: () => const BaseResponse.initial(),
       loading: () => const BaseResponse.loading(),
-      success: (s) => const BaseResponse.success(null),
+      success: (s) {
+        return response2.when(
+          initial: () => const BaseResponse.initial(),
+          loading: () => const BaseResponse.loading(),
+          success: (s) => const BaseResponse.success(null),
+          failure: (f) => BaseResponse.failure(f),
+        );
+      },
       failure: (f) => BaseResponse.failure(f),
     );
   }

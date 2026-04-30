@@ -19,7 +19,10 @@ class LoginRepoImpl implements LoginRepo {
       initial: () => const BaseResponse.initial(),
       loading: () => const BaseResponse.loading(),
       success: (data) {
-        _authLocalDataSource.saveFirstName(data.user?.firstName ?? '');
+        _authLocalDataSource.saveUserData(
+          firstName: data.user?.firstName ?? '',
+          imageUrl: data.user?.photo ?? '',
+        );
         return BaseResponse.success(data.toModel());
       },
       failure: (exception) => BaseResponse.failure(exception),
