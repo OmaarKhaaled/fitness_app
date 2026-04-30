@@ -56,6 +56,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Robot.png
+  AssetGenImage get robot => const AssetGenImage('assets/images/Robot.png');
+
   /// File path: assets/images/auth_background.png
   AssetGenImage get authBackground =>
       const AssetGenImage('assets/images/auth_background.png');
@@ -66,6 +69,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/forget_password_background.png
   AssetGenImage get forgetPasswordBackground =>
       const AssetGenImage('assets/images/forget_password_background.png');
+
+  /// File path: assets/images/home_back_ground.png
+  AssetGenImage get homeBackGround =>
+      const AssetGenImage('assets/images/home_back_ground.png');
 
   /// File path: assets/images/onboarding_1.png
   AssetGenImage get onboarding1 =>
@@ -83,6 +90,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingBg =>
       const AssetGenImage('assets/images/onboarding_bg.png');
 
+  /// File path: assets/images/smart_chat_background.png
+  AssetGenImage get smartChatBackground =>
+      const AssetGenImage('assets/images/smart_chat_background.png');
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
@@ -92,13 +103,16 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    robot,
     authBackground,
     fitness,
     forgetPasswordBackground,
+    homeBackGround,
     onboarding1,
     onboarding2,
     onboarding3,
     onboardingBg,
+    smartChatBackground,
     splash,
     superFitness,
   ];
