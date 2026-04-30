@@ -1,8 +1,5 @@
-import 'package:fitness_app/config/base_state/base_state.dart';
-import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/routing/route_names.dart';
-import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/default_snackbar.dart';
 import 'package:fitness_app/features/change_password/presentation/view/widgets/change_password_form.dart';
