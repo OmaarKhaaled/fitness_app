@@ -195,4 +195,19 @@ class AppTextConstants {
   static String get smartCoachWelcomeMessage =>
       'smart_coach.welcome_message'.tr();
   static String get smartCoachGetStarted => 'smart_coach.get_started'.tr();
+  // profile
+  static String get profile => 'profile.title'.tr();
+  static String get editProfile => 'profile.edit_profile'.tr();
+  static String get changePassword => 'profile.change_password'.tr();
+  static String get selectLanguage => 'profile.select_language'.tr();
+  static String get english => 'profile.english'.tr();
+  static String get arabic => 'profile.arabic'.tr();
+  static String get security => 'profile.security'.tr();
+  static String get help => 'profile.help'.tr();
+  static String get privacyPolicy => 'profile.privacy_policy'.tr();
+  static String get logout => 'profile.logout'.tr();
+  static String get yes => 'profile.yes'.tr();
+  static String get no => 'profile.no'.tr();
+  static String get areYouSureToCloseTheApp =>
+      'profile.areYouSureToCloseTheApp'.tr();
 }

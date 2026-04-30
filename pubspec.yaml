@@ -60,4 +60,5 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/icons/profile_icons/
     - assets/translations/

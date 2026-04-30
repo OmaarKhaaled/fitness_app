@@ -17,4 +17,5 @@ class AppColors {
   static const grey = Colors.grey;
   static const shimmerBaseColor = Color(0xFF2C2C2C);
   static const shimmerHighlightColor = Color(0xFF404040);
+  static const logoutDialogColor = Color(0xFF242424);
 }
