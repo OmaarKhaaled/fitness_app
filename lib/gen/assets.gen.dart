@@ -56,6 +56,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Robot.png
+  AssetGenImage get robot => const AssetGenImage('assets/images/Robot.png');
+
   /// File path: assets/images/auth_background.png
   AssetGenImage get authBackground =>
       const AssetGenImage('assets/images/auth_background.png');
@@ -91,6 +94,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingBg =>
       const AssetGenImage('assets/images/onboarding_bg.png');
 
+  /// File path: assets/images/smart_chat_background.png
+  AssetGenImage get smartChatBackground =>
+      const AssetGenImage('assets/images/smart_chat_background.png');
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
@@ -100,6 +107,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    robot,
     authBackground,
     exercise,
     fitness,
@@ -109,6 +117,7 @@ class $AssetsImagesGen {
     onboarding2,
     onboarding3,
     onboardingBg,
+    smartChatBackground,
     splash,
     superFitness,
   ];

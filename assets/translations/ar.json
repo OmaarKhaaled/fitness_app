@@ -46,7 +46,7 @@
     "last_name_placeholder": "اسم العائلة",
     "email_placeholder": "البريد الإلكتروني",
     "password_placeholder": "كلمة المرور",
-    "repassword_placeholder":"تأكيد كلمة المرور",
+    "repassword_placeholder": "تأكيد كلمة المرور",
     "or": "أو",
     "button": "إنشاء حساب",
     "already_have_account": "لديك حساب بالفعل؟",
@@ -64,7 +64,7 @@
     "age": {
       "question": "كم عمرك؟",
       "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
-      "year":"سنة",
+      "year": "سنة",
       "button": "التالي"
     },
     "weight": {
@@ -162,5 +162,29 @@
     "see_all": "عرض الكل",
     "no_meals_found": "لم يتم العثور على وجبات",
     "food_recommendation": "توصيات الطعام"
+  },
+  "smart_coach": {
+    "smart_coach": "المدرب الذكي",
+    "greeting": "مرحباً",
+    "greeting_description": "أنا مدربك الذكي",
+    "welcome_message": "كيف يمكنني مساعدتك \n اليوم ؟",
+    "get_started": "ابدأ",
+    "no_response":"لا يوجد رد",
+    "ask_smart_coach":"اسأل مدربك الذكي"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "edit_profile": "تعديل الملف الشخصي",
+    "change_password": "تغيير كلمة المرور",
+    "select_language": "اختر اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "security": "الأمان",
+    "help": "المساعدة",
+    "privacy_policy": "سياسة الخصوصية",
+    "logout": "تسجيل الخروج",
+    "yes": "نعم",
+    "no": "لا",
+    "areYouSureToCloseTheApp": "هل انت متاكد من رغبتك في اغلاق التطبيق"
   }
 }
