@@ -64,4 +64,4 @@ flutter:
     - assets/icons/
     - assets/translations/
     - assets/lotties/
-    - .env
+    # - assets/env/
