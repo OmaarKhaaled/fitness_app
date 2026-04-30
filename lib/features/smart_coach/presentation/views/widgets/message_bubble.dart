@@ -3,6 +3,7 @@ import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_cubit.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_states.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/type_writer_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -51,11 +52,22 @@ class MessageBubble extends StatelessWidget {
               bottomRight: const Radius.circular(28),
             ),
           ),
-          child: Text(
-            message,
-            style: textTheme.titleLarge?.copyWith(fontSize: 18, height: 1.35),
-            overflow: TextOverflow.clip,
-          ),
+          child: isUser
+              ? Text(
+                  message,
+                  style: textTheme.titleLarge?.copyWith(
+                    fontSize: 18,
+                    height: 1.35,
+                  ),
+                  overflow: TextOverflow.clip,
+                )
+              : TypewriterText(
+                  text: message,
+                  style: textTheme.titleLarge?.copyWith(
+                    fontSize: 18,
+                    height: 1.35,
+                  ),
+                ),
         ),
 
         if (isUser) ...[

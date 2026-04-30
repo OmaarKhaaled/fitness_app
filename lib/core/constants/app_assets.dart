@@ -21,6 +21,7 @@ class AppAssets {
   static const String modelImage = 'assets/images/model_background.jpg';
   static const String defaultProfileImage =
       'https://fitness.elevateegy.com/uploads/default-profile.png';
+  static const String welcomeLottie = 'assets/lotties/robot_hello.json';
 }
 
 class AppIcons {

@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SmartCoachTextField extends StatefulWidget {
-  const SmartCoachTextField({super.key});
+  const SmartCoachTextField({super.key, required this.onSend});
+  final VoidCallback onSend;
 
   @override
   State<SmartCoachTextField> createState() => _SmartCoachTextFieldState();
@@ -28,6 +29,7 @@ class _SmartCoachTextFieldState extends State<SmartCoachTextField> {
       children: [
         Expanded(
           child: TextField(
+            controller: controller,
             cursorColor: AppColors.white,
             decoration: InputDecoration(
               hintText: AppTextConstants.askSmartCoach,
@@ -45,6 +47,7 @@ class _SmartCoachTextFieldState extends State<SmartCoachTextField> {
         IconButton(
           icon: const Icon(Icons.send, color: AppColors.white),
           onPressed: () {
+            widget.onSend();
             context.read<ChatPageCubit>().doIntent(
               SendMessageIntent(controller.text.trim()),
             );

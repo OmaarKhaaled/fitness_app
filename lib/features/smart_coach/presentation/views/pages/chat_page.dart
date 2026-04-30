@@ -9,6 +9,8 @@ import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_pa
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_states.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/message_bubble.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/smart_coach_text_field.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/typing_indicator.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/welcome_lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,6 +25,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   late TextTheme textTheme;
   late ChatPageCubit chatPageCubit;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -88,44 +91,79 @@ class _ChatPageState extends State<ChatPage> {
                         buildWhen: (previous, current) =>
                             previous.messages != current.messages,
                         builder: (context, state) {
-                          final messages = state.messages?.data ?? [];
-                          final isLoading = state.messages?.isLoading ?? false;
-                          return Column(
-                            children: [
-                              Expanded(
-                                child: ListView.separated(
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: messages.length,
-                                  itemBuilder: (context, index) {
-                                    return MessageBubble(
-                                      message:
-                                          messages[index][AiModelConstants
-                                              .messageKey]!,
-                                      isUser:
-                                          messages[index][AiModelConstants
-                                              .roleKey] ==
-                                          AiModelConstants.userRole,
-                                    );
-                                  },
-                                  separatorBuilder: (context, index) {
-                                    return const SizedBox(height: 24);
-                                  },
-                                ),
-                              ),
-                              if (isLoading)
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: CircularProgressIndicator(),
+                          if (state.messages?.errorMessage != null) {
+                            return Center(
+                              child: Container(
+                                color: AppColors.black,
+                                child: Text(
+                                  state.messages!.errorMessage!,
+                                  style: textTheme.bodyLarge?.copyWith(
+                                    color: AppColors.redAccent,
                                   ),
                                 ),
-                            ],
-                          );
+                              ),
+                            );
+                          }
+                          final messages = state.messages?.data ?? [];
+                          final isLoading = state.messages?.isLoading ?? false;
+                          return messages.isEmpty
+                              ? const WelcomeLottie()
+                              : Column(
+                                  children: [
+                                    Expanded(
+                                      child: ListView.separated(
+                                        physics: const BouncingScrollPhysics(),
+                                        controller: _scrollController,
+                                        itemCount: messages.length,
+                                        itemBuilder: (context, index) {
+                                          return MessageBubble(
+                                            message:
+                                                messages[index][AiModelConstants
+                                                    .messageKey]!,
+                                            isUser:
+                                                messages[index][AiModelConstants
+                                                    .roleKey] ==
+                                                AiModelConstants.userRole,
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) {
+                                          return const SizedBox(height: 24);
+                                        },
+                                      ),
+                                    ),
+                                    if (isLoading)
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 8,
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: TypingIndicator(),
+                                        ),
+                                      ),
+                                    if (state.messages?.errorMessage != null)
+                                      Text(
+                                        state.messages!.errorMessage!,
+                                        style: textTheme.bodyMedium?.copyWith(
+                                          color: AppColors.redAccent,
+                                        ),
+                                      ),
+                                  ],
+                                );
                         },
                       ),
                     ),
-                    const SmartCoachTextField(),
+                    SmartCoachTextField(
+                      onSend: () {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeOut,
+                          );
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
