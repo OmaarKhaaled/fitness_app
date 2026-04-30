@@ -3,7 +3,7 @@ import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
-import 'package:fitness_app/features/auth/login/presentation/widgets/login_form.dart';
+import 'package:fitness_app/features/auth/login/presentation/views/screens/login_form.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

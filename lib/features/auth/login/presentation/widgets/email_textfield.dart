@@ -1,5 +1,6 @@
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/core/validators/app_regex.dart';
 import 'package:flutter/material.dart';
 
 class EmailTextField extends StatelessWidget {
@@ -24,10 +25,7 @@ class EmailTextField extends StatelessWidget {
         if (value == null || value.isEmpty) {
           return 'Email is required';
         }
-        final emailRegex = RegExp(
-          r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$",
-        );
-        if (!emailRegex.hasMatch(value)) {
+        if (!AppRegex.isEmailValid(value)) {
           return 'Please enter a valid email address';
         }
         return null;
