@@ -55,6 +55,7 @@ class AppRouter {
       ),
       GoRoute(
         path: AppRoutesConstants.exercisesRoute,
+        name: AppRoutesConstants.exercisesRoute,
         builder: (context, state) {
           final extra = state.extra;
           if (extra is Muscle) {
@@ -76,6 +77,8 @@ class AppRouter {
             ),
           );
         },
+      ),
+      GoRoute(
         path: AppRoutesConstants.chatPage,
         name: AppRoutesConstants.chatPage,
         pageBuilder: (context, state) => CustomTransitionPage(
