@@ -2,14 +2,14 @@ import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/core/validators/app_validators.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fitness_app/features/change_password/data/models/request/change_password_request.dart';
-import 'package:fitness_app/features/change_password/domain/usecases/change_password_usecase.dart';
-import 'package:fitness_app/features/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
+import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
+import 'package:fitness_app/features/auth/change_password/domain/usecases/change_password_usecase.dart';
+import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/config/base_state/base_state.dart';
-import 'package:fitness_app/features/change_password/domain/models/change_password_model.dart';
+import 'package:fitness_app/features/auth/change_password/domain/models/change_password_model.dart';
 
 part 'change_password_state.dart';
 

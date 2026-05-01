@@ -1,4 +1,4 @@
-import 'package:fitness_app/features/change_password/data/models/request/change_password_request.dart';
+import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
 
 sealed class ChangePaaswordIntent {}
 

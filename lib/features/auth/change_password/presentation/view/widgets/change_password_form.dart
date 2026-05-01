@@ -3,8 +3,8 @@ import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
-import 'package:fitness_app/features/change_password/presentation/view_model/cubit/change_password_cubit.dart';
+import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
+import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

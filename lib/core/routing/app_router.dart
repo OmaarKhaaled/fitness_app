@@ -1,6 +1,6 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
-import 'package:fitness_app/features/change_password/presentation/view/pages/change_password_screen.dart';
+import 'package:fitness_app/features/auth/change_password/presentation/view/pages/change_password_screen.dart';
 import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/workouts/data/models/wourkout_group_response/muscle.dart';
