@@ -175,6 +175,44 @@ class AppTextConstants {
   static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
   static String get workoutsIcon => 'bottom_nav_bar.workouts'.tr();
   static String get profileIcon => 'bottom_nav_bar.profile'.tr();
+  // Workouts
+  static String get upcomingWorkouts => 'workouts.upcoming_workouts'.tr();
+  static String get workoutsSeeAll => 'workouts.see_all'.tr();
+  static String get noWorkoutsFound => 'workouts.no_workouts_found'.tr();
+  static String get workoutsAll => 'workouts.all'.tr();
+
+  // Meals
+  static String get mealsRecommendationForYou =>
+      'meals.recommendation_for_you'.tr();
+  static String get mealsSeeAll => 'meals.see_all'.tr();
+  static String get noMealsFound => 'meals.no_meals_found'.tr();
+  static String get foodRecommendation => 'meals.food_recommendation'.tr();
+
+  // Smart Coach
+  static String get smartCoach => 'smart_coach.smart_coach'.tr();
+  static String get smartCoachGreeting => 'smart_coach.greeting'.tr();
+  static String get smartCoachGreetingDescription =>
+      'smart_coach.greeting_description'.tr();
+  static String get smartCoachWelcomeMessage =>
+      'smart_coach.welcome_message'.tr();
+  static String get smartCoachGetStarted => 'smart_coach.get_started'.tr();
+  // profile
+  static String get profile => 'profile.title'.tr();
+  static String get editProfile => 'profile.edit_profile'.tr();
+  static String get changePassword => 'profile.change_password'.tr();
+  static String get selectLanguage => 'profile.select_language'.tr();
+  static String get english => 'profile.english'.tr();
+  static String get arabic => 'profile.arabic'.tr();
+  static String get security => 'profile.security'.tr();
+  static String get help => 'profile.help'.tr();
+  static String get privacyPolicy => 'profile.privacy_policy'.tr();
+  static String get logout => 'profile.logout'.tr();
+  static String get yes => 'profile.yes'.tr();
+  static String get no => 'profile.no'.tr();
+  static String get areYouSureToCloseTheApp =>
+      'profile.areYouSureToCloseTheApp'.tr();
+  static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
+  static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
   //edit profile section
   static String get editProfileHeader => 'edit_profile_sec.edit_profile'.tr();
   static String get yourWeight => 'edit_profile_sec.your_weight'.tr();

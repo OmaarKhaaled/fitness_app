@@ -6,6 +6,7 @@ import 'package:fitness_app/features/auth/login/presentation/manager/manager/log
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:rename_app/utils.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
@@ -16,6 +17,7 @@ class LoginCubit extends Cubit<LoginStates> {
     : super(LoginStates.initial());
 
   void doIntent(LoginIntent intent) {
+        Utils.logMessage('Login intent: $intent');
     if (intent is PerformLogin) {
       _performLogin(
         email: intent.email,

@@ -12,4 +12,7 @@ class AppRoutesConstants {
   static const String weightEditing = '/weightEditing';
   static const String goalEditing = '/goalEditing';
   static const String activityLevelEditing = '/activityLevelEditing';
+  static const String exercisesRoute = '/exercises';
+  static const String mealsRecommendationRoute = '/meals_recommendation';
+  static const String chatPage = '/chat_page';
 }

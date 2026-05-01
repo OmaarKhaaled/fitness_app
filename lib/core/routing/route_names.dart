@@ -9,4 +9,5 @@ abstract class RouteNames {
   static const weightEditing = '/weightEditing';
   static const goalEditing = '/goalEditing';
   static const activityLevelEditing = '/activityLevelEditing';
+  static const exercisesRoute = '/exercises';
 }

@@ -5,6 +5,7 @@
 
 version:
   revision: "db50e20168db8fee486b9abf32fc912de3bc5b6a"
+  revision: "db50e20168db8fee486b9abf32fc912de3bc5b6a"
   channel: "stable"
 
 project_type: app
@@ -15,7 +16,7 @@ migration:
     - platform: root
       create_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
       base_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
-    - platform: android
+    - platform: web
       create_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
       base_revision: db50e20168db8fee486b9abf32fc912de3bc5b6a
 

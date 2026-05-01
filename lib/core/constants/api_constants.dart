@@ -1,6 +1,7 @@
 class ApiConstants {
   //------------------------------- Base URL -----------------------------------//
   static const String baseUrl = 'https://fitness.elevateegy.com/api/v1/';
+
   //------------------------------- Auth Endpoints -----------------------------//
   static const String loginEndpoint = 'auth/signin';
   static const String registerEndpoint = 'auth/signup';
@@ -17,9 +18,26 @@ class ApiConstants {
   //------------------------------- levels Endpoints ---------------------------//
   static const String getDifficultyLevelsByPrimeMoverEndpoint =
       'levels/difficulty-levels/by-prime-mover';
-  static const String getAllDifficultyLevelsEndpoint = 'levels';
+  static const String getAllDifficultyLevels = 'levels';
+
   //------------------------------- muscles Endpoints -------------------------//
   static const String getAllMuscleGroupsEndpoint = 'muscles';
   static const String getAllMuscleGroupByMuscleIdEndpoint =
       'musclesGroup/{MuscleGroupId}';
+  static const String getRandomPrimeMoverMusclesEndpoint = 'muscles/random';
+
+  //------------------------------- exercises Endpoints -----------------------//
+  static const String exercisesByPrimeMoverMuscleAndDifficultyLevel =
+      'exercises/by-muscle-difficulty';
+
+  static const String getRandomMuscleEndpoint = 'muscles/random';
+  static const String getMuscleGroupByMuscleIdEndpoint =
+      'musclesGroup/by-muscle-group?muscleGroupId={MuscleGroupId}';
+
+  //------------------------------- meals Endpoints -----------------------//
+  static const String mealsDbBaseUrl =
+      'https://www.themealdb.com/api/json/v1/1/';
+  static const String mealsCategoriesEndpoint = 'categories.php';
+  static const String getMealsByCategoryEndpoint = 'filter.php';
+  static const String getMealDetailsEndpoint = 'lookup.php';
 }

@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: currentTab,
               );
           return AppScaffold(
-            backgroundImage: AppAssets.authBackground,
+            backgroundImage: AppAssets.homeBackGround,
             alignment: Alignment.topCenter,
             isBottomNavVisible: state.isBottomNavVisible,
             bottomWidget: Container(
@@ -97,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: AppColors.navBarBg,
                   selectedItemColor: AppColors.primary,
                   unselectedItemColor: AppColors.white,
+                  unselectedLabelStyle: const TextStyle(fontSize: 0),
                   showSelectedLabels: true,
                   showUnselectedLabels: false,
                   currentIndex: state.currAppTab.index,

@@ -46,7 +46,7 @@
     "last_name_placeholder": "Last Name",
     "email_placeholder": "Email",
     "password_placeholder": "Password",
-    "repassword_placeholder":"Re password",
+    "repassword_placeholder": "Re password",
     "or": "Or",
     "button": "Register",
     "already_have_account": "Already Have An Account?",
@@ -64,7 +64,7 @@
     "age": {
       "question": "HOW OLD ARE YOU ?",
       "selection_info": "This Helps Us Create Your Personalized Plan",
-      "year":"Year",
+      "year": "Year",
       "button": "Next"
     },
     "weight": {
@@ -146,10 +146,46 @@
     "register_link": "Register"
   },
   "bottom_nav_bar": {
-    "explore":"Explore",
-    "smart_coach":"Smart Coach",
-    "workouts":"Workouts",
-    "profile":"Profile"
+    "explore": "Explore",
+    "smart_coach": "Smart Coach",
+    "workouts": "Workouts",
+    "profile": "Profile"
+  },
+  "workouts": {
+    "upcoming_workouts": "Upcoming Workouts",
+    "see_all": "See All",
+    "no_workouts_found": "No workouts found",
+    "all": "All"
+  },
+  "meals": {
+    "recommendation_for_you": "Recommendation For You",
+    "see_all": "See All",
+    "no_meals_found": "No meals found",
+    "food_recommendation": "Food Recommendation"
+  },
+  "smart_coach": {
+    "smart_coach": "Smart Coach",
+    "greeting": "Hey ",
+    "greeting_description": "I Am Your Smart Coach",
+    "welcome_message": "How Can I Assist You \nToday ?",
+    "get_started": "Get Started",
+    "no_response":"No response received.",
+    "ask_smart_coach":"Ask your coach"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "change_password": "Change Password",
+    "select_language": "Select Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "security": "Security",
+    "help": "Help",
+    "privacy_policy": "Privacy Policy",
+    "logout": "Logout",
+    "yes": "Yes",
+    "no": "No",
+    "areYouSureToCloseTheApp": "Are you sure to close the application?"
   },
   "edit_profile_sec":{
     "edit_profile":"Edit Profile",
