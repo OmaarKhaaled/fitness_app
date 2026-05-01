@@ -14,7 +14,8 @@ class ChangePasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
-
+final cubit = context.read<ChangePasswordCubit>();
+final isPasswordVisible = false;
 
     return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
       builder: (context, state) {
@@ -47,23 +48,59 @@ class ChangePasswordForm extends StatelessWidget {
                         AppTextConstants.createNewPassword,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      ChangePasswordTextField(
-                        controller: context
-                            .read<ChangePasswordCubit>()
-                            .currentPasswordController,
-                        hintText: AppTextConstants.oldPassword,
+                      TextFormField(
+                        controller: cubit.currentPasswordController,
+                        obscureText: state.currentPasswordVisible,
+                        decoration: InputDecoration(
+                          hintText: AppTextConstants.oldPassword,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              state.currentPasswordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: AppColors.grey,
+                            ),
+                            onPressed: () {
+                              cubit.doIntent(ToggleCurrentPasswordVisibility());
+                            },
+                          ),
+                        ),
                       ),
-                      ChangePasswordTextField(
-                        controller: context
-                            .read<ChangePasswordCubit>()
-                            .newPasswordController,
-                        hintText: AppTextConstants.newPassword,
+                      TextFormField(
+                        controller: cubit.newPasswordController,
+                        obscureText: state.newPasswordVisible,
+                        decoration: InputDecoration(
+                          hintText: AppTextConstants.newPassword,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              state.newPasswordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: AppColors.grey,
+                            ),
+                            onPressed: () {
+                              cubit.doIntent(ToggleNewPasswordVisibility());
+                            },
+                          ),
+                        ),
                       ),
-                      ChangePasswordTextField(
-                        controller: context
-                            .read<ChangePasswordCubit>()
-                            .confirmPasswordController,
-                        hintText: AppTextConstants.confirmPassword,
+                      TextFormField(
+                        controller: cubit.confirmPasswordController,
+                        obscureText: state.confirmPasswordVisible,
+                        decoration: InputDecoration(
+                          hintText: AppTextConstants.confirmPassword,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              state.confirmPasswordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: AppColors.grey,
+                            ),
+                            onPressed: () {
+                              cubit.doIntent(ToggleConfirmPasswordVisibility());
+                            },
+                          ),
+                        ),
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -72,9 +109,7 @@ class ChangePasswordForm extends StatelessWidget {
                             backgroundColor: AppColors.primary,
                           ),
                           onPressed: () {
-                            context.read<ChangePasswordCubit>().doIntent(
-                              SubmitChangePasswordIntent(),
-                            );
+                            cubit.doIntent(SubmitChangePasswordIntent());
                           },
                           child: Text(AppTextConstants.done),
                         ),

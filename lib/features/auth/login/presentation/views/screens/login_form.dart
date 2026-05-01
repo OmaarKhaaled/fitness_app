@@ -81,89 +81,84 @@ class _LoginFormState extends State<LoginForm> {
         );
       },
       child: BlurCard(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-          decoration: BoxDecoration(
-            color: AppColors.white.withValues(alpha: .06),
-            borderRadius: BorderRadius.circular(40),
-            border: Border.all(color: AppColors.white.withValues(alpha: .1)),
-          ),
-          child: Form(
-            key: _formKey,
-            autovalidateMode: (widget.autoValidate ?? false)
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  AppTextConstants.loginHeading,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
+        child: Form(
+          key: _formKey,
+          autovalidateMode: (widget.autoValidate ?? false)
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                AppTextConstants.loginHeading,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              // Email Field
+              EmailTextField(emailController: _emailController),
+              const SizedBox(height: 16),
+
+              // Password Field
+              PasswordTextField(
+                controller: _passwordController,
+                hintText: AppTextConstants.loginEmailPlaceholder,
+              ),
+
+              // Forgot Password Link
+              const ForgetPasswordLink(),
+
+              const SizedBox(height: 10),
+
+              // Divider OR Divider
+              Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: AppColors.white.withValues(alpha: .2),
+                      endIndent: 10,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 30),
-        
-                // Email Field
-                EmailTextField(emailController: _emailController),
-                const SizedBox(height: 16),
-        
-                // Password Field
-                PasswordTextField(controller: _passwordController),
-        
-                // Forgot Password Link
-                const ForgetPasswordLink(),
-        
-                const SizedBox(height: 10),
-        
-                // Divider OR Divider
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: AppColors.white.withValues(alpha: .2),
-                        endIndent: 10,
-                      ),
+                  Text(
+                    AppTextConstants.loginOr,
+                    style: TextStyle(
+                      color: AppColors.white.withValues(alpha: .5),
+                      fontSize: 12,
                     ),
-                    Text(
-                      AppTextConstants.loginOr,
-                      style: TextStyle(
-                        color: AppColors.white.withValues(alpha: .5),
-                        fontSize: 12,
-                      ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: AppColors.white.withValues(alpha: .2),
+                      indent: 10,
                     ),
-                    Expanded(
-                      child: Divider(
-                        color: AppColors.white.withValues(alpha: .2),
-                        indent: 10,
-                      ),
-                    ),
-                  ],
-                ),
-        
-                const SizedBox(height: 24),
-        
-                // Social Logins
-                const SocialLoginButtons(),
-        
-                const SizedBox(height: 32),
-        
-                // Login Button
-                LoginButton(
-                  formKey: _formKey,
-                  cubit: cubit,
-                  emailController: _emailController,
-                  passwordController: _passwordController,
-                  rememberMe: _rememberMe,
-                ),
-        
-                const SizedBox(height: 24),
-        
-                // Register Link
-                const RegisterLink(),
-              ],
-            ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 24),
+
+              // Social Logins
+              const SocialLoginButtons(),
+
+              const SizedBox(height: 32),
+
+              // Login Button
+              LoginButton(
+                formKey: _formKey,
+                cubit: cubit,
+                emailController: _emailController,
+                passwordController: _passwordController,
+                rememberMe: _rememberMe,
+              ),
+
+              const SizedBox(height: 24),
+
+              // Register Link
+              const RegisterLink(),
+            ],
           ),
         ),
       ),
