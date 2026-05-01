@@ -8,23 +8,22 @@ import 'package:fitness_app/features/auth/change_password/domain/repos/change_pa
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ChangePasswordRepo)
-class ChangePassRepoImpl implements ChangePasswordRepo {
+class ChangePasswordRepoImpl implements ChangePasswordRepo {
   final ChangePasswordRemoteDataSource _changePasswordRemoteDataSource;
-  ChangePassRepoImpl(this._changePasswordRemoteDataSource);
+  ChangePasswordRepoImpl(this._changePasswordRemoteDataSource);
 
   @override
   Future<BaseResponse<ChangePasswordModel>> changePassword(
     ChangePasswordRequest changePasswordRequest,
   ) async {
-    final response = await _changePasswordRemoteDataSource.changePassword(changePasswordRequest);
+    final response = await _changePasswordRemoteDataSource.changePassword(
+      changePasswordRequest,
+    );
     return response.when(
       initial: () => const BaseResponse.initial(),
       loading: () => const BaseResponse.loading(),
       success: (data) => BaseResponse.success(
-        ChangePasswordModel(
-          message: data.message ?? '',
-          token: data.token,
-        ),
+        ChangePasswordModel(message: data.message ?? '', token: data.token),
       ),
       failure: (exception) => BaseResponse.failure(exception),
     );

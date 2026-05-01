@@ -17,6 +17,8 @@ class ChangePassRemoteDatasourcesImpl
   Future<BaseResponse<ChangePasswordResponse>> changePassword(
     ChangePasswordRequest changepasswordrequest,
   ) {
-    return apiCall(() => apiClient.changePassword(request: changepasswordrequest));
+    return apiCall(
+      () => apiClient.changePassword(request: changepasswordrequest),
+    );
   }
 }

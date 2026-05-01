@@ -3,5 +3,7 @@ import 'package:fitness_app/features/auth/change_password/data/models/request/ch
 import 'package:fitness_app/features/auth/change_password/domain/models/change_password_model.dart';
 
 abstract class ChangePasswordRepo {
-  Future<BaseResponse<ChangePasswordModel>> changePassword(ChangePasswordRequest changepasswordrequest);
+  Future<BaseResponse<ChangePasswordModel>> changePassword(
+    ChangePasswordRequest changepasswordrequest,
+  );
 }

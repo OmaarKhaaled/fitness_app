@@ -153,7 +153,7 @@ class AppTextConstants {
       'forget_password.didnt_recieve_verification_code'.tr();
   static String get resendCode => 'forget_password.resend_code'.tr();
   static String get makeSureIts8CharactersOrMore =>
-      "forget_password.make_sure_it_is_8_characters_or_more".tr();
+      'forget_password.make_sure_it_is_8_characters_or_more'.tr();
   static String get createNewPassword =>
       'forget_password.create_new_password'.tr();
   static String get done => 'forget_password.done'.tr();
@@ -213,6 +213,6 @@ class AppTextConstants {
       'profile.areYouSureToCloseTheApp'.tr();
   static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
   static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
-  //change password 
-  static String get oldPassword=> 'change_password.old_password'.tr();
+  //change password
+  static String get oldPassword => 'change_password.old_password'.tr();
 }

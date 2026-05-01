@@ -9,7 +9,6 @@ import 'package:fitness_app/config/di/di.dart';
 import 'package:go_router/go_router.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-
   ChangePasswordScreen({super.key});
 
   @override
@@ -25,10 +24,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         listenWhen: (p, c) => p.baseState != c.baseState,
         listener: (context, state) {
           if (state.baseState.data != null && !state.baseState.isLoading) {
-            UiUtils.showSuccessMsg(context, AppTextConstants.passwordResetSuccessfully);
+            UiUtils.showSuccessMsg(
+              context,
+              AppTextConstants.passwordResetSuccessfully,
+            );
             context.push(RouteNames.login);
           }
-          if (state.baseState.errorMessage != null && !state.baseState.isLoading) {
+          if (state.baseState.errorMessage != null &&
+              !state.baseState.isLoading) {
             UiUtils.showErrorMsg(context, state.baseState.errorMessage!);
           }
         },

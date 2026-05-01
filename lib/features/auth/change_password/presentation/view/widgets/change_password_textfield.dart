@@ -26,10 +26,7 @@ class ChangePasswordTextField extends StatelessWidget {
       obscureText: obscureText,
       style: const TextStyle(color: AppColors.white),
       decoration: InputDecoration(
-        prefixIcon: const Icon(
-          Icons.lock_outline,
-          color: AppColors.grey,
-        ),
+        prefixIcon: const Icon(Icons.lock_outline, color: AppColors.grey),
         hintText: hintText,
         suffixIcon: IconButton(
           icon: Icon(
@@ -42,7 +39,7 @@ class ChangePasswordTextField extends StatelessWidget {
           onPressed: onToggleVisibility,
         ),
       ),
-      validator:AppValidators.validatePassword,
+      validator: AppValidators.validatePassword,
     );
   }
 }

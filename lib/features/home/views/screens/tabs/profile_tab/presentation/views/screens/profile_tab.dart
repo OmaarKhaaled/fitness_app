@@ -139,7 +139,8 @@ class _ProfileTabState extends State<ProfileTab> {
                           ProfileMenuItem(
                             iconPath: AppIcons.changePassword,
                             title: AppTextConstants.changePassword,
-                            onTap: () => context.push(RouteNames.changePassword),
+                            onTap: () =>
+                                context.push(RouteNames.changePassword),
                           ),
                           ProfileMenuItem(
                             iconPath: AppIcons.language,

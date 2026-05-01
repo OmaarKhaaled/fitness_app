@@ -121,6 +121,5 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         );
       },
     );
-
   }
 }

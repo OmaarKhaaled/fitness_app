@@ -17,7 +17,7 @@ class LoginCubit extends Cubit<LoginStates> {
     : super(LoginStates.initial());
 
   void doIntent(LoginIntent intent) {
-        Utils.logMessage('Login intent: $intent');
+    Utils.logMessage('Login intent: $intent');
     if (intent is PerformLogin) {
       _performLogin(
         email: intent.email,

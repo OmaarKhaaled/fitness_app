@@ -162,7 +162,10 @@ class ChangePasswordForm extends StatelessWidget {
                                 FocusScope.of(context).unfocus();
 
                                 cubit.doIntent(SubmitChangePasswordIntent());
-                                UiUtils.showSuccessMsg(context, AppTextConstants.passwordResetSuccessfully);
+                                UiUtils.showSuccessMsg(
+                                  context,
+                                  AppTextConstants.passwordResetSuccessfully,
+                                );
 
                                 // navigate back
                                 context.go(RouteNames.home);
