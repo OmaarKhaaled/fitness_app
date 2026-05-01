@@ -1,34 +1,48 @@
+import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/core/validators/app_validators.dart';
+import 'package:flutter/material.dart';
 
-// import 'package:fitness_app/core/theme/app_colors.dart';
-// import 'package:flutter/material.dart';
+class ChangePasswordTextField extends StatelessWidget {
+  const ChangePasswordTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.obscureText,
+    required this.onToggleVisibility,
+    this.validator,
+  });
 
-// class ChangePasswordTextField extends StatelessWidget {
-//   const ChangePasswordTextField({
-//     super.key,
-//     required this.controller,
-//     required this.hintText,
-//    required this.isPasswordVisible ,
-//     required this.onChanged,
-//   });
+  final TextEditingController controller;
+  final String hintText;
+  final bool obscureText;
+  final VoidCallback onToggleVisibility;
+  final String? Function(String?)? validator;
 
-//   final TextEditingController controller;
-//   final String hintText;
-//   final bool isPasswordVisible;
-//   final Function(String) onChanged;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       controller: controller,
-//       obscureText: isPasswordVisible,
-//       onChanged: onChanged,
-//       decoration: InputDecoration(
-//         prefixIcon: const Icon(Icons.lock_outlined, color: AppColors.grey),
-//         suffixIcon: isPasswordVisible
-//             ? const Icon(Icons.vibration_outlined, color: AppColors.grey)
-//             : const Icon(Icons.visibility_off_outlined, color: AppColors.grey),
-//         hintText: hintText,
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: obscureText,
+      style: const TextStyle(color: AppColors.white),
+      decoration: InputDecoration(
+        prefixIcon: const Icon(
+          Icons.lock_outline,
+          color: AppColors.grey,
+        ),
+        hintText: hintText,
+        suffixIcon: IconButton(
+          icon: Icon(
+            obscureText
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
+            color: AppColors.grey,
+            size: 20,
+          ),
+          onPressed: onToggleVisibility,
+        ),
+      ),
+      validator:AppValidators.validatePassword,
+    );
+  }
+}

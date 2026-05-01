@@ -1,8 +1,8 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
+import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
-import 'package:fitness_app/features/auth/login/presentation/widgets/default_snackbar.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/email_textfield.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/forget_password_link.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/login_button.dart';
@@ -71,12 +71,7 @@ class _LoginFormState extends State<LoginForm> {
             context.go(RouteNames.home);
           },
           failure: (exception) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              defaultSnackBar(
-                message: exception.message,
-                color: AppColors.redAccent,
-              ),
-            );
+            UiUtils.showErrorMsg(context, exception.message);
           },
         );
       },
@@ -105,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
               // Password Field
               PasswordTextField(
                 controller: _passwordController,
-                hintText: AppTextConstants.loginEmailPlaceholder,
+                hintText: AppTextConstants.loginPasswordPlaceholder,
               ),
 
               // Forgot Password Link

@@ -1,11 +1,14 @@
-import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
   final TextEditingController controller;
-final String hintText;
-  const PasswordTextField({super.key, required this.controller, required this.hintText});
+  final String hintText;
+  const PasswordTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+  });
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -20,9 +23,10 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       controller: widget.controller,
       keyboardType: TextInputType.visiblePassword,
       obscureText: _obscurePassword,
+
       style: const TextStyle(color: AppColors.white),
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.lock_outline),
+        prefixIcon: const Icon(Icons.lock_outline, color: AppColors.grey),
         hintText: widget.hintText,
         suffixIcon: IconButton(
           icon: Icon(
@@ -30,6 +34,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
                 ? Icons.visibility_off_outlined
                 : Icons.visibility_outlined,
             size: 20,
+            color: AppColors.grey,
           ),
           onPressed: () {
             setState(() => _obscurePassword = !_obscurePassword);
