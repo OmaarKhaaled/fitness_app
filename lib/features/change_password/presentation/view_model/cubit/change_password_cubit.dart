@@ -1,3 +1,4 @@
+import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/core/validators/app_validators.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,31 +18,33 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   final ChangePasswordUsecase _changePasswordUsecase;
 
   ChangePasswordCubit(this._changePasswordUsecase)
-    : super(ChangePasswordState.initial());
+    : super(ChangePasswordState.initial()) {
+    currentPasswordController.addListener(_onTextChanged);
+    newPasswordController.addListener(_onTextChanged);
+    confirmPasswordController.addListener(_onTextChanged);
+  }
 
   final formKey = GlobalKey<FormState>();
   final currentPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  void doIntent(ChangePaaswordIntent intent) {
-    switch (intent.runtimeType) {
-      case FormChangedIntent:
-        _validateForm(ChangePasswordRequest());
-        break;
-      case ToggleCurrentPasswordVisibility():
-        _toggleCurrentPasswordVisibility;
-        break;
-      case ToggleNewPasswordVisibility():
-        _toggleNewPasswordVisibility;
-        break;
+  void _onTextChanged() {
+    _validateForm(ChangePasswordRequest());
+  }
 
+  void doIntent(ChangePaaswordIntent intent) {
+    switch (intent) {
+      case FormChangedIntent():
+        _validateForm(ChangePasswordRequest());
+      case ToggleCurrentPasswordVisibility():
+        _toggleCurrentPasswordVisibility();
+      case ToggleNewPasswordVisibility():
+        _toggleNewPasswordVisibility();
       case ToggleConfirmPasswordVisibility():
-        _toggleConfirmPasswordVisibility;
-        break;
-      case SubmitChangePasswordIntent:
+        _toggleConfirmPasswordVisibility();
+      case SubmitChangePasswordIntent():
         _submitChangePassword();
-        break;
     }
   }
 
@@ -58,8 +61,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         newPass.text == confirm.text;
 
     emit(state.copyWith(isFormValid: isValid));
-    emit(state.copyWith(baseState: state.baseState.copyWith(isLoading: true)));
-    // final result = await _changePasswordUsecase.call(request);
+    // Removed redundant isLoading: true emit
   }
 
   _toggleNewPasswordVisibility() {
@@ -77,5 +79,46 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   _submitChangePassword() async {
     if (!state.isFormValid) return;
     emit(state.copyWith(baseState: state.baseState.copyWith(isLoading: true)));
+
+    final result = await _changePasswordUsecase(
+      ChangePasswordRequest(
+        newPassword: newPasswordController.text,
+        password: currentPasswordController.text,
+      ),
+    );
+    if (isClosed) return;
+
+    result.when(
+      initial: () => emit(
+        state.copyWith(baseState: state.baseState.copyWith(isLoading: false)),
+      ),
+      loading: () => emit(
+        state.copyWith(baseState: state.baseState.copyWith(isLoading: true)),
+      ),
+      success: (data) {
+        emit(
+          state.copyWith(
+            baseState: state.baseState.copyWith(isLoading: false, data: data),
+          ),
+        );
+      },
+      failure: (exception) {
+        emit(
+          state.copyWith(
+            baseState: state.baseState.copyWith(
+              isLoading: false,
+              errorMessage: exception.message,
+            ),
+          ),
+        );
+      },
+    );
+    @override
+    Future<void> close() {
+      currentPasswordController.dispose();
+      newPasswordController.dispose();
+      confirmPasswordController.dispose();
+      return super.close();
+    }
   }
 }

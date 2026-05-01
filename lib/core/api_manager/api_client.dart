@@ -4,6 +4,8 @@ import 'package:fitness_app/features/auth/login/data/models/request/login_reques
 import 'package:fitness_app/features/auth/login/data/models/response/login_response.dart';
 import 'package:fitness_app/features/change_password/data/models/request/change_password_request.dart';
 import 'package:fitness_app/features/change_password/data/models/response/change_password_response.dart';
+import 'package:fitness_app/features/exercise/data/models/response/exercise_response.dart';
+import 'package:fitness_app/features/exercise/data/models/response/levels_by_primemuscle_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -22,4 +24,21 @@ abstract class ApiClient {
   Future<ChangePasswordResponse> changePassword({
     @Body() required ChangePasswordRequest request,
   });
+  @GET(ApiConstants.getAllDifficultyLevels)
+  Future<List<String>> getAllDifficultyLevels();
+
+  @GET(ApiConstants.getRandomPrimeMoverMusclesEndpoint)
+  Future<List<String>> getRandomPrimeMoverMuscles();
+
+  @GET(ApiConstants.getDifficultyLevelsByPrimeMoverEndpoint)
+  Future<LevelsByPrimemuscleResponse> getDifficultyLevelsByPrimeMoverMuscle(
+    @Header('Authorization') String token,
+    @Query('primeMoverMuscleId') String primeMoverMuscleId,
+  );
+
+  @GET(ApiConstants.exercisesByPrimeMoverMuscleAndDifficultyLevel)
+  Future<ExerciseResponse> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
+    @Query('primeMoverMuscleId') String primeMoverMuscleId,
+    @Query('difficultyLevelId') String difficultyLevelId,
+  );
 }

@@ -1,9 +1,10 @@
+import 'package:fitness_app/features/change_password/data/models/request/change_password_request.dart';
 
 sealed class ChangePaaswordIntent {}
 
 class FormChangedIntent extends ChangePaaswordIntent {
-  final FormChangedIntent request;
-  FormChangedIntent(this.request);
+  final ChangePasswordRequest? request;
+  FormChangedIntent([this.request]);
 }
 
 class ToggleCurrentPasswordVisibility extends ChangePaaswordIntent {}
