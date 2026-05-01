@@ -33,6 +33,14 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     _validateForm(ChangePasswordRequest());
   }
 
+  @override
+  Future<void> close() {
+    currentPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
+  }
+
   void doIntent(ChangePaaswordIntent intent) {
     switch (intent) {
       case FormChangedIntent():
@@ -113,12 +121,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         );
       },
     );
-    @override
-    Future<void> close() {
-      currentPasswordController.dispose();
-      newPasswordController.dispose();
-      confirmPasswordController.dispose();
-      return super.close();
-    }
+
   }
 }

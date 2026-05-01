@@ -118,7 +118,7 @@
     "reset": "إعادة تعيين",
     "didnt_recieve_verification_code": "لم تستلم رمز التحقق؟",
     "resend_code": "إعادة إرسال الرمز",
-    "make_sure_its_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
+    "make_sure_it's_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
     "create_new_password": "إنشاء كلمة مرور جديدة",
     "done": "تم",
     "please_enter_valid_otp": "الرجاء إدخال رمز تحقق صالح",

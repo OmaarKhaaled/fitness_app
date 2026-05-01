@@ -1,3 +1,4 @@
+import 'dart:ui';
 import '../theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ class AppScaffold extends StatelessWidget {
   final Widget? bottomWidget;
   final bool isBottomNavVisible;
   final bool hasGradient;
+  final PreferredSizeWidget? appBar;
   const AppScaffold({
     super.key,
     required this.child,
@@ -16,16 +18,23 @@ class AppScaffold extends StatelessWidget {
     this.bottomWidget,
     this.isBottomNavVisible = true,
     this.hasGradient = false,
+    this.appBar,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      extendBodyBehindAppBar: true,
       backgroundColor: AppColors.transparent,
+      appBar: appBar,
       body: Stack(
         fit: StackFit.expand,
         children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(),
+            child: child,
+          ),
           Image.asset(backgroundImage, fit: BoxFit.cover),
           if (hasGradient)
             const Positioned.fill(
@@ -39,7 +48,6 @@ class AppScaffold extends StatelessWidget {
                       AppColors.black,
                       AppColors.navBarBg,
                     ],
-                    // stops: [0.3, 0.7, 1.0],
                   ),
                 ),
               ),
