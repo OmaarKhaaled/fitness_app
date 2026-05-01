@@ -10,3 +10,12 @@ class SendMessageIntent extends ChatPageIntents {
 class GetPreviousConversationsIntent extends ChatPageIntents {
   GetPreviousConversationsIntent();
 }
+
+class LoadSessionIntent extends ChatPageIntents {
+  final String sessionId;
+  LoadSessionIntent(this.sessionId);
+}
+
+class DeleteAllSessionsIntent extends ChatPageIntents {
+  DeleteAllSessionsIntent();
+}

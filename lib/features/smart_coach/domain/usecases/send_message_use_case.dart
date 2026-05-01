@@ -6,7 +6,15 @@ import 'package:injectable/injectable.dart';
 class SendMessageUseCase {
   final SmartCoachRepository _smartCoachRepository;
   SendMessageUseCase(this._smartCoachRepository);
-  Future<BaseResponse<String>> call(String userMessage) async {
-    return await _smartCoachRepository.sendMessage(userMessage);
+  Future<BaseResponse<String>> call(
+    String userMessage,
+    String sessionId,
+    bool isFirstMessage,
+  ) async {
+    return await _smartCoachRepository.sendMessage(
+      userMessage,
+      sessionId,
+      isFirstMessage,
+    );
   }
 }

@@ -172,6 +172,7 @@
     "no_response":"لا يوجد رد",
     "ask_smart_coach":"اسأل مدربك الذكي",
     "previous_conversations":"المحادثات السابقة",
-    "no_previous_conversations":"لا يوجد محادثات سابقة"
+    "no_previous_conversations":"لا يوجد محادثات سابقة",
+    "clear_all":"مسح الكل"
   }
 }

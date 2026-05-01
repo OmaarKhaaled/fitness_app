@@ -172,6 +172,7 @@
     "no_response":"No response received.",
     "ask_smart_coach":"Ask your coach",
     "previous_conversations":"Previous Conversations",
-    "no_previous_conversations":"No previous conversations"
+    "no_previous_conversations":"No previous conversations",
+    "clear_all":"Clear All"
   }
 }

@@ -202,4 +202,5 @@ class AppTextConstants {
       'smart_coach.previous_conversations'.tr();
   static String get noPreviousConversations =>
       'smart_coach.no_previous_conversations'.tr();
+  static String get clearAll => 'smart_coach.clear_all'.tr();
 }

@@ -21,4 +21,18 @@ class SessionModel extends HiveObject {
     required this.createdAt,
     required this.messages,
   });
+
+  SessionModel copyWith({
+    String? id,
+    String? title,
+    DateTime? createdAt,
+    List<ChatMessageModel>? messages,
+  }) {
+    return SessionModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      createdAt: createdAt ?? this.createdAt,
+      messages: messages ?? this.messages,
+    );
+  }
 }

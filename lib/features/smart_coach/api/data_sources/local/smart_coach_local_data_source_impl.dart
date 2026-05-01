@@ -65,6 +65,16 @@ class SmartCoachLocalDataSourceImpl implements SmartCoachLocalDataSource {
   }
 
   @override
+  Future<BaseResponse<void>> deleteAllSession() async {
+    try {
+      await _sessionBox.clear();
+      return const BaseResponse.success(null);
+    } catch (e) {
+      return BaseResponse.failure(CacheException(e.toString()));
+    }
+  }
+
+  @override
   Future<BaseResponse<void>> appendMessage(
     String sessionId,
     ChatMessageModel message,

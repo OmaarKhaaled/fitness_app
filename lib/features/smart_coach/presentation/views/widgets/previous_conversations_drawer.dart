@@ -1,6 +1,8 @@
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_cubit.dart';
+import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_states.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/previous_conversation_tab.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/typing_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +25,9 @@ class PreviousConversationsDrawer extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.65,
             height: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.black.withValues(alpha: 0.92),
-              borderRadius: const BorderRadius.only(
+            decoration: const BoxDecoration(
+              color: AppColors.darkGrey,
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
                 bottomLeft: Radius.circular(16),
               ),
@@ -61,56 +63,64 @@ class PreviousConversationsDrawer extends StatelessWidget {
                       }
                       if (previousConversations.isEmpty) {
                         return Center(
-                          child: Text(
-                            AppTextConstants.noPreviousConversations,
-                            style: textTheme.bodyMedium?.copyWith(
-                              color: Colors.white70,
+                          child: Container(
+                            height: 44,
+                            alignment: Alignment.center,
+                            child: Text(
+                              AppTextConstants.noPreviousConversations,
+                              style: textTheme.bodyMedium?.copyWith(
+                                color: Colors.white70,
+                              ),
                             ),
                           ),
                         );
                       }
                       return Expanded(
-                        child: ListView.separated(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          itemCount: previousConversations.length,
-                          separatorBuilder: (_, __) =>
-                              const Divider(color: Colors.white10, height: 1),
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Padding(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ListView.separated(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 14,
+                                  vertical: 8,
                                 ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.arrow_back_sharp,
-                                      color: AppColors.primary,
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: Text(
-                                        previousConversations[index].title,
-                                        style: textTheme.bodyMedium?.copyWith(
-                                          color: Colors.white70,
-                                        ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: previousConversations.length,
+                                separatorBuilder: (_, __) => const Divider(
+                                  color: Colors.white10,
+                                  height: 1,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return PreviousConversationsTab(
+                                    session: previousConversations[index],
+                                  );
+                                },
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton.icon(
+                                onPressed: () {
+                                  cubit.doIntent(DeleteAllSessionsIntent());
+                                },
+                                icon: const Icon(
+                                  Icons.delete_forever,
+                                  color: AppColors.white,
+                                ),
+                                label: Text(
+                                  AppTextConstants.clearAll,
+                                  style: textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
                       );
                     },
                   ),
+
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

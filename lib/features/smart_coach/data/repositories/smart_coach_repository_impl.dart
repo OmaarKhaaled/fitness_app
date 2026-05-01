@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/config/errors/local_exception.dart';
 import 'package:fitness_app/core/constants/ai_model_constants.dart';
 import 'package:fitness_app/features/smart_coach/data/datasources/local/smart_coach_local_data_source.dart';
 import 'package:fitness_app/features/smart_coach/data/datasources/remote/smart_coach_remote_data_source.dart';
@@ -11,8 +12,6 @@ import 'package:injectable/injectable.dart';
 class SmartCoachRepositoryImpl implements SmartCoachRepository {
   final SmartCoachLocalDataSource _smartCoachLocalDataSource;
   final SmartCoachRemoteDataSource _smartCoachRemoteDataSource;
-  String? _currentSessionId;
-  bool _isFirstMessage = true;
   SmartCoachRepositoryImpl(
     this._smartCoachLocalDataSource,
     this._smartCoachRemoteDataSource,
@@ -28,32 +27,51 @@ class SmartCoachRepositoryImpl implements SmartCoachRepository {
   }
 
   @override
-  Future<BaseResponse<String>> sendMessage(String userMessage) async {
-    if (_isFirstMessage) {
-      _currentSessionId = DateTime.now().millisecondsSinceEpoch.toString();
-      final title = userMessage.length > 30
-          ? '${userMessage.substring(0, 30)}...'
-          : userMessage;
-      final session = SessionModel(
-        id: _currentSessionId!,
-        title: title,
-        createdAt: DateTime.now(),
-        messages: [],
-      );
-      await _smartCoachLocalDataSource.saveSession(session);
-      _isFirstMessage = false;
-    }
-    await _smartCoachLocalDataSource.appendMessage(
-      _currentSessionId!,
-      ChatMessageModel(role: AiModelConstants.userRole, text: userMessage),
+  Future<BaseResponse<SessionModel>> createSessionModel(
+    String userMessage,
+  ) async {
+    final sessionId = DateTime.now().millisecondsSinceEpoch.toString();
+    final message = ChatMessageModel(
+      role: AiModelConstants.userRole,
+      text: userMessage,
     );
+    final title = userMessage.length > 30
+        ? '${userMessage.substring(0, 30)}...'
+        : userMessage;
+    final session = SessionModel(
+      id: sessionId,
+      title: title,
+      createdAt: DateTime.now(),
+      messages: [message],
+    );
+    final response = await _smartCoachLocalDataSource.saveSession(session);
+    return response.when(
+      initial: () => const BaseResponse<SessionModel>.initial(),
+      loading: () => const BaseResponse<SessionModel>.loading(),
+      success: (_) => BaseResponse<SessionModel>.success(session),
+      failure: (f) => BaseResponse<SessionModel>.failure(f),
+    );
+  }
+
+  @override
+  Future<BaseResponse<String>> sendMessage(
+    String userMessage,
+    String sessionId,
+    bool isFirstMessage,
+  ) async {
+    if (!isFirstMessage) {
+      await _smartCoachLocalDataSource.appendMessage(
+        sessionId,
+        ChatMessageModel(role: AiModelConstants.userRole, text: userMessage),
+      );
+    }
     final result = await _smartCoachRemoteDataSource.sendMessage(userMessage);
     return result.when(
       initial: () => const BaseResponse<String>.initial(),
       loading: () => const BaseResponse<String>.loading(),
       success: (response) async {
         await _smartCoachLocalDataSource.appendMessage(
-          _currentSessionId!,
+          sessionId,
           ChatMessageModel(role: AiModelConstants.modelRole, text: response),
         );
         return BaseResponse<String>.success(response);
@@ -65,24 +83,32 @@ class SmartCoachRepositoryImpl implements SmartCoachRepository {
   }
 
   @override
-  Future<BaseResponse<void>> loadSession(String sessionId) async {
+  Future<BaseResponse<SessionModel>> loadSession(String sessionId) async {
     final session = await _smartCoachLocalDataSource.loadLocalSession(
       sessionId,
     );
     return session.when(
       initial: () {
-        return const BaseResponse<void>.initial();
+        return const BaseResponse<SessionModel>.initial();
       },
       loading: () {
-        return const BaseResponse<void>.loading();
+        return const BaseResponse<SessionModel>.loading();
       },
       success: (session) async {
         if (session == null) {
-          return const BaseResponse<void>.success(null);
+          return const BaseResponse<SessionModel>.failure(
+            CacheException(AiModelConstants.sessionNotFound),
+          );
         }
-        _currentSessionId = sessionId;
-        _isFirstMessage = false;
-        return await _smartCoachRemoteDataSource.loadSession(session);
+        final remoteResponse = await _smartCoachRemoteDataSource.loadSession(
+          session,
+        );
+        return remoteResponse.when(
+          initial: () => const BaseResponse<SessionModel>.initial(),
+          loading: () => const BaseResponse<SessionModel>.loading(),
+          success: (re) => BaseResponse<SessionModel>.success(session),
+          failure: (f) => BaseResponse<SessionModel>.failure(f),
+        );
       },
       failure: (e) {
         return BaseResponse.failure(e);
@@ -101,9 +127,12 @@ class SmartCoachRepositoryImpl implements SmartCoachRepository {
   }
 
   @override
+  Future<BaseResponse<void>> deleteAllSession() async {
+    return await _smartCoachLocalDataSource.deleteAllSession();
+  }
+
+  @override
   Future<BaseResponse<void>> startNewChatSession() async {
-    _currentSessionId = null;
-    _isFirstMessage = true;
     return await _smartCoachRemoteDataSource.startNewChatSession();
   }
 }

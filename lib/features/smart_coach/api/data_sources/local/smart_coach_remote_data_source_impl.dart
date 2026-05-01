@@ -7,10 +7,10 @@ import 'package:fitness_app/features/smart_coach/data/models/session_model.dart'
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: SmartCoachRemoteDataSource)
+@LazySingleton(as: SmartCoachRemoteDataSource)
 class SmartCoachRemoteDataSourceImpl implements SmartCoachRemoteDataSource {
   final GenerativeModel _model;
-  late final ChatSession _chat;
+  late ChatSession _chat;
   SmartCoachRemoteDataSourceImpl(this._model) {
     _chat = _model.startChat();
   }

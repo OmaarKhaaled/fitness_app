@@ -9,6 +9,7 @@ abstract interface class SmartCoachLocalDataSource {
   Future<BaseResponse<SessionModel?>> loadLocalSession(String sessionId);
   Future<BaseResponse<List<SessionModel>>> getAllSessions();
   Future<BaseResponse<void>> deleteSession(String sessionId);
+  Future<BaseResponse<void>> deleteAllSession();
   Future<BaseResponse<void>> appendMessage(
     String sessionId,
     ChatMessageModel message,

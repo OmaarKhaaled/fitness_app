@@ -4,10 +4,10 @@ import 'package:fitness_app/features/smart_coach/domain/repositories/smart_coach
 import 'package:injectable/injectable.dart';
 
 @injectable
-class LoadSessionUseCase {
+class CreateSessionModelUseCase {
   final SmartCoachRepository _smartCoachRepository;
-  LoadSessionUseCase(this._smartCoachRepository);
-  Future<BaseResponse<SessionModel>> call(String sessionId) async {
-    return await _smartCoachRepository.loadSession(sessionId);
+  CreateSessionModelUseCase(this._smartCoachRepository);
+  Future<BaseResponse<SessionModel>> call(String userMessage) {
+    return _smartCoachRepository.createSessionModel(userMessage);
   }
 }
