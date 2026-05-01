@@ -170,6 +170,8 @@
     "welcome_message":"How Can I Assist You \nToday ?",
     "get_started":"Get Started",
     "no_response":"No response received.",
-    "ask_smart_coach":"Ask your coach"
+    "ask_smart_coach":"Ask your coach",
+    "previous_conversations":"Previous Conversations",
+    "no_previous_conversations":"No previous conversations"
   }
 }

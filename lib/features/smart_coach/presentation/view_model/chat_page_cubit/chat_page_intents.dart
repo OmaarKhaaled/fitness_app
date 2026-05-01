@@ -6,3 +6,7 @@ class SendMessageIntent extends ChatPageIntents {
   final String userMessage;
   SendMessageIntent(this.userMessage);
 }
+
+class GetPreviousConversationsIntent extends ChatPageIntents {
+  GetPreviousConversationsIntent();
+}

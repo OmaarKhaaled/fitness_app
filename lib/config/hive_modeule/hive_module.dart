@@ -1,4 +1,4 @@
-import 'package:fitness_app/features/smart_coach/data/models/%20chat_message_model_adapter.dart';
+import 'package:fitness_app/features/smart_coach/data/models/chat_message_model_adapter.dart';
 import 'package:fitness_app/features/smart_coach/data/models/session_model_adapter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';

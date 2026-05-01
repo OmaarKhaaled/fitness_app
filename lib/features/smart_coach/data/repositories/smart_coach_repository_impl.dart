@@ -91,6 +91,16 @@ class SmartCoachRepositoryImpl implements SmartCoachRepository {
   }
 
   @override
+  Future<BaseResponse<List<SessionModel>>> getAllSessions() async {
+    return await _smartCoachLocalDataSource.getAllSessions();
+  }
+
+  @override
+  Future<BaseResponse<void>> deleteSession(String sessionId) async {
+    return await _smartCoachLocalDataSource.deleteSession(sessionId);
+  }
+
+  @override
   Future<BaseResponse<void>> startNewChatSession() async {
     _currentSessionId = null;
     _isFirstMessage = true;

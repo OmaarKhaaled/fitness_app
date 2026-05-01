@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/base_state/base_state.dart';
 import 'package:fitness_app/core/constants/ai_model_constants.dart';
+import 'package:fitness_app/features/smart_coach/data/models/session_model.dart';
+import 'package:fitness_app/features/smart_coach/domain/usecases/get_all_sessions_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/get_profile_pic_url_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/send_message_use_case.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';
@@ -11,12 +13,15 @@ import 'package:injectable/injectable.dart';
 @injectable
 class ChatPageCubit extends Cubit<ChatPageStates> {
   final GetProfilePicUrlUseCase _getProfilePicUrlUseCase;
+  final GetAllSessionsUseCase _getPreviousConversationsUseCase;
   final SendMessageUseCase _sendMessageUseCase;
   ChatPageCubit({
     required GetProfilePicUrlUseCase getProfilePicUrlUseCase,
     required SendMessageUseCase sendMessageUseCase,
+    required GetAllSessionsUseCase getAllSessionsUseCase,
   }) : _getProfilePicUrlUseCase = getProfilePicUrlUseCase,
        _sendMessageUseCase = sendMessageUseCase,
+       _getPreviousConversationsUseCase = getAllSessionsUseCase,
        super(const ChatPageStates());
   void doIntent(ChatPageIntents intent) {
     switch (intent) {
@@ -24,6 +29,8 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
         _getProfilePicUrl();
       case SendMessageIntent(userMessage: final userMessage):
         _sendMessage(userMessage);
+      case GetPreviousConversationsIntent():
+        _getPreviousConversations();
     }
   }
 
@@ -83,6 +90,37 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
       failure: (f) => emit(
         state.copyWith(
           messages: BaseState<List<Map<String, String>>>(
+            errorMessage: f.message,
+            isLoading: false,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _getPreviousConversations() async {
+    final result = await _getPreviousConversationsUseCase();
+    emit(
+      state.copyWith(
+        previousConversations: const BaseState<List<SessionModel>>(
+          isLoading: true,
+        ),
+      ),
+    );
+    result.when(
+      initial: () {},
+      loading: () {},
+      success: (conversations) => emit(
+        state.copyWith(
+          previousConversations: BaseState<List<SessionModel>>(
+            data: conversations,
+            isLoading: false,
+          ),
+        ),
+      ),
+      failure: (f) => emit(
+        state.copyWith(
+          previousConversations: BaseState<List<SessionModel>>(
             errorMessage: f.message,
             isLoading: false,
           ),
