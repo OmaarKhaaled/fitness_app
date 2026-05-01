@@ -23,7 +23,7 @@ class AuthInterceptor extends Interceptor {
     final tokenResponse = await _secureStorageService.getAuthTokens();
 
     tokenResponse.when(
-      initial: () {},
+      initial: () => handler.next(options),
       loading: () {},
       success: (token) {
         if (token != null && token.isNotEmpty) {
@@ -32,13 +32,12 @@ class AuthInterceptor extends Interceptor {
           // Also add to the TOKEN header if your API expects it
           options.headers[CacheConstants.token] = token;
         }
+        handler.next(options);
       },
       failure: (error) {
-        if (kDebugMode) {}
+        handler.next(options);
       },
     );
-
-    handler.next(options);
   }
 
   @override

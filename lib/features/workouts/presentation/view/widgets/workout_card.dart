@@ -1,30 +1,48 @@
 import 'dart:ui'; // Required for ImageFilter
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:fitness_app/features/workouts/data/models/wourkout_group_response/muscle.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
 class WorkoutCard extends StatelessWidget {
   final String? imageUrl;
   final String? name;
   final VoidCallback? onTap;
+  final ExerciseModel exerciseModel;
 
   const WorkoutCard({
     super.key,
     required this.imageUrl,
     required this.name,
     this.onTap,
+    required this.exerciseModel,
   });
 
   factory WorkoutCard.fromMuscle(Muscle muscle, {VoidCallback? onTap}) {
-    return WorkoutCard(imageUrl: muscle.image, name: muscle.name, onTap: onTap);
+    return WorkoutCard(
+      imageUrl: muscle.image,
+      name: muscle.name,
+      onTap: onTap,
+      exerciseModel: ExerciseModel(
+        id: muscle.id ?? '',
+        name: muscle.name ?? '',
+        targetMuscleGroup: muscle.name ?? '',
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap:
+          onTap ??
+          () {
+            context.go(AppRoutesConstants.exercisesRoute, extra: exerciseModel);
+          },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white.withValues(alpha: 0.05),

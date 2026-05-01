@@ -34,5 +34,14 @@ class AppIcons {
   static const String backArrow = 'assets/icons/Vector.png';
   static const String maleSymbol = 'assets/icons/male-symbol.png';
   static const String femaleSymbol = 'assets/icons/female-symbol.png';
+  static const String security = 'assets/icons/profile_icons/security.svg';
+  static const String privacyPolicy = 'assets/icons/profile_icons/privacy.svg';
+  static const String help = 'assets/icons/profile_icons/help.svg';
+  static const String logout = 'assets/icons/profile_icons/logout.svg';
+  static const String editProfile =
+      'assets/icons/profile_icons/edit_profile.svg';
+  static const String changePassword =
+      'assets/icons/profile_icons/change_password.svg';
+  static const String language = 'assets/icons/profile_icons/language.svg';
   static const String back = 'assets/icons/Back.svg';
 }
