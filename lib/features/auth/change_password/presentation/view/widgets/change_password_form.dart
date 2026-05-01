@@ -27,7 +27,31 @@ class ChangePasswordForm extends StatelessWidget {
       UiUtils.showErrorMsg(context, message);
     }
 
-    return BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
+    return BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
+      listenWhen: (previous, current) =>
+          previous.baseState.isLoading != current.baseState.isLoading ||
+          previous.baseState.data != current.baseState.data ||
+          previous.baseState.errorMessage != current.baseState.errorMessage,
+      listener: (context, state) {
+        if (state.baseState.errorMessage != null) {
+          showError(state.baseState.errorMessage!);
+        }
+
+        if (state.baseState.data != null) {
+          cubit.currentPasswordController.clear();
+          cubit.newPasswordController.clear();
+          cubit.confirmPasswordController.clear();
+          formKey.currentState?.reset();
+
+          UiUtils.showSuccessMsg(
+            context,
+            AppTextConstants.passwordResetSuccessfully,
+          );
+
+          // navigate back
+          context.go(RouteNames.home);
+        }
+      },
       builder: (context, state) {
         return AppScaffold(
           backgroundImage: AppAssets.authBackground,
@@ -62,7 +86,7 @@ class ChangePasswordForm extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
 
-                        /// Current Password
+                        /// Old Password
                         ChangePasswordTextField(
                           controller: cubit.currentPasswordController,
                           hintText: AppTextConstants.oldPassword,
@@ -91,7 +115,7 @@ class ChangePasswordForm extends StatelessWidget {
                             }
 
                             if (value == cubit.currentPasswordController.text) {
-                              return 'New password must differ from current password';
+                              return 'New password must differ from old password';
                             }
 
                             return null;
@@ -120,58 +144,71 @@ class ChangePasswordForm extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                             ),
-                            onPressed: () {
-                              FocusScope.of(context).unfocus();
+                            onPressed:
+                                !state.isFormValid || state.baseState.isLoading
+                                    ? null
+                                    : () {
+                                      FocusScope.of(context).unfocus();
 
-                              final current = cubit
-                                  .currentPasswordController
-                                  .text
-                                  .trim();
+                                      final oldpass =
+                                          cubit.currentPasswordController.text
+                                              .trim();
 
-                              final newPass = cubit.newPasswordController.text
-                                  .trim();
+                                      final newPass =
+                                          cubit.newPasswordController.text
+                                              .trim();
 
-                              if (!formKey.currentState!.validate()) {
-                                return;
-                              }
+                                      final confirmPass =
+                                          cubit.confirmPasswordController.text
+                                              .trim();
 
-                              if (current == newPass) {
-                                showError(
-                                  'New password cannot be same as current password',
-                                );
-                                return;
-                              }
+                                      if (!formKey.currentState!.validate()) {
+                                        return;
+                                      }
 
-                              if (!AppRegex.hasUpperCase(newPass)) {
-                                showError('Password needs uppercase letter');
-                                return;
-                              }
+                                      if (newPass != confirmPass) {
+                                        showError('Passwords do not match');
+                                        return;
+                                      }
 
-                              if (!AppRegex.hasSpecialCharacter(newPass)) {
-                                showError('Password needs special character');
-                                return;
-                              }
+                                      if (oldpass == newPass) {
+                                        showError(
+                                          'New password cannot be same as old password',
+                                        );
+                                        return;
+                                      }
 
-                              if (formKey.currentState!.validate()) {
-                                cubit.currentPasswordController.clear();
-                                cubit.newPasswordController.clear();
-                                cubit.confirmPasswordController.clear();
+                                      if (!AppRegex.hasUpperCase(newPass)) {
+                                        showError(
+                                          'Password needs uppercase letter',
+                                        );
+                                        return;
+                                      }
 
-                                formKey.currentState!.reset();
+                                      if (!AppRegex.hasSpecialCharacter(
+                                        newPass,
+                                      )) {
+                                        showError(
+                                          'Password needs special character',
+                                        );
+                                        return;
+                                      }
 
-                                FocusScope.of(context).unfocus();
-
-                                cubit.doIntent(SubmitChangePasswordIntent());
-                                UiUtils.showSuccessMsg(
-                                  context,
-                                  AppTextConstants.passwordResetSuccessfully,
-                                );
-
-                                // navigate back
-                                context.go(RouteNames.home);
-                              }
-                            },
-                            child: Text(AppTextConstants.done),
+                                      cubit.doIntent(
+                                        SubmitChangePasswordIntent(),
+                                      );
+                                    },
+                            child:
+                                state.baseState.isLoading
+                                    ? const SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                    : Text(AppTextConstants.done),
                           ),
                         ),
                       ],

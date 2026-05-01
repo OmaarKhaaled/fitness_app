@@ -57,12 +57,12 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   }
 
   Future<void> _validateForm(ChangePasswordRequest request) async {
-    final current = currentPasswordController;
+    final oldpass = currentPasswordController;
     final newPass = newPasswordController;
     final confirm = confirmPasswordController;
 
     final isValid =
-        current.text.isNotEmpty &&
+        oldpass.text.isNotEmpty &&
         newPass.text.isNotEmpty &&
         confirm.text.isNotEmpty &&
         AppValidators.validatePassword(newPass.text) == null &&
@@ -86,7 +86,11 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
 
   _submitChangePassword() async {
     if (!state.isFormValid) return;
-    emit(state.copyWith(baseState: state.baseState.copyWith(isLoading: true)));
+    emit(
+      state.copyWith(
+        baseState: const BaseState<ChangePasswordModel>(isLoading: true),
+      ),
+    );
 
     final result = await _changePasswordUsecase(
       ChangePasswordRequest(
