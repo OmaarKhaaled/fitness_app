@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Default Dark+",
     "window.autoDetectColorScheme": false,
     "editor.defaultFormatter": "Dart-Code.flutter",
     "vscode-pets.theme": "forest"

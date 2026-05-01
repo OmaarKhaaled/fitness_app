@@ -6,7 +6,7 @@ sealed class ExerciseIntent {
 
 class LoadLevels extends ExerciseIntent {
   final ExerciseModel exercise;
-  const LoadLevels({required this.exercise});
+  const LoadLevels(this.exercise);
 }
 
 class SelectLevel extends ExerciseIntent {

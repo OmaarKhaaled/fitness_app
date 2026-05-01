@@ -14,8 +14,7 @@ class ExercisePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          getIt<ExerciseCubit>(param1: exercise)
-            ..doIntent(LoadLevels(exercise: exercise)),
+          getIt<ExerciseCubit>(param1: exercise)..doIntent(LoadLevels(exercise)),
       child: ExerciseScreen(exercise: exercise),
     );
   }
