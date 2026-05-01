@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 class SaveFirstNameUseCase {
   final EditProfileRepoContract _repoContract;
   SaveFirstNameUseCase(this._repoContract);
-  Future<BaseResponse<bool>> call(String key,String value)async{
+  Future<BaseResponse<bool>> call(String key, String value) async {
     return _repoContract.saveFirstName(key, value);
   }
 }

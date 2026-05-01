@@ -56,7 +56,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutesConstants.activityLevelEditing,
         builder: (context, state) => const ActivityLevelEditingScreen(),
-      )
+      ),
     ],
   );
 }

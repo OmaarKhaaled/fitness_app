@@ -14,7 +14,7 @@ class AppAssets {
       'assets/images/forget_password_background.png';
   static const String fitness = 'assets/images/fitness.png';
   static const String superFitness = 'assets/images/super-fitness.png';
-  static const String profileBackground='assets/images/profile.png';
+  static const String profileBackground = 'assets/images/profile.png';
 }
 
 class AppIcons {
@@ -26,5 +26,5 @@ class AppIcons {
   static const String backArrow = 'assets/icons/Vector.png';
   static const String maleSymbol = 'assets/icons/male-symbol.png';
   static const String femaleSymbol = 'assets/icons/female-symbol.png';
-  static const String editingPencil='assets/icons/pencil.png';
+  static const String editingPencil = 'assets/icons/pencil.png';
 }

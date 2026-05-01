@@ -68,7 +68,7 @@ class _GoalEditingScreenState extends State<GoalEditingScreen> {
         builder: (context, state) {
           final selectedGoal = state.selectedGoal ?? _selectedGoal;
           final isButtonEnabled = selectedGoal != null;
-          
+
           return AppScaffold(
             backgroundImage: AppAssets.authBackground,
             alignment: Alignment.topCenter,
@@ -162,9 +162,12 @@ class _GoalEditingScreenState extends State<GoalEditingScreen> {
                       ),
                       SizedBox(height: 0.02 * height),
                       RadioOptionSelectionWidget(
-                        option: AppTextConstants.profileSetupGoalGainMoreFlexible,
+                        option:
+                            AppTextConstants.profileSetupGoalGainMoreFlexible,
                         onTap: () {
-                          _viewModel.doIntent(SelectGoalEvent('Gain More Flexible'));
+                          _viewModel.doIntent(
+                            SelectGoalEvent('Gain More Flexible'),
+                          );
                         },
                         isSelected: selectedGoal == 'Gain More Flexible',
                       ),
@@ -172,7 +175,9 @@ class _GoalEditingScreenState extends State<GoalEditingScreen> {
                       RadioOptionSelectionWidget(
                         option: AppTextConstants.profileSetupGoalLearnTheBasic,
                         onTap: () {
-                          _viewModel.doIntent(SelectGoalEvent('Learn The Basic'));
+                          _viewModel.doIntent(
+                            SelectGoalEvent('Learn The Basic'),
+                          );
                         },
                         isSelected: selectedGoal == 'Learn The Basic',
                       ),
@@ -182,17 +187,24 @@ class _GoalEditingScreenState extends State<GoalEditingScreen> {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                              backgroundColor: WidgetStateProperty.all(
-                                isButtonEnabled ? AppColors.primary : AppColors.textSecondary,
-                              ),
-                            ),
+                            style: Theme.of(context).elevatedButtonTheme.style
+                                ?.copyWith(
+                                  backgroundColor: WidgetStateProperty.all(
+                                    isButtonEnabled
+                                        ? AppColors.primary
+                                        : AppColors.textSecondary,
+                                  ),
+                                ),
                             onPressed: isButtonEnabled
                                 ? () {
-                                    _viewModel.doIntent(UpdateGoalEvent(selectedGoal));
+                                    _viewModel.doIntent(
+                                      UpdateGoalEvent(selectedGoal),
+                                    );
                                   }
                                 : null,
-                            child: Text(AppTextConstants.profileSetupWeightButton),
+                            child: Text(
+                              AppTextConstants.profileSetupWeightButton,
+                            ),
                           ),
                         ),
                       ),

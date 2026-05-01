@@ -6,9 +6,11 @@ import 'package:fitness_app/features/edit_profile/domain/models/edit_profile_res
 import 'package:fitness_app/features/edit_profile/domain/models/upload_photo_response_model.dart';
 
 abstract class EditProfileRepoContract {
-  Future<BaseResponse<EditProfileResponseModel>> editProfile(EditProfileRequestModel request);
+  Future<BaseResponse<EditProfileResponseModel>> editProfile(
+    EditProfileRequestModel request,
+  );
   Future<BaseResponse<EditProfileResponseModel>> getProfile();
   Future<BaseResponse<UploadPhotoResponseModel>> uploadPhoto(File photo);
-  Future<BaseResponse<bool>> saveFirstName(String key,String value);
-  Future<BaseResponse<bool>> savePhoto(String key,String value);
+  Future<BaseResponse<bool>> saveFirstName(String key, String value);
+  Future<BaseResponse<bool>> savePhoto(String key, String value);
 }

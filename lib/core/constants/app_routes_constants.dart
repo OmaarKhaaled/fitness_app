@@ -9,7 +9,7 @@ class AppRoutesConstants {
   static const String editProfileRoute = '/edit_profile';
   static const String changePasswordRoute = '/change_password';
   static const String forgetPasswordRoute = '/forget_password';
-  static const String weightEditing='/weightEditing';
-  static const String goalEditing='/goalEditing';
-  static const String activityLevelEditing='/activityLevelEditing';
+  static const String weightEditing = '/weightEditing';
+  static const String goalEditing = '/goalEditing';
+  static const String activityLevelEditing = '/activityLevelEditing';
 }

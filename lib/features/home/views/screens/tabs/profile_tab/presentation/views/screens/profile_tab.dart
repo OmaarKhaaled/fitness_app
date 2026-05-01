@@ -19,8 +19,8 @@ class _ProfileTabState extends State<ProfileTab> {
         onTap: () {
           context.go(AppRoutesConstants.editProfileRoute);
         },
-        child: Text(AppTextConstants.profileIcon)
-      )
+        child: Text(AppTextConstants.profileIcon),
+      ),
     );
   }
 }

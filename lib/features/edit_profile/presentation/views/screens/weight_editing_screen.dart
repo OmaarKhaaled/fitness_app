@@ -30,8 +30,9 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
   void initState() {
     super.initState();
     _viewModel = getIt<EditProfileViewModel>();
-    
-    final currentWeight = _viewModel.state.profileState?.data?.userModel?.weight;
+
+    final currentWeight =
+        _viewModel.state.profileState?.data?.userModel?.weight;
     final savedWeight = currentWeight ?? 90;
     final savedIndex = savedWeight - minWeight;
     if (_viewModel.state.currentWeightIndex != savedIndex) {
@@ -51,11 +52,16 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
 
   double _getFontSize(int distance) {
     switch (distance) {
-      case 0: return 44;
-      case 1: return 33;
-      case 2: return 25;
-      case 3: return 16;
-      default: return 12;
+      case 0:
+        return 44;
+      case 1:
+        return 33;
+      case 2:
+        return 25;
+      case 3:
+        return 16;
+      default:
+        return 12;
     }
   }
 
@@ -88,7 +94,7 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
         },
         builder: (context, state) {
           final currentIndex = state.currentWeightIndex;
-          
+
           return AppScaffold(
             backgroundImage: AppAssets.authBackground,
             alignment: Alignment.topCenter,
@@ -172,7 +178,9 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
                           physics: const BouncingScrollPhysics(),
                           onPageChanged: (index) {
                             final selectedWeight = index + minWeight;
-                            _viewModel.doIntent(UpdateWeightIndexEvent(index, selectedWeight));
+                            _viewModel.doIntent(
+                              UpdateWeightIndexEvent(index, selectedWeight),
+                            );
                           },
                           itemCount: totalItems,
                           itemBuilder: (context, index) {
@@ -181,17 +189,21 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
                             final fontSize = _getFontSize(distance);
                             final isCenter = distance == 0;
                             final isVisible = distance <= 5;
-                            
+
                             if (!isVisible) {
                               return const SizedBox.shrink();
                             }
-                            
+
                             return TweenAnimationBuilder<double>(
                               tween: Tween<double>(
-                                begin: distance == 0 ? 1.05 : (distance == 1 ? 1.0 : 0.85),
+                                begin: distance == 0
+                                    ? 1.05
+                                    : (distance == 1 ? 1.0 : 0.85),
                                 end: isCenter
                                     ? 1.05
-                                    : (distance == 1 ? 1.0 : (distance == 2 ? 0.85 : 0.7)),
+                                    : (distance == 1
+                                          ? 1.0
+                                          : (distance == 2 ? 0.85 : 0.7)),
                               ),
                               duration: const Duration(milliseconds: 200),
                               builder: (context, scale, child) {
@@ -208,11 +220,14 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   weight.toString(),
-                                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontSize: fontSize,
-                                    fontWeight: FontWeight.w800,
-                                    color: isCenter ? AppColors.primary : Colors.white,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodyLarge
+                                      ?.copyWith(
+                                        fontSize: fontSize,
+                                        fontWeight: FontWeight.w800,
+                                        color: isCenter
+                                            ? AppColors.primary
+                                            : Colors.white,
+                                      ),
                                 ),
                               ),
                             );
@@ -241,9 +256,13 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              _viewModel.doIntent(UpdateWeightEvent(state.selectedWeight));
+                              _viewModel.doIntent(
+                                UpdateWeightEvent(state.selectedWeight),
+                              );
                             },
-                            child: Text(AppTextConstants.profileSetupWeightButton),
+                            child: Text(
+                              AppTextConstants.profileSetupWeightButton,
+                            ),
                           ),
                         ),
                       ),

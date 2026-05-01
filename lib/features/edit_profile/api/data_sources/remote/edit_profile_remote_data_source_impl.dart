@@ -8,22 +8,26 @@ import 'package:fitness_app/features/edit_profile/data/models/edit_profile_reque
 import 'package:fitness_app/features/edit_profile/data/models/edit_profile_response.dart';
 import 'package:fitness_app/features/edit_profile/data/models/upload_photo_response.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: EditProfileRemoteDataSourceContract)
-class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSourceContract{
+class EditProfileRemoteDataSourceImpl
+    implements EditProfileRemoteDataSourceContract {
   final EditProfileApiClient _apiClient;
   EditProfileRemoteDataSourceImpl(this._apiClient);
   @override
-  Future<BaseResponse<EditProfileResponse>> editProfile(EditProfileRequestDto request) async{
-    return await apiCall(() => _apiClient.editProfile(request),);
-  }
-  
-  @override
-  Future<BaseResponse<EditProfileResponse>> getProfile() async{
-    return await apiCall(() => _apiClient.getProfile(),);
+  Future<BaseResponse<EditProfileResponse>> editProfile(
+    EditProfileRequestDto request,
+  ) async {
+    return await apiCall(() => _apiClient.editProfile(request));
   }
 
   @override
-  Future<BaseResponse<UploadPhotoResponse>> uploadPhoto(File photo) async{
-    return await apiCall(() => _apiClient.uploadPhoto(photo),);
+  Future<BaseResponse<EditProfileResponse>> getProfile() async {
+    return await apiCall(() => _apiClient.getProfile());
+  }
+
+  @override
+  Future<BaseResponse<UploadPhotoResponse>> uploadPhoto(File photo) async {
+    return await apiCall(() => _apiClient.uploadPhoto(photo));
   }
 }

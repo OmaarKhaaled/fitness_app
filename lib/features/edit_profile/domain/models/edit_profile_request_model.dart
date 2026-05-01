@@ -13,16 +13,16 @@ class EditProfileRequestModel {
     this.email,
     this.weight,
     this.goal,
-    this.activityLevel
+    this.activityLevel,
   });
-  EditProfileRequestDto toDTO(){
+  EditProfileRequestDto toDTO() {
     return EditProfileRequestDto(
       firstName: firstName,
       lastName: lastName,
       email: email,
       weight: weight,
       goal: goal,
-      activityLevel: activityLevel
+      activityLevel: activityLevel,
     );
   }
 }

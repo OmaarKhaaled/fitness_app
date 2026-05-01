@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 class SavePhotoUseCase {
   final EditProfileRepoContract _repoContract;
   SavePhotoUseCase(this._repoContract);
-  Future<BaseResponse<bool>> call(String key,String value)async{
+  Future<BaseResponse<bool>> call(String key, String value) async {
     return _repoContract.savePhoto(key, value);
   }
 }

@@ -28,7 +28,7 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
     this._getProfileUseCase,
     this._uploadPhotoUseCase,
     this._saveFirstNameUseCase,
-    this._savePhotoUseCase
+    this._savePhotoUseCase,
   ) : super(EditProfileStates());
   void doIntent(EditProfileEvents event) {
     switch (event) {
@@ -60,6 +60,14 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
   }
 
   Future<void> _editProfile(EditProfileRequestModel request) async {
+    emit(
+      state.copyWith(
+        editProfileState: const BaseState<EditProfileResponseModel>(
+          isLoading: true,
+        ),
+        isEditSuccess: false,
+      ),
+    );
     final res = await _editProfileUseCase.call(request);
     res.when(
       initial: () => null,
@@ -67,7 +75,10 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
       success: (data) {
         emit(
           state.copyWith(
-            editProfileState: BaseState<EditProfileResponseModel>(data: data),
+            editProfileState: BaseState<EditProfileResponseModel>(
+              isLoading: false,
+              data: data,
+            ),
             isEditSuccess: true,
           ),
         );
@@ -76,6 +87,7 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
         emit(
           state.copyWith(
             editProfileState: BaseState<EditProfileResponseModel>(
+              isLoading: false,
               errorMessage: ExceptionsHandler.handle(exception).message,
             ),
           ),
@@ -213,10 +225,12 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
     );
     await _editProfile(request);
   }
-  void _saveFirstName(String key,String value) async{
+
+  void _saveFirstName(String key, String value) async {
     await _saveFirstNameUseCase.call(key, value);
   }
-  void _savePhoto(String key,String value) async{
+
+  void _savePhoto(String key, String value) async {
     await _savePhotoUseCase.call(key, value);
   }
 }

@@ -100,7 +100,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             _updateControllersFromUser(profileState!.data!.userModel!);
             final photo = profileState.data!.userModel!.photo;
             if (photo != null && photo.isNotEmpty) {
-              viewModel.doIntent(SavePhotoEvent(CacheConstants.imageUrl, photo));
+              viewModel.doIntent(
+                SavePhotoEvent(CacheConstants.imageUrl, photo),
+              );
             }
           }
           if (editProfileState?.isLoading == true) {
@@ -110,7 +112,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               state.isEditSuccess) {
             UiUtils.hideLoading(context);
             UiUtils.showSuccessMsg(context, profileState!.data!.message!);
-            viewModel.doIntent(SaveFirstNameEvent(CacheConstants.firstName,firstNameController.text,));
+            viewModel.doIntent(
+              SaveFirstNameEvent(
+                CacheConstants.firstName,
+                firstNameController.text,
+              ),
+            );
             viewModel.doIntent(ResetEditSuccessEvent());
             context.go(AppRoutesConstants.homeRoute);
             return;
@@ -177,9 +184,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           Expanded(
                             child: Center(
-                              child: Text(AppTextConstants.editProfileHeader,style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                fontWeight: FontWeight.w600
-                              ),),
+                              child: Text(
+                                AppTextConstants.editProfileHeader,
+                                style: Theme.of(context).textTheme.headlineSmall
+                                    ?.copyWith(fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                           SizedBox(width: 0.06 * width),
@@ -192,7 +201,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       children: [
                         CircleAvatar(
                           radius: 0.27 * width,
-                          backgroundImage: NetworkImage(user.photo ?? ''),
+                          backgroundImage: user.photo != null
+                              ? NetworkImage(user.photo!)
+                              : const AssetImage(AppAssets.superFitness),
                         ),
                         InkWell(
                           onTap: () {
@@ -272,6 +283,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             SizedBox(height: 0.05 * height),
                             SpecialHeaderWidget(
+                              key: ValueKey(AppTextConstants.yourWeight),
                               header: AppTextConstants.yourWeight,
                               onTap: () {
                                 context.go(AppRoutesConstants.weightEditing);
@@ -284,6 +296,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             SizedBox(height: 0.02 * height),
                             SpecialHeaderWidget(
+                              key: ValueKey(AppTextConstants.yourGoal),
                               header: AppTextConstants.yourGoal,
                               onTap: () {
                                 context.go(AppRoutesConstants.goalEditing);
@@ -296,6 +309,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             SizedBox(height: 0.02 * height),
                             SpecialHeaderWidget(
+                              key: ValueKey(AppTextConstants.yourActivityLevel),
                               header: AppTextConstants.yourActivityLevel,
                               onTap: () {
                                 context.go(

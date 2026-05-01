@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 class UploadPhotoUseCase {
   final EditProfileRepoContract _repoContract;
   UploadPhotoUseCase(this._repoContract);
-  Future<BaseResponse<UploadPhotoResponseModel>> call(File photo) async{
+  Future<BaseResponse<UploadPhotoResponseModel>> call(File photo) async {
     return _repoContract.uploadPhoto(photo);
   }
 }

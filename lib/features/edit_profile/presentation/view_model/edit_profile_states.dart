@@ -7,32 +7,30 @@ class EditProfileStates {
   BaseState<EditProfileResponseModel>? editProfileState;
   bool isEditSuccess;
   BaseState<UploadPhotoResponseModel>? uploadState;
-  int currentWeightIndex;  
+  int currentWeightIndex;
   int selectedWeight;
   String? selectedGoal;
-  String? selectedActivityLevel;   
+  String? selectedActivityLevel;
   EditProfileStates({
     this.profileState,
     this.editProfileState,
-    this.isEditSuccess=false,
+    this.isEditSuccess = false,
     this.uploadState,
-    this.currentWeightIndex=45,
-    this.selectedWeight=90,
+    this.currentWeightIndex = 45,
+    this.selectedWeight = 90,
     this.selectedGoal,
-    this.selectedActivityLevel
+    this.selectedActivityLevel,
   });
-  EditProfileStates copyWith(
-    {
-      BaseState<EditProfileResponseModel>? profileState,
-      BaseState<EditProfileResponseModel>? editProfileState,
-      bool? isEditSuccess,
-      BaseState<UploadPhotoResponseModel>? uploadState,
-      int? currentWeightIndex,
-      int? selectedWeight,
-      String? selectedGoal,
-      String? selectedActivityLevel
-    }
-  ){
+  EditProfileStates copyWith({
+    BaseState<EditProfileResponseModel>? profileState,
+    BaseState<EditProfileResponseModel>? editProfileState,
+    bool? isEditSuccess,
+    BaseState<UploadPhotoResponseModel>? uploadState,
+    int? currentWeightIndex,
+    int? selectedWeight,
+    String? selectedGoal,
+    String? selectedActivityLevel,
+  }) {
     return EditProfileStates(
       profileState: profileState ?? this.profileState,
       editProfileState: editProfileState ?? this.editProfileState,
@@ -41,7 +39,8 @@ class EditProfileStates {
       currentWeightIndex: currentWeightIndex ?? this.currentWeightIndex,
       selectedWeight: selectedWeight ?? this.selectedWeight,
       selectedGoal: selectedGoal ?? this.selectedGoal,
-      selectedActivityLevel: selectedActivityLevel ?? this.selectedActivityLevel
+      selectedActivityLevel:
+          selectedActivityLevel ?? this.selectedActivityLevel,
     );
   }
 }

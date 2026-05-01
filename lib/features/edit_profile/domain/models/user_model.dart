@@ -15,6 +15,6 @@ class UserModel {
     this.photo,
     this.weight,
     this.goal,
-    this.activityLevel
+    this.activityLevel,
   });
 }

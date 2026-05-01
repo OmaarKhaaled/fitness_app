@@ -6,7 +6,9 @@ import 'package:fitness_app/features/edit_profile/data/models/edit_profile_respo
 import 'package:fitness_app/features/edit_profile/data/models/upload_photo_response.dart';
 
 abstract class EditProfileRemoteDataSourceContract {
-  Future<BaseResponse<EditProfileResponse>> editProfile(EditProfileRequestDto request); 
+  Future<BaseResponse<EditProfileResponse>> editProfile(
+    EditProfileRequestDto request,
+  );
   Future<BaseResponse<EditProfileResponse>> getProfile();
   Future<BaseResponse<UploadPhotoResponse>> uploadPhoto(File photo);
 }

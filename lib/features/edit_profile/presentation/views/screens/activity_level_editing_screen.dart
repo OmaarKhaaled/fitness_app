@@ -18,10 +18,12 @@ class ActivityLevelEditingScreen extends StatefulWidget {
   const ActivityLevelEditingScreen({super.key});
 
   @override
-  State<ActivityLevelEditingScreen> createState() => _ActivityLevelEditingScreenState();
+  State<ActivityLevelEditingScreen> createState() =>
+      _ActivityLevelEditingScreenState();
 }
 
-class _ActivityLevelEditingScreenState extends State<ActivityLevelEditingScreen> {
+class _ActivityLevelEditingScreenState
+    extends State<ActivityLevelEditingScreen> {
   late EditProfileViewModel _viewModel;
   String? _selectedActivityLevel;
 
@@ -29,7 +31,8 @@ class _ActivityLevelEditingScreenState extends State<ActivityLevelEditingScreen>
   void initState() {
     super.initState();
     _viewModel = getIt<EditProfileViewModel>();
-    final currentLevel = _viewModel.state.profileState?.data?.userModel?.activityLevel;
+    final currentLevel =
+        _viewModel.state.profileState?.data?.userModel?.activityLevel;
     if (currentLevel != null) {
       _selectedActivityLevel = currentLevel;
       if (_viewModel.state.selectedActivityLevel != currentLevel) {
@@ -66,8 +69,9 @@ class _ActivityLevelEditingScreenState extends State<ActivityLevelEditingScreen>
           }
         },
         builder: (context, state) {
-          final selectedActivityLevel = state.selectedActivityLevel ?? _selectedActivityLevel;
-          final isButtonEnabled = selectedActivityLevel != null;          
+          final selectedActivityLevel =
+              state.selectedActivityLevel ?? _selectedActivityLevel;
+          final isButtonEnabled = selectedActivityLevel != null;
           return AppScaffold(
             backgroundImage: AppAssets.authBackground,
             alignment: Alignment.topCenter,
@@ -132,39 +136,62 @@ class _ActivityLevelEditingScreenState extends State<ActivityLevelEditingScreen>
                       RadioOptionSelectionWidget(
                         option: AppTextConstants.profileSetupActivityRookie,
                         onTap: () {
-                          _viewModel.doIntent(SelectActivityLevelEvent('level1'));
+                          _viewModel.doIntent(
+                            SelectActivityLevelEvent('level1'),
+                          );
                         },
                         isSelected: selectedActivityLevel == 'level1',
                       ),
                       SizedBox(height: 0.02 * height),
                       RadioOptionSelectionWidget(
+                        key: ValueKey(
+                          AppTextConstants.profileSetupActivityBeginner,
+                        ),
                         option: AppTextConstants.profileSetupActivityBeginner,
                         onTap: () {
-                          _viewModel.doIntent(SelectActivityLevelEvent('level2'));
+                          _viewModel.doIntent(
+                            SelectActivityLevelEvent('level2'),
+                          );
                         },
                         isSelected: selectedActivityLevel == 'level2',
                       ),
                       SizedBox(height: 0.02 * height),
                       RadioOptionSelectionWidget(
-                        option: AppTextConstants.profileSetupActivityIntermediate,
+                        key: ValueKey(
+                          AppTextConstants.profileSetupActivityIntermediate,
+                        ),
+                        option:
+                            AppTextConstants.profileSetupActivityIntermediate,
                         onTap: () {
-                          _viewModel.doIntent(SelectActivityLevelEvent('level3'));
+                          _viewModel.doIntent(
+                            SelectActivityLevelEvent('level3'),
+                          );
                         },
                         isSelected: selectedActivityLevel == 'level3',
                       ),
                       SizedBox(height: 0.02 * height),
                       RadioOptionSelectionWidget(
+                        key: ValueKey(
+                          AppTextConstants.profileSetupActivityAdvance,
+                        ),
                         option: AppTextConstants.profileSetupActivityAdvance,
                         onTap: () {
-                          _viewModel.doIntent(SelectActivityLevelEvent('level4'));
+                          _viewModel.doIntent(
+                            SelectActivityLevelEvent('level4'),
+                          );
                         },
                         isSelected: selectedActivityLevel == 'level4',
                       ),
                       SizedBox(height: 0.02 * height),
                       RadioOptionSelectionWidget(
+                        key: ValueKey(
+                          AppTextConstants.profileSetupActivityTrueBeast,
+                        ),
                         option: AppTextConstants.profileSetupActivityTrueBeast,
                         onTap: () {
-                          _viewModel.doIntent(SelectActivityLevelEvent('level5'));
+                          _viewModel.doIntent(
+                            SelectActivityLevelEvent('level5'),
+                          );
                         },
                         isSelected: selectedActivityLevel == 'level5',
                       ),
@@ -174,17 +201,26 @@ class _ActivityLevelEditingScreenState extends State<ActivityLevelEditingScreen>
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                              backgroundColor: WidgetStateProperty.all(
-                                isButtonEnabled ? AppColors.primary : AppColors.textSecondary,
-                              ),
-                            ),
+                            style: Theme.of(context).elevatedButtonTheme.style
+                                ?.copyWith(
+                                  backgroundColor: WidgetStateProperty.all(
+                                    isButtonEnabled
+                                        ? AppColors.primary
+                                        : AppColors.textSecondary,
+                                  ),
+                                ),
                             onPressed: isButtonEnabled
                                 ? () {
-                                    _viewModel.doIntent(UpdateActivityLevelEvent(selectedActivityLevel));
+                                    _viewModel.doIntent(
+                                      UpdateActivityLevelEvent(
+                                        selectedActivityLevel,
+                                      ),
+                                    );
                                   }
                                 : null,
-                            child: Text(AppTextConstants.profileSetupWeightButton),
+                            child: Text(
+                              AppTextConstants.profileSetupWeightButton,
+                            ),
                           ),
                         ),
                       ),
