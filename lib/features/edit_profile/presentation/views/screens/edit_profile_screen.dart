@@ -147,6 +147,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             _updateControllersFromUser(user);
 
             return AppScaffold(
+              blurSigma: 8,
               backgroundImage: AppAssets.profileBackground,
               alignment: Alignment.topCenter,
               child: SingleChildScrollView(
@@ -200,7 +201,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       alignment: Alignment.topRight,
                       children: [
                         CircleAvatar(
-                          radius: 0.27 * width,
+                          radius: 0.2 * width,
                           backgroundImage: user.photo != null
                               ? NetworkImage(user.photo!)
                               : const AssetImage(AppAssets.superFitness),
