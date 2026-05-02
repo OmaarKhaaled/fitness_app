@@ -234,34 +234,4 @@ class Exercise {
       _$ExerciseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseToJson(this);
-
-  /// Prefer short demo link first
-  String? get videoUrl =>
-      shortYoutubeDemonstrationLink ?? inDepthYoutubeExplanationLink;
-
-  /// Thumbnail getter
-  String? get thumbnailUrl {
-    final url = videoUrl;
-    if (url == null || url.isEmpty) return null;
-
-    final id = _extractYoutubeId(url);
-    if (id == null) return null;
-
-    return 'https://img.youtube.com/vi/$id/hqdefault.jpg';
-  }
-
-  String? _extractYoutubeId(String url) {
-    final uri = Uri.tryParse(url);
-    if (uri == null) return null;
-
-    if (uri.host.contains('youtu.be')) {
-      return uri.pathSegments.isNotEmpty ? uri.pathSegments.first : null;
-    }
-
-    if (uri.host.contains('youtube.com')) {
-      return uri.queryParameters['v'];
-    }
-
-    return null;
-  }
 }

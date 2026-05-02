@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:fitness_app/core/constants/api_constants.dart';
 import 'package:fitness_app/features/auth/login/data/models/request/login_request.dart';
 import 'package:fitness_app/features/auth/login/data/models/response/login_response.dart';
+import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
+import 'package:fitness_app/features/auth/change_password/data/models/response/change_password_response.dart';
 import 'package:fitness_app/features/exercise/data/models/response/exercise_response.dart';
 import 'package:fitness_app/features/exercise/data/models/response/levels_by_primemuscle_response.dart';
 import 'package:injectable/injectable.dart';
@@ -18,6 +20,10 @@ abstract class ApiClient {
   @POST(ApiConstants.loginEndpoint)
   Future<LoginResponse> login(@Body() LoginRequest request);
 
+  @PATCH(ApiConstants.changePasswordEndpoint)
+  Future<ChangePasswordResponse> changePassword({
+    @Body() required ChangePasswordRequest request,
+  });
   @GET(ApiConstants.getAllDifficultyLevels)
   Future<List<String>> getAllDifficultyLevels();
 

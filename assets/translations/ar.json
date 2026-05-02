@@ -118,7 +118,7 @@
     "reset": "إعادة تعيين",
     "didnt_recieve_verification_code": "لم تستلم رمز التحقق؟",
     "resend_code": "إعادة إرسال الرمز",
-    "make_sure_its_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
+    "make_sure_it_is_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
     "create_new_password": "إنشاء كلمة مرور جديدة",
     "done": "تم",
     "please_enter_valid_otp": "الرجاء إدخال رمز تحقق صالح",
@@ -183,6 +183,10 @@
     "no": "لا",
     "areYouSureToCloseTheApp": "هل انت متاكد من رغبتك في اغلاق التطبيق"
   },
+  "change_password": {
+    "old_password": "Old Password",
+    "password_updated_successfully": "Password Updated Successfully"
+  },
   "home": {
     "greeting": "أهلاً ",
     "lets_start_your_day": "لنبدأ يومك",
@@ -192,6 +196,9 @@
     "fitness": "اللياقة البدنية",
     "yoga": "اليوغا",
     "aerobics": "التمارين الهوائية",
-    "trainer": "المدرب"
+    "trainer": "المدرب",
+    "popular_training":"التدريب الأكثر شيوعا",
+    "tasks":"المهام",
+    "exercises_that_strengthen_your":"التمارين التي\n تقوي"
   }
 }

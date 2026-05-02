@@ -56,8 +56,8 @@ class _ProfileTabState extends State<ProfileTab> {
     final isEnglish =
         EasyLocalization.of(context)!.currentLocale?.languageCode == 'en';
     final textTheme = Theme.of(context).textTheme;
-    return BlocProvider(
-      create: (context) => _cubit,
+    return BlocProvider.value(
+      value: _cubit,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
@@ -79,7 +79,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                
+
                       Skeletonizer(
                         enabled: isLoading && user == null,
                         effect: const ShimmerEffect(
@@ -128,7 +128,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                
+
                       BlurCard(
                         child: Column(
                           children: [
@@ -221,7 +221,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 30,)
+                      const SizedBox(height: 30),
                     ],
                   ),
                 ),

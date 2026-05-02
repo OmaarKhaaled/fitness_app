@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
+import 'package:fitness_app/features/auth/change_password/presentation/view/pages/change_password_screen.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
 import 'package:fitness_app/features/edit_profile/presentation/views/screens/activity_level_editing_screen.dart';
 import 'package:fitness_app/features/edit_profile/presentation/views/screens/edit_profile_screen.dart';
@@ -116,6 +117,12 @@ class AppRouter {
             );
           },
         ),
+      ),
+
+      GoRoute(
+        path: AppRoutesConstants.changePassword,
+        name: AppRoutesConstants.changePassword,
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
     ],
   );

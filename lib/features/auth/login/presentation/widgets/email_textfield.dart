@@ -18,7 +18,7 @@ class EmailTextField extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       style: const TextStyle(color: AppColors.white),
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.email_outlined),
+        prefixIcon: const Icon(Icons.email_outlined, color: AppColors.grey),
         hintText: AppTextConstants.loginEmailPlaceholder,
       ),
       validator: (value) {

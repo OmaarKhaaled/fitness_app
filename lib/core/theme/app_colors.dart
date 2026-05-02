@@ -10,6 +10,7 @@ class AppColors {
   static const lightBlack = Color(0xFF242121);
   static const darkGrey = Color(0xFF242424);
   static const redAccent = Colors.redAccent;
+  static const red = Colors.red;
   static const green = Colors.green;
   //================ON BOARDING COLORS================
   static final onboardingCardBackground = const Color(

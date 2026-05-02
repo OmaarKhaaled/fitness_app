@@ -45,7 +45,6 @@ class ExerciseScreen extends StatelessWidget {
   SliverAppBar buildHeroAppBar(BuildContext context) {
     return SliverAppBar(
       floating: true,
-
       expandedHeight: 340,
       pinned: true,
       backgroundColor: const Color(0xFF121212),
