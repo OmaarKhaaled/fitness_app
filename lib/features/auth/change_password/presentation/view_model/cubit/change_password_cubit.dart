@@ -19,10 +19,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   final ChangePasswordUsecase _changePasswordUsecase;
   final TokenService _tokenService;
 
-  ChangePasswordCubit(
-    this._changePasswordUsecase,
-    this._tokenService,
-  ) : super(ChangePasswordState.initial()) {
+  ChangePasswordCubit(this._changePasswordUsecase, this._tokenService)
+    : super(ChangePasswordState.initial()) {
     oldPasswordController.addListener(_onTextChanged);
     newPasswordController.addListener(_onTextChanged);
     confirmPasswordController.addListener(_onTextChanged);
@@ -67,17 +65,20 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     final newPass = newPasswordController.text;
     final confirm = confirmPasswordController.text;
 
-    final isValid = oldPass.isNotEmpty &&
+    final isValid =
+        oldPass.isNotEmpty &&
         newPass.isNotEmpty &&
         confirm.isNotEmpty &&
         AppValidators.validatePassword(newPass) == null &&
         newPass == confirm;
 
     if (state.isFormValid != isValid || state.baseState.errorMessage != null) {
-      emit(state.copyWith(
-        isFormValid: isValid,
-        baseState: state.baseState.copyWith(errorMessage: null),
-      ));
+      emit(
+        state.copyWith(
+          isFormValid: isValid,
+          baseState: state.baseState.copyWith(errorMessage: null),
+        ),
+      );
     }
   }
 
@@ -95,13 +96,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
 
   Future<void> _submitChangePassword() async {
     if (!state.isFormValid || state.baseState.isLoading) return;
-    emit(
-      state.copyWith(
-        baseState: state.baseState.copyWith(
-          isLoading: true,
-        ),
-      ),
-    );
+    emit(state.copyWith(baseState: state.baseState.copyWith(isLoading: true)));
 
     final result = await _changePasswordUsecase(
       ChangePasswordRequest(
@@ -125,10 +120,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         }
         emit(
           state.copyWith(
-            baseState: state.baseState.copyWith(
-              isLoading: false,
-              data: data,
-            ),
+            baseState: state.baseState.copyWith(isLoading: false, data: data),
           ),
         );
       },

@@ -82,7 +82,8 @@ class AppValidators {
   static String? validateUserName(String? value) => value.validateMinLength(8);
 
   static String? validatePassword(String? value) {
-    if(value == null || value.trim().isEmpty) return ValidationConstants.passwordRequired;
+    if (value == null || value.trim().isEmpty)
+      return ValidationConstants.passwordRequired;
     return value.validatePassword;
   }
 
@@ -104,7 +105,7 @@ class AppValidators {
     if (!AppRegex.isPhoneValid(value)) {
       return ValidationConstants.invalidPhoneNumber;
     }
-    
+
     if (!AppRegex.hasMinLength(value)) {
       return ValidationConstants.passwordMinLength;
     }

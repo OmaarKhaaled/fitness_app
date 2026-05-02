@@ -15,9 +15,8 @@ class ChangePasswordState extends Equatable {
     this.confirmPasswordVisible = false,
   });
 
-  factory ChangePasswordState.initial() => const ChangePasswordState(
-        baseState: BaseState(),
-      );
+  factory ChangePasswordState.initial() =>
+      const ChangePasswordState(baseState: BaseState());
 
   ChangePasswordState copyWith({
     BaseState<ChangePasswordModel>? baseState,
@@ -38,10 +37,10 @@ class ChangePasswordState extends Equatable {
 
   @override
   List<Object?> get props => [
-        baseState,
-        isFormValid,
-        oldPasswordVisible,
-        newPasswordVisible,
-        confirmPasswordVisible,
-      ];
+    baseState,
+    isFormValid,
+    oldPasswordVisible,
+    newPasswordVisible,
+    confirmPasswordVisible,
+  ];
 }

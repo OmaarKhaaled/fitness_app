@@ -19,13 +19,16 @@ class ApiException extends AppException {
       return json['message'];
     }
 
-    final errorMessage = json.entries.map((entry) {
-      final value = entry.value;
-      if (value is List) {
-        return value.join(', ');
-      }
-      return value.toString();
-    }).where((element) => element.isNotEmpty).join('\n');
+    final errorMessage = json.entries
+        .map((entry) {
+          final value = entry.value;
+          if (value is List) {
+            return value.join(', ');
+          }
+          return value.toString();
+        })
+        .where((element) => element.isNotEmpty)
+        .join('\n');
 
     return errorMessage.isEmpty ? ErrorsConstant.defaultError : errorMessage;
   }

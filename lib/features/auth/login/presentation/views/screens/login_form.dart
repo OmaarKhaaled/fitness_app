@@ -95,22 +95,22 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 const SizedBox(height: 30),
-        
+
                 // Email Field
                 EmailTextField(emailController: _emailController),
                 const SizedBox(height: 16),
-        
+
                 // Password Field
                 PasswordTextField(
                   controller: _passwordController,
                   hintText: AppTextConstants.loginPasswordPlaceholder,
                 ),
-        
+
                 // Forgot Password Link
                 const ForgetPasswordLink(),
-        
+
                 const SizedBox(height: 10),
-        
+
                 // Divider OR Divider
                 Row(
                   children: [
@@ -135,14 +135,14 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                   ],
                 ),
-        
+
                 const SizedBox(height: 24),
-        
+
                 // Social Logins
                 const SocialLoginButtons(),
-        
+
                 const SizedBox(height: 32),
-        
+
                 // Login Button
                 LoginButton(
                   formKey: _formKey,
@@ -151,9 +151,9 @@ class _LoginFormState extends State<LoginForm> {
                   passwordController: _passwordController,
                   rememberMe: _rememberMe,
                 ),
-        
+
                 const SizedBox(height: 24),
-        
+
                 // Register Link
                 const RegisterLink(),
               ],
