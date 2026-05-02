@@ -213,13 +213,10 @@ class AppTextConstants {
       'profile.areYouSureToCloseTheApp'.tr();
   static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
   static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
-<<<<<<< HEAD
   //change password
   static String get oldPassword => 'change_password.old_password'.tr();
   static String get newPasswordMustDifferFromOldPassword =>
       'change_password.new_password_must_differ_from_old_password'.tr();
-=======
->>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
   static String get previousConversations =>
       'smart_coach.previous_conversations'.tr();
   static String get noPreviousConversations =>
