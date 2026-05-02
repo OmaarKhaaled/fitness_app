@@ -8,6 +8,7 @@ import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_pa
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_states.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/message_bubble.dart';
+import 'package:fitness_app/features/smart_coach/presentation/views/widgets/previous_conversations_drawer.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/smart_coach_text_field.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/typing_indicator.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/widgets/welcome_lottie.dart';
@@ -31,6 +32,7 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     chatPageCubit = getIt<ChatPageCubit>();
     chatPageCubit.doIntent(GetProfilePicUrlIntent());
+    chatPageCubit.doIntent(GetPreviousConversationsIntent());
     super.initState();
   }
 
@@ -38,6 +40,27 @@ class _ChatPageState extends State<ChatPage> {
   void didChangeDependencies() {
     textTheme = Theme.of(context).textTheme;
     super.didChangeDependencies();
+  }
+
+  void _showConversationsDrawer(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'Dismiss',
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 280),
+      pageBuilder: (_, __, ___) => const SizedBox.shrink(),
+      transitionBuilder: (context, animation, _, __) {
+        final slide = Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
+            .animate(
+              CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
+            );
+        return SlideTransition(
+          position: slide,
+          child: PreviousConversationsDrawer(cubit: chatPageCubit),
+        );
+      },
+    );
   }
 
   @override
@@ -68,13 +91,13 @@ class _ChatPageState extends State<ChatPage> {
               ),
               actions: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () => _showConversationsDrawer(context),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 4.0),
                     child: SvgPicture.asset(
                       AppIcons.menu,
-                      width: 24,
-                      height: 24,
+                      width: 28,
+                      height: 28,
                       fit: BoxFit.scaleDown,
                     ),
                   ),
@@ -89,14 +112,14 @@ class _ChatPageState extends State<ChatPage> {
                     Expanded(
                       child: BlocBuilder<ChatPageCubit, ChatPageStates>(
                         buildWhen: (previous, current) =>
-                            previous.messages != current.messages,
+                            previous.currentSession != current.currentSession,
                         builder: (context, state) {
-                          if (state.messages?.errorMessage != null) {
+                          if (state.currentSession?.errorMessage != null) {
                             return Center(
                               child: Container(
                                 color: AppColors.black,
                                 child: Text(
-                                  state.messages!.errorMessage!,
+                                  state.currentSession!.errorMessage!,
                                   style: textTheme.bodyLarge?.copyWith(
                                     color: AppColors.redAccent,
                                   ),
@@ -104,8 +127,10 @@ class _ChatPageState extends State<ChatPage> {
                               ),
                             );
                           }
-                          final messages = state.messages?.data ?? [];
-                          final isLoading = state.messages?.isLoading ?? false;
+                          final messages =
+                              state.currentSession?.data?.messages ?? [];
+                          final isLoading =
+                              state.currentSession?.isLoading ?? false;
                           return messages.isEmpty
                               ? const WelcomeLottie()
                               : Column(
@@ -117,12 +142,11 @@ class _ChatPageState extends State<ChatPage> {
                                         itemCount: messages.length,
                                         itemBuilder: (context, index) {
                                           return MessageBubble(
-                                            message:
-                                                messages[index][AiModelConstants
-                                                    .messageKey]!,
+                                            message: messages[index].text,
+                                            isCachedMessage:
+                                                messages[index].isCached,
                                             isUser:
-                                                messages[index][AiModelConstants
-                                                    .roleKey] ==
+                                                messages[index].role ==
                                                 AiModelConstants.userRole,
                                           );
                                         },
@@ -141,9 +165,10 @@ class _ChatPageState extends State<ChatPage> {
                                           child: TypingIndicator(),
                                         ),
                                       ),
-                                    if (state.messages?.errorMessage != null)
+                                    if (state.currentSession?.errorMessage !=
+                                        null)
                                       Text(
-                                        state.messages!.errorMessage!,
+                                        state.currentSession!.errorMessage!,
                                         style: textTheme.bodyMedium?.copyWith(
                                           color: AppColors.redAccent,
                                         ),
@@ -156,6 +181,7 @@ class _ChatPageState extends State<ChatPage> {
                     SmartCoachTextField(
                       onSend: () {
                         WidgetsBinding.instance.addPostFrameCallback((_) {
+                          if (!_scrollController.hasClients) return;
                           _scrollController.animateTo(
                             _scrollController.position.maxScrollExtent,
                             duration: const Duration(milliseconds: 300),

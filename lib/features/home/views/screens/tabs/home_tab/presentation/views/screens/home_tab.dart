@@ -1,8 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/config/cache_modules/secure_storege_module.dart';
+import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/constants/cache_constants.dart';
 import 'package:fitness_app/core/enums/nav_bar_enum.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/home/view_model/home_events.dart';
 import 'package:fitness_app/features/home/view_model/home_view_model.dart';
+import 'package:fitness_app/features/home/views/screens/tabs/home_tab/presentation/views/widgets/category_section.dart';
+import 'package:fitness_app/features/recommendations/presentation/view/widgets/recommendation_section.dart';
 import 'package:fitness_app/features/meals/presentation/view/widgets/meals_section.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/workouts_section.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +28,11 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return ListView(
       controller: widget.scrollController,
       padding: const EdgeInsets.only(top: 60, bottom: 120),
       children: [
-        // Greeting header
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
@@ -33,22 +41,34 @@ class _HomeTabState extends State<HomeTab> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Hi there,',
-                    style: TextStyle(
-                      color: AppColors.white.withValues(alpha: 0.7),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
+                  FutureBuilder<BaseResponse<String?>>(
+                    future: getIt<SecureStorageService>().read(
+                      CacheConstants.firstName,
                     ),
+                    builder: (context, snapshot) {
+                      final firstName = snapshot.data?.whenOrNull(
+                        success: (data) => data,
+                      );
+
+                      if (firstName != null && firstName.isNotEmpty) {
+                        return Text(
+                          '${AppTextConstants.greeting} $firstName ,',
+                          style: textTheme.bodyLarge?.copyWith(
+                            color: AppColors.white.withValues(alpha: 0.8),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }
+
+                      return const SizedBox.shrink();
+                    },
                   ),
-                  const SizedBox(height: 4),
-                  const Text(
-                    "Let's Start Your Day",
-                    style: TextStyle(
+                  const SizedBox(height: 2),
+                  Text(
+                    AppTextConstants.letsStartYourDay,
+                    style: textTheme.headlineSmall?.copyWith(
                       color: AppColors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.3,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -63,17 +83,53 @@ class _HomeTabState extends State<HomeTab> {
                     width: 1.5,
                   ),
                 ),
-                child: const Icon(
-                  Icons.person_outline,
-                  color: AppColors.white,
-                  size: 24,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(22),
+                  child: FutureBuilder<BaseResponse<String?>>(
+                    future: getIt<SecureStorageService>().read(
+                      CacheConstants.imageUrl,
+                    ),
+                    builder: (context, snapshot) {
+                      final imageUrl = snapshot.data?.whenOrNull(
+                        success: (data) => data,
+                      );
+
+                      if (imageUrl != null && imageUrl.isNotEmpty) {
+                        return CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          fit: BoxFit.cover,
+                          errorWidget: (context, url, error) {
+                            return const Icon(
+                              Icons.person_outline,
+                              color: AppColors.white,
+                              size: 24,
+                            );
+                          },
+                        );
+                      }
+
+                      return const Icon(
+                        Icons.person_outline,
+                        color: AppColors.white,
+                        size: 24,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
           ),
         ),
 
-        const SizedBox(height: 32),
+        const SizedBox(height: 24),
+
+        const CategorySection(),
+
+        const SizedBox(height: 24),
+
+        const RecommendationSection(),
+
+        const SizedBox(height: 24),
 
         WorkoutsSection(
           onSeeAllTapped: () {
@@ -89,7 +145,6 @@ class _HomeTabState extends State<HomeTab> {
             context.push(AppRoutesConstants.mealsRecommendationRoute);
           },
         ),
-
         const SizedBox(height: 24),
       ],
     );
