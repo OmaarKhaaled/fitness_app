@@ -27,7 +27,7 @@ class PreviousConversationsTab extends StatelessWidget {
                   );
                   Navigator.pop(context);
                 },
-                splashColor: AppColors.primary,
+                splashColor: AppColors.transparent,
                 hoverColor: AppColors.primary,
                 overlayColor: const WidgetStatePropertyAll(AppColors.primary),
                 highlightColor: AppColors.primary,
@@ -58,7 +58,7 @@ class PreviousConversationsTab extends StatelessWidget {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              splashColor: AppColors.primary,
+              splashColor: AppColors.transparent,
               hoverColor: AppColors.primary,
               overlayColor: const WidgetStatePropertyAll(AppColors.primary),
               highlightColor: AppColors.primary,

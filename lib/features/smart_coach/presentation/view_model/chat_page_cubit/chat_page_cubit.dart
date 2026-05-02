@@ -23,7 +23,6 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
   final SendMessageUseCase _sendMessageUseCase;
   final DeleteAllSessionsUseCase _deleteAllSessionsUseCase;
   final DeleteSessionUseCase _deleteSessionUseCase;
-  final StartNewChatSessionUseCase _startNewChatSessionUseCase;
   ChatPageCubit({
     required CreateSessionModelUseCase createSessionModelUseCase,
     required GetProfilePicUrlUseCase getProfilePicUrlUseCase,
@@ -40,7 +39,6 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
        _loadSessionUseCase = loadSessionUseCase,
        _deleteAllSessionsUseCase = deleteAllSessionsUseCase,
        _deleteSessionUseCase = deleteSessionUseCase,
-       _startNewChatSessionUseCase = startNewChatSessionUseCase,
        super(const ChatPageStates());
   void doIntent(ChatPageIntents intent) {
     switch (intent) {
@@ -56,8 +54,6 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
         _deleteAllSessions();
       case DeleteSessionIntent(sessionId: final sessionId):
         _deleteSession(sessionId);
-      case StartNewSessionIntent():
-        _startNewSession();
     }
   }
 
@@ -257,22 +253,5 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
         ),
       ),
     );
-  }
-
-  Future<void> _startNewSession() async {
-    // final result = await _startNewChatSessionUseCase();
-    // emit(state.copyWith(isFirstMessage: true));
-    // result.when(
-    //   initial: () {},
-    //   loading: () {},
-    //   success: (session) => emit(
-    //     state.copyWith(currentSession: BaseState<SessionModel>(data: session)),
-    //   ),
-    //   failure: (f) => emit(
-    //     state.copyWith(
-    //       currentSession: BaseState<SessionModel>(errorMessage: f.message),
-    //     ),
-    //   ),
-    // );
   }
 }

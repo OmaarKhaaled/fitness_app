@@ -37,6 +37,11 @@ class SmartCoachLocalDataSourceImpl implements SmartCoachLocalDataSource {
   Future<BaseResponse<SessionModel?>> loadLocalSession(String sessionId) async {
     try {
       final session = _sessionBox.get(sessionId);
+      if (session == null) return const BaseResponse.success(null);
+      final updatedMessages = session.messages
+          .map((element) => element.copyWith(isCached: true))
+          .toList();
+      await session.copyWith(messages: updatedMessages);
       return BaseResponse.success(session);
     } catch (e) {
       return BaseResponse.failure(CacheException(e.toString()));
@@ -83,12 +88,7 @@ class SmartCoachLocalDataSourceImpl implements SmartCoachLocalDataSource {
       final session = _sessionBox.get(sessionId);
       if (session == null)
         return const BaseResponse.failure(CacheException('Session not found'));
-      final updatedMessage = ChatMessageModel(
-        role: message.role,
-        text: message.text,
-        isCached: true,
-      );
-      session.messages.add(updatedMessage);
+      session.messages.add(message);
       await session.save();
       return const BaseResponse.success(null);
     } catch (e) {

@@ -24,7 +24,3 @@ class DeleteSessionIntent extends ChatPageIntents {
   final String sessionId;
   DeleteSessionIntent(this.sessionId);
 }
-
-class StartNewSessionIntent extends ChatPageIntents {
-  StartNewSessionIntent();
-}
