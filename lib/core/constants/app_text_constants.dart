@@ -222,6 +222,7 @@ class AppTextConstants {
   // Home
   static String get greeting => 'home.greeting'.tr();
   static String get letsStartYourDay => 'home.lets_start_your_day'.tr();
+  static String get recommendationToDay => 'home.recommendation_to_day'.tr();
   static String get category => 'home.category'.tr();
   static String get gym => 'home.gym'.tr();
   static String get fitness => 'home.fitness'.tr();
