@@ -130,21 +130,6 @@
     "confirmPasswordDoesNotMatch": "Confirm Password Does Not Match",
     "thePasswordMustBeAtLeast8CharactersLong": "The password must be at least 8 characters long"
   },
-  "home": {
-    "greeting": "Hey There",
-    "welcome_back": "WELCOME BACK",
-    "email": "Email",
-    "password": "Password",
-    "forgot_password": "Forgot Password?",
-    "or": "Or",
-    "button": "Login",
-    "enter_your_email": "Enter Your Email",
-    "enter_your_password": "Enter Your Password",
-    "remember_me": "Remember Me",
-    "no_account": "Don't Have An Account Yet?",
-    "RegisterLink": "Register",
-    "register_link": "Register"
-  },
   "bottom_nav_bar": {
     "explore": "Explore",
     "smart_coach": "Smart Coach",
@@ -169,11 +154,11 @@
     "greeting_description": "I Am Your Smart Coach",
     "welcome_message": "How Can I Assist You \nToday ?",
     "get_started": "Get Started",
-    "no_response":"No response received.",
-    "ask_smart_coach":"Ask your coach",
-    "previous_conversations":"Previous Conversations",
-    "no_previous_conversations":"No previous conversations",
-    "clear_all":"Clear All"
+    "no_response": "No response received.",
+    "ask_smart_coach": "Ask your coach",
+    "previous_conversations": "Previous Conversations",
+    "no_previous_conversations": "No previous conversations",
+    "clear_all": "Clear All"
   },
   "profile": {
     "title": "Profile",
@@ -189,5 +174,16 @@
     "yes": "Yes",
     "no": "No",
     "areYouSureToCloseTheApp": "Are you sure to close the application?"
+  },
+  "home": {
+    "greeting": "Hi ",
+    "lets_start_your_day": "Let's Start Your Day",
+    "category": "Category",
+    "gym": "Gym",
+    "fitness": "Fitness",
+    "yoga": "Yoga",
+    "aerobics": "Aerobics",
+    "trainer": "Trainer"
   }
+ 
 }
