@@ -41,8 +41,8 @@ class SmartCoachLocalDataSourceImpl implements SmartCoachLocalDataSource {
       final updatedMessages = session.messages
           .map((element) => element.copyWith(isCached: true))
           .toList();
-      await session.copyWith(messages: updatedMessages);
-      return BaseResponse.success(session);
+      final updatedSession = session.copyWith(messages: updatedMessages);
+      return BaseResponse.success(updatedSession);
     } catch (e) {
       return BaseResponse.failure(CacheException(e.toString()));
     }
