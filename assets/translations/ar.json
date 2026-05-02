@@ -183,14 +183,10 @@
     "no": "لا",
     "areYouSureToCloseTheApp": "هل انت متاكد من رغبتك في اغلاق التطبيق"
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
   "change_password": {
     "old_password": "Old Password",
     "password_updated_successfully": "Password Updated Successfully"
-=======
-=======
->>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
+  },
   "home": {
     "greeting": "أهلاً ",
     "lets_start_your_day": "لنبدأ يومك",
@@ -201,9 +197,5 @@
     "yoga": "اليوغا",
     "aerobics": "التمارين الهوائية",
     "trainer": "المدرب"
-<<<<<<< HEAD
->>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
-=======
->>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
   }
 }

@@ -193,6 +193,9 @@
     "yoga": "Yoga",
     "aerobics": "Aerobics",
     "trainer": "Trainer"
+  },
+  "change_password": {
+    "old_password": "Old Password",
+    "password_updated_successfully": "Password Updated Successfully"
   }
- 
 }
