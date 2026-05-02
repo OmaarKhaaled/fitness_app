@@ -51,64 +51,67 @@ class _SmartCoachTabState extends State<SmartCoachTab> {
       child: BlocProvider(
         create: (context) => smartCoachCubit,
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-            child: Column(
-              children: [
-                BlocBuilder<SmartCoachCubit, SmartCoachState>(
-                  buildWhen: (previous, current) =>
-                      previous.firstName?.data != current.firstName?.data,
-                  builder: (context, state) {
-                    log(state.toString());
-                    return Text(
-                      '${AppTextConstants.smartCoachGreeting} ${state.firstName?.data ?? ''},',
-                      style: textTheme.bodyLarge,
-                    );
-                  },
-                ),
-                TypewriterText(
-                  text: AppTextConstants.smartCoachGreetingDescription,
-                  style: textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+              child: Column(
+                children: [
+                  BlocBuilder<SmartCoachCubit, SmartCoachState>(
+                    buildWhen: (previous, current) =>
+                        previous.firstName?.data != current.firstName?.data,
+                    builder: (context, state) {
+                      log(state.toString());
+                      return Text(
+                        '${AppTextConstants.smartCoachGreeting} ${state.firstName?.data ?? ''},',
+                        style: textTheme.bodyLarge,
+                      );
+                    },
                   ),
-                ),
-                const SizedBox(height: 25),
-                Image.asset(
-                  AppAssets.robotImage,
-                  height: screenSize.height * 0.5,
-                  width: double.infinity,
-                ),
-                BlurCard(
-                  height: screenSize.height * 0.23,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        AppTextConstants.smartCoachWelcomeMessage,
-                        style: textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
+                  TypewriterText(
+                    text: AppTextConstants.smartCoachGreetingDescription,
+                    style: textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Image.asset(
+                    AppAssets.robotImage,
+                    height: screenSize.height * 0.5,
+                    width: double.infinity,
+                  ),
+                  BlurCard(
+                    height: screenSize.height * 0.23,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppTextConstants.smartCoachWelcomeMessage,
+                          style: textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context.pushNamed(AppRoutesConstants.chatPage);
-                          },
-                          child: Text(
-                            AppTextConstants.smartCoachGetStarted,
-                            style: textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w600,
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.pushNamed(AppRoutesConstants.chatPage);
+                            },
+                            child: Text(
+                              AppTextConstants.smartCoachGetStarted,
+                              style: textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(height: screenSize.height*0.12,)
+                ],
+              ),
             ),
           ),
         ),

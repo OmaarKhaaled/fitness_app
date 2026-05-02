@@ -136,6 +136,14 @@
     "workouts": "التمارين",
     "profile": "الملف الشخصي"
   },
+  "edit_profile_sec": {
+    "edit_profile": "تعديل الملف الشخصي",
+    "your_weight": "وزنك",
+    "your_goal": "هدفك",
+    "your_activity_level": "مستوى نشاطك",
+    "tap_to_edit": "انقر للتعديل",
+    "edit": "تعديل"
+  },
   "workouts": {
     "upcoming_workouts": "التمارين القادمة",
     "see_all": "عرض الكل",

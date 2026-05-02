@@ -175,6 +175,14 @@
     "no": "No",
     "areYouSureToCloseTheApp": "Are you sure to close the application?"
   },
+  "edit_profile_sec":{
+    "edit_profile":"Edit Profile",
+    "your_weight":"Your Weight",
+    "your_goal":"Your Goal",
+    "your_activity_level":"Your activity level",
+    "tap_to_edit":"tap To Edit",
+    "edit":"Edit"
+  },
   "home": {
     "greeting": "Hi ",
     "lets_start_your_day": "Let's Start Your Day",

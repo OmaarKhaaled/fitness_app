@@ -213,6 +213,14 @@ class AppTextConstants {
       'profile.areYouSureToCloseTheApp'.tr();
   static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
   static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
+  //edit profile section
+  static String get editProfileHeader => 'edit_profile_sec.edit_profile'.tr();
+  static String get yourWeight => 'edit_profile_sec.your_weight'.tr();
+  static String get yourGoal => 'edit_profile_sec.your_goal'.tr();
+  static String get yourActivityLevel =>
+      'edit_profile_sec.your_activity_level'.tr();
+  static String get tapToEdit => 'edit_profile_sec.tap_to_edit'.tr();
+  static String get editButton => 'edit_profile_sec.edit'.tr();
   static String get previousConversations =>
       'smart_coach.previous_conversations'.tr();
   static String get noPreviousConversations =>
