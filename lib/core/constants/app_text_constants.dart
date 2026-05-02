@@ -213,4 +213,9 @@ class AppTextConstants {
       'profile.areYouSureToCloseTheApp'.tr();
   static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
   static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
+  static String get previousConversations =>
+      'smart_coach.previous_conversations'.tr();
+  static String get noPreviousConversations =>
+      'smart_coach.no_previous_conversations'.tr();
+  static String get clearAll => 'smart_coach.clear_all'.tr();
 }

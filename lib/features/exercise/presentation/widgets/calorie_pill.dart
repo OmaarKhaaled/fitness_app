@@ -1,13 +1,9 @@
-
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CaloriePill extends StatelessWidget {
-  const CaloriePill({
-    super.key,
-    required this.label,
-  });
+  const CaloriePill({super.key, required this.label});
 
   final String label;
 

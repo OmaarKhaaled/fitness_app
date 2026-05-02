@@ -38,12 +38,10 @@ class WorkoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ??
+      onTap:
+          onTap ??
           () {
-            context.go(
-              AppRoutesConstants.exercisesRoute,
-              extra: exerciseModel,
-            );
+            context.go(AppRoutesConstants.exercisesRoute, extra: exerciseModel);
           },
       child: Container(
         decoration: BoxDecoration(

@@ -1,21 +1,39 @@
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/config/base_state/base_state.dart';
+import 'package:fitness_app/features/smart_coach/data/models/session_model.dart';
 
 class ChatPageStates extends Equatable {
   final BaseState<String?>? profilePicUrl;
-  final BaseState<List<Map<String, String>>>? messages;
-  const ChatPageStates({this.profilePicUrl, this.messages});
+  final bool isFirstMessage;
+  final BaseState<SessionModel>? currentSession;
+  final BaseState<List<SessionModel>>? previousConversations;
+  const ChatPageStates({
+    this.profilePicUrl,
+    this.isFirstMessage = true,
+    this.currentSession,
+    this.previousConversations,
+  });
 
   ChatPageStates copyWith({
     BaseState<String?>? profilePicUrl,
-    BaseState<List<Map<String, String>>>? messages,
+    bool? isFirstMessage,
+    BaseState<SessionModel>? currentSession,
+    BaseState<List<SessionModel>>? previousConversations,
   }) {
     return ChatPageStates(
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
-      messages: messages ?? this.messages,
+      isFirstMessage: isFirstMessage ?? this.isFirstMessage,
+      currentSession: currentSession ?? this.currentSession,
+      previousConversations:
+          previousConversations ?? this.previousConversations,
     );
   }
 
   @override
-  List<Object?> get props => [profilePicUrl, messages];
+  List<Object?> get props => [
+    profilePicUrl,
+    isFirstMessage,
+    currentSession,
+    previousConversations,
+  ];
 }

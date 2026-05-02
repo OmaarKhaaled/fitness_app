@@ -67,7 +67,6 @@ class ExerciseModel {
     this.inDepthYoutubeExplanationLink,
   });
 
-  
   String? get thumbnailUrl {
     if (shortYoutubeDemonstrationLink == null) return null;
 
