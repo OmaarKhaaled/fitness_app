@@ -37,6 +37,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/menu.svg
   String get menu => 'assets/icons/menu.svg';
 
+  /// File path: assets/icons/pencil.png
+  AssetGenImage get pencil => const AssetGenImage('assets/icons/pencil.png');
+
   /// File path: assets/icons/profile.svg
   String get profile => 'assets/icons/profile.svg';
 
@@ -59,6 +62,7 @@ class $AssetsIconsGen {
     home,
     maleSymbol,
     menu,
+    pencil,
     profile,
     superFitness,
     wourkout,
@@ -114,6 +118,9 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingBg =>
       const AssetGenImage('assets/images/onboarding_bg.png');
 
+  /// File path: assets/images/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/images/profile.png');
+
   /// File path: assets/images/smart_chat_background.png
   AssetGenImage get smartChatBackground =>
       const AssetGenImage('assets/images/smart_chat_background.png');
@@ -138,6 +145,7 @@ class $AssetsImagesGen {
     onboarding2,
     onboarding3,
     onboardingBg,
+    profile,
     smartChatBackground,
     splash,
     superFitness,

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/routing/route_names.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
@@ -66,158 +67,162 @@ class _ProfileTabState extends State<ProfileTab> {
               final user = state.data;
               final isLoading = state.isLoading;
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      AppTextConstants.profile,
-                      style: textTheme.headlineMedium?.copyWith(
-                        color: AppColors.white,
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppTextConstants.profile,
+                        style: textTheme.headlineMedium?.copyWith(
+                          color: AppColors.white,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 32),
-
-                    Skeletonizer(
-                      enabled: isLoading && user == null,
-                      effect: const ShimmerEffect(
-                        baseColor: AppColors.shimmerBaseColor,
-                        highlightColor: AppColors.shimmerHighlightColor,
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: AppColors.white.withValues(alpha: 0.2),
-                                width: 2,
+                      const SizedBox(height: 32),
+                
+                      Skeletonizer(
+                        enabled: isLoading && user == null,
+                        effect: const ShimmerEffect(
+                          baseColor: AppColors.shimmerBaseColor,
+                          highlightColor: AppColors.shimmerHighlightColor,
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: AppColors.white.withValues(alpha: 0.2),
+                                  width: 2,
+                                ),
+                              ),
+                              child: ClipOval(
+                                child: user?.photo != null
+                                    ? CachedNetworkImage(
+                                        imageUrl: user!.photo!,
+                                        fit: BoxFit.cover,
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(
+                                              CupertinoIcons
+                                                  .person_alt_circle_fill,
+                                              size: 100,
+                                              color: AppColors.grey,
+                                            ),
+                                      )
+                                    : const Bone.circle(size: 100),
                               ),
                             ),
-                            child: ClipOval(
-                              child: user?.photo != null
-                                  ? CachedNetworkImage(
-                                      imageUrl: user!.photo!,
-                                      fit: BoxFit.cover,
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(
-                                            CupertinoIcons
-                                                .person_alt_circle_fill,
-                                            size: 100,
-                                            color: AppColors.grey,
-                                          ),
-                                    )
-                                  : const Bone.circle(size: 100),
+                            const SizedBox(height: 16),
+                            user != null
+                                ? Text(
+                                    user.fullName,
+                                    style: textTheme.titleLarge?.copyWith(
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                : const Bone.text(words: 2),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                
+                      BlurCard(
+                        child: Column(
+                          children: [
+                            ProfileMenuItem(
+                              iconPath: AppIcons.editProfile,
+                              title: AppTextConstants.editProfile,
+                              onTap: () {
+                                context.go(AppRoutesConstants.editProfileRoute);
+                              },
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          user != null
-                              ? Text(
-                                  user.fullName,
-                                  style: textTheme.titleLarge?.copyWith(
+                            ProfileMenuItem(
+                              iconPath: AppIcons.changePassword,
+                              title: AppTextConstants.changePassword,
+                              onTap: () {},
+                            ),
+                            ProfileMenuItem(
+                              iconPath: AppIcons.language,
+                              titleWidget: RichText(
+                                text: TextSpan(
+                                  style: textTheme.bodyLarge?.copyWith(
                                     color: AppColors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                )
-                              : const Bone.text(words: 2),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    BlurCard(
-                      child: Column(
-                        children: [
-                          ProfileMenuItem(
-                            iconPath: AppIcons.editProfile,
-                            title: AppTextConstants.editProfile,
-                            onTap: () {},
-                          ),
-                          ProfileMenuItem(
-                            iconPath: AppIcons.changePassword,
-                            title: AppTextConstants.changePassword,
-                            onTap: () =>
-                                context.push(RouteNames.changePassword),
-                          ),
-                          ProfileMenuItem(
-                            iconPath: AppIcons.language,
-                            titleWidget: RichText(
-                              text: TextSpan(
-                                style: textTheme.bodyLarge?.copyWith(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        '${AppTextConstants.selectLanguage} (',
-                                  ),
-                                  TextSpan(
-                                    text: isEnglish
-                                        ? AppTextConstants.english
-                                        : AppTextConstants.arabic,
-                                    style: textTheme.bodyLarge?.copyWith(
-                                      color: AppColors.primary,
-                                      fontWeight: FontWeight.bold,
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          '${AppTextConstants.selectLanguage} (',
                                     ),
-                                  ),
-                                  const TextSpan(text: ')'),
-                                ],
-                              ),
-                            ),
-                            trailing: Switch(
-                              value: isEnglish,
-                              padding: EdgeInsets.zero,
-                              onChanged: (val) {
-                                if (val) {
-                                  context.setLocale(const Locale('en'));
-                                } else {
-                                  context.setLocale(const Locale('ar'));
-                                }
-                              },
-                              activeTrackColor: AppColors.primary,
-                              activeThumbColor: AppColors.white,
-                              inactiveThumbColor: AppColors.primary,
-                              inactiveTrackColor: AppColors.white,
-                            ),
-                            onTap: () {},
-                          ),
-                          ProfileMenuItem(
-                            iconPath: AppIcons.security,
-                            title: AppTextConstants.security,
-                            onTap: () {},
-                          ),
-                          ProfileMenuItem(
-                            iconPath: AppIcons.privacyPolicy,
-                            title: AppTextConstants.privacyPolicy,
-                            onTap: () {},
-                          ),
-                          ProfileMenuItem(
-                            iconPath: AppIcons.help,
-                            title: AppTextConstants.help,
-                            onTap: () {},
-                          ),
-                          ProfileMenuItem(
-                            iconPath: AppIcons.logout,
-                            title: AppTextConstants.logout,
-                            hasBottomBorder: false,
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (ctx) => BlocProvider.value(
-                                  value: context.read<ProfileCubit>(),
-                                  child: const LogoutDialog(),
+                                    TextSpan(
+                                      text: isEnglish
+                                          ? AppTextConstants.english
+                                          : AppTextConstants.arabic,
+                                      style: textTheme.bodyLarge?.copyWith(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const TextSpan(text: ')'),
+                                  ],
                                 ),
-                              );
-                            },
-                          ),
-                        ],
+                              ),
+                              trailing: Switch(
+                                value: isEnglish,
+                                padding: EdgeInsets.zero,
+                                onChanged: (val) {
+                                  if (val) {
+                                    context.setLocale(const Locale('en'));
+                                  } else {
+                                    context.setLocale(const Locale('ar'));
+                                  }
+                                },
+                                activeTrackColor: AppColors.primary,
+                                activeThumbColor: AppColors.white,
+                                inactiveThumbColor: AppColors.primary,
+                                inactiveTrackColor: AppColors.white,
+                              ),
+                              onTap: () {},
+                            ),
+                            ProfileMenuItem(
+                              iconPath: AppIcons.security,
+                              title: AppTextConstants.security,
+                              onTap: () {},
+                            ),
+                            ProfileMenuItem(
+                              iconPath: AppIcons.privacyPolicy,
+                              title: AppTextConstants.privacyPolicy,
+                              onTap: () {},
+                            ),
+                            ProfileMenuItem(
+                              iconPath: AppIcons.help,
+                              title: AppTextConstants.help,
+                              onTap: () {},
+                            ),
+                            ProfileMenuItem(
+                              iconPath: AppIcons.logout,
+                              title: AppTextConstants.logout,
+                              hasBottomBorder: false,
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) => BlocProvider.value(
+                                    value: context.read<ProfileCubit>(),
+                                    child: const LogoutDialog(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 30,)
+                    ],
+                  ),
                 ),
               );
             },
