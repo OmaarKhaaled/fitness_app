@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Back.svg
+  String get back => 'assets/icons/Back.svg';
+
   /// File path: assets/icons/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/icons/Vector.png');
 
@@ -40,6 +43,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/profile.svg
   String get profile => 'assets/icons/profile.svg';
 
+  /// Directory path: assets/icons/profile_icons
+  $AssetsIconsProfileIconsGen get profileIcons =>
+      const $AssetsIconsProfileIconsGen();
+
   /// File path: assets/icons/super_fitness.svg
   String get superFitness => 'assets/icons/super_fitness.svg';
 
@@ -48,11 +55,13 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    back,
     vector,
     chatAi,
     femaleSymbol,
     home,
     maleSymbol,
+    menu,
     pencil,
     profile,
     superFitness,
@@ -70,6 +79,14 @@ class $AssetsImagesGen {
   AssetGenImage get authBackground =>
       const AssetGenImage('assets/images/auth_background.png');
 
+  /// Directory path: assets/images/category_images
+  $AssetsImagesCategoryImagesGen get categoryImages =>
+      const $AssetsImagesCategoryImagesGen();
+
+  /// File path: assets/images/exercise.jpg
+  AssetGenImage get exercise =>
+      const AssetGenImage('assets/images/exercise.jpg');
+
   /// File path: assets/images/fitness.png
   AssetGenImage get fitness => const AssetGenImage('assets/images/fitness.png');
 
@@ -80,6 +97,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/home_back_ground.png
   AssetGenImage get homeBackGround =>
       const AssetGenImage('assets/images/home_back_ground.png');
+
+  /// File path: assets/images/model_background.jpg
+  AssetGenImage get modelBackground =>
+      const AssetGenImage('assets/images/model_background.jpg');
 
   /// File path: assets/images/onboarding_1.png
   AssetGenImage get onboarding1 =>
@@ -115,9 +136,11 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     robot,
     authBackground,
+    exercise,
     fitness,
     forgetPasswordBackground,
     homeBackGround,
+    modelBackground,
     onboarding1,
     onboarding2,
     onboarding3,
@@ -127,6 +150,16 @@ class $AssetsImagesGen {
     splash,
     superFitness,
   ];
+}
+
+class $AssetsLottiesGen {
+  const $AssetsLottiesGen();
+
+  /// File path: assets/lotties/robot_hello.json
+  String get robotHello => 'assets/lotties/robot_hello.json';
+
+  /// List of all assets
+  List<String> get values => [robotHello];
 }
 
 class $AssetsTranslationsGen {
@@ -142,11 +175,82 @@ class $AssetsTranslationsGen {
   List<String> get values => [ar, en];
 }
 
+class $AssetsIconsProfileIconsGen {
+  const $AssetsIconsProfileIconsGen();
+
+  /// File path: assets/icons/profile_icons/change_password.svg
+  String get changePassword => 'assets/icons/profile_icons/change_password.svg';
+
+  /// File path: assets/icons/profile_icons/edit_profile.svg
+  String get editProfile => 'assets/icons/profile_icons/edit_profile.svg';
+
+  /// File path: assets/icons/profile_icons/help.svg
+  String get help => 'assets/icons/profile_icons/help.svg';
+
+  /// File path: assets/icons/profile_icons/language.svg
+  String get language => 'assets/icons/profile_icons/language.svg';
+
+  /// File path: assets/icons/profile_icons/logout.svg
+  String get logout => 'assets/icons/profile_icons/logout.svg';
+
+  /// File path: assets/icons/profile_icons/privacy.svg
+  String get privacy => 'assets/icons/profile_icons/privacy.svg';
+
+  /// File path: assets/icons/profile_icons/security.svg
+  String get security => 'assets/icons/profile_icons/security.svg';
+
+  /// List of all assets
+  List<String> get values => [
+    changePassword,
+    editProfile,
+    help,
+    language,
+    logout,
+    privacy,
+    security,
+  ];
+}
+
+class $AssetsImagesCategoryImagesGen {
+  const $AssetsImagesCategoryImagesGen();
+
+  /// File path: assets/images/category_images/aerobics_category.png
+  AssetGenImage get aerobicsCategory => const AssetGenImage(
+    'assets/images/category_images/aerobics_category.png',
+  );
+
+  /// File path: assets/images/category_images/fitness_category.png
+  AssetGenImage get fitnessCategory =>
+      const AssetGenImage('assets/images/category_images/fitness_category.png');
+
+  /// File path: assets/images/category_images/gym_category.png
+  AssetGenImage get gymCategory =>
+      const AssetGenImage('assets/images/category_images/gym_category.png');
+
+  /// File path: assets/images/category_images/trainer_category.png
+  AssetGenImage get trainerCategory =>
+      const AssetGenImage('assets/images/category_images/trainer_category.png');
+
+  /// File path: assets/images/category_images/yoga_category.png
+  AssetGenImage get yogaCategory =>
+      const AssetGenImage('assets/images/category_images/yoga_category.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    aerobicsCategory,
+    fitnessCategory,
+    gymCategory,
+    trainerCategory,
+    yogaCategory,
+  ];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
