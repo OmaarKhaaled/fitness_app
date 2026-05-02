@@ -69,4 +69,5 @@ flutter:
     - assets/icons/profile_icons/
     - assets/translations/
     - assets/lotties/
+    - assets/images/category_images/
     # - assets/env/

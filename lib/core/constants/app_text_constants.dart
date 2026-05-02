@@ -218,4 +218,14 @@ class AppTextConstants {
   static String get noPreviousConversations =>
       'smart_coach.no_previous_conversations'.tr();
   static String get clearAll => 'smart_coach.clear_all'.tr();
+
+  // Home
+  static String get greeting => 'home.greeting'.tr();
+  static String get letsStartYourDay => 'home.lets_start_your_day'.tr();
+  static String get category => 'home.category'.tr();
+  static String get gym => 'home.gym'.tr();
+  static String get fitness => 'home.fitness'.tr();
+  static String get yoga => 'home.yoga'.tr();
+  static String get aerobics => 'home.aerobics'.tr();
+  static String get trainer => 'home.trainer'.tr();
 }

@@ -130,21 +130,6 @@
     "confirmPasswordDoesNotMatch": "كلمة المرور غير متطابقة",
     "thePasswordMustBeAtLeast8CharactersLong": "كلمة المرور يجب أن تكون 8 أحرف على الأقل"
   },
-  "home": {
-    "greeting": "مرحباً",
-    "welcome_back": "أهلاً بعودتك",
-    "email": "البريد الإلكتروني",
-    "password": "كلمة المرور",
-    "forgot_password": "نسيت كلمة المرور؟",
-    "or": "أو",
-    "button": "تسجيل الدخول",
-    "enter_your_email": "أدخل بريدك الإلكتروني",
-    "enter_your_password": "أدخل كلمة المرور",
-    "remember_me": "تذكرني",
-    "no_account": "ليس لديك حساب بعد؟",
-    "RegisterLink": "إنشاء حساب",
-    "register_link": "إنشاء حساب"
-  },
   "bottom_nav_bar": {
     "explore": "استكشف",
     "smart_coach": "المدرب الذكي",
@@ -169,11 +154,11 @@
     "greeting_description": "أنا مدربك الذكي",
     "welcome_message": "كيف يمكنني مساعدتك \n اليوم ؟",
     "get_started": "ابدأ",
-    "no_response":"لا يوجد رد",
-    "ask_smart_coach":"اسأل مدربك الذكي",
-    "previous_conversations":"المحادثات السابقة",
-    "no_previous_conversations":"لا يوجد محادثات سابقة",
-    "clear_all":"مسح الكل"
+    "no_response": "لا يوجد رد",
+    "ask_smart_coach": "اسأل مدربك الذكي",
+    "previous_conversations": "المحادثات السابقة",
+    "no_previous_conversations": "لا يوجد محادثات سابقة",
+    "clear_all": "مسح الكل"
   },
   "profile": {
     "title": "الملف الشخصي",
@@ -189,5 +174,15 @@
     "yes": "نعم",
     "no": "لا",
     "areYouSureToCloseTheApp": "هل انت متاكد من رغبتك في اغلاق التطبيق"
+  },
+  "home": {
+    "greeting": "أهلاً ",
+    "lets_start_your_day": "لنبدأ يومك",
+    "category": "الفئة",
+    "gym": "الجيم",
+    "fitness": "اللياقة البدنية",
+    "yoga": "اليوغا",
+    "aerobics": "التمارين الهوائية",
+    "trainer": "المدرب"
   }
 }

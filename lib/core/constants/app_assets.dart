@@ -22,6 +22,16 @@ class AppAssets {
   static const String defaultProfileImage =
       'https://fitness.elevateegy.com/uploads/default-profile.png';
   static const String welcomeLottie = 'assets/lotties/robot_hello.json';
+  static const String fitnessCategory =
+      'assets/images/category_images/fitness_category.png';
+  static const String gymCategory =
+      'assets/images/category_images/gym_category.png';
+  static const String yogaCategory =
+      'assets/images/category_images/yoga_category.png';
+  static const String trainerCategory =
+      'assets/images/category_images/trainer_category.png';
+  static const String aerobicsCategory =
+      'assets/images/category_images/aerobics_category.png';
 }
 
 class AppIcons {
