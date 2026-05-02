@@ -13,6 +13,7 @@ import 'package:fitness_app/features/auth/change_password/presentation/view_mode
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 class ChangePasswordView extends StatelessWidget {
   const ChangePasswordView({super.key});
 

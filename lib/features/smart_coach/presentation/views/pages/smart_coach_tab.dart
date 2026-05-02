@@ -53,7 +53,11 @@ class _SmartCoachTabState extends State<SmartCoachTab> {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                top: 16.0,
+              ),
               child: Column(
                 children: [
                   BlocBuilder<SmartCoachCubit, SmartCoachState>(
@@ -109,7 +113,7 @@ class _SmartCoachTabState extends State<SmartCoachTab> {
                       ],
                     ),
                   ),
-                  SizedBox(height: screenSize.height*0.12,)
+                  SizedBox(height: screenSize.height * 0.12),
                 ],
               ),
             ),

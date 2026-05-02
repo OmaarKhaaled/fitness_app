@@ -192,7 +192,10 @@
     "fitness": "Fitness",
     "yoga": "Yoga",
     "aerobics": "Aerobics",
-    "trainer": "Trainer"
+    "trainer": "Trainer",
+    "popular_training":"Popular Training",
+    "tasks":"Tasks",
+    "exercises_that_strengthen_your":"Exercises That\nStrengthen Your"
   },
   "change_password": {
     "old_password": "Old Password",
