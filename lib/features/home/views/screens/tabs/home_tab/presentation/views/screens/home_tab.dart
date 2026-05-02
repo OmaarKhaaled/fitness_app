@@ -12,6 +12,7 @@ import 'package:fitness_app/features/home/view_model/home_view_model.dart';
 import 'package:fitness_app/features/home/views/screens/tabs/home_tab/presentation/views/widgets/category_section.dart';
 import 'package:fitness_app/features/recommendations/presentation/view/widgets/recommendation_section.dart';
 import 'package:fitness_app/features/meals/presentation/view/widgets/meals_section.dart';
+import 'package:fitness_app/features/popular_tarining/presentation/view/widgets/popular_training_section.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/workouts_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -146,6 +147,8 @@ class _HomeTabState extends State<HomeTab> {
           },
         ),
         const SizedBox(height: 24),
+
+        const PopularTrainingSection(),
       ],
     );
   }
