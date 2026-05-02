@@ -12,6 +12,7 @@ class AiModelConstants {
   static const String messageKey = 'message';
   static const String userRole = 'user';
   static const String modelRole = 'model';
+  static const String sessionNotFound = 'Session Not Found';
   static const String geminiApiKeyFromEnv = String.fromEnvironment(
     'GEMINI_API_KEY',
     defaultValue: '',

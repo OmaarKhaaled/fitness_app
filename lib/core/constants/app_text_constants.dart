@@ -221,4 +221,20 @@ class AppTextConstants {
       'edit_profile_sec.your_activity_level'.tr();
   static String get tapToEdit => 'edit_profile_sec.tap_to_edit'.tr();
   static String get editButton => 'edit_profile_sec.edit'.tr();
+  static String get previousConversations =>
+      'smart_coach.previous_conversations'.tr();
+  static String get noPreviousConversations =>
+      'smart_coach.no_previous_conversations'.tr();
+  static String get clearAll => 'smart_coach.clear_all'.tr();
+
+  // Home
+  static String get greeting => 'home.greeting'.tr();
+  static String get letsStartYourDay => 'home.lets_start_your_day'.tr();
+  static String get recommendationToDay => 'home.recommendation_to_day'.tr();
+  static String get category => 'home.category'.tr();
+  static String get gym => 'home.gym'.tr();
+  static String get fitness => 'home.fitness'.tr();
+  static String get yoga => 'home.yoga'.tr();
+  static String get aerobics => 'home.aerobics'.tr();
+  static String get trainer => 'home.trainer'.tr();
 }

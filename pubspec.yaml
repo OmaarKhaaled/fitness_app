@@ -45,6 +45,8 @@ dependencies:
   google_generative_ai: ^0.4.7
   flutter_dotenv: ^6.0.1
   image_picker: ^1.2.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   bloc_test: ^10.0.0
@@ -68,4 +70,5 @@ flutter:
     - assets/icons/profile_icons/
     - assets/translations/
     - assets/lotties/
+    - assets/images/category_images/
     # - assets/env/

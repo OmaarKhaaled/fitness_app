@@ -44,43 +44,45 @@ class ExerciseRepoImpl implements ExerciseRepo {
             difficultyLevelId,
           );
       return result.exercises
-              ?.map((e) => ExerciseModel(
-                    id: e.id ?? '',
-                    name: e.exercise ?? '',
-                    difficultyLevel: e.difficultyLevel,
-                    targetMuscleGroup: e.targetMuscleGroup,
-                    primeMoverMuscle: e.primeMoverMuscle,
-                    primaryEquipment: e.primaryEquipment,
-                    mechanics: e.mechanics,
-                    posture: e.posture,
-                    bodyRegion: e.bodyRegion,
-                    forceType: e.forceType,
-                    secondaryMuscle: e.secondaryMuscle?.toString(),
-                    tertiaryMuscle: e.tertiaryMuscle?.toString(),
-                    primaryItems: e.primaryItems?.toString(),
-                    secondaryEquipment: e.secondaryEquipment?.toString(),
-                    secondaryItems: e.secondaryItems?.toString(),
-                    singleOrDoubleArm: e.singleOrDoubleArm,
-                    continuousOrAlternatingArms: e.continuousOrAlternatingArms,
-                    grip: e.grip,
-                    loadPositionEnding: e.loadPositionEnding,
-                    continuousOrAlternatingLegs: e.continuousOrAlternatingLegs,
-                    footElevation: e.footElevation,
-                    combinationExercises: e.combinationExercises,
-                    movementPattern1: e.movementPattern1,
-                    movementPattern2: e.movementPattern2,
-                    movementPattern3: e.movementPattern3?.toString(),
-                    planeOfMotion1: e.planeOfMotion1,
-                    planeOfMotion2: e.planeOfMotion2,
-                    planeOfMotion3: e.planeOfMotion3?.toString(),
-                    laterality: e.laterality,
-                    primaryExerciseClassification:
-                        e.primaryExerciseClassification,
-                    shortYoutubeDemonstrationLink:
-                        e.shortYoutubeDemonstrationLink,
-                    inDepthYoutubeExplanationLink:
-                        e.inDepthYoutubeExplanationLink,
-                  ))
+              ?.map(
+                (e) => ExerciseModel(
+                  id: e.id ?? '',
+                  name: e.exercise ?? '',
+                  difficultyLevel: e.difficultyLevel,
+                  targetMuscleGroup: e.targetMuscleGroup,
+                  primeMoverMuscle: e.primeMoverMuscle,
+                  primaryEquipment: e.primaryEquipment,
+                  mechanics: e.mechanics,
+                  posture: e.posture,
+                  bodyRegion: e.bodyRegion,
+                  forceType: e.forceType,
+                  secondaryMuscle: e.secondaryMuscle?.toString(),
+                  tertiaryMuscle: e.tertiaryMuscle?.toString(),
+                  primaryItems: e.primaryItems?.toString(),
+                  secondaryEquipment: e.secondaryEquipment?.toString(),
+                  secondaryItems: e.secondaryItems?.toString(),
+                  singleOrDoubleArm: e.singleOrDoubleArm,
+                  continuousOrAlternatingArms: e.continuousOrAlternatingArms,
+                  grip: e.grip,
+                  loadPositionEnding: e.loadPositionEnding,
+                  continuousOrAlternatingLegs: e.continuousOrAlternatingLegs,
+                  footElevation: e.footElevation,
+                  combinationExercises: e.combinationExercises,
+                  movementPattern1: e.movementPattern1,
+                  movementPattern2: e.movementPattern2,
+                  movementPattern3: e.movementPattern3?.toString(),
+                  planeOfMotion1: e.planeOfMotion1,
+                  planeOfMotion2: e.planeOfMotion2,
+                  planeOfMotion3: e.planeOfMotion3?.toString(),
+                  laterality: e.laterality,
+                  primaryExerciseClassification:
+                      e.primaryExerciseClassification,
+                  shortYoutubeDemonstrationLink:
+                      e.shortYoutubeDemonstrationLink,
+                  inDepthYoutubeExplanationLink:
+                      e.inDepthYoutubeExplanationLink,
+                ),
+              )
               .toList() ??
           [];
     });
