@@ -12,16 +12,21 @@ class ApiException extends AppException {
     return ApiException(getAllErrorMessage(json), code: statusCode);
   }
 
-  static String getAllErrorMessage(Map<String, dynamic> errors) {
-    if (errors.isNullOrEmpty()) return ErrorsConstant.defaultError;
+  static String getAllErrorMessage(Map<String, dynamic> json) {
+    if (json.isNullOrEmpty()) return ErrorsConstant.defaultError;
 
-    final errorMessage = errors.entries
-        .map((entry) {
-          final key = entry.key;
-          final value = entry.value;
-          return "$key: ${value.join(', ')}";
-        })
-        .join('\n');
-    return errorMessage;
+    if (json.containsKey('message') && json['message'] is String) {
+      return json['message'];
+    }
+
+    final errorMessage = json.entries.map((entry) {
+      final value = entry.value;
+      if (value is List) {
+        return value.join(', ');
+      }
+      return value.toString();
+    }).where((element) => element.isNotEmpty).join('\n');
+
+    return errorMessage.isEmpty ? ErrorsConstant.defaultError : errorMessage;
   }
 }

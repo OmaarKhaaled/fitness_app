@@ -11,6 +11,7 @@ class AppScaffold extends StatelessWidget {
   final bool hasGradient;
   final PreferredSizeWidget? appBar;
   final double blurSigma;
+  final bool? resizeToAvoidBottomInset;
 
   const AppScaffold({
     super.key,
@@ -22,11 +23,13 @@ class AppScaffold extends StatelessWidget {
     this.hasGradient = false,
     this.appBar,
     this.blurSigma = 0.0, // Default to no blur
+    this.resizeToAvoidBottomInset,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBody: true,
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.transparent,

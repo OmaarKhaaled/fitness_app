@@ -7,7 +7,12 @@ class FormChangedIntent extends ChangePaaswordIntent {
   FormChangedIntent([this.request]);
 }
 
-class ToggleCurrentPasswordVisibility extends ChangePaaswordIntent {}
+class ErrorMessageIntent extends ChangePaaswordIntent {
+  final String? errorMessage;
+  ErrorMessageIntent([this.errorMessage]);
+}
+
+class ToggleOldPasswordVisibility extends ChangePaaswordIntent {}
 
 class ToggleNewPasswordVisibility extends ChangePaaswordIntent {}
 

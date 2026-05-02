@@ -3,33 +3,33 @@ part of 'change_password_cubit.dart';
 class ChangePasswordState extends Equatable {
   final BaseState<ChangePasswordModel> baseState;
   final bool isFormValid;
-  final bool currentPasswordVisible;
+  final bool oldPasswordVisible;
   final bool newPasswordVisible;
   final bool confirmPasswordVisible;
 
   const ChangePasswordState({
     required this.baseState,
     this.isFormValid = false,
-    this.currentPasswordVisible = false,
+    this.oldPasswordVisible = false,
     this.newPasswordVisible = false,
     this.confirmPasswordVisible = false,
   });
 
-  factory ChangePasswordState.initial() =>
-      const ChangePasswordState(baseState: BaseState<ChangePasswordModel>());
+  factory ChangePasswordState.initial() => const ChangePasswordState(
+        baseState: BaseState(),
+      );
 
   ChangePasswordState copyWith({
     BaseState<ChangePasswordModel>? baseState,
     bool? isFormValid,
-    bool? currentPasswordVisible,
+    bool? oldPasswordVisible,
     bool? newPasswordVisible,
     bool? confirmPasswordVisible,
   }) {
     return ChangePasswordState(
       baseState: baseState ?? this.baseState,
       isFormValid: isFormValid ?? this.isFormValid,
-      currentPasswordVisible:
-          currentPasswordVisible ?? this.currentPasswordVisible,
+      oldPasswordVisible: oldPasswordVisible ?? this.oldPasswordVisible,
       newPasswordVisible: newPasswordVisible ?? this.newPasswordVisible,
       confirmPasswordVisible:
           confirmPasswordVisible ?? this.confirmPasswordVisible,
@@ -38,10 +38,10 @@ class ChangePasswordState extends Equatable {
 
   @override
   List<Object?> get props => [
-    baseState,
-    isFormValid,
-    currentPasswordVisible,
-    newPasswordVisible,
-    confirmPasswordVisible,
-  ];
+        baseState,
+        isFormValid,
+        oldPasswordVisible,
+        newPasswordVisible,
+        confirmPasswordVisible,
+      ];
 }

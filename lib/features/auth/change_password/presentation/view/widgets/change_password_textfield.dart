@@ -10,6 +10,7 @@ class ChangePasswordTextField extends StatelessWidget {
     required this.obscureText,
     required this.onToggleVisibility,
     this.validator,
+    this.errorText,
   });
 
   final TextEditingController controller;
@@ -17,6 +18,7 @@ class ChangePasswordTextField extends StatelessWidget {
   final bool obscureText;
   final VoidCallback onToggleVisibility;
   final String? Function(String?)? validator;
+  final String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class ChangePasswordTextField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.lock_outline, color: AppColors.grey),
         hintText: hintText,
+        errorText: errorText,
         suffixIcon: IconButton(
           icon: Icon(
             obscureText
@@ -39,7 +42,7 @@ class ChangePasswordTextField extends StatelessWidget {
           onPressed: onToggleVisibility,
         ),
       ),
-      validator: AppValidators.validatePassword,
+      validator: validator ?? AppValidators.validatePassword,
     );
   }
 }

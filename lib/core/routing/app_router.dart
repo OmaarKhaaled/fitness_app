@@ -102,7 +102,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutesConstants.changePassword,
         name: AppRoutesConstants.changePassword,
-        builder: (context, state) => ChangePasswordScreen(),
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
     ],
   );
