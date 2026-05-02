@@ -13,35 +13,69 @@ class PreviousConversationsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          context.read<ChatPageCubit>().doIntent(LoadSessionIntent(session.id));
-          Navigator.pop(context);
-        },
-        splashColor: AppColors.primary,
-        hoverColor: AppColors.primary,
-        overlayColor: const WidgetStatePropertyAll(AppColors.primary),
-        highlightColor: AppColors.primary,
-        focusColor: AppColors.primary,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          child: Row(
-            children: [
-              const Icon(Icons.arrow_back_sharp, color: AppColors.primary),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  session.title.capitalize(),
-                  style: textTheme.bodyMedium?.copyWith(color: Colors.white70),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      child: Row(
+        children: [
+          Expanded(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  context.read<ChatPageCubit>().doIntent(
+                    LoadSessionIntent(session.id),
+                  );
+                  Navigator.pop(context);
+                },
+                splashColor: AppColors.primary,
+                hoverColor: AppColors.primary,
+                overlayColor: const WidgetStatePropertyAll(AppColors.primary),
+                highlightColor: AppColors.primary,
+                focusColor: AppColors.primary,
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_back_sharp,
+                      color: AppColors.primary,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        session.title.capitalize(),
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: Colors.white70,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+          const SizedBox(width: 12),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              splashColor: AppColors.primary,
+              hoverColor: AppColors.primary,
+              overlayColor: const WidgetStatePropertyAll(AppColors.primary),
+              highlightColor: AppColors.primary,
+              focusColor: AppColors.primary,
+              onTap: () {
+                context.read<ChatPageCubit>().doIntent(
+                  DeleteSessionIntent(session.id),
+                );
+              },
+              child: const Icon(
+                Icons.delete,
+                color: AppColors.primary,
+                size: 20,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

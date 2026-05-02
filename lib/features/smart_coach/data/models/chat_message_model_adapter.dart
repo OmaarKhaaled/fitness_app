@@ -15,17 +15,20 @@ class ChatMessageModelAdapter extends TypeAdapter<ChatMessageModel> {
     return ChatMessageModel(
       role: fields[0] as String,
       text: fields[1] as String,
+      isCached: fields[2] as bool? ?? false,
     );
   }
 
   @override
   void write(BinaryWriter writer, ChatMessageModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.role)
       ..writeByte(1)
-      ..write(obj.text);
+      ..write(obj.text)
+      ..writeByte(2)
+      ..write(obj.isCached);
   }
 
   @override

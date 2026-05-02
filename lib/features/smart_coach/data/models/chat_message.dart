@@ -8,5 +8,20 @@ class ChatMessageModel extends HiveObject {
   @HiveField(1)
   final String text;
 
-  ChatMessageModel({required this.role, required this.text});
+  @HiveField(2)
+  final bool isCached;
+
+  ChatMessageModel({
+    required this.role,
+    required this.text,
+    this.isCached = false,
+  });
+
+  ChatMessageModel copyWith({String? role, String? text, bool? isCached}) {
+    return ChatMessageModel(
+      role: role ?? this.role,
+      text: text ?? this.text,
+      isCached: isCached ?? this.isCached,
+    );
+  }
 }

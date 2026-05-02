@@ -83,7 +83,12 @@ class SmartCoachLocalDataSourceImpl implements SmartCoachLocalDataSource {
       final session = _sessionBox.get(sessionId);
       if (session == null)
         return const BaseResponse.failure(CacheException('Session not found'));
-      session.messages.add(message);
+      final updatedMessage = ChatMessageModel(
+        role: message.role,
+        text: message.text,
+        isCached: true,
+      );
+      session.messages.add(updatedMessage);
       await session.save();
       return const BaseResponse.success(null);
     } catch (e) {

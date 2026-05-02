@@ -10,8 +10,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class MessageBubble extends StatelessWidget {
   final String message;
   final bool isUser;
+  final bool isCachedMessage;
 
-  const MessageBubble({super.key, required this.message, required this.isUser});
+  const MessageBubble({
+    super.key,
+    required this.message,
+    required this.isUser,
+    required this.isCachedMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +58,7 @@ class MessageBubble extends StatelessWidget {
               bottomRight: const Radius.circular(28),
             ),
           ),
-          child: isUser
+          child: isUser || isCachedMessage
               ? Text(
                   message,
                   style: textTheme.titleLarge?.copyWith(

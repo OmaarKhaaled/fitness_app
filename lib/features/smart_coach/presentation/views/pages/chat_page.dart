@@ -143,6 +143,8 @@ class _ChatPageState extends State<ChatPage> {
                                         itemBuilder: (context, index) {
                                           return MessageBubble(
                                             message: messages[index].text,
+                                            isCachedMessage:
+                                                messages[index].isCached,
                                             isUser:
                                                 messages[index].role ==
                                                 AiModelConstants.userRole,

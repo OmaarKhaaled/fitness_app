@@ -4,10 +4,12 @@ import 'package:fitness_app/config/base_state/base_state.dart';
 import 'package:fitness_app/features/smart_coach/data/models/session_model.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/create_session_model_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/delete_all_sessions_use_case.dart';
+import 'package:fitness_app/features/smart_coach/domain/usecases/delete_session_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/get_all_sessions_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/get_profile_pic_url_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/load_session_use_case.dart';
 import 'package:fitness_app/features/smart_coach/domain/usecases/send_message_use_case.dart';
+import 'package:fitness_app/features/smart_coach/domain/usecases/start_new_chat_session_use_case.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_states.dart';
 import 'package:injectable/injectable.dart';
@@ -20,6 +22,8 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
   final GetAllSessionsUseCase _getPreviousConversationsUseCase;
   final SendMessageUseCase _sendMessageUseCase;
   final DeleteAllSessionsUseCase _deleteAllSessionsUseCase;
+  final DeleteSessionUseCase _deleteSessionUseCase;
+  final StartNewChatSessionUseCase _startNewChatSessionUseCase;
   ChatPageCubit({
     required CreateSessionModelUseCase createSessionModelUseCase,
     required GetProfilePicUrlUseCase getProfilePicUrlUseCase,
@@ -27,12 +31,16 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
     required SendMessageUseCase sendMessageUseCase,
     required DeleteAllSessionsUseCase deleteAllSessionsUseCase,
     required GetAllSessionsUseCase getAllSessionsUseCase,
+    required DeleteSessionUseCase deleteSessionUseCase,
+    required StartNewChatSessionUseCase startNewChatSessionUseCase,
   }) : _createSessionModelUseCase = createSessionModelUseCase,
        _getProfilePicUrlUseCase = getProfilePicUrlUseCase,
        _sendMessageUseCase = sendMessageUseCase,
        _getPreviousConversationsUseCase = getAllSessionsUseCase,
        _loadSessionUseCase = loadSessionUseCase,
        _deleteAllSessionsUseCase = deleteAllSessionsUseCase,
+       _deleteSessionUseCase = deleteSessionUseCase,
+       _startNewChatSessionUseCase = startNewChatSessionUseCase,
        super(const ChatPageStates());
   void doIntent(ChatPageIntents intent) {
     switch (intent) {
@@ -46,6 +54,10 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
         _loadSession(sessionId);
       case DeleteAllSessionsIntent():
         _deleteAllSessions();
+      case DeleteSessionIntent(sessionId: final sessionId):
+        _deleteSession(sessionId);
+      case StartNewSessionIntent():
+        _startNewSession();
     }
   }
 
@@ -221,5 +233,46 @@ class ChatPageCubit extends Cubit<ChatPageStates> {
         ),
       ),
     );
+  }
+
+  Future<void> _deleteSession(String sessionId) async {
+    final result = await _deleteSessionUseCase(sessionId);
+    result.when(
+      initial: () {},
+      loading: () {},
+      success: (_) => emit(
+        state.copyWith(
+          previousConversations: BaseState<List<SessionModel>>(
+            data: state.previousConversations?.data
+                ?.where((session) => session.id != sessionId)
+                .toList(),
+          ),
+        ),
+      ),
+      failure: (f) => emit(
+        state.copyWith(
+          previousConversations: BaseState<List<SessionModel>>(
+            errorMessage: f.message,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _startNewSession() async {
+    // final result = await _startNewChatSessionUseCase();
+    // emit(state.copyWith(isFirstMessage: true));
+    // result.when(
+    //   initial: () {},
+    //   loading: () {},
+    //   success: (session) => emit(
+    //     state.copyWith(currentSession: BaseState<SessionModel>(data: session)),
+    //   ),
+    //   failure: (f) => emit(
+    //     state.copyWith(
+    //       currentSession: BaseState<SessionModel>(errorMessage: f.message),
+    //     ),
+    //   ),
+    // );
   }
 }
