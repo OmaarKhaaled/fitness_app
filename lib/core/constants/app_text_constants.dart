@@ -237,6 +237,11 @@ class AppTextConstants {
   static String get yoga => 'home.yoga'.tr();
   static String get aerobics => 'home.aerobics'.tr();
   static String get trainer => 'home.trainer'.tr();
+  static String get popularTraining => 'home.popular_training'.tr();
+  static String get tasks => 'home.tasks'.tr();
+  static String get exercisesThatStrengthenYour =>
+      'home.exercises_that_strengthen_your'.tr();
+
   //change password
   static String get oldPassword => 'change_password.old_password'.tr();
   static String get newPasswordMustDifferFromOldPassword =>

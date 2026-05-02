@@ -196,6 +196,9 @@
     "fitness": "اللياقة البدنية",
     "yoga": "اليوغا",
     "aerobics": "التمارين الهوائية",
-    "trainer": "المدرب"
+    "trainer": "المدرب",
+    "popular_training":"التدريب الأكثر شيوعا",
+    "tasks":"المهام",
+    "exercises_that_strengthen_your":"التمارين التي\n تقوي"
   }
 }

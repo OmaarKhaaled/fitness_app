@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
+
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutesConstants.loginRoute,
