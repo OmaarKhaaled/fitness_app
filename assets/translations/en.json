@@ -118,7 +118,7 @@
     "reset": "Reset",
     "didnt_recieve_verification_code": "Didn't Receive Verification Code?",
     "resend_code": "Resend Code",
-    "make_sure_its_8_characters_or_more": "Make sure its 8 characters or more",
+    "make_sure_it_is_8_characters_or_more": "Make sure it is 8 characters or more",
     "create_new_password": "Create New Password",
     "done": "Done",
     "please_enter_valid_otp": "Please enter a valid OTP",
@@ -193,6 +193,9 @@
     "yoga": "Yoga",
     "aerobics": "Aerobics",
     "trainer": "Trainer"
+  },
+  "change_password": {
+    "old_password": "Old Password",
+    "password_updated_successfully": "Password Updated Successfully"
   }
- 
 }

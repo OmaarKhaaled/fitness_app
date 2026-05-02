@@ -36,6 +36,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future<void> _getUserProfile() async {
     emit(state.copyWith(isLoading: true));
     final result = await getUserProfileUseCase();
+    if (isClosed) return;
     result.when(
       initial: () {},
       loading: () {},
@@ -52,6 +53,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future<void> _logout() async {
     emit(state.copyWith(isLoading: true));
     final result = await logoutUseCase();
+    if (isClosed) return;
     result.when(
       initial: () {},
       loading: () {},

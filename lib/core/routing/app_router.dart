@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
+import 'package:fitness_app/features/auth/change_password/presentation/view/pages/change_password_screen.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
 import 'package:fitness_app/features/edit_profile/presentation/views/screens/activity_level_editing_screen.dart';
 import 'package:fitness_app/features/edit_profile/presentation/views/screens/edit_profile_screen.dart';
@@ -16,7 +17,6 @@ import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
-
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutesConstants.loginRoute,
@@ -116,6 +116,12 @@ class AppRouter {
             );
           },
         ),
+      ),
+
+      GoRoute(
+        path: AppRoutesConstants.changePassword,
+        name: AppRoutesConstants.changePassword,
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
     ],
   );

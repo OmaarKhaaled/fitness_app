@@ -1,3 +1,5 @@
+import 'dart:core';
+
 class ExerciseModel {
   final String id;
   final String name;

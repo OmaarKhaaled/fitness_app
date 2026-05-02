@@ -56,8 +56,8 @@ class _ProfileTabState extends State<ProfileTab> {
     final isEnglish =
         EasyLocalization.of(context)!.currentLocale?.languageCode == 'en';
     final textTheme = Theme.of(context).textTheme;
-    return BlocProvider(
-      create: (context) => _cubit,
+    return BlocProvider.value(
+      value: _cubit,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(

@@ -1,7 +1,8 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/shared/blur_card.dart';
+import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
-import 'package:fitness_app/features/auth/login/presentation/widgets/default_snackbar.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/email_textfield.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/forget_password_link.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/login_button.dart';
@@ -59,6 +60,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>();
+    final mediaQuery = MediaQuery.of(context).size;
 
     return BlocListener<LoginCubit, LoginStates>(
       listenWhen: (previous, current) =>
@@ -70,97 +72,92 @@ class _LoginFormState extends State<LoginForm> {
             context.go(RouteNames.home);
           },
           failure: (exception) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              defaultSnackBar(
-                message: exception.message,
-                color: AppColors.redAccent,
-              ),
-            );
+            UiUtils.showErrorMsg(context, exception.message);
           },
         );
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-        decoration: BoxDecoration(
-          color: AppColors.white.withValues(alpha: .06),
-          borderRadius: BorderRadius.circular(40),
-          border: Border.all(color: AppColors.white.withValues(alpha: .1)),
-        ),
-        child: Form(
-          key: _formKey,
-          autovalidateMode: (widget.autoValidate ?? false)
-              ? AutovalidateMode.always
-              : AutovalidateMode.disabled,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                AppTextConstants.loginHeading,
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: mediaQuery.height * 0.1),
+        child: BlurCard(
+          child: Form(
+            key: _formKey,
+            autovalidateMode: (widget.autoValidate ?? false)
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  AppTextConstants.loginHeading,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-              // Email Field
-              EmailTextField(emailController: _emailController),
-              const SizedBox(height: 16),
+                // Email Field
+                EmailTextField(emailController: _emailController),
+                const SizedBox(height: 16),
 
-              // Password Field
-              PasswordTextField(controller: _passwordController),
+                // Password Field
+                PasswordTextField(
+                  controller: _passwordController,
+                  hintText: AppTextConstants.loginPasswordPlaceholder,
+                ),
 
-              // Forgot Password Link
-              const ForgetPasswordLink(),
+                // Forgot Password Link
+                const ForgetPasswordLink(),
 
-              const SizedBox(height: 10),
+                const SizedBox(height: 10),
 
-              // Divider OR Divider
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: AppColors.white.withValues(alpha: .2),
-                      endIndent: 10,
+                // Divider OR Divider
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: AppColors.white.withValues(alpha: .2),
+                        endIndent: 10,
+                      ),
                     ),
-                  ),
-                  Text(
-                    AppTextConstants.loginOr,
-                    style: TextStyle(
-                      color: AppColors.white.withValues(alpha: .5),
-                      fontSize: 12,
+                    Text(
+                      AppTextConstants.loginOr,
+                      style: TextStyle(
+                        color: AppColors.white.withValues(alpha: .5),
+                        fontSize: 12,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: AppColors.white.withValues(alpha: .2),
-                      indent: 10,
+                    Expanded(
+                      child: Divider(
+                        color: AppColors.white.withValues(alpha: .2),
+                        indent: 10,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
-              const SizedBox(height: 24),
+                const SizedBox(height: 24),
 
-              // Social Logins
-              const SocialLoginButtons(),
+                // Social Logins
+                const SocialLoginButtons(),
 
-              const SizedBox(height: 32),
+                const SizedBox(height: 32),
 
-              // Login Button
-              LoginButton(
-                formKey: _formKey,
-                cubit: cubit,
-                emailController: _emailController,
-                passwordController: _passwordController,
-                rememberMe: _rememberMe,
-              ),
+                // Login Button
+                LoginButton(
+                  formKey: _formKey,
+                  cubit: cubit,
+                  emailController: _emailController,
+                  passwordController: _passwordController,
+                  rememberMe: _rememberMe,
+                ),
 
-              const SizedBox(height: 24),
+                const SizedBox(height: 24),
 
-              // Register Link
-              const RegisterLink(),
-            ],
+                // Register Link
+                const RegisterLink(),
+              ],
+            ),
           ),
         ),
       ),

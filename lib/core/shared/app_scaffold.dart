@@ -1,3 +1,4 @@
+import 'dart:ui';
 import '../theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,10 @@ class AppScaffold extends StatelessWidget {
   final Widget? bottomWidget;
   final bool isBottomNavVisible;
   final bool hasGradient;
+  final PreferredSizeWidget? appBar;
+  final double blurSigma;
+  final bool? resizeToAvoidBottomInset;
+
   const AppScaffold({
     super.key,
     required this.child,
@@ -16,17 +21,33 @@ class AppScaffold extends StatelessWidget {
     this.bottomWidget,
     this.isBottomNavVisible = true,
     this.hasGradient = false,
+    this.appBar,
+    this.blurSigma = 0.0, // Default to no blur
+    this.resizeToAvoidBottomInset,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBody: true,
+      extendBodyBehindAppBar: true,
       backgroundColor: AppColors.transparent,
+      appBar: appBar,
       body: Stack(
         fit: StackFit.expand,
         children: [
+          // 1. Background Image
           Image.asset(backgroundImage, fit: BoxFit.cover),
+
+          // 2. Optional Blur
+          if (blurSigma > 0)
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
+              child: const SizedBox.expand(),
+            ),
+
+          // 3. Optional Gradient
           if (hasGradient)
             const Positioned.fill(
               child: DecoratedBox(
@@ -39,11 +60,12 @@ class AppScaffold extends StatelessWidget {
                       AppColors.black,
                       AppColors.navBarBg,
                     ],
-                    // stops: [0.3, 0.7, 1.0],
                   ),
                 ),
               ),
             ),
+
+          // 4. Content
           Align(alignment: alignment, child: child),
         ],
       ),
