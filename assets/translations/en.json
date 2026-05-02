@@ -156,12 +156,18 @@
     "get_started": "Get Started",
     "no_response": "No response received.",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "ask_smart_coach": "Ask your coach"
 =======
+=======
+>>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
     "ask_smart_coach": "Ask your coach",
     "previous_conversations": "Previous Conversations",
     "no_previous_conversations": "No previous conversations",
     "clear_all": "Clear All"
+<<<<<<< HEAD
+>>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
+=======
 >>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
   },
   "profile": {
@@ -180,10 +186,13 @@
     "areYouSureToCloseTheApp": "Are you sure to close the application?"
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
   "change_password": {
     "old_password": "Old Password",
     "password_updated_successfully": "Password Updated Successfully"
 =======
+=======
+>>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
   "home": {
     "greeting": "Hi ",
     "lets_start_your_day": "Let's Start Your Day",
@@ -194,6 +203,9 @@
     "yoga": "Yoga",
     "aerobics": "Aerobics",
     "trainer": "Trainer"
+<<<<<<< HEAD
+>>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
+=======
 >>>>>>> 4ba80b16cb3f73a050144c356bf94863969df377
   }
  
