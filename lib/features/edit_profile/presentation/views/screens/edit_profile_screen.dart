@@ -147,6 +147,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             _updateControllersFromUser(user);
 
             return AppScaffold(
+              blurSigma: 8,
               backgroundImage: AppAssets.profileBackground,
               alignment: Alignment.topCenter,
               child: SingleChildScrollView(
@@ -200,25 +201,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       alignment: Alignment.topRight,
                       children: [
                         CircleAvatar(
-                          radius: 0.27 * width,
+                          radius: 0.15 * width,
                           backgroundImage: user.photo != null
                               ? NetworkImage(user.photo!)
                               : const AssetImage(AppAssets.superFitness),
                         ),
-                        InkWell(
-                          onTap: () {
-                            _pickAndUpdatePhoto(user);
-                          },
-                          child: Container(
-                            width: 0.05 * width,
-                            height: 0.05 * width,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppColors.primary),
-                            ),
-                            child: const ImageIcon(
-                              AssetImage(AppIcons.editingPencil),
-                              color: AppColors.primary,
+                        Positioned(
+                          right: 2,
+                          child: InkWell(
+                            onTap: () {
+                              _pickAndUpdatePhoto(user);
+                            },
+                            child: Container(
+                              width: 0.05 * width,
+                              height: 0.05 * width,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: AppColors.primary),
+                              ),
+                              child: const ImageIcon(
+                                AssetImage(AppIcons.editingPencil),
+                                color: AppColors.primary,
+                              ),
                             ),
                           ),
                         ),
