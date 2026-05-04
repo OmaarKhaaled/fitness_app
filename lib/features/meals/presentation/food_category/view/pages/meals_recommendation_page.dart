@@ -31,7 +31,7 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
     super.initState();
 
     _cubit = context.read<MealsCubit>(); // ✅ FIXED ASSIGNMENT
-    
+
     _uiIntentSubscription = _cubit.uiIntents.listen((intent) {
       if (intent is NavigateToMealsPageIntent) {
         if (mounted && Navigator.of(context).canPop()) {
@@ -39,9 +39,9 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
         }
       } else if (intent is ShowErrorMealsIntent) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(intent.error)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(intent.error)));
         }
       }
     });
@@ -62,9 +62,9 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
             curr.errorMessage != null && prev.errorMessage != curr.errorMessage,
         listener: (context, state) {
           if (state.errorMessage != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errorMessage!)),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
           }
         },
         builder: (context, state) {
@@ -133,9 +133,7 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
               const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
               if (state.isMealsLoading)
-                const SliverToBoxAdapter(
-                  child: MealGridSkeleton(itemCount: 6),
-                )
+                const SliverToBoxAdapter(child: MealGridSkeleton(itemCount: 6))
               else if (state.meals.isEmpty)
                 SliverToBoxAdapter(
                   child: Center(
@@ -168,11 +166,11 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
                   sliver: SliverGrid(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 18,
-                      mainAxisSpacing: 18,
-                      childAspectRatio: 0.80,
-                    ),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 18,
+                          mainAxisSpacing: 18,
+                          childAspectRatio: 0.80,
+                        ),
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final meal = state.meals[index];
                       return MealCard(

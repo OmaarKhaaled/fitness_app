@@ -4,14 +4,21 @@ import 'config/di/di.dart';
 import 'core/constants/app_assets.dart';
 import 'core/constants/app_text_constants.dart';
 import 'fitness_app.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/util/webview_initializer_stub.dart'
+    if (dart.library.js_util) 'core/util/webview_initializer_web.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
+  
+  if (kIsWeb) {
+    initializeWebView();
+  }
 
   runApp(
     EasyLocalization(
@@ -20,10 +27,9 @@ Future<void> main() async {
         Locale(AppTextConstants.arLangKey),
       ],
       path: AppAssets.translationsPath,
-      startLocale: null, // Let EasyLocalization detect device locale
+      startLocale: null,
       fallbackLocale: const Locale(AppTextConstants.enLangKey),
-      useOnlyLangCode:
-          true, // Use only language code (ar, en) instead of full locale (ar_EG, en_US)
+      useOnlyLangCode: true,
       saveLocale: false,
       child: const FitnessApp(),
     ),

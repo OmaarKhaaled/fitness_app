@@ -161,6 +161,9 @@
     "recommendation_for_you": "توصيات لك",
     "see_all": "عرض الكل",
     "no_meals_found": "لم يتم العثور على وجبات",
-    "food_recommendation": "توصيات الطعام"
+    "food_recommendation": "توصيات الطعام",
+    "ingredients": "المكونات",
+    "instructions": "التعليمات",
+    "delicious_meal_prepared_with_fresh_ingredients": "وجبة لذيذة محضرة بمكونات طازجة"
   }
 }

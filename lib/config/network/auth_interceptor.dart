@@ -70,7 +70,7 @@ class AuthInterceptor extends Interceptor {
     handler.next(err);
   }
 
-    Future<void> _clearExpiredToken() async {
+  Future<void> _clearExpiredToken() async {
     try {
       await _secureStorageService.clearAuthTokens();
       await _secureStorageService.writeBool(StorageKeys.isLoggedIn, false);

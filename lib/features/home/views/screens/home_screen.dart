@@ -53,12 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 onNotification: (notification) {
                   // Only handle scroll events for the main axis
                   if (notification.depth != 0) return false;
-                  
+
                   final metrics = notification.metrics;
                   final currentOffset = metrics.pixels;
-                  
+
                   // Avoid handling small scrolls or rubber-banding
-                  if ((currentOffset - _lastScrollOffset).abs() < 10) return false;
+                  if ((currentOffset - _lastScrollOffset).abs() < 10)
+                    return false;
 
                   final isScrollingDown = currentOffset > _lastScrollOffset;
                   final isAtTop = currentOffset <= 0;

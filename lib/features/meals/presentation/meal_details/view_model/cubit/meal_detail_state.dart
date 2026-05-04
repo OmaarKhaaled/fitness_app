@@ -1,10 +1,4 @@
-
-
 part of 'meal_detail_cubit.dart';
-
-
-
-
 
 class MealDetailState {
   final bool isLoading;

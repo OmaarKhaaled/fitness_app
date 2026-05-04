@@ -7,19 +7,26 @@ import 'package:fitness_app/features/meals/presentation/meal_details/view/widget
 import 'package:fitness_app/features/meals/presentation/meal_details/view_model/cubit/meal_detail_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitness_app/features/meals/presentation/meal_details/view/widgets/meal_details_header.dart';
 
 class MealDetailScreen extends StatelessWidget {
   const MealDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MealDetailCubit, MealDetailState>(
-      listener: (context, state) {},
+    // final theme = Theme.of(context);
+
+    return BlocBuilder<MealDetailCubit, MealDetailState>(
+      buildWhen: (previous, current) {
+        return current.isLoading != previous.isLoading ||
+            current.mealDetails != previous.mealDetails ||
+            current.errorMessage != previous.errorMessage;
+      },
       builder: (context, state) {
         if (state.isLoading) {
           return const AppScaffold(
-            backgroundImage: AppAssets.authBackground,
+            backgroundImage: AppAssets.homeBackGround,
+
             child: Center(
               child: CircularProgressIndicator(color: AppColors.primary),
             ),
@@ -52,104 +59,12 @@ class MealDetailScreen extends StatelessWidget {
 
         final meal = mealDetails[0];
 
-        return Scaffold(
-          backgroundColor: Colors.black,
-          body: CustomScrollView(
+        return AppScaffold(
+          backgroundImage: AppAssets.homeBackGround,
+          child: CustomScrollView(
             slivers: [
-              // Header Image with Back Button
-              SliverAppBar(
-                expandedHeight: 400,
-                pinned: true,
-                backgroundColor: Colors.black,
-                leading: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFFF6B00), // Orange from design
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.arrow_back, color: Colors.white),
-                    ),
-                  ),
-                ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2),
-                        color: Colors.white.withValues(alpha: 0.1),
-                      ),
-                      child: const Icon(Icons.person, color: Colors.white),
-                    ),
-                  ),
-                ],
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl: meal.strMealThumb ?? '',
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            Container(color: Colors.grey[900]),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
-                      // Gradient Overlay for text readability
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withValues(alpha: 0.8),
-                            ],
-                          ),
-                        ),
-                      ),
-                      // Title and Subtitle
-                      Positioned(
-                        bottom: 40,
-                        left: 20,
-                        right: 20,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              meal.strMeal ?? '',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              meal.strInstructions?.split('\n').first ??
-                                  'Delicious meal prepared with fresh ingredients.',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Colors.white.withValues(alpha: 0.7),
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              MealDetailsHeader(meal: meal),
 
-              // Nutritional Info Badges
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -168,17 +83,15 @@ class MealDetailScreen extends StatelessWidget {
                 ),
               ),
 
-              // Ingredients Heading
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
                   child: Text(
-                    'Ingredients',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    AppTextConstants.ingredients,
+                    style: const TextStyle(color: AppColors.white),
                   ),
                 ),
               ),
@@ -189,6 +102,23 @@ class MealDetailScreen extends StatelessWidget {
                 sliver: IngredientsList(meal: meal),
               ),
 
+              // Instructions Header
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 30, 16, 10),
+                  child: Text(
+                    AppTextConstants.instructions,
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+              InstructionContent(meal: meal),
+
               const SliverToBoxAdapter(child: SizedBox(height: 40)),
             ],
           ),
@@ -197,13 +127,14 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
+
   Widget _buildNutritionBadge(String value, String label) {
     return Container(
       width: 75,
       height: 75,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+        border: Border.all(color: AppColors.white.withValues(alpha: 0.2)),
         color: Colors.white.withValues(alpha: 0.05),
       ),
       child: Column(
@@ -216,12 +147,65 @@ class MealDetailScreen extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
+            softWrap: true,
           ),
           Text(
             label,
-            style: const TextStyle(color: Color(0xFFFF6B00), fontSize: 10),
+            style: const TextStyle(color: AppColors.primary, fontSize: 10),
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+class InstructionContent extends StatelessWidget {
+  const InstructionContent({super.key, required this.meal});
+
+  final Meal meal;
+
+  String _getFormattedInstructions(String? instructions) {
+    if (instructions == null || instructions.isEmpty) return '';
+
+    // Split by period followed by space, or by newlines
+    final steps = instructions
+        .split(RegExp(r'\.\s*|\n+|\.\n+'))
+        .where((s) => s.trim().isNotEmpty)
+        .toList();
+
+    if (steps.isEmpty) return instructions;
+
+    // Map each step to a numbered list item
+    return steps
+        .asMap()
+        .entries
+        .map((entry) => '${entry.key + 1}. ${entry.value.trim()}.')
+        .join('\n\n'); // Add extra spacing between steps for readability
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final formattedInstructions = _getFormattedInstructions(meal.strInstructions);
+
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Text(
+            formattedInstructions,
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.8),
+              fontSize: 15,
+              height: 1.6,
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:fitness_app/features/meals/domain/use_cases/get_meals_categories
 import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_intents.dart';
 import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_states.dart';
 import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_ui_intents.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -40,7 +41,7 @@ class MealsCubit extends Cubit<MealsStates> {
   }
 
   Future<void> _loadInitialData() async {
-    if(state.categories.isNotEmpty) return;
+    if (state.categories.isNotEmpty) return;
     emit(state.copyWith(isCategoriesLoading: true, isMealsLoading: true));
 
     final response = await _getMealsCategoriesUseCase();
@@ -49,7 +50,7 @@ class MealsCubit extends Cubit<MealsStates> {
       loading: () => null,
       success: (data) {
         final cats = data.categories ?? [];
-        print('MealsCubit: Categories loaded: ${cats.length}');
+        debugPrint('MealsCubit: Categories loaded: ${cats.length}');
         emit(state.copyWith(isCategoriesLoading: false, categories: cats));
 
         if (cats.isNotEmpty && state.selectedCategory == null) {
@@ -61,7 +62,9 @@ class MealsCubit extends Cubit<MealsStates> {
         }
       },
       failure: (error) {
-        print('MealsCubit: Categories load failure: ${error.message}');
+        if (kDebugMode) {
+          print('MealsCubit: Categories load failure: ${error.message}');
+        }
         emit(
           state.copyWith(
             isCategoriesLoading: false,
@@ -83,7 +86,7 @@ class MealsCubit extends Cubit<MealsStates> {
   }
 
   Future<void> _loadMealsByCategory(String category) async {
-    print('MealsCubit: Loading meals for category: $category');
+    debugPrint('MealsCubit: Loading meals for category: $category');
     emit(state.copyWith(isMealsLoading: true, selectedCategory: category));
 
     final response = await _getMealsByCategoryUseCase(category);
@@ -92,12 +95,14 @@ class MealsCubit extends Cubit<MealsStates> {
       loading: () => null,
       success: (data) {
         final meals = data.meals ?? [];
-        print('MealsCubit: Meals loaded for $category: ${meals.length}');
+        debugPrint('MealsCubit: Meals loaded for $category: ${meals.length}');
         emit(state.copyWith(isMealsLoading: false, meals: meals));
       },
       failure: (error) {
-        print('MealsCubit: Meals load failure for $category: ${error.message}');
-        emit(state.copyWith(isMealsLoading: false, errorMessage: error.message));
+        debugPrint('MealsCubit: Meals load failure for $category: ${error.message}');
+        emit(
+          state.copyWith(isMealsLoading: false, errorMessage: error.message),
+        );
         _streamController.add(ShowErrorMealsIntent(error: error.message));
       },
     );
