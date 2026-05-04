@@ -55,41 +55,7 @@ class ExerciseLevelTabBar extends StatelessWidget {
                           : AppColors.textSecondary.withValues(alpha: 0.6),
                     ),
                   ),
-                ),
-                // Avatar Bubble indicator
-                if (isSelected)
-                  Positioned(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 48,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.2),
-                                blurRadius: 8,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.person,
-                            color: Colors.grey,
-                            size: 28,
-                          ),
-                        ),
-                        // Small triangle/beak of the bubble
-                        CustomPaint(
-                          painter: TrianglePainter(color: Colors.white),
-                          size: const Size(12, 8),
-                        ),
-                      ],
-                    ),
-                  ),
+                ),           
               ],
             ),
           );
@@ -97,23 +63,4 @@ class ExerciseLevelTabBar extends StatelessWidget {
       ),
     );
   }
-}
-
-class TrianglePainter extends CustomPainter {
-  final Color color;
-  TrianglePainter({required this.color});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = color;
-    final path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(size.width, 0);
-    path.lineTo(size.width / 2, size.height);
-    path.close();
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
