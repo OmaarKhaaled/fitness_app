@@ -41,7 +41,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           },
         ),
       ),
-  
     );
   }
 }

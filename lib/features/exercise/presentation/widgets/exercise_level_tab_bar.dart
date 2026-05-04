@@ -55,7 +55,7 @@ class ExerciseLevelTabBar extends StatelessWidget {
                           : AppColors.textSecondary.withValues(alpha: 0.6),
                     ),
                   ),
-                ),           
+                ),
               ],
             ),
           );

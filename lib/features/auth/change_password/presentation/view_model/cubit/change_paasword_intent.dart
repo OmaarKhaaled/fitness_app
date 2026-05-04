@@ -1,7 +1,6 @@
 sealed class ChangePasswordIntent {
   const ChangePasswordIntent();
 
-  // static final formChanged = FormChangedIntent();
   static final toggleCurrentPasswordVisibility = ToggleOldPasswordVisibility();
   static final toggleNewPasswordVisibility = ToggleNewPasswordVisibility();
   static final toggleConfirmPasswordVisibility =
@@ -9,8 +8,6 @@ sealed class ChangePasswordIntent {
 
   static final submit = SubmitChangePasswordIntent();
 }
-
-// class FormChangedIntent extends ChangePasswordIntent {}
 
 class ToggleOldPasswordVisibility extends ChangePasswordIntent {}
 
