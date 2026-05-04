@@ -17,8 +17,9 @@ class ExerciseLevelTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return SizedBox(
-      height: 100, // Increased height to accommodate the bubble
+      height: mediaQuery.size.height * .08,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -32,7 +33,6 @@ class ExerciseLevelTabBar extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               clipBehavior: Clip.none,
               children: [
-                // Tab Pill
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   padding: const EdgeInsets.symmetric(

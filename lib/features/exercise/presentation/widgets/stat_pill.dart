@@ -9,8 +9,13 @@ class StatPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(
+        horizontal: mediaQuery.size.width * .02,
+        vertical: mediaQuery.size.height * .01,
+      ),
       decoration: BoxDecoration(
         color: const Color(0xFF2A2A2A).withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(25),

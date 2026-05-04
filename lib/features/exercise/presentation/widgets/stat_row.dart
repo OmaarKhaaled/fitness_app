@@ -10,11 +10,13 @@ class StatRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         StatPill(exercise: exercise),
-        const SizedBox(width: 12),
+        SizedBox(width: mediaQuery.size.width * .02),
         Container(
           width: 44,
           height: 44,
@@ -25,7 +27,7 @@ class StatRow extends StatelessWidget {
           ),
           child: const Icon(Icons.person, color: AppColors.white, size: 24),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: mediaQuery.size.width * .02),
         const CaloriePill(label: '130 Cal'),
       ],
     );

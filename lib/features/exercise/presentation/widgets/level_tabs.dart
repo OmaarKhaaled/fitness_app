@@ -10,17 +10,20 @@ class LevelTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     final state = context.select((ExerciseCubit cubit) => cubit.state);
     if (state.isLevelsLoading) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: mediaQuery.size.width * .02),
         child: Row(
           children: List.generate(
             3,
             (_) => Container(
-              margin: const EdgeInsets.only(right: 8),
-              width: 90,
-              height: 36,
+              margin: EdgeInsets.symmetric(
+                horizontal: mediaQuery.size.width * .02,
+              ),
+              width: mediaQuery.size.width * .2,
+              height: mediaQuery.size.height * .05,
               decoration: BoxDecoration(
                 color: const Color(0xFF2A2A2A),
                 borderRadius: BorderRadius.circular(20),

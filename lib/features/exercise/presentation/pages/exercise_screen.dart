@@ -20,6 +20,7 @@ class ExerciseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return AppScaffold(
       backgroundImage: AppAssets.homeBackGround,
       hasGradient: true,
@@ -44,9 +45,11 @@ class ExerciseScreen extends StatelessWidget {
   }
 
   SliverAppBar buildHeroAppBar(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return SliverAppBar(
+      
       floating: true,
-      expandedHeight: 340,
+      expandedHeight: mediaQuery.size.height * .6,
       pinned: true,
       backgroundColor: const Color(0xFF121212),
       leadingWidth: 64,
@@ -93,7 +96,7 @@ class ExerciseScreen extends StatelessWidget {
                     AppColors.black,
                     AppColors.black,
                   ],
-                  stops: [0.3, 0.7, 1.0],
+                  stops: [0.3, 0.6, 1.0],
                 ),
               ),
             ),
