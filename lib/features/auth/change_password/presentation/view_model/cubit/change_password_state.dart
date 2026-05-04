@@ -31,7 +31,7 @@ class ChangePasswordState extends Equatable {
       oldPasswordVisible: oldPasswordVisible ?? this.oldPasswordVisible,
       newPasswordVisible: newPasswordVisible ?? this.newPasswordVisible,
       confirmPasswordVisible:
-          confirmPasswordVisible ?? this.confirmPasswordVisible,
+      confirmPasswordVisible ?? this.confirmPasswordVisible,
     );
   }
 

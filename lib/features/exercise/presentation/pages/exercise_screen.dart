@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/constants/app_assets.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/routing/route_names.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
@@ -66,7 +67,7 @@ class ExerciseScreen extends StatelessWidget {
                 color: AppColors.white,
                 size: 14,
               ),
-              onPressed: () => context.go(RouteNames.home),
+              onPressed: () => context.go(AppRoutesConstants.homeRoute),
             ),
           ),
         ),

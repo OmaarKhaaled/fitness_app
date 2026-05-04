@@ -1,21 +1,24 @@
-import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
+sealed class ChangePasswordIntent {
+  const ChangePasswordIntent();
 
-sealed class ChangePaaswordIntent {}
+  // static final formChanged = FormChangedIntent();
+  static final toggleCurrentPasswordVisibility =
+      ToggleOldPasswordVisibility();
+  static final toggleNewPasswordVisibility = ToggleNewPasswordVisibility();
+  static final toggleConfirmPasswordVisibility =
+      ToggleConfirmPasswordVisibility();
 
-class FormChangedIntent extends ChangePaaswordIntent {
-  final ChangePasswordRequest? request;
-  FormChangedIntent([this.request]);
+  static final submit = SubmitChangePasswordIntent();
+  
 }
 
-class ErrorMessageIntent extends ChangePaaswordIntent {
-  final String? errorMessage;
-  ErrorMessageIntent([this.errorMessage]);
+// class FormChangedIntent extends ChangePasswordIntent {}
+
+class ToggleOldPasswordVisibility extends ChangePasswordIntent {}
+
+class ToggleNewPasswordVisibility extends ChangePasswordIntent {}
+
+class ToggleConfirmPasswordVisibility extends ChangePasswordIntent {}
+
+class SubmitChangePasswordIntent extends ChangePasswordIntent {
 }
-
-class ToggleOldPasswordVisibility extends ChangePaaswordIntent {}
-
-class ToggleNewPasswordVisibility extends ChangePaaswordIntent {}
-
-class ToggleConfirmPasswordVisibility extends ChangePaaswordIntent {}
-
-class SubmitChangePasswordIntent extends ChangePaaswordIntent {}

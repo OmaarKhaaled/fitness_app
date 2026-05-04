@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
@@ -69,7 +70,7 @@ class _LoginFormState extends State<LoginForm> {
         state.loginResource.whenOrNull(
           success: (data) {
             Utils.logMessage('Login success: ${data.message}');
-            context.go(RouteNames.home);
+            context.go(AppRoutesConstants.homeRoute);
           },
           failure: (exception) {
             UiUtils.showErrorMsg(context, exception.message);

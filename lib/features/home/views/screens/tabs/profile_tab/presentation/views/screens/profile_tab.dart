@@ -79,7 +79,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                
+
                       Skeletonizer(
                         enabled: isLoading && user == null,
                         effect: const ShimmerEffect(
@@ -128,7 +128,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                
+
                       BlurCard(
                         child: Column(
                           children: [
@@ -142,7 +142,11 @@ class _ProfileTabState extends State<ProfileTab> {
                             ProfileMenuItem(
                               iconPath: AppIcons.changePassword,
                               title: AppTextConstants.changePassword,
-                              onTap: () {},
+                              onTap: () {
+                                context.go(
+                                  AppRoutesConstants.changePasswordRoute,
+                                );
+                              },
                             ),
                             ProfileMenuItem(
                               iconPath: AppIcons.language,
@@ -219,7 +223,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 30,)
+                      const SizedBox(height: 30),
                     ],
                   ),
                 ),

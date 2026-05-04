@@ -16,4 +16,5 @@ class AppRoutesConstants {
   static const String mealsRecommendationRoute = '/meals_recommendation';
   static const String chatPage = '/chat_page';
   static const String changePassword = '/change_password';
+  
 }

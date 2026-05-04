@@ -1,5 +1,4 @@
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/core/validators/app_validators.dart';
 import 'package:flutter/material.dart';
 
 class ChangePasswordTextField extends StatelessWidget {
@@ -9,7 +8,6 @@ class ChangePasswordTextField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     required this.onToggleVisibility,
-    this.validator,
     this.errorText,
   });
 
@@ -17,7 +15,6 @@ class ChangePasswordTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final VoidCallback onToggleVisibility;
-  final String? Function(String?)? validator;
   final String? errorText;
 
   @override
@@ -42,7 +39,6 @@ class ChangePasswordTextField extends StatelessWidget {
           onPressed: onToggleVisibility,
         ),
       ),
-      validator: validator ?? AppValidators.validatePassword,
     );
   }
 }

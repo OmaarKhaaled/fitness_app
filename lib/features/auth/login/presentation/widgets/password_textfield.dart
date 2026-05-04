@@ -41,12 +41,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           },
         ),
       ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Password is required';
-        }
-        return null;
-      },
+  
     );
   }
 }
