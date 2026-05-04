@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/constants/cache_constants.dart';
@@ -14,8 +16,9 @@ import '../cache_modules/secure_storege_module.dart';
 @injectable
 class TokenService {
   final SecureStorageService _secureStorageService;
+  final Dio _dio;
 
-  TokenService(this._secureStorageService);
+  TokenService(this._secureStorageService, this._dio);
 
   /// Get the current authentication token using SecureStorageService extension
   Future<BaseResponse<String?>> getToken() async {
@@ -174,5 +177,24 @@ class TokenService {
         failure: (_) => null,
       ),
     };
+  }
+  Future<BaseResponse<bool>> saveTokenAndUpdateHeaders(String token) async {
+    debugPrint('🔄 Saving new token and updating headers...');
+    
+    final saveResult = await saveToken(token);
+    
+    saveResult.when(
+      initial: () => null,
+      loading: () => null,
+      success: (_) {
+        _dio.options.headers['Authorization'] = 'Bearer $token';
+        _dio.options.headers['TOKEN'] = token;
+        debugPrint('✅ Token saved and Dio headers updated successfully');
+        debugPrint('📝 New Authorization header: Bearer ${token.substring(0, 50)}...');
+      },
+      failure: (_) => debugPrint('❌ Failed to save token, Dio headers not updated'),
+    );
+    
+    return saveResult;
   }
 }

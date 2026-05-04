@@ -11,7 +11,7 @@ class ChangePasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<ChangePasswordCubit>(),
-      child:  const ChangePasswordScreen(),
+      child: const ChangePasswordScreen(),
     );
   }
 }

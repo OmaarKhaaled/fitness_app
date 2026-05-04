@@ -6,12 +6,12 @@ import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:fitness_app/core/validators/app_validators.dart';
-import 'package:fitness_app/features/auth/change_password/presentation/view/widgets/change_password_textfield.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
 
@@ -64,23 +64,23 @@ class ChangePasswordScreen extends StatelessWidget {
               children: [
                 Text(
                   AppTextConstants.createNewPassword,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(color: AppColors.white),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: AppColors.white),
                 ),
                 Text(
                   AppTextConstants.makeSureIts8CharactersOrMore,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(color: AppColors.white),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: AppColors.white),
                 ),
 
                 Form(
                   key: cubit.formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     padding: EdgeInsets.symmetric(
                       vertical: mediaQuery.size.height * 0.05,
                     ),
@@ -101,8 +101,9 @@ class ChangePasswordScreen extends StatelessWidget {
                                       ? Icons.visibility
                                       : Icons.visibility_off,
                                 ),
-                                onPressed: () => cubit
-                                    .doIntent(ToggleOldPasswordVisibility()),
+                                onPressed: () => cubit.doIntent(
+                                  ToggleOldPasswordVisibility(),
+                                ),
                               ),
                             ),
                           ),
@@ -123,8 +124,9 @@ class ChangePasswordScreen extends StatelessWidget {
                                       ? Icons.visibility
                                       : Icons.visibility_off,
                                 ),
-                                onPressed: () => cubit
-                                    .doIntent(ToggleNewPasswordVisibility()),
+                                onPressed: () => cubit.doIntent(
+                                  ToggleNewPasswordVisibility(),
+                                ),
                               ),
                             ),
                           ),
@@ -161,13 +163,12 @@ class ChangePasswordScreen extends StatelessWidget {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                final isValid = cubit.formKey.currentState
-                                        ?.validate() ??
+                                final isValid =
+                                    cubit.formKey.currentState?.validate() ??
                                     false;
 
                                 if (isValid) {
-                                  cubit.doIntent(
-                                      SubmitChangePasswordIntent());
+                                  cubit.doIntent(SubmitChangePasswordIntent());
                                 }
                               },
                               child: Text(AppTextConstants.done),

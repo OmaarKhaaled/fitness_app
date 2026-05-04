@@ -2,8 +2,6 @@
 
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/services/token_service.dart';
-import 'package:fitness_app/core/validators/app_validators.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
@@ -61,17 +59,24 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     );
 
     final result = await _changePasswordUsecase.call(dto);
-
     await result.when(
       success: (data) async {
-        if (data.token != null) {
-          await _tokenService.saveToken(data.token!);
-        }
         emit(
           state.copyWith(
             baseState: state.baseState.copyWith(isLoading: false, data: data),
           ),
         );
+
+        if (data.token != null || data.token!.isNotEmpty) {
+          await _tokenService.saveTokenAndUpdateHeaders(data.token!);
+          emit(
+            state.copyWith(
+              baseState: state.baseState.copyWith(isLoading: false),
+            ),
+          );
+        }
+        debugPrint('Password changed successfully: ${data.message}');
+        
       },
       failure: (e) async {
         emit(
