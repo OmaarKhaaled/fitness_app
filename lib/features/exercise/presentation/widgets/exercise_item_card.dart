@@ -4,6 +4,7 @@ import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart'
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseItemCard extends StatelessWidget {
   final ExerciseModel exercise;
@@ -21,6 +22,12 @@ class ExerciseItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Compute a safe video ID — never crashes, returns null if no valid URL
+    final String? videoId = YoutubePlayer.convertUrlToId(
+      exercise.inDepthYoutubeExplanationLink ??
+          exercise.shortYoutubeDemonstrationLink ??
+          '',
+    );
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(12),
@@ -95,11 +102,86 @@ class ExerciseItemCard extends StatelessWidget {
             ),
           ),
 
-          /// Play Button
-          if (exercise.shortYoutubeDemonstrationLink != null)
+          if (videoId != null)
             IconButton(
-              onPressed: () =>
-                  _launchURL(exercise.shortYoutubeDemonstrationLink),
+              onPressed: () {
+                final controller = YoutubePlayerController(
+                  initialVideoId: videoId,
+                  flags: const YoutubePlayerFlags(
+                    autoPlay: true,
+                    showLiveFullscreenButton: true,
+                    enableCaption: true,
+                  ),
+                );
+                showDialog(
+                  context: context,
+                  builder: (context) => YoutubePlayer(
+                    controller: controller,
+                    progressIndicatorColor: AppColors.primary,
+                    progressColors: const ProgressBarColors(
+                      playedColor: AppColors.primary,
+                      bufferedColor: AppColors.primary,
+                      handleColor: AppColors.primary,
+                      backgroundColor: AppColors.primary,
+                    ),
+                    aspectRatio: 9 / 16,
+                    thumbnail: CachedNetworkImage(
+                      imageUrl: exercise.thumbnailUrl!,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => _buildPlaceholder(),
+                      errorWidget: (context, url, error) => _buildPlaceholder(),
+                    ),
+                    bottomActions: [
+                      const RemainingDuration(),
+                      IconButton(
+                        onPressed: () {
+                          if (controller.value.isPlaying) {
+                            controller.pause();
+                          } else {
+                            controller.play();
+                          }
+                        },
+                        icon: Icon(
+                          controller.value.isPlaying
+                              ? Icons.pause
+                              : Icons.play_arrow,
+                        ),
+                      ),
+                      ProgressBar(
+                        controller: controller,
+                        isExpanded: true,
+                        colors: const ProgressBarColors(
+                          playedColor: AppColors.primary,
+                          handleColor: AppColors.primary,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.fullscreen),
+                        onPressed: () {
+                          controller.toggleFullScreenMode();
+                        },
+                      ),
+                    ],
+                    onReady: () {
+                      controller.play();
+                    },
+                    topActions: [
+                      Text(
+                        exercise.name,
+                        style: GoogleFonts.outfit(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                );
+              },
+
               icon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(

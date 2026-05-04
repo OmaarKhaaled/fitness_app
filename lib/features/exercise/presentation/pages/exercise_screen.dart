@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseScreen extends StatelessWidget {
   final ExerciseModel exercise;
@@ -47,9 +48,8 @@ class ExerciseScreen extends StatelessWidget {
   SliverAppBar buildHeroAppBar(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     return SliverAppBar(
-      
       floating: true,
-      expandedHeight: mediaQuery.size.height * .6,
+      expandedHeight: mediaQuery.size.height * .5,
       pinned: true,
       backgroundColor: const Color(0xFF121212),
       leadingWidth: 64,
