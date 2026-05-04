@@ -4,10 +4,10 @@ import 'package:fitness_app/features/meals/data/models/meals_by_category_respons
 import 'package:fitness_app/features/meals/data/models/meals_by_category_response/meals_by_category_response.dart';
 import 'package:fitness_app/features/meals/data/models/meals_categories_response/category.dart';
 import 'package:fitness_app/features/meals/data/models/meals_categories_response/meals_categories_response.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_cubit.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_intents.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_states.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_ui_intents.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_cubit.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_intents.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_states.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_ui_intents.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

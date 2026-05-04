@@ -1,7 +1,7 @@
 import 'package:fitness_app/config/di/di.dart';
-import 'package:fitness_app/features/meals/presentation/view/widgets/meals_section.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_cubit.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_states.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/widgets/meals_section.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_cubit.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

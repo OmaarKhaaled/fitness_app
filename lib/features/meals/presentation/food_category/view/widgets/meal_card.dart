@@ -1,18 +1,22 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MealCard extends StatelessWidget {
   final String? imageUrl;
   final String? name;
+  final String? mealId;
   final VoidCallback? onTap;
 
   const MealCard({
     super.key,
     required this.imageUrl,
     required this.name,
+    required this.mealId,
     this.onTap,
   });
 
@@ -20,7 +24,13 @@ class MealCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        if (onTap != null) {
+          onTap!();
+        } else if (mealId != null) {
+          context.push(AppRoutesConstants.mealDetailPage, extra: mealId);
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white.withValues(alpha: 0.05),

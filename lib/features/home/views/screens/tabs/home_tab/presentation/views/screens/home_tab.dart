@@ -3,7 +3,7 @@ import 'package:fitness_app/core/enums/nav_bar_enum.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/home/view_model/home_events.dart';
 import 'package:fitness_app/features/home/view_model/home_view_model.dart';
-import 'package:fitness_app/features/meals/presentation/view/widgets/meals_section.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/widgets/meals_section.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/workouts_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,17 +1,16 @@
 import 'dart:async';
 
-import 'package:fitness_app/config/di/di.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/meals/presentation/view/widgets/meal_card.dart';
-import 'package:fitness_app/features/meals/presentation/view/widgets/meal_category_chips.dart';
-import 'package:fitness_app/features/meals/presentation/view/widgets/meal_skeletons.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_cubit.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_intents.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_states.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_ui_intents.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/widgets/meal_card.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/widgets/meal_category_chips.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/widgets/meal_skeletons.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_cubit.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_intents.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_states.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_ui_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -51,7 +50,6 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
   @override
   void dispose() {
     _uiIntentSubscription.cancel();
-    // Do NOT close the cubit here if it's provided by MealCategoriesPage
     super.dispose();
   }
 
@@ -180,6 +178,7 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
                       return MealCard(
                         imageUrl: meal.strMealThumb,
                         name: meal.strMeal,
+                        mealId: meal.idMeal,
                       );
                     }, childCount: state.meals.length),
                   ),

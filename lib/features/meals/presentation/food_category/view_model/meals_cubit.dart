@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/features/meals/domain/use_cases/get_meals_by_category_use_case.dart';
 import 'package:fitness_app/features/meals/domain/use_cases/get_meals_categories_use_case.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_intents.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_states.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_ui_intents.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_intents.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_states.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_ui_intents.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
