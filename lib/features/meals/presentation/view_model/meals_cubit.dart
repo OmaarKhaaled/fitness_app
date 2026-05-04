@@ -40,6 +40,7 @@ class MealsCubit extends Cubit<MealsStates> {
   }
 
   Future<void> _loadInitialData() async {
+    if(state.categories.isNotEmpty) return;
     emit(state.copyWith(isCategoriesLoading: true, isMealsLoading: true));
 
     final response = await _getMealsCategoriesUseCase();
@@ -48,6 +49,7 @@ class MealsCubit extends Cubit<MealsStates> {
       loading: () => null,
       success: (data) {
         final cats = data.categories ?? [];
+        print('MealsCubit: Categories loaded: ${cats.length}');
         emit(state.copyWith(isCategoriesLoading: false, categories: cats));
 
         if (cats.isNotEmpty && state.selectedCategory == null) {
@@ -59,7 +61,14 @@ class MealsCubit extends Cubit<MealsStates> {
         }
       },
       failure: (error) {
-        emit(state.copyWith(isCategoriesLoading: false, isMealsLoading: false));
+        print('MealsCubit: Categories load failure: ${error.message}');
+        emit(
+          state.copyWith(
+            isCategoriesLoading: false,
+            isMealsLoading: false,
+            errorMessage: error.message,
+          ),
+        );
         _streamController.add(ShowErrorMealsIntent(error: error.message));
       },
     );
@@ -74,6 +83,7 @@ class MealsCubit extends Cubit<MealsStates> {
   }
 
   Future<void> _loadMealsByCategory(String category) async {
+    print('MealsCubit: Loading meals for category: $category');
     emit(state.copyWith(isMealsLoading: true, selectedCategory: category));
 
     final response = await _getMealsByCategoryUseCase(category);
@@ -81,10 +91,13 @@ class MealsCubit extends Cubit<MealsStates> {
       initial: () => null,
       loading: () => null,
       success: (data) {
-        emit(state.copyWith(isMealsLoading: false, meals: data.meals ?? []));
+        final meals = data.meals ?? [];
+        print('MealsCubit: Meals loaded for $category: ${meals.length}');
+        emit(state.copyWith(isMealsLoading: false, meals: meals));
       },
       failure: (error) {
-        emit(state.copyWith(isMealsLoading: false));
+        print('MealsCubit: Meals load failure for $category: ${error.message}');
+        emit(state.copyWith(isMealsLoading: false, errorMessage: error.message));
         _streamController.add(ShowErrorMealsIntent(error: error.message));
       },
     );

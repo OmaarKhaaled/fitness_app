@@ -40,112 +40,124 @@ class _MealsSectionState extends State<MealsSection> {
     final textTheme = Theme.of(context).textTheme;
     return BlocProvider<MealsCubit>.value(
       value: _cubit,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    AppTextConstants.mealsRecommendationForYou,
-                    style: textTheme.titleLarge!.copyWith(fontSize: 20),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: widget.onSeeAllTapped,
-                  child: Text(
-                    AppTextConstants.mealsSeeAll,
-                    style: textTheme.titleMedium?.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-
-          BlocBuilder<MealsCubit, MealsStates>(
-            builder: (context, state) {
-              if (state.isCategoriesLoading) {
-                return const UpcomingMealSkeleton();
-              }
-
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: BlocListener<MealsCubit, MealsStates>(
+        listenWhen: (prev, curr) =>
+            curr.errorMessage != null && prev.errorMessage != curr.errorMessage,
+        listener: (context, state) {
+          if (state.errorMessage != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.errorMessage!)),
+            );
+          }
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (state.categories.isNotEmpty)
-                    MealCategoryChips(
-                      categories: state.categories,
-                      selectedCategory: state.selectedCategory,
-                      onSelected: (cat) {
-                        _cubit.doIntent(
-                          SelectMealCategoryIntent(category: cat.strCategory!),
-                        );
-                      },
+                  Expanded(
+                    child: Text(
+                      AppTextConstants.mealsRecommendationForYou,
+                      style: textTheme.titleLarge!.copyWith(fontSize: 20),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  const SizedBox(height: 16),
+                  ),
+                  GestureDetector(
+                    onTap: widget.onSeeAllTapped,
+                    child: Text(
+                      AppTextConstants.mealsSeeAll,
+                      style: textTheme.titleMedium?.copyWith(
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            BlocBuilder<MealsCubit, MealsStates>(
+              builder: (context, state) {
+                if (state.isCategoriesLoading ||
+                    (state.categories.isEmpty && state.isMealsLoading)) {
+                  return const UpcomingMealSkeleton();
+                }
 
-                  if (state.isMealsLoading)
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        itemCount: 4,
-                        itemBuilder: (context, index) => const Padding(
-                          padding: EdgeInsets.only(right: 12),
-                          child: SizedBox(
-                            width: 130,
-                            child: MealCardSkeleton(),
-                          ),
-                        ),
-                      ),
-                    )
-                  else if (state.meals.isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24),
-                          child: Text(
-                            AppTextConstants.noMealsFound,
-                            style: textTheme.titleLarge,
-                          ),
-                        ),
-                      ),
-                    )
-                  else
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        itemCount: state.meals.length,
-                        itemBuilder: (context, index) {
-                          final meal = state.meals[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: SizedBox(
-                              width: 130,
-                              child: MealCard(
-                                imageUrl: meal.strMealThumb,
-                                name: meal.strMeal,
-                              ),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (state.categories.isNotEmpty)
+                      MealCategoryChips(
+                        categories: state.categories,
+                        selectedCategory: state.selectedCategory,
+                        onSelected: (cat) {
+                          _cubit.doIntent(
+                            SelectMealCategoryIntent(
+                              category: cat.strCategory!,
                             ),
                           );
                         },
                       ),
-                    ),
-                ],
-              );
-            },
-          ),
-        ],
+                    const SizedBox(height: 16),
+                    if (state.isMealsLoading)
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          itemCount: 4,
+                          itemBuilder: (context, index) => const Padding(
+                            padding: EdgeInsets.only(right: 12),
+                            child: SizedBox(
+                              width: 130,
+                              child: MealCardSkeleton(),
+                            ),
+                          ),
+                        ),
+                      )
+                    else if (state.meals.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 24),
+                            child: Text(
+                              AppTextConstants.noMealsFound,
+                              style: textTheme.titleLarge,
+                            ),
+                          ),
+                        ),
+                      )
+                    else
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          itemCount: state.meals.length,
+                          itemBuilder: (context, index) {
+                            final meal = state.meals[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: SizedBox(
+                                width: 130,
+                                child: MealCard(
+                                  imageUrl: meal.strMealThumb,
+                                  name: meal.strMeal,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

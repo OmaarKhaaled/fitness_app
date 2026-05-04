@@ -67,6 +67,10 @@ class $AssetsImagesGen {
   AssetGenImage get forgetPasswordBackground =>
       const AssetGenImage('assets/images/forget_password_background.png');
 
+  /// File path: assets/images/home_back_ground.png
+  AssetGenImage get homeBackGround =>
+      const AssetGenImage('assets/images/home_back_ground.png');
+
   /// File path: assets/images/onboarding_1.png
   AssetGenImage get onboarding1 =>
       const AssetGenImage('assets/images/onboarding_1.png');
@@ -95,6 +99,7 @@ class $AssetsImagesGen {
     authBackground,
     fitness,
     forgetPasswordBackground,
+    homeBackGround,
     onboarding1,
     onboarding2,
     onboarding3,

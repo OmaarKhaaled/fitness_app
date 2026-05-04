@@ -32,4 +32,5 @@ class ApiConstants {
   static const String mealsCategoriesEndpoint = 'categories.php';
   static const String getMealsByCategoryEndpoint = 'filter.php';
   static const String getMealDetailsEndpoint = 'lookup.php';
+  static const String getMealDetailsEndpointQueryParam = '';
 }
