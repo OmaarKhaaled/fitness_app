@@ -2,6 +2,7 @@
 
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/services/token_service.dart';
+import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
@@ -67,8 +68,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
           ),
         );
 
-        if (data.token != null || data.token!.isNotEmpty) {
-          await _tokenService.saveTokenAndUpdateHeaders(data.token!);
+        if (data.token != null && data.token!.isNotEmpty) {
+          await _tokenService.refreshToken(data.token!);
           emit(
             state.copyWith(
               baseState: state.baseState.copyWith(isLoading: false),
@@ -76,8 +77,9 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
           );
         }
         debugPrint('Password changed successfully: ${data.message}');
-        
+        formKey.currentState?.save();
       },
+
       failure: (e) async {
         emit(
           state.copyWith(
@@ -87,10 +89,22 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
             ),
           ),
         );
+
+        if (e.message.startsWith('Token expired') ||
+            e.message.startsWith('Invalid token')) {
+          await _tokenService.refreshToken('');
+          debugPrint(
+            'Token refreshed due to expiration or invalidity. Retrying change password...',
+          );
+          await _submitChangePassword();
+        }
+
+        debugPrint('Failed to change password: ${e.message}');
       },
       loading: () async {},
       initial: () async {},
     );
+    formKey.currentState?.reset();
   }
 
   @override

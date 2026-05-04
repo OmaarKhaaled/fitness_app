@@ -44,7 +44,8 @@ class ChangePasswordScreen extends StatelessWidget {
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (context, state) {
           if (state.baseState.errorMessage != null) {
-            UiUtils.showErrorMsg(context, state.baseState.errorMessage!);
+            UiUtils.showErrorMsg(context, 'Something went wrong. Please login again.');
+            context.go( AppRoutesConstants.loginRoute);
           }
 
           if (state.baseState.data != null) {
