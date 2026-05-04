@@ -9,6 +9,7 @@ import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
+import 'package:fitness_app/features/auth/profile/presentation/view/pages/common_web_view_page.dart';
 import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_cubit.dart';
 import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_intents.dart';
 import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_states.dart';
@@ -143,7 +144,9 @@ class _ProfileTabState extends State<ProfileTab> {
                               iconPath: AppIcons.changePassword,
                               title: AppTextConstants.changePassword,
                               onTap: () {
-                                context.go(AppRoutesConstants.changePasswordRoute);
+                                context.go(
+                                  AppRoutesConstants.changePasswordRoute,
+                                );
                               },
                             ),
                             ProfileMenuItem(
@@ -192,17 +195,47 @@ class _ProfileTabState extends State<ProfileTab> {
                             ProfileMenuItem(
                               iconPath: AppIcons.security,
                               title: AppTextConstants.security,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CommonWebViewPage(
+                                      title: AppTextConstants.security,
+                                      url: AppRoutesConstants.securityUrl,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                             ProfileMenuItem(
                               iconPath: AppIcons.privacyPolicy,
                               title: AppTextConstants.privacyPolicy,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CommonWebViewPage(
+                                      title: AppTextConstants.privacyPolicy,
+                                      url: AppRoutesConstants.privacyPolicyUrl,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                             ProfileMenuItem(
                               iconPath: AppIcons.help,
                               title: AppTextConstants.help,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CommonWebViewPage(
+                                      title: AppTextConstants.help,
+                                      url: AppRoutesConstants.helpUrl,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                             ProfileMenuItem(
                               iconPath: AppIcons.logout,
