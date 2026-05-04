@@ -61,26 +61,30 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     );
 
     final result = await _changePasswordUsecase.call(dto);
-    final accessToken = await _tokenService.getToken();
-    if (kDebugMode) {
-      print("accessToken: $accessToken");
-    }
-    result.when(
-      success: (data) => emit(
-        state.copyWith(
-          baseState: state.baseState.copyWith(isLoading: false, data: data),
-        ),
-      ),
-      failure: (e) => emit(
-        state.copyWith(
-          baseState: state.baseState.copyWith(
-            isLoading: false,
-            errorMessage: e.message,
+
+    await result.when(
+      success: (data) async {
+        if (data.token != null) {
+          await _tokenService.saveToken(data.token!);
+        }
+        emit(
+          state.copyWith(
+            baseState: state.baseState.copyWith(isLoading: false, data: data),
           ),
-        ),
-      ),
-      loading: () {},
-      initial: () {},
+        );
+      },
+      failure: (e) async {
+        emit(
+          state.copyWith(
+            baseState: state.baseState.copyWith(
+              isLoading: false,
+              errorMessage: e.message,
+            ),
+          ),
+        );
+      },
+      loading: () async {},
+      initial: () async {},
     );
   }
 
