@@ -138,7 +138,6 @@ class ChangePasswordScreen extends StatelessWidget {
                           TextFormField(
                             controller: cubit.confirmPasswordController,
                             obscureText: state.confirmPasswordVisible,
-
                             decoration: InputDecoration(
                               hintText: AppTextConstants.confirmPassword,
                               prefixIcon: const Icon(
