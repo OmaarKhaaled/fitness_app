@@ -39,6 +39,7 @@ class AppTextConstants {
   static String get loginButton => 'login.button'.tr();
   static String get loginNoAccount => 'login.no_account'.tr();
   static String get loginRegisterLink => 'login.RegisterLink'.tr();
+  static String get loginPassword => 'login.password'.tr();
 
   // Register
   static String get registerGreeting => 'register.greeting'.tr();
@@ -187,6 +188,10 @@ class AppTextConstants {
   static String get mealsSeeAll => 'meals.see_all'.tr();
   static String get noMealsFound => 'meals.no_meals_found'.tr();
   static String get foodRecommendation => 'meals.food_recommendation'.tr();
+  static String get ingredients => 'meals.ingredients'.tr();
+  static String get instructions => 'meals.instructions'.tr();
+  static String get deliciousMealPreparedWithFreshIngredients =>
+      'meals.delicious_meal_prepared_with_fresh_ingredients'.tr();
 
   // Smart Coach
   static String get smartCoach => 'smart_coach.smart_coach'.tr();

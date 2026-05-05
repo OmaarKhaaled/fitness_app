@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/base_response/base_response.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_states.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/default_snackbar.dart';
@@ -8,7 +9,6 @@ import 'package:fitness_app/features/auth/login/presentation/widgets/login_butto
 import 'package:fitness_app/features/auth/login/presentation/widgets/password_textfield.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/register_link.dart';
 import 'package:fitness_app/features/auth/login/presentation/widgets/social_login_buttons.dart';
-import 'package:fitness_app/core/routing/route_names.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/login/presentation/manager/manager/login_cubit.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
             ScaffoldMessenger.of(context).showSnackBar(
               defaultSnackBar(message: data.message, color: AppColors.green),
             );
-            context.go(RouteNames.home);
+            context.go(AppRoutesConstants.homeRoute);
           },
           failure: (exception) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -109,7 +109,10 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 16),
 
               // Password Field
-              PasswordTextField(controller: _passwordController),
+              PasswordTextField(
+                controller: _passwordController,
+                hintText: AppTextConstants.loginPassword,
+              ),
 
               // Forgot Password Link
               const ForgetPasswordLink(),
