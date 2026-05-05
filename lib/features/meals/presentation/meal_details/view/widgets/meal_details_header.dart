@@ -87,6 +87,7 @@ class _MealDetailsHeaderState extends State<MealDetailsHeader> {
                 showVideoProgressIndicator: true,
                 onReady: () => debugPrint('Youtube Player is Ready'),
               )
+            // ignore: unrelated_type_equality_checks
             else if ((widget.meal.strYoutube == 150 || widget.meal == 101))
               CachedNetworkImage(
                 imageUrl: widget.meal.strMealThumb ?? '',
