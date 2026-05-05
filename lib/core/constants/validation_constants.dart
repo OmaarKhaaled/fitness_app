@@ -18,4 +18,5 @@ class ValidationConstants {
   static const String passwordsDoNotMatch = 'Passwords do not match';
   static const String phoneNumberRequired = 'Phone number is required';
   static const String invalidPhoneNumber = 'Enter a valid phone number';
+  static const String old = 'new password cannot be same as old password';
 }

@@ -44,6 +44,15 @@ extension StringValidation on String? {
     return null;
   }
 
+  String? matchOldPassword(String? originalValue) {
+    if (this == null || this!.isEmpty || this!.trim().isEmpty) {
+      return ValidationConstants.passwordRequired;
+    }
+    if (this != originalValue) {
+      return ValidationConstants.old;
+    }
+    return null;
+  }
   String? validateMatch(String? originalValue) {
     if (this == null || this!.isEmpty) {
       return ValidationConstants.confirmPasswordRequired;
