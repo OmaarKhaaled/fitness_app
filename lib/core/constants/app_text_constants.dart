@@ -153,7 +153,7 @@ class AppTextConstants {
       'forget_password.didnt_recieve_verification_code'.tr();
   static String get resendCode => 'forget_password.resend_code'.tr();
   static String get makeSureIts8CharactersOrMore =>
-      'forget_password.make_sure_it_is_8_characters_or_more'.tr();
+      'forget_password.make_sure_its_8_characters_or_more'.tr();
   static String get createNewPassword =>
       'forget_password.create_new_password'.tr();
   static String get done => 'forget_password.done'.tr();
@@ -187,63 +187,9 @@ class AppTextConstants {
   static String get mealsSeeAll => 'meals.see_all'.tr();
   static String get noMealsFound => 'meals.no_meals_found'.tr();
   static String get foodRecommendation => 'meals.food_recommendation'.tr();
-
-  // Smart Coach
-  static String get smartCoach => 'smart_coach.smart_coach'.tr();
-  static String get smartCoachGreeting => 'smart_coach.greeting'.tr();
-  static String get smartCoachGreetingDescription =>
-      'smart_coach.greeting_description'.tr();
-  static String get smartCoachWelcomeMessage =>
-      'smart_coach.welcome_message'.tr();
-  static String get smartCoachGetStarted => 'smart_coach.get_started'.tr();
-  // profile
-  static String get profile => 'profile.title'.tr();
-  static String get editProfile => 'profile.edit_profile'.tr();
-  static String get changePassword => 'profile.change_password'.tr();
-  static String get selectLanguage => 'profile.select_language'.tr();
-  static String get english => 'profile.english'.tr();
-  static String get arabic => 'profile.arabic'.tr();
-  static String get security => 'profile.security'.tr();
-  static String get help => 'profile.help'.tr();
-  static String get privacyPolicy => 'profile.privacy_policy'.tr();
-  static String get logout => 'profile.logout'.tr();
-  static String get yes => 'profile.yes'.tr();
-  static String get no => 'profile.no'.tr();
-  static String get areYouSureToCloseTheApp =>
-      'profile.areYouSureToCloseTheApp'.tr();
-  static String get smartCoachNoResponse => 'smart_coach.no_response'.tr();
-  static String get askSmartCoach => 'smart_coach.ask_smart_coach'.tr();
-  //edit profile section
-  static String get editProfileHeader => 'edit_profile_sec.edit_profile'.tr();
-  static String get yourWeight => 'edit_profile_sec.your_weight'.tr();
-  static String get yourGoal => 'edit_profile_sec.your_goal'.tr();
-  static String get yourActivityLevel =>
-      'edit_profile_sec.your_activity_level'.tr();
-  static String get tapToEdit => 'edit_profile_sec.tap_to_edit'.tr();
-  static String get editButton => 'edit_profile_sec.edit'.tr();
-  static String get previousConversations =>
-      'smart_coach.previous_conversations'.tr();
-  static String get noPreviousConversations =>
-      'smart_coach.no_previous_conversations'.tr();
-  static String get clearAll => 'smart_coach.clear_all'.tr();
-
-  // Home
-  static String get greeting => 'home.greeting'.tr();
-  static String get letsStartYourDay => 'home.lets_start_your_day'.tr();
-  static String get recommendationToDay => 'home.recommendation_to_day'.tr();
-  static String get category => 'home.category'.tr();
-  static String get gym => 'home.gym'.tr();
-  static String get fitness => 'home.fitness'.tr();
-  static String get yoga => 'home.yoga'.tr();
-  static String get aerobics => 'home.aerobics'.tr();
-  static String get trainer => 'home.trainer'.tr();
-  static String get popularTraining => 'home.popular_training'.tr();
-  static String get tasks => 'home.tasks'.tr();
-  static String get exercisesThatStrengthenYour =>
-      'home.exercises_that_strengthen_your'.tr();
-
-  //change password
-  static String get oldPassword => 'change_password.old_password'.tr();
-  static String get newPasswordMustDifferFromOldPassword =>
-      'change_password.new_password_must_differ_from_old_password'.tr();
+  static String get ingredients => 'meals.ingredients'.tr();
+  static String get noIngredients => 'meals.no_ingredients'.tr();
+  static String get instructions => 'meals.instructions'.tr();
+  static String get deliciousMealPreparedWithFreshIngredients =>
+      'meals.delicious_meal_prepared_with_fresh_ingredients'.tr();
 }

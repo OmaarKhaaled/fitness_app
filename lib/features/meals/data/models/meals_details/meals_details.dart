@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fitness_app/features/meals/data/models/meals_by_category_response/meal.dart';
+import 'meal.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'meals_details.g.dart';
 

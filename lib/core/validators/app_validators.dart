@@ -81,11 +81,7 @@ class AppValidators {
 
   static String? validateUserName(String? value) => value.validateMinLength(8);
 
-  static String? validatePassword(String? value) {
-    if (value == null || value.trim().isEmpty)
-      return ValidationConstants.passwordRequired;
-    return value.validatePassword;
-  }
+  static String? validatePassword(String? value) => value.validatePassword;
 
   static String? validateLoginPassword(String? value) =>
       value.validateLoginPassword;
@@ -104,22 +100,6 @@ class AppValidators {
 
     if (!AppRegex.isPhoneValid(value)) {
       return ValidationConstants.invalidPhoneNumber;
-    }
-
-    if (!AppRegex.hasMinLength(value)) {
-      return ValidationConstants.passwordMinLength;
-    }
-    if (!AppRegex.hasUpperCase(value)) {
-      return ValidationConstants.passwordUpperCase;
-    }
-    if (!AppRegex.hasLowerCase(value)) {
-      return ValidationConstants.passwordLowerCase;
-    }
-    if (!AppRegex.hasNumber(value)) {
-      return ValidationConstants.passwordNumber;
-    }
-    if (!AppRegex.hasSpecialCharacter(value)) {
-      return ValidationConstants.passwordSpecialChar;
     }
 
     return null;

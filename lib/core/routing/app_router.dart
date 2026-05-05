@@ -1,19 +1,10 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
-import 'package:fitness_app/features/auth/change_password/presentation/view/pages/change_password_screen.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view/screens/forget_password_screen.dart';
-import 'package:fitness_app/features/edit_profile/presentation/views/screens/activity_level_editing_screen.dart';
-import 'package:fitness_app/features/edit_profile/presentation/views/screens/edit_profile_screen.dart';
-import 'package:fitness_app/features/edit_profile/presentation/views/screens/goal_editing_screen.dart';
-import 'package:fitness_app/features/edit_profile/presentation/views/screens/weight_editing_screen.dart';
-import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.dart';
-import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
-import 'package:fitness_app/features/workouts/data/models/wourkout_group_response/muscle.dart';
 import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
-import 'package:fitness_app/features/meals/presentation/view/pages/meals_recommendation_page.dart';
-import 'package:fitness_app/features/smart_coach/presentation/views/pages/chat_page.dart';
-import 'package:flutter/material.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/pages/meal_categories_page.dart';
+import 'package:fitness_app/features/meals/presentation/meal_details/view/meal_detail_page.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
@@ -53,76 +44,17 @@ class AppRouter {
         builder: (context, state) => const ForgetPasswordScreen(),
       ),
       GoRoute(
-        path: AppRoutesConstants.editProfileRoute,
-        builder: (context, state) => const EditProfileScreen(),
-      ),
-      GoRoute(
-        path: AppRoutesConstants.weightEditing,
-        builder: (context, state) => const WeightEditingScreen(),
-      ),
-      GoRoute(
-        path: AppRoutesConstants.goalEditing,
-        builder: (context, state) => const GoalEditingScreen(),
-      ),
-      GoRoute(
-        path: AppRoutesConstants.activityLevelEditing,
-        builder: (context, state) => const ActivityLevelEditingScreen(),
-      ),
-
-      GoRoute(
         path: AppRoutesConstants.mealsRecommendationRoute,
         name: AppRoutesConstants.mealsRecommendationRoute,
-        builder: (context, state) => const MealsRecommendationPage(),
+        builder: (context, state) => const MealCategoriesPage(),
       ),
       GoRoute(
-        path: AppRoutesConstants.exercisesRoute,
-        name: AppRoutesConstants.exercisesRoute,
+        path: AppRoutesConstants.mealDetailPage,
+        name: AppRoutesConstants.mealDetailPage,
         builder: (context, state) {
-          final extra = state.extra;
-          if (extra is Muscle) {
-            return ExercisePage(
-              exercise: ExerciseModel(
-                id: extra.id ?? '',
-                name: extra.name ?? '',
-              ),
-            );
-          } else if (extra is ExerciseModel) {
-            return ExercisePage(exercise: extra);
-          }
-
-          // Fallback for null extra (e.g. on hot restart)
-          return const ExercisePage(
-            exercise: ExerciseModel(
-              id: '69d982ef85f6bfa972bf2248',
-              name: 'Advanced',
-            ),
-          );
+          final mealId = state.extra as String;
+          return MealDetailPage(mealId: mealId);
         },
-      ),
-      GoRoute(
-        path: AppRoutesConstants.chatPage,
-        name: AppRoutesConstants.chatPage,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: const ChatPage(),
-          transitionDuration: const Duration(milliseconds: 300),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final tween = Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).chain(CurveTween(curve: Curves.easeInOut));
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-        ),
-      ),
-
-      GoRoute(
-        path: AppRoutesConstants.changePassword,
-        name: AppRoutesConstants.changePassword,
-        builder: (context, state) => const ChangePasswordScreen(),
       ),
     ],
   );

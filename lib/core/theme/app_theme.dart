@@ -101,8 +101,6 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        disabledBackgroundColor: AppColors.primary.withValues(alpha: .5),
-        disabledForegroundColor: AppColors.white,
         foregroundColor: AppColors.white,
         textStyle: GoogleFonts.balooThambi2(
           fontSize: 14,
@@ -121,18 +119,18 @@ class AppTheme {
       hintStyle: GoogleFonts.balooThambi2(color: AppColors.white),
 
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(20),
         borderSide: const BorderSide(color: AppColors.white, width: 1.5),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(
           color: AppColors.white.withValues(alpha: .5),
           width: 1.5,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(20),
         borderSide: const BorderSide(color: AppColors.white, width: 2),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),

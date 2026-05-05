@@ -12,15 +12,15 @@ class BlurCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(50),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+          filter: ImageFilter.blur(sigmaX: 34, sigmaY: 34),
           child: Container(
             width: double.infinity,
             height: height,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppColors.white.withValues(alpha: .008),
+              color: AppColors.white.withValues(alpha: .08),
               borderRadius: BorderRadius.circular(24),
               border: Border.all(color: AppColors.white.withValues(alpha: .15)),
             ),

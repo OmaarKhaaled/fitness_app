@@ -1,6 +1,3 @@
 {
-    "workbench.colorTheme": "Dark Pastel Pink",
-    "window.autoDetectColorScheme": false,
-    "editor.defaultFormatter": "Dart-Code.flutter",
-    "vscode-pets.theme": "forest"
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

@@ -1,8 +1,9 @@
 import 'package:fitness_app/config/di/di.dart';
-import 'package:fitness_app/features/meals/presentation/view/pages/meals_recommendation_page.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_cubit.dart';
-import 'package:fitness_app/features/meals/presentation/view_model/meals_states.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/pages/meals_recommendation_page.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_cubit.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view_model/meals_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -19,6 +20,7 @@ void main() {
     }
     getIt.registerSingleton<MealsCubit>(mockMealsCubit);
 
+    when(mockMealsCubit.uiIntents).thenAnswer((_) => const Stream.empty());
     when(mockMealsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockMealsCubit.state).thenReturn(const MealsStates());
     when(mockMealsCubit.close()).thenAnswer((_) async {});
@@ -31,7 +33,12 @@ void main() {
   });
 
   Widget buildTestableWidget() {
-    return const MaterialApp(home: MealsRecommendationPage());
+    return MaterialApp(
+      home: BlocProvider<MealsCubit>.value(
+        value: mockMealsCubit,
+        child: const MealsRecommendationPage(),
+      ),
+    );
   }
 
   testWidgets(

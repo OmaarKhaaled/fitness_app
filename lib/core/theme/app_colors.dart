@@ -7,10 +7,7 @@ class AppColors {
   static const hint = Color(0xFFD9D9D9);
   static const transparent = Colors.transparent;
   static const black = Color(0xFF000000);
-  static const lightBlack = Color(0xFF242121);
-  static const darkGrey = Color(0xFF242424);
   static const redAccent = Colors.redAccent;
-  static const red = Colors.red;
   static const green = Colors.green;
   //================ON BOARDING COLORS================
   static final onboardingCardBackground = const Color(
@@ -20,7 +17,4 @@ class AppColors {
   static const grey = Colors.grey;
   static const shimmerBaseColor = Color(0xFF2C2C2C);
   static const shimmerHighlightColor = Color(0xFF404040);
-  static const logoutDialogColor = Color(0xFF242424);
-  static const smartCoachBubbleGradientColor = Color(0xFFC66A24);
-  static const smartCoachBubbleGradientColor2 = Color(0xFF8F3A00);
 }
