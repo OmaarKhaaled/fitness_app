@@ -39,7 +39,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
         break;
 
       case ToggleNewPasswordVisibility():
-        emit(state.copyWith(newPasswordVisible: !state.newPasswordVisible));
+        emit(state.copyWith(newPasswordVisible: state.newPasswordVisible));
         break;
 
       case ToggleConfirmPasswordVisibility():
@@ -51,6 +51,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   }
 
   Future<void> _submitChangePassword() async {
+    final isValid = formKey.currentState!.validate();
+
     emit(state.copyWith(baseState: state.baseState.copyWith(isLoading: true)));
 
     final dto = ChangePasswordRequest(
@@ -103,6 +105,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
       loading: () async {},
       initial: () async {},
     );
+    if (!isValid) return;
+
     formKey.currentState?.reset();
   }
 

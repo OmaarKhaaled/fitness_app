@@ -16,4 +16,10 @@ class AppRoutesConstants {
   static const String mealsRecommendationRoute = '/meals_recommendation';
   static const String chatPage = '/chat_page';
   static const String changePassword = '/change_password';
+  static const String securityUrl =
+      'https://elevate-flutter-team.github.io/fitness-app-webviews/help.html';
+  static const String privacyPolicyUrl =
+      'https://elevate-flutter-team.github.io/fitness-app-webviews/privacy-policy.html';
+  static const String helpUrl =
+      'https://elevate-flutter-team.github.io/fitness-app-webviews/help.html';
 }

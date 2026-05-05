@@ -1,5 +1,5 @@
 import 'package:fitness_app/core/constants/app_assets.dart';
-import 'package:fitness_app/core/constants/app_routes_constants.dart';
+import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
@@ -19,7 +19,6 @@ class ExerciseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return AppScaffold(
       backgroundImage: AppAssets.homeBackGround,
       hasGradient: true,
@@ -55,7 +54,7 @@ class ExerciseScreen extends StatelessWidget {
       leading: Padding(
         padding: const EdgeInsets.only(left: 16),
         child: GestureDetector(
-          onTap: () => Navigator.of(context).maybePop(),
+          onTap: () => context.pop(),
           child: Container(
             margin: const EdgeInsets.all(8),
             decoration: const BoxDecoration(
@@ -68,7 +67,7 @@ class ExerciseScreen extends StatelessWidget {
                 color: AppColors.white,
                 size: 14,
               ),
-              onPressed: () => context.go(AppRoutesConstants.homeRoute),
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ),
         ),
@@ -116,7 +115,7 @@ class ExerciseScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi.',
+                    AppTextConstants.exerciseDescription,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.outfit(
                       fontSize: 13,

@@ -3,7 +3,6 @@ import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseItemCard extends StatelessWidget {
@@ -11,18 +10,8 @@ class ExerciseItemCard extends StatelessWidget {
   final VoidCallback? onPlayTap;
 
   const ExerciseItemCard({super.key, required this.exercise, this.onPlayTap});
-
-  Future<void> _launchURL(String? urlString) async {
-    if (urlString == null) return;
-
-    final Uri url = Uri.parse(urlString);
-
-    await launchUrl(url, mode: LaunchMode.externalApplication);
-  }
-
   @override
   Widget build(BuildContext context) {
-    // Compute a safe video ID — never crashes, returns null if no valid URL
     final String? videoId = YoutubePlayer.convertUrlToId(
       exercise.inDepthYoutubeExplanationLink ??
           exercise.shortYoutubeDemonstrationLink ??

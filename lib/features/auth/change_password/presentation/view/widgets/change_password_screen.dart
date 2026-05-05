@@ -5,7 +5,6 @@ import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
-import 'package:fitness_app/core/validators/app_validators.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_password_cubit.dart';
 import 'package:flutter/material.dart';
@@ -43,14 +42,6 @@ class ChangePasswordScreen extends StatelessWidget {
 
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (context, state) {
-          if (state.baseState.errorMessage != null) {
-            UiUtils.showErrorMsg(
-              context,
-              'Something went wrong. Please login again.',
-            );
-            context.go(AppRoutesConstants.loginRoute);
-          }
-
           if (state.baseState.data != null) {
             UiUtils.showSuccessMsg(context, state.baseState.data!.message);
             context.go(AppRoutesConstants.homeRoute);
@@ -94,16 +85,19 @@ class ChangePasswordScreen extends StatelessWidget {
                           /// OLD PASSWORD
                           TextFormField(
                             controller: cubit.oldPasswordController,
-                            obscureText: !state.oldPasswordVisible,
-                            validator: (value) => value.validatePassword,
+                            obscureText: state.oldPasswordVisible,
                             decoration: InputDecoration(
                               hintText: AppTextConstants.oldPassword,
-                              prefixIcon: const Icon(Icons.lock_outline),
+                              prefixIcon: const Icon(
+                                Icons.lock_outline,
+                                color: AppColors.grey,
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
+                                  color: AppColors.grey,
                                   state.oldPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
                                 ),
                                 onPressed: () => cubit.doIntent(
                                   ToggleOldPasswordVisibility(),
@@ -117,16 +111,19 @@ class ChangePasswordScreen extends StatelessWidget {
                           /// NEW PASSWORD
                           TextFormField(
                             controller: cubit.newPasswordController,
-                            obscureText: !state.newPasswordVisible,
-                            validator: (value) => value.validatePassword,
+                            obscureText: state.newPasswordVisible,
                             decoration: InputDecoration(
                               hintText: AppTextConstants.newPassword,
-                              prefixIcon: const Icon(Icons.lock_outline),
+                              prefixIcon: const Icon(
+                                Icons.lock_outline,
+                                color: AppColors.grey,
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
+                                  color: AppColors.grey,
                                   state.newPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
                                 ),
                                 onPressed: () => cubit.doIntent(
                                   ToggleNewPasswordVisibility(),
@@ -140,18 +137,20 @@ class ChangePasswordScreen extends StatelessWidget {
                           /// CONFIRM PASSWORD
                           TextFormField(
                             controller: cubit.confirmPasswordController,
-                            obscureText: !state.confirmPasswordVisible,
-                            validator: (value) => value.validateMatch(
-                              cubit.newPasswordController.text,
-                            ),
+                            obscureText: state.confirmPasswordVisible,
+
                             decoration: InputDecoration(
                               hintText: AppTextConstants.confirmPassword,
-                              prefixIcon: const Icon(Icons.lock_outline),
+                              prefixIcon: const Icon(
+                                Icons.lock_outline,
+                                color: AppColors.grey,
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
+                                  color: AppColors.grey,
                                   state.confirmPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
                                 ),
                                 onPressed: () => cubit.doIntent(
                                   ToggleConfirmPasswordVisibility(),
@@ -170,7 +169,6 @@ class ChangePasswordScreen extends StatelessWidget {
                                 final isValid =
                                     cubit.formKey.currentState?.validate() ??
                                     false;
-
                                 if (isValid) {
                                   cubit.doIntent(SubmitChangePasswordIntent());
                                 }

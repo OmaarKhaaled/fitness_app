@@ -192,10 +192,15 @@
     "fitness": "Fitness",
     "yoga": "Yoga",
     "aerobics": "Aerobics",
-    "trainer": "Trainer"
+    "trainer": "Trainer",
+    "popular_training":"Popular Training",
+    "tasks":"Tasks",
+    "exercises_that_strengthen_your":"Exercises That\nStrengthen Your",
+    "exercise_description": "Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi."
   },
   "change_password": {
     "old_password": "Old Password",
-    "password_updated_successfully": "Password Updated Successfully"
+    "password_updated_successfully": "Password Updated Successfully",
+     "new_password_must_differ_from_old_password": "New password must differ from old password"
   }
 }

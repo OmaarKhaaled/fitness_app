@@ -185,7 +185,8 @@
   },
   "change_password": {
     "old_password": "Old Password",
-    "password_updated_successfully": "Password Updated Successfully"
+    "password_updated_successfully": "Password Updated Successfully",
+    "new_password_must_differ_from_old_password": "New password must differ from old password"
   },
   "home": {
     "greeting": "أهلاً ",
@@ -196,6 +197,10 @@
     "fitness": "اللياقة البدنية",
     "yoga": "اليوغا",
     "aerobics": "التمارين الهوائية",
-    "trainer": "المدرب"
+    "trainer": "المدرب",
+    "popular_training":"التدريب الأكثر شيوعا",
+    "tasks":"المهام",
+    "exercises_that_strengthen_your":"التمارين التي\n تقوي",
+    "exercise_description": "Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi."
   }
 }
