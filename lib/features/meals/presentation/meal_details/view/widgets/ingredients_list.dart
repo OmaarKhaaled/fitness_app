@@ -16,6 +16,7 @@ class IngredientsList extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 1),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
             color: Colors.white.withValues(alpha: 0.03),
             border: Border(
               bottom: BorderSide(color: Colors.white.withValues(alpha: 0.05)),

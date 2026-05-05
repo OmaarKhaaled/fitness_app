@@ -25,14 +25,18 @@ class _MealDetailsHeaderState extends State<MealDetailsHeader> {
     videoId = _extractYoutubeId(widget.meal.strYoutube);
 
     if (videoId != null && videoId!.isNotEmpty) {
+      debugPrint('Youtube Video ID: $videoId');
       _controller = YoutubePlayerController(
         initialVideoId: videoId!,
         flags: const YoutubePlayerFlags(
           autoPlay: true,
           mute: true,
           enableCaption: false,
+          isLive: false,
         ),
       );
+    } else {
+      debugPrint('No valid Youtube Video ID found for this meal.');
     }
   }
 
@@ -73,32 +77,17 @@ class _MealDetailsHeaderState extends State<MealDetailsHeader> {
           ),
         ),
       ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.white, width: 2),
-              color: AppColors.white.withValues(alpha: 0.1),
-            ),
-            child: const Icon(Icons.person, color: AppColors.white),
-          ),
-        ),
-      ],
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           fit: StackFit.expand,
           children: [
-            // 🎥 VIDEO OR IMAGE
             if (hasValidVideo && _controller != null)
               YoutubePlayer(
                 controller: _controller!,
-                showVideoProgressIndicator: false,
+                showVideoProgressIndicator: true,
+                onReady: () => debugPrint('Youtube Player is Ready'),
               )
-            else
+            else if ((widget.meal.strYoutube == 150 || widget.meal == 101))
               CachedNetworkImage(
                 imageUrl: widget.meal.strMealThumb ?? '',
                 fit: BoxFit.cover,
@@ -154,10 +143,8 @@ class InstructionsWidget extends StatelessWidget {
           Text(
             widget.meal.strInstructions?.split('\n').first ??
                 AppTextConstants.deliciousMealPreparedWithFreshIngredients,
-
             softWrap: true,
-
-            maxLines: 10,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.7),

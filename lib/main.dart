@@ -15,7 +15,7 @@ Future<void> main() async {
   Bloc.observer = AppBlocObserver();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
-  
+
   if (kIsWeb) {
     initializeWebView();
   }

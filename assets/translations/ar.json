@@ -163,6 +163,7 @@
     "no_meals_found": "لم يتم العثور على وجبات",
     "food_recommendation": "توصيات الطعام",
     "ingredients": "المكونات",
+    "no_ingredients":"لا توجد مكونات",
     "instructions": "التعليمات",
     "delicious_meal_prepared_with_fresh_ingredients": "وجبة لذيذة محضرة بمكونات طازجة"
   }

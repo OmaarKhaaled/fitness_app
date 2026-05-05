@@ -14,8 +14,6 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
-
     return BlocBuilder<MealDetailCubit, MealDetailState>(
       buildWhen: (previous, current) {
         return current.isLoading != previous.isLoading ||
@@ -96,13 +94,11 @@ class MealDetailScreen extends StatelessWidget {
                 ),
               ),
 
-              // Ingredients List
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 sliver: IngredientsList(meal: meal),
               ),
 
-              // Instructions Header
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 30, 16, 10),
@@ -126,7 +122,6 @@ class MealDetailScreen extends StatelessWidget {
       },
     );
   }
-
 
   Widget _buildNutritionBadge(String value, String label) {
     return Container(
@@ -159,7 +154,6 @@ class MealDetailScreen extends StatelessWidget {
   }
 }
 
-
 class InstructionContent extends StatelessWidget {
   const InstructionContent({super.key, required this.meal});
 
@@ -186,7 +180,9 @@ class InstructionContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedInstructions = _getFormattedInstructions(meal.strInstructions);
+    final formattedInstructions = _getFormattedInstructions(
+      meal.strInstructions,
+    );
 
     return SliverToBoxAdapter(
       child: Padding(

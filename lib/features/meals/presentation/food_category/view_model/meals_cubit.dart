@@ -99,7 +99,9 @@ class MealsCubit extends Cubit<MealsStates> {
         emit(state.copyWith(isMealsLoading: false, meals: meals));
       },
       failure: (error) {
-        debugPrint('MealsCubit: Meals load failure for $category: ${error.message}');
+        debugPrint(
+          'MealsCubit: Meals load failure for $category: ${error.message}',
+        );
         emit(
           state.copyWith(isMealsLoading: false, errorMessage: error.message),
         );
