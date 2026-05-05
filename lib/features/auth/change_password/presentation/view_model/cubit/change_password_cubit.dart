@@ -2,7 +2,6 @@
 
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/services/token_service.dart';
-import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fitness_app/features/auth/change_password/data/models/request/change_password_request.dart';
