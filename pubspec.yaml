@@ -1,7 +1,7 @@
 name: fitness_app
 description: "A new Flutter project."
 
-publish_to: "none" 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -9,75 +9,56 @@ environment:
   sdk: ^3.10.8
 
 dependencies:
+  cached_network_image: ^3.4.1
+  cupertino_icons: ^1.0.8
+  dio: ^5.9.0
+  easy_localization: ^3.0.8
+  equatable: ^2.0.7
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.8
-  easy_localization: ^3.0.8
-
-  # UI and Design
-  cached_network_image: ^3.4.1
-  flutter_svg: ^2.2.3
-
-  # Splash screen
-  flutter_native_splash: ^2.3.1
-
-  # State management
   flutter_bloc: ^9.1.1
-
-  # navigation
-  go_router: ^17.0.1
-
-  # Dependency Injection
-  get_it: ^9.2.0
-  injectable: ^2.7.1+4
-
-  # API requests
-  dio: ^5.9.0
-  retrofit: ^4.9.2
-
-  # JSON serialization
-  json_annotation: ^4.9.0
-
-  # Local storage
-  shared_preferences: ^2.5.4
-  flutter_secure_storage: ^10.0.0
-
-  # Lottie
-  lottie: ^3.3.2
-  google_fonts: ^6.3.3
-  fluttertoast: ^9.0.0
-
-  equatable: ^2.0.7
-  freezed_annotation: ^3.0.0
-  pinput: ^6.0.1
-
-  rename_app: ^1.6.5
-
-  # Debugging
-  logger: ^2.6.2
-  pretty_dio_logger: ^1.4.0
-  shimmer: ^3.0.0
-  latlong2: ^0.9.1
-  skeletonizer: ^2.1.2
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.1
+  flutter_secure_storage: ^10.0.0
+  flutter_svg: ^2.2.3
+  fluttertoast: ^9.0.0
+  freezed_annotation: ^3.0.0
+  get_it: ^9.2.0
+  go_router: ^17.0.1
+  google_fonts: ^6.3.3
+  injectable: ^2.7.1+4
+  json_annotation: ^4.9.0
+  latlong2: ^0.9.1
+  logger: ^2.6.2
+  lottie: ^3.3.2
+  percent_indicator: ^4.2.5
+  pinput: ^6.0.1
+  pretty_dio_logger: ^1.4.0
+  rename_app: ^1.6.5
+  retrofit: ^4.9.2
+  shared_preferences: ^2.5.4
+  shimmer: ^3.0.0
+  skeletonizer: ^2.1.2
+  webview_flutter: ^4.13.1
+  webview_flutter_web: ^0.2.3+4
   wheel_picker: ^0.2.2
+  youtube_player_flutter: ^9.1.3
+  youtube_player_iframe: ^5.2.2
 
 dev_dependencies:
+  bloc_test: ^10.0.0
+  build_runner: ^2.4.13
+  flutter_gen_runner: ^5.9.0
+  flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
-  # Code generation tools
-  build_runner: ^2.4.13
   freezed: ^3.0.0
   injectable_generator: ^2.7.0
   json_serializable: ^6.9.0
+  mockito: ^5.6.4
   retrofit_generator: ^10.2.1
-  flutter_gen_runner: ^5.9.0
-  mockito: ^5.4.6
-  bloc_test: ^10.0.0
 flutter:
-
+  generate: true
   uses-material-design: true
   assets:
     - assets/images/

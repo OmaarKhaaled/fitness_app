@@ -23,12 +23,20 @@ class AuthInterceptor extends Interceptor {
     final tokenResponse = await _secureStorageService.getAuthTokens();
 
     tokenResponse.when(
+      initial: () {},
+      loading: () {},
       success: (token) {
         if (token != null && token.isNotEmpty) {
-          // Add the token to the Authorization header
-          options.headers['Authorization'] = 'Bearer $token';
-          // Also add to the TOKEN header if your API expects it
-          options.headers[CacheConstants.token] = token;
+          // Only add authorization to our own API, not public ones like MealDB
+          final fullUrl = options.path.startsWith('http')
+              ? options.path
+              : '${options.baseUrl}${options.path}';
+          final isExternalApi = !fullUrl.contains('elevateegy.com');
+
+          if (!isExternalApi) {
+            options.headers['Authorization'] = 'Bearer $token';
+            options.headers[CacheConstants.token] = token;
+          }
         }
       },
       failure: (error) {
@@ -62,7 +70,6 @@ class AuthInterceptor extends Interceptor {
     handler.next(err);
   }
 
-  /// Clear expired token from storage using SecureStorageService methods
   Future<void> _clearExpiredToken() async {
     try {
       await _secureStorageService.clearAuthTokens();

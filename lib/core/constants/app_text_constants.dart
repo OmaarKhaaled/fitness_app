@@ -11,15 +11,17 @@ class AppTextConstants {
   static String get appName => 'splash.app_name'.tr();
 
   // Onboarding
-  static String get onboardingSlide1Title => 'onboarding.slide1.title'.tr();
-  static String get onboardingSlide1Description =>
-      'onboarding.slide1.description'.tr();
-  static String get onboardingSlide2Title => 'onboarding.slide2.title'.tr();
-  static String get onboardingSlide2Description =>
-      'onboarding.slide2.description'.tr();
-  static String get onboardingSlide3Title => 'onboarding.slide3.title'.tr();
-  static String get onboardingSlide3Description =>
-      'onboarding.slide3.description'.tr();
+  static List<String> get onBoardingSlideTitles => [
+    'onboarding.slide1.title'.tr(),
+    'onboarding.slide2.title'.tr(),
+    'onboarding.slide3.title'.tr(),
+  ];
+
+  static List<String> get onBoardingSlideDescriptions => [
+    'onboarding.slide1.description'.tr(),
+    'onboarding.slide2.description'.tr(),
+    'onboarding.slide3.description'.tr(),
+  ];
   static String get onboardingNextButton => 'onboarding.buttons.next'.tr();
   static String get onboardingBackButton => 'onboarding.buttons.back'.tr();
   static String get onboardingSkipButton => 'onboarding.buttons.skip'.tr();
@@ -36,7 +38,7 @@ class AppTextConstants {
   static String get loginOr => 'login.or'.tr();
   static String get loginButton => 'login.button'.tr();
   static String get loginNoAccount => 'login.no_account'.tr();
-  static String get loginRegisterLink => 'login.register_link'.tr();
+  static String get loginRegisterLink => 'login.RegisterLink'.tr();
 
   // Register
   static String get registerGreeting => 'register.greeting'.tr();
@@ -50,6 +52,8 @@ class AppTextConstants {
       'register.email_placeholder'.tr();
   static String get registerPasswordPlaceholder =>
       'register.password_placeholder'.tr();
+  static String get registerRePasswordPlaceholder =>
+      'register.repassword_placeholder'.tr();
   static String get registerOr => 'register.or'.tr();
   static String get registerButton => 'register.button'.tr();
   static String get registerAlreadyAccount =>
@@ -75,6 +79,7 @@ class AppTextConstants {
       'profile_setup.age.question'.tr();
   static String get profileSetupAgeSelectionInfo =>
       'profile_setup.age.selection_info'.tr();
+  static String get profileSetupAgeYear => 'profile_setup.age.year'.tr();
   static String get profileSetupAgeButton => 'profile_setup.age.button'.tr();
 
   // Weight
@@ -127,4 +132,64 @@ class AppTextConstants {
       'profile_setup.activity.options.true_beast'.tr();
   static String get profileSetupActivityButton =>
       'profile_setup.activity.button'.tr();
+
+  // forget password
+  static String get pleaseEnterValidEmail =>
+      'forget_password.please_enter_valid_email'.tr();
+  static String get forgetPassword => 'forget_password.forget_password'.tr();
+  static String get enterYourEmail => 'forget_password.enter_your_email'.tr();
+  static String get sendOtp => 'forget_password.send_otp'.tr();
+  static String get otpCode => 'forget_password.otp_code'.tr();
+  static String get otpCodeDescription =>
+      'forget_password.otp_code_description'.tr();
+  static String get confirm => 'forget_password.confirm'.tr();
+  static String get resetPassword => 'forget_password.reset_password'.tr();
+  static String get resetPasswordDescription =>
+      'forget_password.reset_password_description'.tr();
+  static String get newPassword => 'forget_password.new_password'.tr();
+  static String get confirmPassword => 'forget_password.confirm_password'.tr();
+  static String get reset => 'forget_password.reset'.tr();
+  static String get didntRecieveVerificationCode =>
+      'forget_password.didnt_recieve_verification_code'.tr();
+  static String get resendCode => 'forget_password.resend_code'.tr();
+  static String get makeSureIts8CharactersOrMore =>
+      'forget_password.make_sure_its_8_characters_or_more'.tr();
+  static String get createNewPassword =>
+      'forget_password.create_new_password'.tr();
+  static String get done => 'forget_password.done'.tr();
+  static String get pleaseEnterValidOtp =>
+      'forget_password.please_enter_valid_otp'.tr();
+  static String get otpSentSuccessfully =>
+      'forget_password.otpSentSuccessfully'.tr();
+  static String get pleaseEnterValidPassword =>
+      'forget_password.please_enter_valid_password'.tr();
+  static String get passwordResetSuccessfully =>
+      'forget_password.passwordResetSuccessfully'.tr();
+  static String get email => 'forget_password.email'.tr();
+  static String get confirmPasswordDoesNotMatch =>
+      'forget_password.confirmPasswordDoesNotMatch'.tr();
+  static String get thePasswordMustBeAtLeast8CharactersLong =>
+      'forget_password.thePasswordMustBeAtLeast8CharactersLong'.tr();
+  //bottom nav bar
+  static String get exploreIcon => 'bottom_nav_bar.explore'.tr();
+  static String get smartCoachIcon => 'bottom_nav_bar.smart_coach'.tr();
+  static String get workoutsIcon => 'bottom_nav_bar.workouts'.tr();
+  static String get profileIcon => 'bottom_nav_bar.profile'.tr();
+  // Workouts
+  static String get upcomingWorkouts => 'workouts.upcoming_workouts'.tr();
+  static String get workoutsSeeAll => 'workouts.see_all'.tr();
+  static String get noWorkoutsFound => 'workouts.no_workouts_found'.tr();
+  static String get workoutsAll => 'workouts.all'.tr();
+
+  // Meals
+  static String get mealsRecommendationForYou =>
+      'meals.recommendation_for_you'.tr();
+  static String get mealsSeeAll => 'meals.see_all'.tr();
+  static String get noMealsFound => 'meals.no_meals_found'.tr();
+  static String get foodRecommendation => 'meals.food_recommendation'.tr();
+  static String get ingredients => 'meals.ingredients'.tr();
+  static String get noIngredients => 'meals.no_ingredients'.tr();
+  static String get instructions => 'meals.instructions'.tr();
+  static String get deliciousMealPreparedWithFreshIngredients =>
+      'meals.delicious_meal_prepared_with_fresh_ingredients'.tr();
 }

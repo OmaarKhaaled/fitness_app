@@ -1,1 +1,1 @@
-enum NavBarEnum { home, workout, chatAi, profile }
+enum NavBarEnum { home, chatAi, workout, profile }
