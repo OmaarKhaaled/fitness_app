@@ -69,6 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return BlocProvider<RegisterViewModel>.value(
       value: viewModel,
       child: AppScaffold(
+        blurSigma: 8,
         backgroundImage: AppAssets.authBackground,
         alignment: Alignment.topCenter,
         child: BlocBuilder<RegisterViewModel, RegisterStates>(

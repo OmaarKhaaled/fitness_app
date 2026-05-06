@@ -51,34 +51,29 @@ class ChangePasswordScreen extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<ChangePasswordCubit>();
 
-          return Padding(
-            padding: EdgeInsets.all(mediaQuery.size.width * 0.05),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppTextConstants.createNewPassword,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(color: AppColors.white),
-                ),
-                Text(
-                  AppTextConstants.makeSureIts8CharactersOrMore,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(color: AppColors.white),
-                ),
-
-                Form(
-                  key: cubit.formKey,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  child: SingleChildScrollView(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    padding: EdgeInsets.symmetric(
-                      vertical: mediaQuery.size.height * 0.05,
-                    ),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(mediaQuery.size.width * 0.05),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppTextConstants.createNewPassword,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(color: AppColors.white),
+                  ),
+                  Text(
+                    AppTextConstants.makeSureIts8CharactersOrMore,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(color: AppColors.white),
+                  ),
+            
+                  Form(
+                    key: cubit.formKey,
+                    autovalidateMode: AutovalidateMode.disabled,
                     child: BlurCard(
                       child: Column(
                         children: [
@@ -105,9 +100,9 @@ class ChangePasswordScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-
+                    
                           const SizedBox(height: 12),
-
+                    
                           /// NEW PASSWORD
                           TextFormField(
                             controller: cubit.newPasswordController,
@@ -131,9 +126,9 @@ class ChangePasswordScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-
+                    
                           const SizedBox(height: 12),
-
+                    
                           /// CONFIRM PASSWORD
                           TextFormField(
                             controller: cubit.confirmPasswordController,
@@ -157,9 +152,9 @@ class ChangePasswordScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-
+                    
                           const SizedBox(height: 20),
-
+                    
                           /// SUBMIT BUTTON
                           SizedBox(
                             width: double.infinity,
@@ -179,8 +174,8 @@ class ChangePasswordScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
