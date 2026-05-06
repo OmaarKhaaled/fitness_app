@@ -1,4 +1,3 @@
-
 class AppRoutesConstants {
   AppRoutesConstants._();
 
@@ -23,5 +22,6 @@ class AppRoutesConstants {
       'https://elevate-flutter-team.github.io/fitness-app-webviews/privacy-policy.html';
   static const String helpUrl =
       'https://elevate-flutter-team.github.io/fitness-app-webviews/help.html';
+
   static const String mealDetailPage = '/meal_detail_page';
 }
