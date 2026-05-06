@@ -154,7 +154,7 @@ class AppTextConstants {
       'forget_password.didnt_recieve_verification_code'.tr();
   static String get resendCode => 'forget_password.resend_code'.tr();
   static String get makeSureIts8CharactersOrMore =>
-      'forget_password.make_sure_it_is_8_characters_or_more'.tr();
+      'forget_password.make_sure_its_8_characters_or_more'.tr();
   static String get createNewPassword =>
       'forget_password.create_new_password'.tr();
   static String get done => 'forget_password.done'.tr();
@@ -252,4 +252,5 @@ class AppTextConstants {
   static String get oldPassword => 'change_password.old_password'.tr();
   static String get newPasswordMustDifferFromOldPassword =>
       'change_password.new_password_must_differ_from_old_password'.tr();
+  static String get noIngredients => 'meals.no_ingredients'.tr();
 }

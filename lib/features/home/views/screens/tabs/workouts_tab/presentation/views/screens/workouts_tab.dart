@@ -130,7 +130,10 @@ class _WorkoutsTabState extends State<WorkoutsTab> {
                         ),
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final muscle = state.muscles[index];
-                      return WorkoutCard.fromMuscle(muscle);
+                      return WorkoutCard(
+                        imageUrl: muscle.image,
+                        name: muscle.name,
+                      );
                     }, childCount: state.muscles.length),
                   ),
                 ),

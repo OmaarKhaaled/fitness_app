@@ -3,8 +3,8 @@ import 'package:fitness_app/features/home/view_model/home_events.dart';
 import 'package:fitness_app/features/home/view_model/home_states.dart';
 import 'package:fitness_app/features/home/views/screens/tabs/home_tab/presentation/views/screens/home_tab.dart';
 import 'package:fitness_app/features/home/views/screens/tabs/profile_tab/presentation/views/screens/profile_tab.dart';
+import 'package:fitness_app/features/home/views/screens/tabs/smart_coach_tab/presentation/views/screens/smart_coach_tab.dart';
 import 'package:fitness_app/features/home/views/screens/tabs/workouts_tab/presentation/views/screens/workouts_tab.dart';
-import 'package:fitness_app/features/smart_coach/presentation/views/pages/smart_coach_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -16,7 +16,7 @@ class HomeViewModel extends Cubit<HomeStates> {
     HomeTab(scrollController: scrollController),
     SmartCoachTab(scrollController: scrollController),
     WorkoutsTab(scrollController: scrollController),
-    ProfileTab(),
+    ProfileTab(scrollController: scrollController),
   ];
   void doIntent(HomeEvents event) {
     switch (event) {

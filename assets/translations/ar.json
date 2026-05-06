@@ -46,7 +46,7 @@
     "last_name_placeholder": "اسم العائلة",
     "email_placeholder": "البريد الإلكتروني",
     "password_placeholder": "كلمة المرور",
-    "repassword_placeholder": "تأكيد كلمة المرور",
+    "repassword_placeholder":"تأكيد كلمة المرور",
     "or": "أو",
     "button": "إنشاء حساب",
     "already_have_account": "لديك حساب بالفعل؟",
@@ -64,7 +64,7 @@
     "age": {
       "question": "كم عمرك؟",
       "selection_info": "هذا يساعدنا في إنشاء خطتك الشخصية",
-      "year": "سنة",
+      "year":"سنة",
       "button": "التالي"
     },
     "weight": {
@@ -118,7 +118,7 @@
     "reset": "إعادة تعيين",
     "didnt_recieve_verification_code": "لم تستلم رمز التحقق؟",
     "resend_code": "إعادة إرسال الرمز",
-    "make_sure_it_is_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
+    "make_sure_its_8_characters_or_more": "تأكد من أن كلمة المرور تتكون من 8 أحرف على الأقل",
     "create_new_password": "إنشاء كلمة مرور جديدة",
     "done": "تم",
     "please_enter_valid_otp": "الرجاء إدخال رمز تحقق صالح",
@@ -130,19 +130,38 @@
     "confirmPasswordDoesNotMatch": "كلمة المرور غير متطابقة",
     "thePasswordMustBeAtLeast8CharactersLong": "كلمة المرور يجب أن تكون 8 أحرف على الأقل"
   },
+  "home": {
+    "greeting": "مرحباً",
+    "welcome_back": "أهلاً بعودتك",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "or": "أو",
+    "button": "تسجيل الدخول",
+    "enter_your_email": "أدخل بريدك الإلكتروني",
+    "enter_your_password": "أدخل كلمة المرور",
+    "remember_me": "تذكرني",
+    "no_account": "ليس لديك حساب بعد؟",
+    "RegisterLink": "إنشاء حساب",
+    "register_link": "إنشاء حساب",
+    "lets_start_your_day": "لنبدأ يومك",
+    "recommendation_to_day": "توصيات اليوم",
+    "category": "الفئة",
+    "gym": "الجيم",
+    "fitness": "اللياقة البدنية",
+    "yoga": "اليوغا",
+    "aerobics": "التمارين الهوائية",
+    "trainer": "المدرب",
+    "popular_training":"التدريب الأكثر شيوعا",
+    "tasks":"المهام",
+    "exercises_that_strengthen_your":"التمارين التي\n تقوي",
+    "exercise_description": "Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi."
+  },
   "bottom_nav_bar": {
     "explore": "استكشف",
     "smart_coach": "المدرب الذكي",
     "workouts": "التمارين",
     "profile": "الملف الشخصي"
-  },
-  "edit_profile_sec": {
-    "edit_profile": "تعديل الملف الشخصي",
-    "your_weight": "وزنك",
-    "your_goal": "هدفك",
-    "your_activity_level": "مستوى نشاطك",
-    "tap_to_edit": "انقر للتعديل",
-    "edit": "تعديل"
   },
   "workouts": {
     "upcoming_workouts": "التمارين القادمة",
@@ -154,7 +173,11 @@
     "recommendation_for_you": "توصيات لك",
     "see_all": "عرض الكل",
     "no_meals_found": "لم يتم العثور على وجبات",
-    "food_recommendation": "توصيات الطعام"
+    "food_recommendation": "توصيات الطعام",
+    "ingredients": "المكونات",
+    "no_ingredients":"لا توجد مكونات",
+    "instructions": "التعليمات",
+    "delicious_meal_prepared_with_fresh_ingredients": "وجبة لذيذة محضرة بمكونات طازجة"
   },
   "smart_coach": {
     "smart_coach": "المدرب الذكي",
@@ -187,20 +210,5 @@
     "old_password": "Old Password",
     "password_updated_successfully": "Password Updated Successfully",
     "new_password_must_differ_from_old_password": "New password must differ from old password"
-  },
-  "home": {
-    "greeting": "أهلاً ",
-    "lets_start_your_day": "لنبدأ يومك",
-    "recommendation_to_day": "توصيات اليوم",
-    "category": "الفئة",
-    "gym": "الجيم",
-    "fitness": "اللياقة البدنية",
-    "yoga": "اليوغا",
-    "aerobics": "التمارين الهوائية",
-    "trainer": "المدرب",
-    "popular_training":"التدريب الأكثر شيوعا",
-    "tasks":"المهام",
-    "exercises_that_strengthen_your":"التمارين التي\n تقوي",
-    "exercise_description": "Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi."
   }
 }

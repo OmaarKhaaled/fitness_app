@@ -284,9 +284,7 @@ class Meal {
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [Meal].
-  factory Meal.fromJson(String data) {
-    return Meal.fromMap(json.decode(data) as Map<String, dynamic>);
-  }
+  factory Meal.fromJson(Map<String, dynamic> json) => _$MealFromJson(json);
 
   /// `dart:convert`
   ///

@@ -23,24 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
   late HomeViewModel viewModel;
   late ScrollController _scrollController;
   double _lastScrollOffset = 0;
+  late List<Widget> _tabs;
+
   @override
   void initState() {
     super.initState();
     viewModel = getIt<HomeViewModel>();
     _scrollController = ScrollController();
-    _scrollController.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final currentOffset = _scrollController.offset;
-    final isScrollingDown = currentOffset > _lastScrollOffset;
-    final isAtTop = currentOffset <= 0;
-
-    if (currentOffset != _lastScrollOffset && !isAtTop) {
-      viewModel.doIntent(ScrollDirectionChangedEvent(isScrollingDown));
-    }
-    _lastScrollOffset = currentOffset;
+    _tabs = viewModel.tabs(_scrollController);
   }
 
   @override
@@ -58,22 +48,34 @@ class _HomeScreenState extends State<HomeScreen> {
       value: viewModel,
       child: BlocBuilder<HomeViewModel, HomeStates>(
         builder: (context, state) {
-          final tabs = viewModel.tabs(_scrollController);
-          final currentTab = tabs[state.currAppTab.index];
+          final currentTab = _tabs[state.currAppTab.index];
           final scrollableContent =
               NotificationListener<ScrollUpdateNotification>(
                 onNotification: (notification) {
-                  final metrics = notification.metrics;
-                  final isScrollingDown = metrics.pixels > _lastScrollOffset;
-                  final isAtTop = metrics.pixels <= 0;
+                  // Only handle scroll events for the main axis
+                  if (notification.depth != 0) return false;
 
-                  if (metrics.pixels != _lastScrollOffset && !isAtTop) {
+                  final metrics = notification.metrics;
+                  final currentOffset = metrics.pixels;
+
+                  // Avoid handling small scrolls or rubber-banding
+                  if ((currentOffset - _lastScrollOffset).abs() < 10)
+                    return false;
+
+                  final isScrollingDown = currentOffset > _lastScrollOffset;
+                  final isAtTop = currentOffset <= 0;
+
+                  if (isAtTop) {
+                    if (!state.isBottomNavVisible) {
+                      viewModel.doIntent(ScrollDirectionChangedEvent(false));
+                    }
+                  } else {
                     viewModel.doIntent(
                       ScrollDirectionChangedEvent(isScrollingDown),
                     );
                   }
 
-                  _lastScrollOffset = metrics.pixels;
+                  _lastScrollOffset = currentOffset;
                   return false;
                 },
                 child: currentTab,
@@ -98,7 +100,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: AppColors.navBarBg,
                   selectedItemColor: AppColors.primary,
                   unselectedItemColor: AppColors.white,
-                  unselectedLabelStyle: const TextStyle(fontSize: 0),
                   showSelectedLabels: true,
                   showUnselectedLabels: false,
                   currentIndex: state.currAppTab.index,

@@ -47,8 +47,6 @@ class WorkoutCubit extends Cubit<WorkoutStates> {
     emit(state.copyWith(isMuscleGroupsLoading: true, isMusclesLoading: true));
 
     final response = await _getWorkoutsUseCase();
-    if (isClosed) return;
-
     response.when(
       initial: () => null,
       loading: () => null,
@@ -104,8 +102,6 @@ class WorkoutCubit extends Cubit<WorkoutStates> {
     );
 
     final response = await _getWorkoutsByMuscleGroupIdUseCase(muscleGroupId);
-    if (isClosed) return;
-
     response.when(
       initial: () => null,
       loading: () => null,

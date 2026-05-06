@@ -12,6 +12,7 @@ class AppScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final double blurSigma;
   final bool? resizeToAvoidBottomInset;
+
   const AppScaffold({
     super.key,
     required this.child,
@@ -37,17 +38,7 @@ class AppScaffold extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           // 1. Background Image
-          // 1. Background Image
           Image.asset(backgroundImage, fit: BoxFit.cover),
-
-          // 2. Optional Blur
-          if (blurSigma > 0)
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
-              child: const SizedBox.expand(),
-            ),
-
-          // 3. Optional Gradient
 
           // 2. Optional Blur
           if (blurSigma > 0)
@@ -73,8 +64,6 @@ class AppScaffold extends StatelessWidget {
                 ),
               ),
             ),
-
-          // 4. Content
 
           // 4. Content
           Align(alignment: alignment, child: child),
