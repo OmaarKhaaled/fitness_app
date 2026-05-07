@@ -84,7 +84,7 @@ class _PopularTrainingSectionState extends State<PopularTrainingSection> {
                       child: PopularTrainingCard(
                         item: item,
                         onTap: () {
-                          context.go(
+                          context.push(
                             AppRoutesConstants.exercisesRoute,
                             extra: ExerciseModel(
                               id: item.muscle.id ?? '',

@@ -252,4 +252,9 @@ class AppTextConstants {
   static String get oldPassword => 'change_password.old_password'.tr();
   static String get newPasswordMustDifferFromOldPassword =>
       'change_password.new_password_must_differ_from_old_password'.tr();
+
+  static String get passwordChangedSuccessfully =>
+      'change_password.password_changed_successfully'.tr();
+  static String get youCanNowLoginWithNewPassword =>
+      'change_password.you_can_now_login_with_new_password'.tr();
 }

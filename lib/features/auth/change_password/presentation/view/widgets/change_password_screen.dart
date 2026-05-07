@@ -5,6 +5,7 @@ import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
+import 'package:fitness_app/core/validators/app_validators.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_password_cubit.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,10 @@ class ChangePasswordScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
         toolbarHeight: mediaQuery.size.height * 0.13,
-        leading: InkWell(
-          onTap: () => context.go(AppRoutesConstants.homeRoute),
+        leading: GestureDetector(
+          onTap: () {
+            context.pop();
+          },
           child: const Icon(
             Icons.arrow_back,
             color: AppColors.primary,
@@ -43,8 +46,18 @@ class ChangePasswordScreen extends StatelessWidget {
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listener: (context, state) {
           if (state.baseState.data != null) {
-            UiUtils.showSuccessMsg(context, state.baseState.data!.message);
-            context.go(AppRoutesConstants.homeRoute);
+            UiUtils.showConfirmDialog(
+              context,
+              confirmText: AppTextConstants.loginButton,
+              cancelText: '',
+              onConfirm: () {
+                context.go(AppRoutesConstants.loginRoute);
+              },
+              title: AppTextConstants.passwordChangedSuccessfully,
+              message: AppTextConstants.youCanNowLoginWithNewPassword,
+            );
+          } else if (state.baseState.errorMessage != null) {
+            UiUtils.showErrorMsg(context, state.baseState.errorMessage!);
           }
         },
 
@@ -77,8 +90,9 @@ class ChangePasswordScreen extends StatelessWidget {
                     child: BlurCard(
                       child: Column(
                         children: [
-                          /// OLD PASSWORD
                           TextFormField(
+                            validator: (value) =>
+                                AppValidators.validatePassword(value),
                             controller: cubit.oldPasswordController,
                             obscureText: state.oldPasswordVisible,
                             decoration: InputDecoration(
@@ -87,6 +101,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                 Icons.lock_outline,
                                 color: AppColors.grey,
                               ),
+
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   color: AppColors.grey,
@@ -102,9 +117,10 @@ class ChangePasswordScreen extends StatelessWidget {
                           ),
                     
                           const SizedBox(height: 12),
-                    
-                          /// NEW PASSWORD
+
                           TextFormField(
+                            validator: (value) =>
+                                AppValidators.validatePassword(value),
                             controller: cubit.newPasswordController,
                             obscureText: state.newPasswordVisible,
                             decoration: InputDecoration(
@@ -128,9 +144,13 @@ class ChangePasswordScreen extends StatelessWidget {
                           ),
                     
                           const SizedBox(height: 12),
-                    
-                          /// CONFIRM PASSWORD
+
                           TextFormField(
+                            validator: (value) =>
+                                AppValidators.validateConfirmPassword(
+                                  value,
+                                  cubit.newPasswordController.text,
+                                ),
                             controller: cubit.confirmPasswordController,
                             obscureText: state.confirmPasswordVisible,
                             decoration: InputDecoration(
