@@ -76,15 +76,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     }
     if (!isValid) return;
 
-    emit(
-      state.copyWith(
-        baseState: state.baseState.copyWith(
-          isLoading: true,
-          errorMessage: null,
-        ),
-      ),
-    );
-
     final dto = ChangePasswordRequest(
       password: oldPasswordController.text.trim(),
       newPassword: newPasswordController.text.trim(),
@@ -93,6 +84,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     final result = await _changePasswordUsecase.call(dto);
 
     await result.when(
+
       success: (data) async {
         if (data.token != null && data.token!.isNotEmpty) {
           await _tokenService.refreshToken(data.token!);
@@ -124,9 +116,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
 
       loading: () async {},
 
-      initial: () async {
-        if (!isValid) return;
-      },
+      initial: () async {},
     );
   }
 

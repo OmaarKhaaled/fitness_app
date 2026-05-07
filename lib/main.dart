@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
-  print('Starting Fitness App...');
+  debugPrint('Starting Fitness App...');
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
   try {

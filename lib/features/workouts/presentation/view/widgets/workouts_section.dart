@@ -139,7 +139,7 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
                               child: WorkoutCard.fromMuscle(
                                 muscle,
                                 onTap: () {
-                                  context.go(
+                                  context.push(
                                     AppRoutesConstants.exercisesRoute,
                                     extra: muscle,
                                   );

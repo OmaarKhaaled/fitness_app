@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/features/meals/data/models/meals_details/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';

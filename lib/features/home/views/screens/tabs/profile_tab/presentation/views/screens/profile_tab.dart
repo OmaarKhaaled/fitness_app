@@ -137,14 +137,14 @@ class _ProfileTabState extends State<ProfileTab> {
                               iconPath: AppIcons.editProfile,
                               title: AppTextConstants.editProfile,
                               onTap: () {
-                                context.go(AppRoutesConstants.editProfileRoute);
+                                context.push(AppRoutesConstants.editProfileRoute);
                               },
                             ),
                             ProfileMenuItem(
                               iconPath: AppIcons.changePassword,
                               title: AppTextConstants.changePassword,
                               onTap: () {
-                                context.go(
+                                context.push(
                                   AppRoutesConstants.changePasswordRoute,
                                 );
                               },
