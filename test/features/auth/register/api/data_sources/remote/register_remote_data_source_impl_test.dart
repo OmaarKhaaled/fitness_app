@@ -44,11 +44,11 @@ void main() {
     expect(result, isA<BaseResponse<RegisterResponse>>());
     expect(result, BaseResponse<RegisterResponse>.success(dummyRes));
     expect(
-      result.mapOrNull(success: (value) => dummyRes.message),
+      result.mapOrNull(success: (value) => value.data.message),
       equals(dummyRes.message),
     );
     expect(
-      result.mapOrNull(success: (value) => dummyRes.token),
+      result.mapOrNull(success: (value) => value.data.token),
       equals(dummyRes.token),
     );
     verify(mockRegisterApiClient.register(dummyRequest)).called(1);

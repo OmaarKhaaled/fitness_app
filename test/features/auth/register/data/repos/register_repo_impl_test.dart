@@ -47,11 +47,11 @@ void main() {
       final result = await registerRepoImpl.register(dummyRequest);
       expect(result, isA<BaseResponse<RegisterResponseModel>>());
       expect(
-        result.mapOrNull(success: (value) => dummyRes.toDomain().message),
+        result.mapOrNull(success: (value) => value.data.message),
         equals(dummyRes.message),
       );
       expect(
-        result.mapOrNull(success: (value) => dummyRes.toDomain().token),
+        result.mapOrNull(success: (value) => value.data.token),
         equals(dummyRes.token),
       );
       verify(mockRegisterRemoteDataSourceImpl.register(any)).called(1);
@@ -77,7 +77,7 @@ void main() {
       final result = await registerRepoImpl.register(dummyRequest);
       expect(result, isA<BaseResponse<RegisterResponseModel>>());
       expect(
-        result.mapOrNull(failure: (value) => dummyException.message),
+        result.mapOrNull(failure: (value) => value.exception.message),
         equals(dummyException.message),
       );
       verify(mockRegisterRemoteDataSourceImpl.register(any)).called(1);
