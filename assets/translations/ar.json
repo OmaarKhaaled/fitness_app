@@ -154,7 +154,9 @@
     "recommendation_for_you": "توصيات لك",
     "see_all": "عرض الكل",
     "no_meals_found": "لم يتم العثور على وجبات",
-    "food_recommendation": "توصيات الطعام"
+    "food_recommendation": "توصيات الطعام",
+    "ingredients": "المكونات",
+    "instructions": "التعليمات"
   },
   "smart_coach": {
     "smart_coach": "المدرب الذكي",

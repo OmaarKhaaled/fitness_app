@@ -146,7 +146,9 @@
     "recommendation_for_you": "Recommendation For You",
     "see_all": "See All",
     "no_meals_found": "No meals found",
-    "food_recommendation": "Food Recommendation"
+    "food_recommendation": "Food Recommendation",
+    "ingredients": "Ingredients",
+    "instructions": "Instructions"
   },
   "smart_coach": {
     "smart_coach": "Smart Coach",

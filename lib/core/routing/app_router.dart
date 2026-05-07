@@ -7,11 +7,12 @@ import 'package:fitness_app/features/edit_profile/presentation/views/screens/goa
 import 'package:fitness_app/features/edit_profile/presentation/views/screens/weight_editing_screen.dart';
 import 'package:fitness_app/features/exercise/presentation/pages/exercise_page.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
+import 'package:fitness_app/features/meals/presentation/food_category/view/pages/meal_categories_page.dart';
+import 'package:fitness_app/features/meals/presentation/meal_details/view/meal_detail_page.dart';
 import 'package:fitness_app/features/workouts/data/models/wourkout_group_response/muscle.dart';
 import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
-import 'package:fitness_app/features/meals/presentation/view/pages/meals_recommendation_page.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/pages/chat_page.dart';
 import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
@@ -72,7 +73,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutesConstants.mealsRecommendationRoute,
         name: AppRoutesConstants.mealsRecommendationRoute,
-        builder: (context, state) => const MealsRecommendationPage(),
+        builder: (context, state) => const MealCategoriesPage(),
       ),
       GoRoute(
         path: AppRoutesConstants.exercisesRoute,
@@ -123,6 +124,17 @@ class AppRouter {
         path: AppRoutesConstants.changePassword,
         name: AppRoutesConstants.changePassword,
         builder: (context, state) => const ChangePasswordView(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.mealDetailPage,
+        name: AppRoutesConstants.mealDetailPage,
+        builder: (context, state) {
+          final extra = state.extra;
+          if (extra is String) {
+            return MealDetailPage(mealId: extra);
+          }
+          return const MealDetailPage(mealId: '');
+        },
       ),
     ],
   );

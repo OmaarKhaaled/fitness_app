@@ -29,8 +29,7 @@ class _MealsRecommendationPageState extends State<MealsRecommendationPage> {
   @override
   void initState() {
     super.initState();
-
-    _cubit = context.read<MealsCubit>(); // ✅ FIXED ASSIGNMENT
+    _cubit = context.read<MealsCubit>();
 
     _uiIntentSubscription = _cubit.uiIntents.listen((intent) {
       if (intent is NavigateToMealsPageIntent) {
