@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/config/network/language_manager.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
@@ -57,6 +58,7 @@ class _ProfileTabState extends State<ProfileTab> {
     final isEnglish =
         EasyLocalization.of(context)!.currentLocale?.languageCode == 'en';
     final textTheme = Theme.of(context).textTheme;
+    final languageManager = getIt<LanguageManager>();
     return BlocProvider.value(
       value: _cubit,
       child: Scaffold(
@@ -179,11 +181,10 @@ class _ProfileTabState extends State<ProfileTab> {
                                 value: isEnglish,
                                 padding: EdgeInsets.zero,
                                 onChanged: (val) {
-                                  if (val) {
-                                    context.setLocale(const Locale('en'));
-                                  } else {
-                                    context.setLocale(const Locale('ar'));
-                                  }
+                                  final newLocale = val ? const Locale('en') : const Locale('ar');
+                                  final languageCode = val ? 'en' : 'ar';
+                                  languageManager.setLanguage(languageCode);
+                                  context.setLocale(newLocale);
                                 },
                                 activeTrackColor: AppColors.primary,
                                 activeThumbColor: AppColors.white,
