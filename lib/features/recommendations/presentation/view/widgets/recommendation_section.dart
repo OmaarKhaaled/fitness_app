@@ -102,7 +102,7 @@ class _RecommendationSectionState extends State<RecommendationSection> {
                             targetMuscleGroup: item.name ?? '',
                           ),
                           onTap: () {
-                            context.go(
+                            context.push(
                               AppRoutesConstants.exercisesRoute,
                               extra: ExerciseModel(
                                 id: item.id ?? '',

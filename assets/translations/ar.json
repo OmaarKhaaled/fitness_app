@@ -186,9 +186,10 @@
     "areYouSureToCloseTheApp": "هل انت متاكد من رغبتك في اغلاق التطبيق"
   },
   "change_password": {
-    "old_password": "Old Password",
-    "password_updated_successfully": "Password Updated Successfully",
-    "new_password_must_differ_from_old_password": "New password must differ from old password"
+    "old_password": "كلمة المرور القديمة",
+    "password_changed_successfully": "تم تغيير كلمة المرور بنجاح",
+    "new_password_must_differ_from_old_password": "كلمة المرور الجديدة يجب أن تختلف عن كلمة المرور القديمة",
+    "you_can_now_login_with_new_password": "يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة"
   },
   "home": {
     "greeting": "أهلاً ",

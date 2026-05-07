@@ -3,6 +3,7 @@ import 'package:fitness_app/features/meals/data/models/meals_details/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:go_router/go_router.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MealDetailsHeader extends StatefulWidget {
@@ -32,7 +33,7 @@ class _MealDetailsHeaderState extends State<MealDetailsHeader> {
           autoPlay: true,
           mute: true,
           enableCaption: false,
-          isLive: false,
+          isLive: true,
         ),
       );
     } else {
@@ -67,7 +68,7 @@ class _MealDetailsHeaderState extends State<MealDetailsHeader> {
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
-          onTap: () => Navigator.pop(context),
+          onTap: () => context.pop(),
           child: Container(
             decoration: const BoxDecoration(
               color: AppColors.primary,

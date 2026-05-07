@@ -1,5 +1,4 @@
 import 'package:fitness_app/core/constants/app_assets.dart';
-import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
@@ -54,22 +53,21 @@ class ExerciseScreen extends StatelessWidget {
 
       leading: Padding(
         padding: const EdgeInsets.only(left: 16),
-        child: GestureDetector(
-          onTap: () => context.pop(),
-          child: Container(
-            margin: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(
-              color: AppColors.primary,
-              shape: BoxShape.circle,
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+            color: AppColors.primary,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: AppColors.white,
+              size: 14,
             ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: AppColors.white,
-                size: 14,
-              ),
-              onPressed: () => context.go(AppRoutesConstants.homeRoute),
-            ),
+            onPressed: () {
+              context.pop();
+            },
           ),
         ),
       ),
