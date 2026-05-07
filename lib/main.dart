@@ -9,11 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
+  print('Starting Fitness App...');
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
-  await configureDependencies();
-  await EasyLocalization.ensureInitialized();
-  // await dotenv.load(fileName: '.env');
+  try {
+    await EasyLocalization.ensureInitialized();
+    await configureDependencies();
+  } catch (e, s) {
+    debugPrint('Initialization Error: $e');
+    debugPrint('Stack Trace: $s');
+  }
 
   runApp(
     EasyLocalization(

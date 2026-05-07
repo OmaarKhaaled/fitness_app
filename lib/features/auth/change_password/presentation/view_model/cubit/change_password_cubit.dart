@@ -8,11 +8,9 @@ import 'package:fitness_app/features/auth/change_password/data/models/request/ch
 import 'package:fitness_app/features/auth/change_password/domain/usecases/change_password_usecase.dart';
 import 'package:fitness_app/features/auth/change_password/presentation/view_model/cubit/change_paasword_intent.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:equatable/equatable.dart';
 import 'package:fitness_app/config/base_state/base_state.dart';
 import 'package:fitness_app/features/auth/change_password/domain/models/change_password_model.dart';
-
+import 'package:equatable/equatable.dart';
 part 'change_password_state.dart';
 
 @injectable
@@ -51,9 +49,41 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
   }
 
   Future<void> _submitChangePassword() async {
-    final isValid = formKey.currentState!.validate();
+    final isValid = formKey.currentState?.validate() ?? false;
+    if (newPasswordController.text.trim() !=
+        confirmPasswordController.text.trim()) {
+      emit(
+        state.copyWith(
+          baseState: state.baseState.copyWith(
+            errorMessage: 'Passwords do not match',
+          ),
+        ),
+      );
+      return;
+    }
+    if (oldPasswordController.text.trim() ==
+        newPasswordController.text.trim()) {
+      emit(
+        state.copyWith(
+          baseState: state.baseState.copyWith(
+            data: state.baseState.data,
+            errorMessage: 'new password cannot be same as old password',
+            isLoading: false,
+          ),
+        ),
+      );
+      return;
+    }
+    if (!isValid) return;
 
-    emit(state.copyWith(baseState: state.baseState.copyWith(isLoading: true)));
+    emit(
+      state.copyWith(
+        baseState: state.baseState.copyWith(
+          isLoading: true,
+          errorMessage: null,
+        ),
+      ),
+    );
 
     final dto = ChangePasswordRequest(
       password: oldPasswordController.text.trim(),
@@ -61,24 +91,24 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     );
 
     final result = await _changePasswordUsecase.call(dto);
+
     await result.when(
       success: (data) async {
+        if (data.token != null && data.token!.isNotEmpty) {
+          await _tokenService.refreshToken(data.token!);
+        }
+
         emit(
           state.copyWith(
             baseState: state.baseState.copyWith(isLoading: false, data: data),
           ),
         );
 
-        if (data.token != null && data.token!.isNotEmpty) {
-          await _tokenService.refreshToken(data.token!);
-          emit(
-            state.copyWith(
-              baseState: state.baseState.copyWith(isLoading: false),
-            ),
-          );
-        }
-        debugPrint('Password changed successfully: ${data.message}');
-        formKey.currentState?.save();
+        formKey.currentState?.reset();
+
+        oldPasswordController.clear();
+        newPasswordController.clear();
+        confirmPasswordController.clear();
       },
 
       failure: (e) async {
@@ -90,24 +120,14 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
             ),
           ),
         );
-
-        if (e.message.startsWith('Token expired') ||
-            e.message.startsWith('Invalid token')) {
-          await _tokenService.refreshToken('');
-          debugPrint(
-            'Token refreshed due to expiration or invalidity. Retrying change password...',
-          );
-          await _submitChangePassword();
-        }
-
-        debugPrint('Failed to change password: ${e.message}');
       },
-      loading: () async {},
-      initial: () async {},
-    );
-    if (!isValid) return;
 
-    formKey.currentState?.reset();
+      loading: () async {},
+
+      initial: () async {
+        if (!isValid) return;
+      },
+    );
   }
 
   @override
