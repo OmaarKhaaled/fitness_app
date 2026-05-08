@@ -1,5 +1,5 @@
 import 'package:fitness_app/core/constants/app_assets.dart';
-import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/exercise/domain/models/exercise_model.dart';
@@ -15,7 +15,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ExerciseScreen extends StatelessWidget {
   final ExerciseModel exercise;
-  const ExerciseScreen({super.key, required this.exercise});
+  final bool showLevels;
+  const ExerciseScreen({
+    super.key,
+    required this.exercise,
+    this.showLevels = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +32,13 @@ class ExerciseScreen extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               buildHeroAppBar(context),
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: LevelTabs(),
+              if (showLevels)
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: LevelTabs(),
+                  ),
                 ),
-              ),
               buildExerciseList(state),
               const SliverToBoxAdapter(child: SizedBox(height: 32)),
             ],
@@ -43,31 +49,31 @@ class ExerciseScreen extends StatelessWidget {
   }
 
   SliverAppBar buildHeroAppBar(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return SliverAppBar(
       floating: true,
-      expandedHeight: mediaQuery.size.height * .5,
+      expandedHeight: 340,
       pinned: true,
       backgroundColor: const Color(0xFF121212),
       leadingWidth: 64,
 
       leading: Padding(
         padding: const EdgeInsets.only(left: 16),
-        child: Container(
-          margin: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            color: AppColors.primary,
-            shape: BoxShape.circle,
-          ),
-          child: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: AppColors.white,
-              size: 14,
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).maybePop(),
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            decoration: const BoxDecoration(
+              color: AppColors.primary,
+              shape: BoxShape.circle,
             ),
-            onPressed: () {
-              context.pop();
-            },
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: AppColors.white,
+                size: 14,
+              ),
+              onPressed: () => context.go(AppRoutesConstants.homeRoute),
+            ),
           ),
         ),
       ),
@@ -92,7 +98,7 @@ class ExerciseScreen extends StatelessWidget {
                     AppColors.black,
                     AppColors.black,
                   ],
-                  stops: [0.3, 0.6, 1.0],
+                  stops: [0.3, 0.7, 1.0],
                 ),
               ),
             ),
@@ -114,7 +120,7 @@ class ExerciseScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    AppTextConstants.exerciseDescription,
+                    'Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi.',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.outfit(
                       fontSize: 13,
