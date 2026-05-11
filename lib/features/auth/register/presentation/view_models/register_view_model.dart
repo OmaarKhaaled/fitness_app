@@ -16,6 +16,7 @@ class RegisterViewModel extends Cubit<RegisterStates> {
   RegisterViewModel(this._registerUseCase)
     : super(
         RegisterStates(
+          cachedRegistrationData: null,
           registerationData: RegisterationDataModel(
             firstName: '',
             lastName: '',
@@ -23,7 +24,13 @@ class RegisterViewModel extends Cubit<RegisterStates> {
             password: '',
             rePassword: '',
           ),
+          selectedGender: null,
+          selectedActivityLevel: null,
+          selectedGoal: null,
+          selectedHeight: 165,
+          selectedWeight: 90,
           selectedAge: 25,
+          isRegistrationComplete: false,
         ),
       );
   void doIntent(RegisterEvents event) {
@@ -56,6 +63,8 @@ class RegisterViewModel extends Cubit<RegisterStates> {
         _selectGoal(event.goal);
       case SelectActivityLevelEvent():
         _selectActivityLevel(event.activityLevel);
+      case ClearCachedDataEvent():
+        _clearCachedData();
     }
   }
 
@@ -72,6 +81,7 @@ class RegisterViewModel extends Cubit<RegisterStates> {
               isLoading: false,
               data: data,
             ),
+            isRegistrationComplete: true,
           ),
         );
       },
@@ -124,6 +134,7 @@ class RegisterViewModel extends Cubit<RegisterStates> {
   }
 
   void _cacheRegistrationData(RegisterationDataModel data) {
+    if (state.isRegistrationComplete) return;
     emit(state.copyWith(cachedRegistrationData: data, registerationData: data));
   }
 
@@ -157,5 +168,30 @@ class RegisterViewModel extends Cubit<RegisterStates> {
       activityLevel: activityLevel,
     );
     emit(state.copyWith(registerationData: updatedData));
+  }
+
+  void _clearCachedData() {
+    emit(
+      RegisterStates(
+        registerationData: RegisterationDataModel(
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          rePassword: '',
+        ),
+        selectedGender: null,
+        selectedAge: 25,
+        selectedWeight: 90,
+        selectedHeight: 165,
+        selectedGoal: null,
+        selectedActivityLevel: null,
+        cachedRegistrationData: null,
+        currentPageIndex: 0,
+        isRegistrationComplete: false,
+        isPasswordHidden: true,
+        isRePasswordHidden: true,
+      ),
+    );
   }
 }

@@ -34,14 +34,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void initState() {
     super.initState();
     viewModel = getIt<RegisterViewModel>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      viewModel.doIntent(ClearCachedDataEvent());
+    });
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
     rePasswordController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final cachedData = viewModel.state.registerationData;
-      if (cachedData.firstName.isNotEmpty) {
+      final cachedData = viewModel.state.cachedRegistrationData;
+      final isComplete = viewModel.state.isRegistrationComplete;
+      if (!isComplete &&
+          cachedData != null &&
+          cachedData.firstName.isNotEmpty) {
         firstNameController.text = cachedData.firstName;
         lastNameController.text = cachedData.lastName;
         emailController.text = cachedData.email;

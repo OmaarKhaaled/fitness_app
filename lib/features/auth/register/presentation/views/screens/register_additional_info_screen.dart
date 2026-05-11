@@ -169,6 +169,9 @@ class _RegisterAdditionalInfoScreenState
             UiUtils.hideLoading(context);
             UiUtils.showErrorMsg(context, registerState!.errorMessage!);
           }
+          if (_viewModel.state.isRegistrationComplete) {
+            _viewModel.doIntent(ClearCachedDataEvent());
+          }
         },
       ),
     );

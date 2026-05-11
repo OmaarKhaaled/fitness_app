@@ -346,4 +346,82 @@ void main() {
       expect(registerViewModel.state.selectedGender, 'male');
     });
   });
+  test('ClearCachedDataEvent clears all cached data and resets state', () {
+    final testData = RegisterationDataModel(
+      firstName: 'Test',
+      lastName: 'User',
+      email: 'test@email.com',
+      password: 'password123',
+      rePassword: 'password123',
+    );
+    registerViewModel.doIntent(SelectGenderEvent('male'));
+    registerViewModel.doIntent(SelectAgeEvent(30));
+    registerViewModel.doIntent(SelectWeightEvent(80));
+    registerViewModel.doIntent(CacheRegistrationDataEvent(testData));
+    expect(registerViewModel.state.selectedGender, 'male');
+    expect(registerViewModel.state.selectedAge, 30);
+    expect(registerViewModel.state.cachedRegistrationData?.firstName, 'Test');
+
+    // Clear all cached data
+    expectLater(
+      registerViewModel.stream,
+      emitsInOrder([
+        predicate<RegisterStates>(
+          (state) =>
+              state.registerationData.firstName == '' &&
+              state.registerationData.lastName == '' &&
+              state.registerationData.email == '' &&
+              state.registerationData.password == '' &&
+              state.registerationData.rePassword == '' &&
+              state.selectedGender == null &&
+              state.selectedAge == 25 &&
+              state.selectedWeight == 90 &&
+              state.selectedHeight == 165 &&
+              state.selectedGoal == null &&
+              state.selectedActivityLevel == null &&
+              state.cachedRegistrationData == null &&
+              state.currentPageIndex == 0 &&
+              state.isRegistrationComplete == false,
+        ),
+      ]),
+    );
+
+    registerViewModel.doIntent(ClearCachedDataEvent());
+  });
+  test(
+    'ClearCachedDataEvent prevents stale data from being reloaded after clear',
+    () {
+      final testData = RegisterationDataModel(
+        firstName: 'Stale',
+        lastName: 'Data',
+        email: 'stale@email.com',
+        password: 'pass123',
+        rePassword: 'pass123',
+      );
+
+      registerViewModel.doIntent(CacheRegistrationDataEvent(testData));
+      expect(
+        registerViewModel.state.cachedRegistrationData?.firstName,
+        'Stale',
+      );
+
+      registerViewModel.doIntent(ClearCachedDataEvent());
+      expect(registerViewModel.state.cachedRegistrationData, null);
+      expect(registerViewModel.state.registerationData.firstName, '');
+      final newData = RegisterationDataModel(
+        firstName: 'Fresh',
+        lastName: 'Start',
+        email: 'fresh@email.com',
+        password: 'newpass123',
+        rePassword: 'newpass123',
+      );
+
+      registerViewModel.doIntent(CacheRegistrationDataEvent(newData));
+      expect(
+        registerViewModel.state.cachedRegistrationData?.firstName,
+        'Fresh',
+      );
+      expect(registerViewModel.state.registerationData.firstName, 'Fresh');
+    },
+  );
 }

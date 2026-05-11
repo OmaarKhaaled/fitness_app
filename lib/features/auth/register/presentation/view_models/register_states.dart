@@ -15,6 +15,7 @@ class RegisterStates {
   String? selectedGoal;
   String? selectedActivityLevel;
   RegisterationDataModel? cachedRegistrationData;
+  bool isRegistrationComplete;
   RegisterStates({
     this.registerState,
     this.isPasswordHidden = true,
@@ -28,6 +29,7 @@ class RegisterStates {
     this.selectedGoal,
     this.selectedActivityLevel,
     this.cachedRegistrationData,
+    this.isRegistrationComplete=false
   });
   RegisterStates copyWith({
     BaseState<RegisterResponseModel>? registerState,
@@ -42,6 +44,7 @@ class RegisterStates {
     String? selectedGoal,
     String? selectedActivityLevel,
     RegisterationDataModel? cachedRegistrationData,
+    bool? isRegistrationComplete
   }) {
     return RegisterStates(
       registerState: registerState ?? this.registerState,
@@ -58,6 +61,7 @@ class RegisterStates {
           selectedActivityLevel ?? this.selectedActivityLevel,
       cachedRegistrationData:
           cachedRegistrationData ?? this.cachedRegistrationData,
+      isRegistrationComplete: isRegistrationComplete ?? this.isRegistrationComplete
     );
   }
 }
