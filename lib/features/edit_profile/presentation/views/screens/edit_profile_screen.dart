@@ -119,7 +119,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             );
             viewModel.doIntent(ResetEditSuccessEvent());
-            context.go(AppRoutesConstants.homeRoute);
+            context.pop();
             return;
           } else if (editProfileState?.isLoading == false &&
               editProfileState?.errorMessage != null) {
@@ -163,7 +163,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              context.go(AppRoutesConstants.homeRoute);
+                              context.pop();
                             },
                             child: Container(
                               width: 0.06 * width,

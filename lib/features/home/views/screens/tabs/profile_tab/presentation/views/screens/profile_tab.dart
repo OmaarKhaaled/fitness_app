@@ -138,8 +138,11 @@ class _ProfileTabState extends State<ProfileTab> {
                             ProfileMenuItem(
                               iconPath: AppIcons.editProfile,
                               title: AppTextConstants.editProfile,
-                              onTap: () {
-                                context.go(AppRoutesConstants.editProfileRoute);
+                              onTap: () async{
+                                await context.push(AppRoutesConstants.editProfileRoute);
+                                if (mounted) {
+                                  context.read<ProfileCubit>().doIntent(GetUserProfileIntent());
+                                }
                               },
                             ),
                             ProfileMenuItem(
