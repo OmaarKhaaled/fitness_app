@@ -3,6 +3,7 @@ import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/features/edit_profile/domain/models/edit_profile_response_model.dart';
 import 'package:fitness_app/features/edit_profile/domain/models/user_model.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_events.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_states.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_view_model.dart';
 import 'package:fitness_app/features/edit_profile/presentation/views/screens/edit_profile_screen.dart';
@@ -113,7 +114,6 @@ void main() {
       expect(find.text('john@example.com'), findsOneWidget);
       expect(find.text('Lose Weight'), findsOneWidget);
       expect(find.byType(SpecialHeaderWidget), findsNWidgets(3));
-      expect(find.text(AppTextConstants.editButton), findsOneWidget);
       expect(find.text(AppTextConstants.editProfileHeader), findsOneWidget);
       expect(find.byType(Form), findsOneWidget);
       expect(find.byType(TextFormField), findsNWidgets(6));
@@ -151,21 +151,102 @@ void main() {
     expect(find.text('Failed to load profile'), findsOneWidget);
   });
 
-  testWidgets('edit button calls EditProfileEvent when form is valid', (
+  testWidgets('editing first name triggers update when focus lost', (
     tester,
   ) async {
     await tester.binding.setSurfaceSize(const Size(1200, 2400));
     await tester.pumpWidget(buildTestableWidget());
+    await tester.pumpAndSettle(const Duration(seconds: 2));
 
-    await tester.enterText(find.byType(TextFormField).first, 'Jane');
+    final firstNameField = find.byType(TextFormField).first;
+
+    await tester.tap(firstNameField);
     await tester.pump();
-
-    await tester.tap(find.text(AppTextConstants.editButton));
+    await tester.enterText(firstNameField, 'Jane');
     await tester.pump();
+    final lastNameField = find.byType(TextFormField).at(1);
+    await tester.tap(lastNameField);
+    await tester.pumpAndSettle(const Duration(milliseconds: 500));
+    final captured = verify(
+      mockEditProfileViewModel.doIntent(captureAny),
+    ).captured;
+    final updateEvents = captured.whereType<UpdateFirstNameEvent>().toList();
 
-    verify(mockEditProfileViewModel.doIntent(any)).called(2);
+    expect(updateEvents.length, 1);
+    expect(updateEvents.first.firstName, 'Jane');
   });
 
+  testWidgets('editing last name triggers update when focus lost', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 2400));
+    await tester.pumpWidget(buildTestableWidget());
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    final lastNameField = find.byType(TextFormField).at(1);
+    await tester.tap(lastNameField);
+    await tester.pump();
+    await tester.enterText(lastNameField, 'Smith');
+    await tester.pump();
+    final emailField = find.byType(TextFormField).at(2);
+    await tester.tap(emailField);
+    await tester.pumpAndSettle(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 100));
+    final captured = verify(
+      mockEditProfileViewModel.doIntent(captureAny),
+    ).captured;
+    final updateEvents = captured.whereType<UpdateLastNameEvent>().toList();
+
+    expect(updateEvents.length, 1);
+    expect(updateEvents.first.lastName, 'Smith');
+  });
+
+  testWidgets('editing email triggers update when focus lost', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 2400));
+    await tester.pumpWidget(buildTestableWidget());
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    final emailField = find.byType(TextFormField).at(2);
+    await tester.tap(emailField);
+    await tester.pump();
+    await tester.enterText(emailField, 'jane.smith@example.com');
+    await tester.pump();
+    final weightField = find.byType(TextFormField).at(3);
+    await tester.tap(weightField);
+    await tester.pumpAndSettle(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 100));
+    final captured = verify(
+      mockEditProfileViewModel.doIntent(captureAny),
+    ).captured;
+    final updateEvents = captured.whereType<UpdateEmailEvent>().toList();
+    expect(updateEvents.length, 1);
+    expect(updateEvents.first.email, 'jane.smith@example.com');
+  });
+
+  testWidgets('invalid email does not trigger update and shows error', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 2400));
+    await tester.pumpWidget(buildTestableWidget());
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    final emailField = find.byType(TextFormField).at(2);
+    await tester.tap(emailField);
+    await tester.pump();
+    await tester.enterText(emailField, 'invalid-email');
+    await tester.pump();
+    final weightField = find.byType(TextFormField).at(3);
+    await tester.tap(weightField);
+    await tester.pumpAndSettle(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 100));
+    final captured = verify(
+      mockEditProfileViewModel.doIntent(captureAny),
+    ).captured;
+
+    final updateEvents = captured.whereType<UpdateEmailEvent>().toList();
+    expect(updateEvents.length, 0);
+    final firstNameEvents = captured.whereType<UpdateFirstNameEvent>().toList();
+    final lastNameEvents = captured.whereType<UpdateLastNameEvent>().toList();
+    expect(firstNameEvents.length, 0);
+    expect(lastNameEvents.length, 0);
+  });
   testWidgets('tapping weight field navigates to weight editing screen', (
     tester,
   ) async {

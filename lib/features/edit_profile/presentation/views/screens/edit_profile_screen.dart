@@ -9,7 +9,6 @@ import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:fitness_app/core/validators/app_validators.dart';
-import 'package:fitness_app/features/edit_profile/domain/models/edit_profile_request_model.dart';
 import 'package:fitness_app/features/edit_profile/domain/models/user_model.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_events.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_states.dart';
@@ -30,7 +29,6 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   late EditProfileViewModel viewModel;
-  final _formKey = GlobalKey<FormState>();
   late TextEditingController firstNameController;
   late TextEditingController lastNameController;
   late TextEditingController emailController;
@@ -38,10 +36,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController goalController;
   late TextEditingController activityLevelController;
 
+  late FocusNode _firstNameFocusNode;
+  late FocusNode _lastNameFocusNode;
+  late FocusNode _emailFocusNode;
+
+  String? _originalFirstName;
+  String? _originalLastName;
+  String? _originalEmail;
+
   @override
   void initState() {
     super.initState();
     viewModel = getIt<EditProfileViewModel>();
+    _firstNameFocusNode = FocusNode();
+    _lastNameFocusNode = FocusNode();
+    _emailFocusNode = FocusNode();
+    _firstNameFocusNode.addListener(_onFirstNameFocusLost);
+    _lastNameFocusNode.addListener(_onLastNameFocusLost);
+    _emailFocusNode.addListener(_onEmailFocusLost);
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     emailController = TextEditingController();
@@ -53,6 +65,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void dispose() {
+    _firstNameFocusNode.removeListener(_onFirstNameFocusLost);
+    _lastNameFocusNode.removeListener(_onLastNameFocusLost);
+    _emailFocusNode.removeListener(_onEmailFocusLost);
     firstNameController.dispose();
     lastNameController.dispose();
     emailController.dispose();
@@ -63,17 +78,77 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   void _updateControllersFromUser(UserModel user) {
-    if (firstNameController.text.isEmpty) {
-      firstNameController.text = user.firstName ?? '';
-      lastNameController.text = user.lastName ?? '';
-      emailController.text = user.email ?? '';
-      weightController.text =
-          '${user.weight} ${AppTextConstants.profileSetupWeightUnit.toUpperCase()}';
-      goalController.text = user.goal ?? '';
-      activityLevelController.text = user.activityLevel ?? '';
+    final newFirstName = user.firstName ?? '';
+    if (firstNameController.text != newFirstName) {
+      firstNameController.text = newFirstName;
+      _originalFirstName = user.firstName;
+    } else
+      _originalFirstName ??= user.firstName;
+    final newLastName = user.lastName ?? '';
+    if (lastNameController.text != newLastName) {
+      lastNameController.text = newLastName;
+      _originalLastName = user.lastName;
+    } else
+      _originalLastName ??= user.lastName;
+    final newEmail = user.email ?? '';
+    if (emailController.text != newEmail) {
+      emailController.text = newEmail;
+      _originalEmail = user.email;
+    } else
+      _originalEmail ??= user.email;
+    weightController.text =
+        '${user.weight} ${AppTextConstants.profileSetupWeightUnit.toUpperCase()}';
+    goalController.text = user.goal ?? '';
+    activityLevelController.text = user.activityLevel ?? '';
+  }
+  void _onFirstNameFocusLost() {
+    if (!_firstNameFocusNode.hasFocus) {
+      final currentValue = firstNameController.text.trim();
+      if(currentValue==_originalFirstName) return;
+      final validationError = AppValidators.validateRequired(currentValue);
+      if(validationError!=null){
+        UiUtils.showErrorMsg(context, validationError);
+        firstNameController.text=_originalFirstName ?? '';
+        return;
+      }
+      if (currentValue.isNotEmpty) {
+        viewModel.doIntent(UpdateFirstNameEvent(currentValue));
+        _originalFirstName = currentValue;
+      }
     }
   }
-
+  void _onLastNameFocusLost() {
+    if (!_lastNameFocusNode.hasFocus) {
+      final currentValue = lastNameController.text.trim();
+      if(currentValue==_originalLastName) return;
+      final validationError = AppValidators.validateRequired(currentValue);
+      if(validationError!=null){
+        UiUtils.showErrorMsg(context, validationError);
+        lastNameController.text=_originalLastName ?? '';
+        return;
+      }
+      if (currentValue.isNotEmpty) {
+        viewModel.doIntent(UpdateLastNameEvent(currentValue));
+        _originalLastName = currentValue;
+      }
+    }
+  }
+  void _onEmailFocusLost() {
+  if (!_emailFocusNode.hasFocus) {
+    final currentValue = emailController.text.trim();
+    if (currentValue == _originalEmail) return;
+    final validationError = AppValidators.validateEmail(currentValue);
+    if (validationError != null) {
+      UiUtils.showErrorMsg(context, validationError);
+      emailController.text = _originalEmail ?? '';
+      return;
+    }
+    if (currentValue.isNotEmpty) {
+      viewModel.doIntent(UpdateEmailEvent(currentValue));
+      _originalEmail = currentValue;
+    }
+  }
+}
   Future<void> _pickAndUpdatePhoto(UserModel currentUser) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
@@ -95,7 +170,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       child: BlocConsumer<EditProfileViewModel, EditProfileStates>(
         listener: (context, state) {
           final profileState = state.profileState;
-          final editProfileState = state.editProfileState;
+
           if (profileState?.data?.userModel != null) {
             _updateControllersFromUser(profileState!.data!.userModel!);
             final photo = profileState.data!.userModel!.photo;
@@ -105,26 +180,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               );
             }
           }
-          if (editProfileState?.isLoading == true) {
-            UiUtils.showLoading(context);
-          } else if (editProfileState?.isLoading == false &&
-              editProfileState?.data != null &&
-              state.isEditSuccess) {
+
+          if (state.isEditSuccess) {
             UiUtils.hideLoading(context);
-            UiUtils.showSuccessMsg(context, profileState!.data!.message!);
-            viewModel.doIntent(
-              SaveFirstNameEvent(
-                CacheConstants.firstName,
-                firstNameController.text,
-              ),
+            UiUtils.showSuccessMsg(
+              context,
+              state.editProfileState!.data!.message!,
             );
             viewModel.doIntent(ResetEditSuccessEvent());
-            context.pop();
-            return;
-          } else if (editProfileState?.isLoading == false &&
-              editProfileState?.errorMessage != null) {
+          }
+
+          if (state.editProfileState?.isLoading == true) {
+            UiUtils.showLoading(context);
+          } else if (state.editProfileState?.isLoading == false &&
+              state.editProfileState?.errorMessage != null) {
             UiUtils.hideLoading(context);
-            UiUtils.showErrorMsg(context, profileState!.errorMessage!);
+            UiUtils.showErrorMsg(
+              context,
+              state.editProfileState!.errorMessage!,
+            );
           }
         },
         builder: (context, state) {
@@ -197,6 +271,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ),
                     SizedBox(height: 0.05 * height),
+
+                    // Profile Picture
                     Stack(
                       alignment: Alignment.topRight,
                       children: [
@@ -238,7 +314,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     SizedBox(height: 0.1 * height),
                     Form(
-                      key: _formKey,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 0.09 * width),
                         child: Column(
@@ -246,8 +321,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             TextFormField(
                               controller: firstNameController,
-                              validator: (value) =>
-                                  AppValidators.validateRequired(value),
+                              focusNode: _firstNameFocusNode,
                               decoration: InputDecoration(
                                 hintText: AppTextConstants
                                     .registerFirstNamePlaceholder,
@@ -260,8 +334,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SizedBox(height: 0.02 * height),
                             TextFormField(
                               controller: lastNameController,
-                              validator: (value) =>
-                                  AppValidators.validateRequired(value),
+                              focusNode: _lastNameFocusNode,
                               decoration: InputDecoration(
                                 hintText: AppTextConstants
                                     .registerLastNamePlaceholder,
@@ -274,8 +347,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SizedBox(height: 0.02 * height),
                             TextFormField(
                               controller: emailController,
-                              validator: (value) =>
-                                  AppValidators.validateRequired(value),
+                              focusNode: _emailFocusNode,
                               decoration: InputDecoration(
                                 hintText:
                                     AppTextConstants.registerEmailPlaceholder,
@@ -289,8 +361,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SpecialHeaderWidget(
                               key: ValueKey(AppTextConstants.yourWeight),
                               header: AppTextConstants.yourWeight,
-                              onTap: () {
-                                context.go(AppRoutesConstants.weightEditing);
+                              onTap: () async {
+                                await context.push(
+                                  AppRoutesConstants.weightEditing,
+                                );
                               },
                             ),
                             SizedBox(height: 0.02 * height),
@@ -302,8 +376,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SpecialHeaderWidget(
                               key: ValueKey(AppTextConstants.yourGoal),
                               header: AppTextConstants.yourGoal,
-                              onTap: () {
-                                context.go(AppRoutesConstants.goalEditing);
+                              onTap: () async {
+                                await context.push(
+                                  AppRoutesConstants.goalEditing,
+                                );
                               },
                             ),
                             SizedBox(height: 0.02 * height),
@@ -315,8 +391,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SpecialHeaderWidget(
                               key: ValueKey(AppTextConstants.yourActivityLevel),
                               header: AppTextConstants.yourActivityLevel,
-                              onTap: () {
-                                context.go(
+                              onTap: () async {
+                                await context.push(
                                   AppRoutesConstants.activityLevelEditing,
                                 );
                               },
@@ -327,32 +403,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               readOnly: true,
                             ),
                             SizedBox(height: 0.04 * height),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey.currentState?.validate() ==
-                                      true) {
-                                    final currentUser =
-                                        profileState.data!.userModel!;
-                                    viewModel.doIntent(
-                                      EditProfileEvent(
-                                        EditProfileRequestModel(
-                                          firstName: firstNameController.text,
-                                          lastName: lastNameController.text,
-                                          email: emailController.text,
-                                          weight: currentUser.weight,
-                                          goal: currentUser.goal,
-                                          activityLevel:
-                                              currentUser.activityLevel,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                },
-                                child: Text(AppTextConstants.editButton),
-                              ),
-                            ),
                           ],
                         ),
                       ),
