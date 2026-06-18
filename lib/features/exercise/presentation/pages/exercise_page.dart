@@ -8,7 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExercisePage extends StatelessWidget {
   final ExerciseModel exercise;
-  const ExercisePage({super.key, required this.exercise});
+  final bool showLevels;
+  const ExercisePage({
+    super.key,
+    required this.exercise,
+    this.showLevels = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,7 @@ class ExercisePage extends StatelessWidget {
       create: (context) =>
           getIt<ExerciseCubit>(param1: exercise)
             ..doIntent(LoadLevels(exercise: exercise)),
-      child: ExerciseScreen(exercise: exercise),
+      child: ExerciseScreen(exercise: exercise, showLevels: showLevels),
     );
   }
 }

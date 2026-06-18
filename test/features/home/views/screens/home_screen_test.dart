@@ -13,12 +13,36 @@ import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home_screen_test.mocks.dart';
+
+class TestAssetLoader extends AssetLoader {
+  const TestAssetLoader();
+
+  @override
+  Future<Map<String, dynamic>> load(String path, Locale locale) async {
+    return {
+      'bottom_nav_bar': {
+        'explore': 'Explore',
+        'smart_coach': 'Smart Coach',
+        'workouts': 'Workouts',
+        'profile': 'Profile',
+      },
+    };
+  }
+}
 
 @GenerateMocks([HomeViewModel])
 void main() {
   late MockHomeViewModel mockHomeViewModel;
   late GetIt getIt;
+
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+    await EasyLocalization.ensureInitialized();
+  });
+
   setUp(() {
     mockHomeViewModel = MockHomeViewModel();
     getIt = GetIt.instance;
@@ -58,13 +82,28 @@ void main() {
         ),
       ],
     );
-    return MaterialApp.router(routerConfig: testRouter);
+    return EasyLocalization(
+      supportedLocales: const [Locale('en')],
+      path: 'assets/translations',
+      assetLoader: const TestAssetLoader(),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            routerConfig: testRouter,
+            locale: context.locale,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+          );
+        },
+      ),
+    );
   }
 
   testWidgets('home screen renders successfully in initial state', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(buildTestableWidget());
+    await tester.pumpAndSettle();
     expect(find.byType(AppScaffold), findsOneWidget);
     expect(find.byType(ClipRRect), findsOneWidget);
     expect(

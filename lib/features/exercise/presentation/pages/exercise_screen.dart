@@ -16,7 +16,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ExerciseScreen extends StatelessWidget {
   final ExerciseModel exercise;
-  const ExerciseScreen({super.key, required this.exercise});
+  final bool showLevels;
+  const ExerciseScreen({
+    super.key,
+    required this.exercise,
+    this.showLevels = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +33,13 @@ class ExerciseScreen extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               buildHeroAppBar(context),
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: LevelTabs(),
+              if (showLevels)
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: LevelTabs(),
+                  ),
                 ),
-              ),
               buildExerciseList(state),
               const SliverToBoxAdapter(child: SizedBox(height: 32)),
             ],

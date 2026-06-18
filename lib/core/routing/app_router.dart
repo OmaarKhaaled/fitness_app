@@ -70,16 +70,10 @@ class AppRouter {
               ),
             );
           } else if (extra is ExerciseModel) {
-            return ExercisePage(exercise: extra);
+            return ExercisePage(exercise: extra, showLevels: false);
           }
 
-          // Fallback for null extra (e.g. on hot restart)
-          return const ExercisePage(
-            exercise: ExerciseModel(
-              id: '69d982ef85f6bfa972bf2248',
-              name: 'Advanced',
-            ),
-          );
+          return const SizedBox.shrink();
         },
       ),
       GoRoute(
