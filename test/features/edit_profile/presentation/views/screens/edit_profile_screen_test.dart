@@ -112,7 +112,10 @@ void main() {
       expect(find.text('John'), findsOneWidget);
       expect(find.text('Doe'), findsOneWidget);
       expect(find.text('john@example.com'), findsOneWidget);
-      expect(find.text(AppTextConstants.profileSetupGoalLoseWeight), findsOneWidget);
+      expect(
+        find.text(AppTextConstants.profileSetupGoalLoseWeight),
+        findsOneWidget,
+      );
       expect(find.byType(SpecialHeaderWidget), findsNWidgets(3));
       expect(find.text(AppTextConstants.editProfileHeader), findsOneWidget);
       expect(find.byType(Form), findsOneWidget);
