@@ -27,6 +27,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
+  /// File path: assets/icons/launcher_icon.png
+  AssetGenImage get launcherIcon =>
+      const AssetGenImage('assets/icons/launcher_icon.png');
+
   /// File path: assets/icons/male-symbol.png
   AssetGenImage get maleSymbol =>
       const AssetGenImage('assets/icons/male-symbol.png');
@@ -46,6 +50,7 @@ class $AssetsIconsGen {
     chatAi,
     femaleSymbol,
     home,
+    launcherIcon,
     maleSymbol,
     profile,
     superFitness,
@@ -70,6 +75,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/home_back_ground.png
   AssetGenImage get homeBackGround =>
       const AssetGenImage('assets/images/home_back_ground.png');
+
+  /// File path: assets/images/model_background.jpg
+  AssetGenImage get modelBackground =>
+      const AssetGenImage('assets/images/model_background.jpg');
+
+  /// File path: assets/images/native_splash.png
+  AssetGenImage get nativeSplash =>
+      const AssetGenImage('assets/images/native_splash.png');
 
   /// File path: assets/images/onboarding_1.png
   AssetGenImage get onboarding1 =>
@@ -100,6 +113,8 @@ class $AssetsImagesGen {
     fitness,
     forgetPasswordBackground,
     homeBackGround,
+    modelBackground,
+    nativeSplash,
     onboarding1,
     onboarding2,
     onboarding3,

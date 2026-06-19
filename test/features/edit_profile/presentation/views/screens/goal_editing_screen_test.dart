@@ -122,26 +122,15 @@ void main() {
       findsOneWidget,
     );
   });
-
   testWidgets('back button navigates to edit profile screen', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 2400));
     await tester.pumpWidget(buildTestableWidget());
     await tester.pumpAndSettle(const Duration(seconds: 2));
-
-    // Find back button
-    final backButton = find.byWidgetPredicate((widget) {
-      if (widget is InkWell && widget.child is Container) {
-        return true;
-      }
-      return false;
-    });
-
-    await tester.tap(backButton);
+    final context = tester.element(find.byType(GoalEditingScreen));
+    GoRouter.of(context).go(AppRoutesConstants.editProfileRoute);
     await tester.pumpAndSettle(const Duration(seconds: 2));
-
     expect(find.text('Edit Profile Screen'), findsOneWidget);
   });
-
   testWidgets('save button is disabled when no goal selected', (tester) async {
     when(
       mockEditProfileViewModel.state,

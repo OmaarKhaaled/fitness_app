@@ -134,9 +134,14 @@ class _WorkoutsSectionState extends State<WorkoutsSection> {
                             padding: const EdgeInsets.only(right: 12),
                             child: SizedBox(
                               width: 130,
-                              child: WorkoutCard(
-                                imageUrl: muscle.image,
-                                name: muscle.name,
+                              child: WorkoutCard.fromMuscle(
+                                muscle,
+                                onTap: () {
+                                  context.push(
+                                    AppRoutesConstants.exercisesRoute,
+                                    extra: muscle,
+                                  );
+                                },
                               ),
                             ),
                           );

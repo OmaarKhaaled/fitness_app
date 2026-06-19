@@ -73,6 +73,7 @@ class _RegisterAdditionalInfoScreenState
           return AppScaffold(
             backgroundImage: AppAssets.authBackground,
             alignment: Alignment.topCenter,
+            blurSigma: 8,
             child: Column(
               children: [
                 SizedBox(height: 0.06 * height),
@@ -167,6 +168,9 @@ class _RegisterAdditionalInfoScreenState
               registerState?.errorMessage != null) {
             UiUtils.hideLoading(context);
             UiUtils.showErrorMsg(context, registerState!.errorMessage!);
+          }
+          if (_viewModel.state.isRegistrationComplete) {
+            _viewModel.doIntent(ClearCachedDataEvent());
           }
         },
       ),

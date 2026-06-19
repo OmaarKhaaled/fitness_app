@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/config/base_state/base_state.dart';
 import 'package:fitness_app/config/errors/exception_handler.dart';
+import 'package:fitness_app/core/constants/cache_constants.dart';
 import 'package:fitness_app/features/edit_profile/domain/models/edit_profile_request_model.dart';
 import 'package:fitness_app/features/edit_profile/domain/models/edit_profile_response_model.dart';
 import 'package:fitness_app/features/edit_profile/domain/models/upload_photo_response_model.dart';
@@ -56,6 +57,12 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
         _saveFirstName(event.key, event.value);
       case SavePhotoEvent():
         _savePhoto(event.key, event.value);
+      case UpdateFirstNameEvent():
+        _updateFirstName(event.firstName);
+      case UpdateLastNameEvent():
+        _updateLastName(event.lastName);
+      case UpdateEmailEvent():
+        _updateEmail(event.email);
     }
   }
 
@@ -68,6 +75,7 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
         isEditSuccess: false,
       ),
     );
+
     final res = await _editProfileUseCase.call(request);
     res.when(
       initial: () => null,
@@ -76,6 +84,10 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
         emit(
           state.copyWith(
             editProfileState: BaseState<EditProfileResponseModel>(
+              isLoading: false,
+              data: data,
+            ),
+            profileState: BaseState<EditProfileResponseModel>(
               isLoading: false,
               data: data,
             ),
@@ -232,5 +244,53 @@ class EditProfileViewModel extends Cubit<EditProfileStates> {
 
   void _savePhoto(String key, String value) async {
     await _savePhotoUseCase.call(key, value);
+  }
+
+  Future<void> _updateFirstName(String firstName) async {
+    final currentState = state.profileState?.data?.userModel;
+    if (currentState == null) return;
+
+    final request = EditProfileRequestModel(
+      firstName: firstName,
+      lastName: currentState.lastName,
+      email: currentState.email,
+      weight: currentState.weight,
+      goal: currentState.goal,
+      activityLevel: currentState.activityLevel,
+    );
+    await _editProfile(request);
+    _saveFirstName(CacheConstants.firstName, firstName);
+  }
+
+  Future<void> _updateLastName(String lastName) async {
+    final currentState = state.profileState?.data?.userModel;
+    if (currentState == null) return;
+
+    final request = EditProfileRequestModel(
+      firstName: currentState.firstName,
+      lastName: lastName,
+      email: currentState.email,
+      weight: currentState.weight,
+      goal: currentState.goal,
+      activityLevel: currentState.activityLevel,
+    );
+
+    await _editProfile(request);
+  }
+
+  Future<void> _updateEmail(String email) async {
+    final currentState = state.profileState?.data?.userModel;
+    if (currentState == null) return;
+
+    final request = EditProfileRequestModel(
+      firstName: currentState.firstName,
+      lastName: currentState.lastName,
+      email: email,
+      weight: currentState.weight,
+      goal: currentState.goal,
+      activityLevel: currentState.activityLevel,
+    );
+
+    await _editProfile(request);
   }
 }

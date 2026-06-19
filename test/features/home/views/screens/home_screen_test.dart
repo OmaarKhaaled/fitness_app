@@ -1,5 +1,6 @@
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import '../../../../helpers/localization_test_utils.dart';
 import 'package:fitness_app/core/enums/nav_bar_enum.dart';
 import 'package:fitness_app/core/shared/app_scaffold.dart';
 import 'package:fitness_app/features/home/view_model/home_states.dart';

@@ -471,4 +471,160 @@ void main() {
       verify(mockSavePhotoUseCase.call(key, value)).called(1);
     });
   });
+  group('UpdateFirstNameEvent test cases', () {
+    test('success case - updates first name and calls editProfile', () async {
+      final userModel = UserModel(
+        firstName: 'Ahmed',
+        lastName: 'Salem',
+        email: 'ahmed@test.com',
+        weight: 80,
+        goal: 'Lose Weight',
+        activityLevel: 'level2',
+      );
+      final profileResponse = EditProfileResponseModel(
+        message: 'success',
+        userModel: userModel,
+      );
+
+      editProfileViewModel.emit(
+        editProfileViewModel.state.copyWith(
+          profileState: BaseState<EditProfileResponseModel>(
+            data: profileResponse,
+          ),
+        ),
+      );
+
+      final dummyResponse = EditProfileResponseModel(
+        message: 'success',
+        userModel: UserModel(firstName: 'Mohamed'),
+      );
+
+      when(mockEditProfileUseCase.call(any)).thenAnswer(
+        (_) async =>
+            BaseResponse<EditProfileResponseModel>.success(dummyResponse),
+      );
+
+      when(
+        mockSaveFirstNameUseCase.call(any, any),
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
+
+      expectLater(
+        editProfileViewModel.stream,
+        emitsInOrder([
+          predicate<EditProfileStates>(
+            (state) => state.editProfileState?.isLoading == true,
+          ),
+          predicate<EditProfileStates>(
+            (state) =>
+                state.editProfileState?.isLoading == false &&
+                state.isEditSuccess == true,
+          ),
+        ]),
+      );
+
+      editProfileViewModel.doIntent(UpdateFirstNameEvent('Mohamed'));
+    });
+  });
+
+  group('UpdateLastNameEvent test cases', () {
+    test('success case - updates last name and calls editProfile', () async {
+      final userModel = UserModel(
+        firstName: 'Ahmed',
+        lastName: 'Salem',
+        email: 'ahmed@test.com',
+        weight: 80,
+        goal: 'Lose Weight',
+        activityLevel: 'level2',
+      );
+      final profileResponse = EditProfileResponseModel(
+        message: 'success',
+        userModel: userModel,
+      );
+
+      editProfileViewModel.emit(
+        editProfileViewModel.state.copyWith(
+          profileState: BaseState<EditProfileResponseModel>(
+            data: profileResponse,
+          ),
+        ),
+      );
+
+      final dummyResponse = EditProfileResponseModel(
+        message: 'success',
+        userModel: UserModel(lastName: 'Mohamed'),
+      );
+
+      when(mockEditProfileUseCase.call(any)).thenAnswer(
+        (_) async =>
+            BaseResponse<EditProfileResponseModel>.success(dummyResponse),
+      );
+
+      expectLater(
+        editProfileViewModel.stream,
+        emitsInOrder([
+          predicate<EditProfileStates>(
+            (state) => state.editProfileState?.isLoading == true,
+          ),
+          predicate<EditProfileStates>(
+            (state) =>
+                state.editProfileState?.isLoading == false &&
+                state.isEditSuccess == true,
+          ),
+        ]),
+      );
+
+      editProfileViewModel.doIntent(UpdateLastNameEvent('Mohamed'));
+    });
+  });
+
+  group('UpdateEmailEvent test cases', () {
+    test('success case - updates email and calls editProfile', () async {
+      final userModel = UserModel(
+        firstName: 'Ahmed',
+        lastName: 'Salem',
+        email: 'ahmed@test.com',
+        weight: 80,
+        goal: 'Lose Weight',
+        activityLevel: 'level2',
+      );
+      final profileResponse = EditProfileResponseModel(
+        message: 'success',
+        userModel: userModel,
+      );
+
+      editProfileViewModel.emit(
+        editProfileViewModel.state.copyWith(
+          profileState: BaseState<EditProfileResponseModel>(
+            data: profileResponse,
+          ),
+        ),
+      );
+
+      final dummyResponse = EditProfileResponseModel(
+        message: 'success',
+        userModel: UserModel(email: 'new@test.com'),
+      );
+
+      when(mockEditProfileUseCase.call(any)).thenAnswer(
+        (_) async =>
+            BaseResponse<EditProfileResponseModel>.success(dummyResponse),
+      );
+
+      expectLater(
+        editProfileViewModel.stream,
+        emitsInOrder([
+          predicate<EditProfileStates>(
+            (state) => state.editProfileState?.isLoading == true,
+          ),
+          predicate<EditProfileStates>(
+            (state) =>
+                state.editProfileState?.isLoading == false &&
+                state.isEditSuccess == true,
+          ),
+        ]),
+      );
+
+      editProfileViewModel.doIntent(UpdateEmailEvent('new@test.com'));
+    });
+  });
 }

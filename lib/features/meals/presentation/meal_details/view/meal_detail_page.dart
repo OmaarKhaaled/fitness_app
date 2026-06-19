@@ -10,6 +10,7 @@ class MealDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('MealDetailPage: Received mealId = $mealId');
     return BlocProvider(
       create: (context) => getIt<MealDetailCubit>()..getMealDetails(mealId),
       child: const MealDetailScreen(),

@@ -37,31 +37,30 @@ class _OnBoardingBottomSheetState extends State<OnBoardingBottomSheet> {
           backgroundColor: Colors.transparent,
           onClosing: () {},
           builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 31,
-              ),
-              child: Column(
-                children: [
-                  SlideTitle(currentPage: widget.currentPage),
-                  SlideDescription(currentPage: widget.currentPage),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        CustomIndicator(currentPage: widget.currentPage),
-                        const SizedBox(height: 24),
-                        OnBoardingNavigation(
-                          currentPage: widget.currentPage,
-                          onNextPressed: widget.onNextPressed,
-                          onBackPressed: widget.onBackPressed,
-                          onDoItPressed: widget.onDoItPressed,
-                        ),
-                      ],
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 20,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SlideTitle(currentPage: widget.currentPage),
+                    const SizedBox(height: 8),
+                    SlideDescription(currentPage: widget.currentPage),
+                    const SizedBox(height: 16),
+                    CustomIndicator(currentPage: widget.currentPage),
+                    const SizedBox(height: 20),
+                    OnBoardingNavigation(
+                      currentPage: widget.currentPage,
+                      onNextPressed: widget.onNextPressed,
+                      onBackPressed: widget.onBackPressed,
+                      onDoItPressed: widget.onDoItPressed,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 12),
+                  ],
+                ),
               ),
             );
           },

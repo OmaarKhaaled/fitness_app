@@ -1,5 +1,4 @@
 import 'package:fitness_app/config/di/di.dart';
-import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/shared/blur_card.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view_model/edit_profile_events.dart';
@@ -85,7 +84,7 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
             UiUtils.hideLoading(context);
             UiUtils.showSuccessMsg(context, editProfileState!.data!.message!);
             _viewModel.doIntent(ResetEditSuccessEvent());
-            context.go(AppRoutesConstants.editProfileRoute);
+            context.pop();
           } else if (editProfileState?.isLoading == false &&
               editProfileState?.errorMessage != null) {
             UiUtils.hideLoading(context);
@@ -111,7 +110,7 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.go(AppRoutesConstants.editProfileRoute);
+                          context.pop();
                         },
                         child: Container(
                           width: 0.06 * width,

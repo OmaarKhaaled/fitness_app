@@ -11,6 +11,7 @@ import 'core/util/webview_initializer_stub.dart'
     if (dart.library.js_util) 'core/util/webview_initializer_web.dart';
 
 Future<void> main() async {
+  debugPrint('Starting Fitness App...');
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
   await configureDependencies();

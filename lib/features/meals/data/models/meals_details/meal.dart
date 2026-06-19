@@ -84,7 +84,6 @@ class Meal {
   @JsonKey(name: 'strMeasure10')
   final String? strMeasure10;
   @JsonKey(name: 'strMeasure11')
-  @JsonKey(name: 'strMeasure11')
   final String? strMeasure11;
   @JsonKey(name: 'strMeasure12')
   final String? strMeasure12;
@@ -284,7 +283,7 @@ class Meal {
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [Meal].
-  factory Meal.fromJson(Map<String, dynamic> json) => _$MealFromJson(json);
+  factory Meal.fromJson(Map<String, dynamic> data) => _$MealFromJson(data);
 
   /// `dart:convert`
   ///

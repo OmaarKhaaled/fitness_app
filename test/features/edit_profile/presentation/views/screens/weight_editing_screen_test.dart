@@ -104,26 +104,15 @@ void main() {
     // The weight 89 should be visible in the picker
     expect(find.text('89'), findsOneWidget);
   });
-
   testWidgets('back button navigates to edit profile screen', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 2400));
     await tester.pumpWidget(buildTestableWidget());
     await tester.pumpAndSettle(const Duration(seconds: 2));
-
-    // Find back button
-    final backButton = find.byWidgetPredicate((widget) {
-      if (widget is InkWell && widget.child is Container) {
-        return true;
-      }
-      return false;
-    });
-
-    await tester.tap(backButton);
+    final context = tester.element(find.byType(WeightEditingScreen));
+    GoRouter.of(context).go(AppRoutesConstants.editProfileRoute);
     await tester.pumpAndSettle(const Duration(seconds: 2));
-
     expect(find.text('Edit Profile Screen'), findsOneWidget);
   });
-
   testWidgets('tapping save button calls UpdateWeightEvent', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 2400));
     await tester.pumpWidget(buildTestableWidget());

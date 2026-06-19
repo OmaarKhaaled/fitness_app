@@ -19,8 +19,8 @@ class MealsDetails {
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [MealsDetails].
-  factory MealsDetails.fromJson(String data) =>
-      _$MealsDetailsFromJson(json.decode(data));
+  factory MealsDetails.fromJson(Map<String, dynamic> data) =>
+      _$MealsDetailsFromJson(data);
 
   /// `dart:convert`
   ///

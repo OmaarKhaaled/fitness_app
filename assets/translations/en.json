@@ -216,7 +216,8 @@
   },
   "change_password": {
     "old_password": "Old Password",
-    "password_updated_successfully": "Password Updated Successfully",
-     "new_password_must_differ_from_old_password": "New password must differ from old password"
+    "password_changed_successfully": "Password Changed Successfully",
+    "new_password_must_differ_from_old_password": "New password must differ from old password",
+    "you_can_now_login_with_new_password": "You Can Now Login With New Password"
   }
 }

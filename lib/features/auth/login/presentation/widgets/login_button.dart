@@ -34,7 +34,6 @@ class LoginButton extends StatelessWidget {
       builder: (context, state) {
         return SizedBox(
           width: double.infinity,
-          height: 56,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,

@@ -34,14 +34,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void initState() {
     super.initState();
     viewModel = getIt<RegisterViewModel>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      viewModel.doIntent(ClearCachedDataEvent());
+    });
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
     rePasswordController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final cachedData = viewModel.state.registerationData;
-      if (cachedData.firstName.isNotEmpty) {
+      final cachedData = viewModel.state.cachedRegistrationData;
+      final isComplete = viewModel.state.isRegistrationComplete;
+      if (!isComplete &&
+          cachedData != null &&
+          cachedData.firstName.isNotEmpty) {
         firstNameController.text = cachedData.firstName;
         lastNameController.text = cachedData.lastName;
         emailController.text = cachedData.email;
@@ -69,6 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return BlocProvider<RegisterViewModel>.value(
       value: viewModel,
       child: AppScaffold(
+        blurSigma: 8,
         backgroundImage: AppAssets.authBackground,
         alignment: Alignment.topCenter,
         child: BlocBuilder<RegisterViewModel, RegisterStates>(
@@ -125,6 +132,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validateRequired(value);
                                 },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
                                       .registerFirstNamePlaceholder,
@@ -140,6 +149,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validateRequired(value);
                                 },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
                                       .registerLastNamePlaceholder,
@@ -155,6 +166,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validateEmail(value);
                                 },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText:
                                       AppTextConstants.registerEmailPlaceholder,
@@ -171,6 +184,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validatePassword(value);
                                 },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
                                       .registerPasswordPlaceholder,
@@ -206,6 +221,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     passwordController.text,
                                   );
                                 },
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
                                       .registerRePasswordPlaceholder,
@@ -232,40 +248,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               ),
                               SizedBox(height: 0.02 * height),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 0.04 * width,
-                                ),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      if (_formKey.currentState?.validate() ==
-                                          true) {
-                                        final registerationData =
-                                            RegisterationDataModel(
-                                              firstName:
-                                                  firstNameController.text,
-                                              lastName: lastNameController.text,
-                                              email: emailController.text,
-                                              password: passwordController.text,
-                                              rePassword:
-                                                  rePasswordController.text,
-                                            );
-                                        viewModel.doIntent(
-                                          CacheRegistrationDataEvent(
-                                            registerationData,
-                                          ),
-                                        );
-                                        context.go(
-                                          AppRoutesConstants
-                                              .additionalRegisterInfoRoute,
-                                        );
-                                      }
-                                    },
-                                    child: Text(
-                                      AppTextConstants.registerButton,
-                                    ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState?.validate() ==
+                                        true) {
+                                      final registerationData =
+                                          RegisterationDataModel(
+                                            firstName:
+                                                firstNameController.text,
+                                            lastName: lastNameController.text,
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                            rePassword:
+                                                rePasswordController.text,
+                                          );
+                                      viewModel.doIntent(
+                                        CacheRegistrationDataEvent(
+                                          registerationData,
+                                        ),
+                                      );
+                                      context.go(
+                                        AppRoutesConstants
+                                            .additionalRegisterInfoRoute,
+                                      );
+                                    }
+                                  },
+                                  child: Text(
+                                    AppTextConstants.registerButton,
                                   ),
                                 ),
                               ),
