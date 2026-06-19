@@ -65,9 +65,6 @@ class _LoginFormState extends State<LoginForm> {
       listener: (context, state) {
         state.loginResource.whenOrNull(
           success: (data) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              defaultSnackBar(message: data.message, color: AppColors.green),
-            );
             context.go(RouteNames.home);
           },
           failure: (exception) {

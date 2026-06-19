@@ -10,6 +10,10 @@ import 'package:fitness_app/features/home/views/screens/home_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_additional_info_screen.dart';
 import 'package:fitness_app/features/auth/register/presentation/views/screens/register_screen.dart';
 import 'package:fitness_app/features/smart_coach/presentation/views/pages/chat_page.dart';
+import 'package:fitness_app/features/edit_profile/presentation/views/screens/edit_profile_screen.dart';
+import 'package:fitness_app/features/edit_profile/presentation/views/screens/weight_editing_screen.dart';
+import 'package:fitness_app/features/edit_profile/presentation/views/screens/goal_editing_screen.dart';
+import 'package:fitness_app/features/edit_profile/presentation/views/screens/activity_level_editing_screen.dart';
 import 'package:flutter/material.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/auth/login/presentation/pages/login_page.dart';
@@ -114,6 +118,26 @@ class AppRouter {
           }
           return const MealDetailPage(mealId: '');
         },
+      ),
+      GoRoute(
+        path: AppRoutesConstants.editProfileRoute,
+        name: AppRoutesConstants.editProfileRoute,
+        builder: (context, state) => const EditProfileScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.weightEditing,
+        name: AppRoutesConstants.weightEditing,
+        builder: (context, state) => const WeightEditingScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.goalEditing,
+        name: AppRoutesConstants.goalEditing,
+        builder: (context, state) => const GoalEditingScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.activityLevelEditing,
+        name: AppRoutesConstants.activityLevelEditing,
+        builder: (context, state) => const ActivityLevelEditingScreen(),
       ),
     ],
   );

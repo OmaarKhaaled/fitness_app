@@ -212,7 +212,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
       );
       return;
     }
-    _streamController.add(ShowLoadingResetPasswordIntent());
+    emit(state.copyWith(isLoading: true));
     final request = ResetPasswordRequestModel(
       newPassword: state.newPassword,
       email: state.email,
@@ -222,7 +222,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
       initial: () => null,
       loading: () => null,
       success: (_) {
-        _streamController.add(HideLoadingResetPasswordIntent());
+        emit(state.copyWith(isLoading: false));
         _streamController.add(
           NavigateToLoginIntent(
             message: AppTextConstants.passwordResetSuccessfully,
@@ -230,7 +230,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
         );
       },
       failure: (error) {
-        _streamController.add(HideLoadingResetPasswordIntent());
+        emit(state.copyWith(isLoading: false));
         _streamController.add(
           ShowErrorResetPasswordIntent(error: error.message),
         );
