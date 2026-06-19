@@ -84,7 +84,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     final result = await _changePasswordUsecase.call(dto);
 
     await result.when(
-
       success: (data) async {
         if (data.token != null && data.token!.isNotEmpty) {
           await _tokenService.refreshToken(data.token!);

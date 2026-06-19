@@ -24,10 +24,10 @@ abstract class ApiClient {
   Future<ChangePasswordResponse> changePassword({
     @Body() required ChangePasswordRequest request,
   });
-  @GET(ApiConstants.getAllDifficultyLevels)
+  @GET(ApiConstants.getAllDifficultyLevelsEndpoint)
   Future<List<String>> getAllDifficultyLevels();
 
-  @GET(ApiConstants.getRandomPrimeMoverMusclesEndpoint)
+  @GET(ApiConstants.getRandomMuscleEndpoint)
   Future<List<String>> getRandomPrimeMoverMuscles();
 
   @GET(ApiConstants.getDifficultyLevelsByPrimeMoverEndpoint)
@@ -36,7 +36,7 @@ abstract class ApiClient {
     @Query('primeMoverMuscleId') String primeMoverMuscleId,
   );
 
-  @GET(ApiConstants.exercisesByPrimeMoverMuscleAndDifficultyLevel)
+  @GET(ApiConstants.exercisesByPrimeMoverMuscleAndDifficultyLevelEndpoint)
   Future<ExerciseResponse> getExercisesbyPrimeMoverMuscleAndDifficultyLevel(
     @Query('primeMoverMuscleId') String primeMoverMuscleId,
     @Query('difficultyLevelId') String difficultyLevelId,

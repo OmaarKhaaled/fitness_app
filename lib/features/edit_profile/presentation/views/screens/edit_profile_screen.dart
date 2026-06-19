@@ -101,14 +101,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     goalController.text = user.goal ?? '';
     activityLevelController.text = user.activityLevel ?? '';
   }
+
   void _onFirstNameFocusLost() {
     if (!_firstNameFocusNode.hasFocus) {
       final currentValue = firstNameController.text.trim();
-      if(currentValue==_originalFirstName) return;
+      if (currentValue == _originalFirstName) return;
       final validationError = AppValidators.validateRequired(currentValue);
-      if(validationError!=null){
+      if (validationError != null) {
         UiUtils.showErrorMsg(context, validationError);
-        firstNameController.text=_originalFirstName ?? '';
+        firstNameController.text = _originalFirstName ?? '';
         return;
       }
       if (currentValue.isNotEmpty) {
@@ -117,14 +118,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       }
     }
   }
+
   void _onLastNameFocusLost() {
     if (!_lastNameFocusNode.hasFocus) {
       final currentValue = lastNameController.text.trim();
-      if(currentValue==_originalLastName) return;
+      if (currentValue == _originalLastName) return;
       final validationError = AppValidators.validateRequired(currentValue);
-      if(validationError!=null){
+      if (validationError != null) {
         UiUtils.showErrorMsg(context, validationError);
-        lastNameController.text=_originalLastName ?? '';
+        lastNameController.text = _originalLastName ?? '';
         return;
       }
       if (currentValue.isNotEmpty) {
@@ -133,22 +135,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       }
     }
   }
+
   void _onEmailFocusLost() {
-  if (!_emailFocusNode.hasFocus) {
-    final currentValue = emailController.text.trim();
-    if (currentValue == _originalEmail) return;
-    final validationError = AppValidators.validateEmail(currentValue);
-    if (validationError != null) {
-      UiUtils.showErrorMsg(context, validationError);
-      emailController.text = _originalEmail ?? '';
-      return;
-    }
-    if (currentValue.isNotEmpty) {
-      viewModel.doIntent(UpdateEmailEvent(currentValue));
-      _originalEmail = currentValue;
+    if (!_emailFocusNode.hasFocus) {
+      final currentValue = emailController.text.trim();
+      if (currentValue == _originalEmail) return;
+      final validationError = AppValidators.validateEmail(currentValue);
+      if (validationError != null) {
+        UiUtils.showErrorMsg(context, validationError);
+        emailController.text = _originalEmail ?? '';
+        return;
+      }
+      if (currentValue.isNotEmpty) {
+        viewModel.doIntent(UpdateEmailEvent(currentValue));
+        _originalEmail = currentValue;
+      }
     }
   }
-}
+
   Future<void> _pickAndUpdatePhoto(UserModel currentUser) async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,

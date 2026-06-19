@@ -60,6 +60,7 @@ class SavePhotoEvent extends EditProfileEvents {
   final String value;
   SavePhotoEvent(this.key, this.value);
 }
+
 class UpdateFirstNameEvent extends EditProfileEvents {
   final String firstName;
   UpdateFirstNameEvent(this.firstName);

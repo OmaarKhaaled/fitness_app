@@ -18,7 +18,7 @@ class ApiConstants {
   //------------------------------- levels Endpoints ---------------------------//
   static const String getDifficultyLevelsByPrimeMoverEndpoint =
       'levels/difficulty-levels/by-prime-mover';
-  static const String getAllDifficultyLevels = 'levels';
+  static const String getAllDifficultyLevelsEndpoint = 'levels';
 
   //------------------------------- muscles Endpoints -------------------------//
   static const String getAllMuscleGroupsEndpoint = 'muscles';
@@ -27,7 +27,7 @@ class ApiConstants {
   static const String getRandomPrimeMoverMusclesEndpoint = 'muscles/random';
 
   //------------------------------- exercises Endpoints -----------------------//
-  static const String exercisesByPrimeMoverMuscleAndDifficultyLevel =
+  static const String exercisesByPrimeMoverMuscleAndDifficultyLevelEndpoint =
       'exercises/by-muscle-difficulty';
 
   static const String getRandomMuscleEndpoint = 'muscles/random';

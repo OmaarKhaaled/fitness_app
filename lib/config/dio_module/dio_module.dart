@@ -12,7 +12,7 @@ abstract class DioModule {
   Dio dio(
     AuthInterceptor authInterceptor,
     PrettyDioLoggerInterceptor loggerInterceptor,
-    LanguageInterceptor languageInterceptor
+    LanguageInterceptor languageInterceptor,
   ) {
     final dio = Dio(
       BaseOptions(

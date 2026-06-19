@@ -1,4 +1,5 @@
 import 'package:fitness_app/config/di/di.dart';
+import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/workouts/presentation/view/widgets/muscle_group_chips.dart';
@@ -9,6 +10,7 @@ import 'package:fitness_app/features/workouts/presentation/view_model/wourkout_c
 import 'package:fitness_app/features/workouts/presentation/view_model/wourkout_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class WorkoutsSection extends StatefulWidget {
   final VoidCallback onSeeAllTapped;

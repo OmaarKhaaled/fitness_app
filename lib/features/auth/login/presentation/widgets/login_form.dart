@@ -109,7 +109,10 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 16),
 
               // Password Field
-              PasswordTextField(controller: _passwordController),
+              PasswordTextField(
+                controller: _passwordController,
+                hintText: AppTextConstants.loginPasswordPlaceholder,
+              ),
 
               // Forgot Password Link
               const ForgetPasswordLink(),

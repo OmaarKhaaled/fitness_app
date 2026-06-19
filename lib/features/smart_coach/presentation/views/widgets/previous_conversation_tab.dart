@@ -1,5 +1,5 @@
-import 'package:fitness_app/core/extensions/extentions.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/core/extensions/extentions.dart';
 import 'package:fitness_app/features/smart_coach/data/models/session_model.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_cubit.dart';
 import 'package:fitness_app/features/smart_coach/presentation/view_model/chat_page_cubit/chat_page_intents.dart';

@@ -27,7 +27,7 @@ class PreviousConversationsDrawer extends StatelessWidget {
             height: double.infinity,
             decoration: const BoxDecoration(
               color: AppColors.darkGrey,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16),
                 bottomLeft: Radius.circular(16),
               ),

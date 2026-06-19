@@ -132,7 +132,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validateRequired(value);
                                 },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
@@ -149,7 +150,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validateRequired(value);
                                 },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
@@ -166,7 +168,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validateEmail(value);
                                 },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText:
@@ -184,7 +187,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 validator: (value) {
                                   return AppValidators.validatePassword(value);
                                 },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
@@ -221,7 +225,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     passwordController.text,
                                   );
                                 },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
                                   hintText: AppTextConstants
                                       .registerRePasswordPlaceholder,
@@ -256,8 +261,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         true) {
                                       final registerationData =
                                           RegisterationDataModel(
-                                            firstName:
-                                                firstNameController.text,
+                                            firstName: firstNameController.text,
                                             lastName: lastNameController.text,
                                             email: emailController.text,
                                             password: passwordController.text,
@@ -275,9 +279,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       );
                                     }
                                   },
-                                  child: Text(
-                                    AppTextConstants.registerButton,
-                                  ),
+                                  child: Text(AppTextConstants.registerButton),
                                 ),
                               ),
                               SizedBox(height: 0.01 * height),

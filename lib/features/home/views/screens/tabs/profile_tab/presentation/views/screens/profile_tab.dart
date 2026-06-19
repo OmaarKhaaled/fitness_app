@@ -7,7 +7,21 @@ import 'package:fitness_app/config/network/language_manager.dart';
 import 'package:fitness_app/core/constants/app_assets.dart';
 import 'package:fitness_app/core/constants/app_routes_constants.dart';
 import 'package:fitness_app/core/constants/app_text_constants.dart';
+import 'package:fitness_app/core/shared/blur_card.dart';
+import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/features/auth/profile/presentation/view/pages/common_web_view_page.dart';
+import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_cubit.dart';
+import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_intents.dart';
+import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_states.dart';
+import 'package:fitness_app/features/home/views/screens/tabs/profile_tab/presentation/views/widgets/logout_dialog.dart';
+import 'package:fitness_app/features/home/views/screens/tabs/profile_tab/presentation/views/widgets/profile_menu_item.dart';
+import 'package:fitness_app/core/utils/ui_utils.dart';
+import 'package:fitness_app/features/auth/profile/presentation/view_model/profile_ui_intents.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileTab extends StatefulWidget {
   final ScrollController scrollController;
@@ -18,6 +32,29 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+  late final ProfileCubit _cubit;
+  late final StreamSubscription _streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = getIt<ProfileCubit>()..doIntent(GetUserProfileIntent());
+    _streamSubscription = _cubit.uiIntents.listen((intent) {
+      switch (intent) {
+        case ShowErrorIntent(errorMessage: final errorMessage):
+          UiUtils.showErrorMsg(context, errorMessage);
+          break;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _cubit.close();
+    _streamSubscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final isEnglish =
@@ -103,10 +140,14 @@ class _ProfileTabState extends State<ProfileTab> {
                             ProfileMenuItem(
                               iconPath: AppIcons.editProfile,
                               title: AppTextConstants.editProfile,
-                              onTap: () async{
-                                await context.push(AppRoutesConstants.editProfileRoute);
+                              onTap: () async {
+                                await context.push(
+                                  AppRoutesConstants.editProfileRoute,
+                                );
                                 if (mounted) {
-                                  context.read<ProfileCubit>().doIntent(GetUserProfileIntent());
+                                  context.read<ProfileCubit>().doIntent(
+                                    GetUserProfileIntent(),
+                                  );
                                 }
                               },
                             ),
@@ -149,7 +190,9 @@ class _ProfileTabState extends State<ProfileTab> {
                                 value: isEnglish,
                                 padding: EdgeInsets.zero,
                                 onChanged: (val) {
-                                  final newLocale = val ? const Locale('en') : const Locale('ar');
+                                  final newLocale = val
+                                      ? const Locale('en')
+                                      : const Locale('ar');
                                   final languageCode = val ? 'en' : 'ar';
                                   languageManager.setLanguage(languageCode);
                                   context.setLocale(newLocale);

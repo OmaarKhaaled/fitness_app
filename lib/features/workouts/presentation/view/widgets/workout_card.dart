@@ -41,8 +41,10 @@ class WorkoutCard extends StatelessWidget {
       onTap:
           onTap ??
           () {
-            context.push(AppRoutesConstants.exercisesRoute,
-                extra: exerciseModel);
+            context.push(
+              AppRoutesConstants.exercisesRoute,
+              extra: exerciseModel,
+            );
           },
       child: Container(
         decoration: BoxDecoration(

@@ -83,7 +83,7 @@ class ChangePasswordScreen extends StatelessWidget {
                       context,
                     ).textTheme.titleLarge?.copyWith(color: AppColors.white),
                   ),
-            
+
                   Form(
                     key: cubit.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
@@ -115,7 +115,7 @@ class ChangePasswordScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                    
+
                           const SizedBox(height: 12),
 
                           TextFormField(
@@ -142,7 +142,7 @@ class ChangePasswordScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                    
+
                           const SizedBox(height: 12),
 
                           TextFormField(
@@ -172,9 +172,9 @@ class ChangePasswordScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                    
+
                           const SizedBox(height: 20),
-                    
+
                           /// SUBMIT BUTTON
                           SizedBox(
                             width: double.infinity,
