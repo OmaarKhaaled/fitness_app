@@ -11,8 +11,10 @@ class ExceptionsHandler {
       return _handleDioError(error);
     } else if (error is LocalException) {
       return _handleLocalException(error);
+    } else if (error is AppException) {
+      return error;
     } else {
-      return ApiException(ErrorsConstant.defaultError);
+      return ApiException(error.toString());
     }
   }
 }
@@ -52,9 +54,16 @@ AppException _handleDioError(DioException error) {
 }
 
 AppException _handleBadResponse(DioException error) {
-  return ApiException.fromJson(
-    json: error.response?.data,
-    statusCode: error.response?.statusCode,
+  final data = error.response?.data;
+  if (data is Map<String, dynamic>) {
+    return ApiException.fromJson(
+      json: data,
+      statusCode: error.response?.statusCode,
+    );
+  }
+  return ApiException(
+    error.message ?? ErrorsConstant.defaultError,
+    code: error.response?.statusCode,
   );
 }
 

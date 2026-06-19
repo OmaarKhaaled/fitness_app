@@ -57,3 +57,5 @@ class SelectActivityLevelEvent extends RegisterEvents {
   final String activityLevel;
   SelectActivityLevelEvent(this.activityLevel);
 }
+
+class ClearCachedDataEvent extends RegisterEvents {}

@@ -636,10 +636,10 @@ void main() {
       final captured = verify(
         mockRegisterViewModel.doIntent(captureAny),
       ).captured;
-      expect(captured.length, 1);
-      expect(captured.first, isA<CacheRegistrationDataEvent>());
-
-      final event = captured.first as CacheRegistrationDataEvent;
+      expect(captured.length, 2);
+      expect(captured[0], isA<ClearCachedDataEvent>()); // First event
+      expect(captured[1], isA<CacheRegistrationDataEvent>());
+      final event = captured[1] as CacheRegistrationDataEvent;
       expect(event.data.firstName, 'Islam');
       expect(event.data.email, 'islam@gmail.com');
     },

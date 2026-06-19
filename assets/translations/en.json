@@ -143,7 +143,19 @@
     "remember_me": "Remember Me",
     "no_account": "Don't Have An Account Yet?",
     "RegisterLink": "Register",
-    "register_link": "Register"
+    "register_link": "Register",
+    "lets_start_your_day": "Let's Start Your Day",
+    "recommendation_to_day": "Recommendation To Day",
+    "category": "Category",
+    "gym": "Gym",
+    "fitness": "Fitness",
+    "yoga": "Yoga",
+    "aerobics": "Aerobics",
+    "trainer": "Trainer",
+    "popular_training":"Popular Training",
+    "tasks":"Tasks",
+    "exercises_that_strengthen_your":"Exercises That\nStrengthen Your",
+    "exercise_description": "Lorem Ipsum Dolor Sit Amet Consectetur. Tempus Volutpat Ut Nisi Morbi."
   },
   "bottom_nav_bar": {
     "explore":"Explore",
@@ -166,5 +178,46 @@
     "no_ingredients":"No Ingredients",
     "instructions": "Instructions",
     "delicious_meal_prepared_with_fresh_ingredients": "Delicious meal prepared with fresh ingredients"
+  },
+  "smart_coach": {
+    "smart_coach": "Smart Coach",
+    "greeting": "Hey ",
+    "greeting_description": "I Am Your Smart Coach",
+    "welcome_message": "How Can I Assist You \nToday ?",
+    "get_started": "Get Started",
+    "no_response": "No response received.",
+    "ask_smart_coach": "Ask your coach",
+    "previous_conversations": "Previous Conversations",
+    "no_previous_conversations": "No previous conversations",
+    "clear_all": "Clear All"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "change_password": "Change Password",
+    "select_language": "Select Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "security": "Security",
+    "help": "Help",
+    "privacy_policy": "Privacy Policy",
+    "logout": "Logout",
+    "yes": "Yes",
+    "no": "No",
+    "areYouSureToCloseTheApp": "Are you sure to close the application?"
+  },
+  "edit_profile_sec":{
+    "edit_profile":"Edit Profile",
+    "your_weight":"Your Weight",
+    "your_goal":"Your Goal",
+    "your_activity_level":"Your activity level",
+    "tap_to_edit":"tap To Edit",
+    "edit":"Edit"
+  },
+  "change_password": {
+    "old_password": "Old Password",
+    "password_changed_successfully": "Password Changed Successfully",
+    "new_password_must_differ_from_old_password": "New password must differ from old password",
+    "you_can_now_login_with_new_password": "You Can Now Login With New Password"
   }
 }

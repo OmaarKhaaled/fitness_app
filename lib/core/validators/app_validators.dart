@@ -1,5 +1,5 @@
-import '../constants/validation_constants.dart';
-import 'app_regex.dart';
+import 'package:fitness_app/core/constants/validation_constants.dart';
+import 'package:fitness_app/core/validators/app_regex.dart';
 
 extension StringValidation on String? {
   String? get validateEmail {
@@ -23,7 +23,7 @@ extension StringValidation on String? {
   }
 
   String? get validatePassword {
-    if (this == null || this!.isEmpty) {
+    if (this == null || this!.isEmpty || this!.trim().isEmpty) {
       return ValidationConstants.passwordRequired;
     }
     if (!AppRegex.hasMinLength(this!)) {
@@ -40,6 +40,16 @@ extension StringValidation on String? {
     }
     if (!AppRegex.hasSpecialCharacter(this!)) {
       return ValidationConstants.passwordSpecialChar;
+    }
+    return null;
+  }
+
+  String? matchOldPassword(String? originalValue) {
+    if (this == null || this!.isEmpty || this!.trim().isEmpty) {
+      return ValidationConstants.passwordRequired;
+    }
+    if (this != originalValue) {
+      return ValidationConstants.old;
     }
     return null;
   }

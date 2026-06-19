@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fitness_app/config/network/language_interceptor.dart';
 import '../network/auth_interceptor.dart';
 import '../network/pretty_dio_logger_interceptor.dart';
 import '../../core/constants/api_constants.dart';
@@ -11,6 +12,7 @@ abstract class DioModule {
   Dio dio(
     AuthInterceptor authInterceptor,
     PrettyDioLoggerInterceptor loggerInterceptor,
+    LanguageInterceptor languageInterceptor,
   ) {
     final dio = Dio(
       BaseOptions(
@@ -21,6 +23,7 @@ abstract class DioModule {
       ),
     );
     dio.interceptors.add(authInterceptor);
+    dio.interceptors.add(languageInterceptor);
     if (kDebugMode) {
       dio.interceptors.add(loggerInterceptor);
     }

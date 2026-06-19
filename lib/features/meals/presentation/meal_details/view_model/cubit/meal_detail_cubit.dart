@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:fitness_app/config/base_response/base_response.dart';
 import 'package:fitness_app/features/meals/data/models/meals_details/meals_details.dart';
 import 'package:fitness_app/features/meals/domain/use_cases/get_meal_details_use_case.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'meal_detail_state.dart';
@@ -23,6 +24,7 @@ class MealDetailCubit extends Cubit<MealDetailState> {
         emit(state.copyWith(mealDetails: data, isLoading: false));
       },
       failure: (error) {
+        debugPrint('MealDetailCubit Error: ${error.message}');
         emit(state.copyWith(errorMessage: error.message, isLoading: false));
       },
     );

@@ -133,7 +133,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(20),
         borderSide: const BorderSide(color: AppColors.white, width: 2),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     ),
 
     textButtonTheme: TextButtonThemeData(
