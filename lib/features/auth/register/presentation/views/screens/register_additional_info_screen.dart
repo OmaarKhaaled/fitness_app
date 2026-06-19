@@ -157,16 +157,11 @@ class _RegisterAdditionalInfoScreenState
         },
         listener: (context, state) {
           final registerState = state.registerState;
-          if (registerState?.isLoading == true) {
-            UiUtils.showLoading(context);
-          } else if (registerState?.isLoading == false &&
+          if (registerState?.isLoading == false &&
               registerState?.data != null) {
-            UiUtils.hideLoading(context);
-            UiUtils.showSuccessMsg(context, registerState!.data!.message!);
             context.go(AppRoutesConstants.loginRoute);
           } else if (registerState?.isLoading == false &&
               registerState?.errorMessage != null) {
-            UiUtils.hideLoading(context);
             UiUtils.showErrorMsg(context, registerState!.errorMessage!);
           }
           if (_viewModel.state.isRegistrationComplete) {

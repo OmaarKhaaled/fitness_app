@@ -51,19 +51,15 @@ class _ActivityLevelEditingScreenState
         listener: (context, state) {
           final editProfileState = state.editProfileState;
 
-          if (editProfileState?.isLoading == true) {
-            UiUtils.showLoading(context);
-          } else if (editProfileState?.isLoading == false &&
+          if (editProfileState?.isLoading == false &&
               editProfileState?.data != null &&
               state.isEditSuccess) {
-            UiUtils.hideLoading(context);
             UiUtils.showSuccessMsg(context, editProfileState!.data!.message!);
             _viewModel.doIntent(ResetEditSuccessEvent());
             context.pop();
             return;
           } else if (editProfileState?.isLoading == false &&
               editProfileState?.errorMessage != null) {
-            UiUtils.hideLoading(context);
             UiUtils.showErrorMsg(context, editProfileState!.errorMessage!);
           }
         },
@@ -203,12 +199,16 @@ class _ActivityLevelEditingScreenState
                             style: Theme.of(context).elevatedButtonTheme.style
                                 ?.copyWith(
                                   backgroundColor: WidgetStateProperty.all(
-                                    isButtonEnabled
+                                    (isButtonEnabled &&
+                                            state.editProfileState?.isLoading !=
+                                                true)
                                         ? AppColors.primary
                                         : AppColors.textSecondary,
                                   ),
                                 ),
-                            onPressed: isButtonEnabled
+                            onPressed:
+                                (isButtonEnabled &&
+                                    state.editProfileState?.isLoading != true)
                                 ? () {
                                     _viewModel.doIntent(
                                       UpdateActivityLevelEvent(
@@ -217,9 +217,18 @@ class _ActivityLevelEditingScreenState
                                     );
                                   }
                                 : null,
-                            child: Text(
-                              AppTextConstants.profileSetupWeightButton,
-                            ),
+                            child: (state.editProfileState?.isLoading == true)
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: AppColors.white,
+                                    ),
+                                  )
+                                : Text(
+                                    AppTextConstants.profileSetupWeightButton,
+                                  ),
                           ),
                         ),
                       ),
