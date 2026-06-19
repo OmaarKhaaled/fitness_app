@@ -5,6 +5,7 @@ import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/ui_utils.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view_model/forget_password_cubit.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view_model/forget_password_intents.dart';
+import 'package:fitness_app/features/auth/forget_password/presentation/view_model/forget_password_states.dart';
 import 'package:fitness_app/features/auth/forget_password/presentation/view_model/forget_password_ui_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,10 +43,6 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           .uiIntents
           .listen((event) {
             switch (event) {
-              case ShowLoadingResetPasswordIntent():
-                UiUtils.showLoading(context);
-              case HideLoadingResetPasswordIntent():
-                UiUtils.hideLoading(context);
               case ShowErrorResetPasswordIntent():
                 UiUtils.showErrorMsg(context, event.error);
               case NavigateToLoginIntent():
@@ -177,20 +174,41 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               SizedBox(
                 width: double.infinity,
                 height: 45,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.read<ForgetPasswordCubit>().doIntent(
-                      ResetPasswordIntent(),
-                    );
-                  },
-                  child: Text(
-                    AppTextConstants.done,
-                    style: textTheme.bodyLarge?.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                child:
+                    BlocSelector<
+                      ForgetPasswordCubit,
+                      ForgetPasswordStates,
+                      bool
+                    >(
+                      selector: (state) => state.isLoading,
+                      builder: (context, isLoading) {
+                        return ElevatedButton(
+                          onPressed: isLoading
+                              ? null
+                              : () {
+                                  context.read<ForgetPasswordCubit>().doIntent(
+                                    ResetPasswordIntent(),
+                                  );
+                                },
+                          child: isLoading
+                              ? const SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.5,
+                                    color: AppColors.white,
+                                  ),
+                                )
+                              : Text(
+                                  AppTextConstants.done,
+                                  style: textTheme.bodyLarge?.copyWith(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                        );
+                      },
                     ),
-                  ),
-                ),
               ),
               const SizedBox(height: 15),
             ],

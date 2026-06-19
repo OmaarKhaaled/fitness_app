@@ -102,10 +102,21 @@ class ActivityLevelPage extends StatelessWidget {
                                 AppColors.white,
                               ),
                             ),
-                        onPressed: isButtonEnabled ? onTap : null,
-                        child: Text(
-                          AppTextConstants.profileSetupActivityButton,
-                        ),
+                        onPressed:
+                            (isButtonEnabled &&
+                                state.registerState?.isLoading != true)
+                            ? onTap
+                            : null,
+                        child: state.registerState?.isLoading == true
+                            ? const SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : Text(AppTextConstants.profileSetupActivityButton),
                       ),
                     ),
                   ),
