@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:fitness_app/config/errors/app_exception.dart';
-import 'package:fitness_app/config/errors/local_exception.dart';
-import 'package:fitness_app/core/constants/error_constants.dart';
+
+import '../../core/constants/error_constants.dart';
 import 'api_exception.dart';
+import 'app_exception.dart';
+import 'local_exception.dart';
 
 class ExceptionsHandler {
   static AppException handle(Object error) {
@@ -10,8 +11,10 @@ class ExceptionsHandler {
       return _handleDioError(error);
     } else if (error is LocalException) {
       return _handleLocalException(error);
+    } else if (error is AppException) {
+      return error;
     } else {
-      return ApiException(ErrorsConstant.defaultError);
+      return ApiException(error.toString());
     }
   }
 }
@@ -51,9 +54,16 @@ AppException _handleDioError(DioException error) {
 }
 
 AppException _handleBadResponse(DioException error) {
-  return ApiException.fromJson(
-    json: error.response?.data,
-    statusCode: error.response?.statusCode,
+  final data = error.response?.data;
+  if (data is Map<String, dynamic>) {
+    return ApiException.fromJson(
+      json: data,
+      statusCode: error.response?.statusCode,
+    );
+  }
+  return ApiException(
+    error.message ?? ErrorsConstant.defaultError,
+    code: error.response?.statusCode,
   );
 }
 

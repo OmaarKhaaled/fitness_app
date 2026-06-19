@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
+import '../theme/app_colors.dart';
 
 class UiUtils {
   static void showLoading(
@@ -112,12 +112,12 @@ class UiUtils {
   }
 
   static Future<bool> showConfirmDialog(
-    BuildContext context,
-    String s, {
+    BuildContext context, {
     required String title,
     required String message,
     String confirmText = 'Confirm',
     String cancelText = 'Cancel',
+    VoidCallback? onConfirm,
   }) async {
     final result = await showDialog<bool>(
       context: context,
@@ -162,7 +162,9 @@ class UiUtils {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: () => Navigator.pop(context, true),
+                onPressed: () {
+                  onConfirm?.call();
+                },
                 child: Text(
                   confirmText,
                   style: const TextStyle(color: AppColors.white),

@@ -1,5 +1,5 @@
-abstract class AppException implements Exception {
+class AppException implements Exception {
   final String message;
   final int? code;
-  AppException(this.message, {this.code});
+  const AppException(this.message, {this.code});
 }

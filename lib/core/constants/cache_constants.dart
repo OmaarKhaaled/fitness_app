@@ -7,6 +7,9 @@ class CacheConstants {
   static const String error = 'error:';
   static const String accessTokenReadFailed = 'Access Token read failed';
   static const String refreshTokenReadFailed = 'Refresh Token read failed';
+  static const String onBoardingViewed = 'onBoardingViewed';
+  static const String firstName = 'firstName';
+  static const String imageUrl = 'imageUrl';
 }
 
 class StorageKeys {

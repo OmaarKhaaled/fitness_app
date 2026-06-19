@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../core/constants/api_constants.dart';
 import '../../core/constants/cache_constants.dart';
 import '../base_response/base_response.dart';
 import '../cache_modules/secure_storege_module.dart';
@@ -19,24 +20,43 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    // Use the SecureStorageService extension method directly
-    final tokenResponse = await _secureStorageService.getAuthTokens();
+    try {
+      final String ourHost = Uri.parse(ApiConstants.baseUrl).host;
 
-    tokenResponse.when(
-      success: (token) {
-        if (token != null && token.isNotEmpty) {
-          // Add the token to the Authorization header
-          options.headers['Authorization'] = 'Bearer $token';
-          // Also add to the TOKEN header if your API expects it
-          options.headers[CacheConstants.token] = token;
-        }
-      },
-      failure: (error) {
-        if (kDebugMode) {}
-      },
-    );
+      // Check if the request is going to our domain
+      // If path is absolute, check its host; otherwise check baseUrl
+      bool isLocalRequest = false;
+      if (options.path.startsWith('http')) {
+        isLocalRequest = Uri.parse(options.path).host == ourHost;
+      } else {
+        isLocalRequest = options.baseUrl.contains(ourHost);
+      }
 
-    handler.next(options);
+      if (isLocalRequest) {
+        final tokenResponse = await _secureStorageService.getAuthTokens();
+
+        tokenResponse.when(
+          initial: () => handler.next(options),
+          loading: () {},
+          success: (token) {
+            if (token != null && token.isNotEmpty) {
+              options.headers['Authorization'] = 'Bearer $token';
+              options.headers[CacheConstants.token] = token;
+            }
+            handler.next(options);
+          },
+          failure: (error) {
+            handler.next(options);
+          },
+        );
+      } else {
+        // Skip authentication for external APIs like TheMealDB
+        handler.next(options);
+      }
+    } catch (e) {
+      debugPrint('AuthInterceptor error: $e');
+      handler.next(options);
+    }
   }
 
   @override
@@ -62,7 +82,6 @@ class AuthInterceptor extends Interceptor {
     handler.next(err);
   }
 
-  /// Clear expired token from storage using SecureStorageService methods
   Future<void> _clearExpiredToken() async {
     try {
       await _secureStorageService.clearAuthTokens();
