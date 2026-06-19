@@ -194,16 +194,21 @@ void main() {
         cubit.doIntent(ResetPasswordIntent());
       },
       skip: 2,
-      expect: () => [],
+      expect: () => [
+        const ForgetPasswordStates(
+          newPassword: password,
+          confirmNewPassword: password,
+          isFormValid: true,
+          isLoading: true,
+        ),
+        const ForgetPasswordStates(
+          newPassword: password,
+          confirmNewPassword: password,
+          isFormValid: true,
+          isLoading: false,
+        ),
+      ],
       verify: (cubit) {
-        expect(
-          cubit.uiIntents,
-          emitsThrough(isA<ShowLoadingResetPasswordIntent>()),
-        );
-        expect(
-          cubit.uiIntents,
-          emitsThrough(isA<HideLoadingResetPasswordIntent>()),
-        );
         expect(cubit.uiIntents, emitsThrough(isA<NavigateToLoginIntent>()));
       },
     );
