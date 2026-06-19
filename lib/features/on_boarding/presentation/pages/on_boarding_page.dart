@@ -50,7 +50,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     CacheConstants.onBoardingViewed,
                     true,
                   );
-                  context.go(AppRoutesConstants.registerRoute);
+                  context.go(AppRoutesConstants.loginRoute);
                 },
                 child: Text(AppTextConstants.onboardingSkipButton),
               ),
@@ -72,7 +72,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     CacheConstants.onBoardingViewed,
                     true,
                   );
-                  context.go(AppRoutesConstants.registerRoute);
+                  context.go(AppRoutesConstants.loginRoute);
                 },
               ),
             ],

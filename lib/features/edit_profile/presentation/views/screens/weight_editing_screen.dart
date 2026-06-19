@@ -76,18 +76,14 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
         listener: (context, state) {
           final editProfileState = state.editProfileState;
 
-          if (editProfileState?.isLoading == true) {
-            UiUtils.showLoading(context);
-          } else if (editProfileState?.isLoading == false &&
+          if (editProfileState?.isLoading == false &&
               editProfileState?.data != null &&
               state.isEditSuccess) {
-            UiUtils.hideLoading(context);
             UiUtils.showSuccessMsg(context, editProfileState!.data!.message!);
             _viewModel.doIntent(ResetEditSuccessEvent());
             context.pop();
           } else if (editProfileState?.isLoading == false &&
               editProfileState?.errorMessage != null) {
-            UiUtils.hideLoading(context);
             UiUtils.showErrorMsg(context, editProfileState!.errorMessage!);
           }
         },
@@ -254,14 +250,26 @@ class _WeightEditingScreenState extends State<WeightEditingScreen> {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              _viewModel.doIntent(
-                                UpdateWeightEvent(state.selectedWeight),
-                              );
-                            },
-                            child: Text(
-                              AppTextConstants.profileSetupWeightButton,
-                            ),
+                            onPressed:
+                                (state.editProfileState?.isLoading == true)
+                                ? null
+                                : () {
+                                    _viewModel.doIntent(
+                                      UpdateWeightEvent(state.selectedWeight),
+                                    );
+                                  },
+                            child: (state.editProfileState?.isLoading == true)
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: AppColors.white,
+                                    ),
+                                  )
+                                : Text(
+                                    AppTextConstants.profileSetupWeightButton,
+                                  ),
                           ),
                         ),
                       ),
