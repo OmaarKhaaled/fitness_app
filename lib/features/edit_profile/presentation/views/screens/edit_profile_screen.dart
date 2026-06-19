@@ -77,6 +77,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     super.dispose();
   }
 
+  String _getActivityLevelLabel(String? level) {
+    if (level == null) return '';
+    switch (level.toLowerCase()) {
+      case 'level1':
+        return AppTextConstants.profileSetupActivityRookie;
+      case 'level2':
+        return AppTextConstants.profileSetupActivityBeginner;
+      case 'level3':
+        return AppTextConstants.profileSetupActivityIntermediate;
+      case 'level4':
+        return AppTextConstants.profileSetupActivityAdvance;
+      case 'level5':
+        return AppTextConstants.profileSetupActivityTrueBeast;
+      default:
+        return level;
+    }
+  }
+
+  String _getGoalLabel(String? goal) {
+    if (goal == null) return '';
+    switch (goal.toLowerCase()) {
+      case 'gain weight':
+        return AppTextConstants.profileSetupGoalGainWeight;
+      case 'lose weight':
+        return AppTextConstants.profileSetupGoalLoseWeight;
+      case 'get fitter':
+        return AppTextConstants.profileSetupGoalGetFitter;
+      case 'gain more flexible':
+        return AppTextConstants.profileSetupGoalGainMoreFlexible;
+      case 'learn the basic':
+        return AppTextConstants.profileSetupGoalLearnTheBasic;
+      default:
+        return goal;
+    }
+  }
+
   void _updateControllersFromUser(UserModel user) {
     final newFirstName = user.firstName ?? '';
     if (firstNameController.text != newFirstName) {
@@ -98,8 +134,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _originalEmail ??= user.email;
     weightController.text =
         '${user.weight} ${AppTextConstants.profileSetupWeightUnit.toUpperCase()}';
-    goalController.text = user.goal ?? '';
-    activityLevelController.text = user.activityLevel ?? '';
+    goalController.text = _getGoalLabel(user.goal);
+    activityLevelController.text = _getActivityLevelLabel(user.activityLevel);
   }
 
   void _onFirstNameFocusLost() {
@@ -186,19 +222,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           }
 
           if (state.isEditSuccess) {
-            UiUtils.hideLoading(context);
-            UiUtils.showSuccessMsg(
-              context,
-              state.editProfileState!.data!.message!,
-            );
             viewModel.doIntent(ResetEditSuccessEvent());
           }
 
-          if (state.editProfileState?.isLoading == true) {
-            UiUtils.showLoading(context);
-          } else if (state.editProfileState?.isLoading == false &&
+          if (state.editProfileState?.isLoading == false &&
               state.editProfileState?.errorMessage != null) {
-            UiUtils.hideLoading(context);
             UiUtils.showErrorMsg(
               context,
               state.editProfileState!.errorMessage!,
@@ -369,6 +397,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 await context.push(
                                   AppRoutesConstants.weightEditing,
                                 );
+                                viewModel.doIntent(GetProfileEvent());
                               },
                             ),
                             SizedBox(height: 0.02 * height),
@@ -384,6 +413,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 await context.push(
                                   AppRoutesConstants.goalEditing,
                                 );
+                                viewModel.doIntent(GetProfileEvent());
                               },
                             ),
                             SizedBox(height: 0.02 * height),
@@ -399,6 +429,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 await context.push(
                                   AppRoutesConstants.activityLevelEditing,
                                 );
+                                viewModel.doIntent(GetProfileEvent());
                               },
                             ),
                             SizedBox(height: 0.02 * height),
